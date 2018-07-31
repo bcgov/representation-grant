@@ -291,7 +291,7 @@
       "description": "The whitelist containing all of the trusted siteminder IPs.",
       "displayName": "SiteMinder Whitelist",
       "name": "SITEMINDER_WHITE_LIST",
-      "required": true,
+      "required": false,
       "value": ""
     },
     {
