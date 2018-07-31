@@ -1,7 +1,7 @@
 #=========================================================
 # OpenShift template parameters for:
 # Component: api
-# JSON Template File: templates/schema-spy/schema-spy-deploy.json
+# Template File: templates/schema-spy/schema-spy-deploy.json
 #=========================================================
 # NAME=schema-spy
 # IMAGE_NAMESPACE=ag-csb-representation-grant-tools

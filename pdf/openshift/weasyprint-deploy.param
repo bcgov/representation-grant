@@ -1,7 +1,7 @@
 #=========================================================
 # OpenShift template parameters for:
 # Component: pdf
-# JSON Template File: templates/weasyprint-deploy.json
+# Template File: templates/weasyprint-deploy.json
 #=========================================================
 NAME=weasyprint
 SOURCE_IMAGE_NAME=weasyprint

@@ -1,10 +1,10 @@
 #=========================================================
 # OpenShift template parameters for:
-# Component: pdf
-# Template File: templates/weasyprint-build.json
+# Component: db
+# Template File: templates/postgresql-build.json
 #=========================================================
-NAME=weasyprint
+NAME=postgresql
 OUTPUT_IMAGE_TAG=latest
 SOURCE_IMAGE_KIND=DockerImage
-SOURCE_IMAGE_NAME=aquavitae/weasyprint
-SOURCE_IMAGE_TAG=latest
+SOURCE_IMAGE_NAME=registry.access.redhat.com/rhscl/postgresql-95-rhel7
+SOURCE_IMAGE_TAG=9.5
