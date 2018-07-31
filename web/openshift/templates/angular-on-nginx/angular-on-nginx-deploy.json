@@ -285,7 +285,7 @@
       "description": "The endpoint used for SiteMinder routed access to the application.",
       "displayName": "SiteMinder Application Domain",
       "name": "SITEMINDER_APPLICATION_DOMAIN",
-      "value": "protection-order-dev.pathfinder.bcgov"
+      "value": "representation-grant-dev.pathfinder.bcgov"
     },
     {
       "description": "The whitelist containing all of the trusted siteminder IPs.",

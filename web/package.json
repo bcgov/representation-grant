@@ -5,11 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "build": "ng build --prod --base-href=/protection-order/",
+    "build": "ng build --prod --base-href=/representation-grant/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod --base-href=/protection-order/"
+    "postinstall": "ng build --prod --base-href=/representation-grant/"
   },
   "private": true,
   "dependencies": {
