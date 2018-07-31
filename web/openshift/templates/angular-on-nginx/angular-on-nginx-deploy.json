@@ -291,7 +291,8 @@
       "description": "The whitelist containing all of the trusted siteminder IPs.",
       "displayName": "SiteMinder Whitelist",
       "name": "SITEMINDER_WHITE_LIST",
-      "value": "142.34.49.76 142.34.49.77 142.34.157.10 142.34.157.11"
+      "required": true,
+      "value": ""
     },
     {
       "description": "The TAG name for this environment, e.g., dev, test, prod",
