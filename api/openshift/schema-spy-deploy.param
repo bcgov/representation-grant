@@ -8,6 +8,6 @@ IMAGE_NAMESPACE=ag-csb-representation-grant-tools
 MEMORY_LIMIT=512Mi
 APPLICATION_DOMAIN=schema-spy-ag-csb-representation-grant-dev.pathfinder.gov.bc.ca
 DATABASE_SERVICE_NAME=postgresql
-DATABASE_NAME=FPO_Database
+DATABASE_NAME=RG_Database
 TAG_NAME=dev
 DATABASE_DEPLOYMENT_NAME=postgresql
