@@ -1,5 +1,5 @@
 """
-    REST API Documentation for Family Protection Order
+    REST API Documentation for Representation Grant
 
     OpenAPI spec version: v1
 
