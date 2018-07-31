@@ -137,21 +137,21 @@
                         "key": "database-password"
                       }
                     }
-                  }
+                      }
                 ],
                 "readinessProbe": {
-                  "timeoutSeconds": 3000,
+                  "timeoutSeconds": 30,
                   "initialDelaySeconds": 3,
                   "httpGet": {
-                    "path": "/",
+                    "path": "/health",
                     "port": 8080
                   }
                 },
                 "livenessProbe": {
-                  "timeoutSeconds": 3000,
-                  "initialDelaySeconds": 30,
+                  "timeoutSeconds": 30,
+                  "initialDelaySeconds": 300,
                   "httpGet": {
-                    "path": "/",
+                    "path": "/health",
                     "port": 8080
                   }
                 },
@@ -159,13 +159,13 @@
                   "limits": {
                     "memory": "${MEMORY_LIMIT}"
                   }
+                  }
+              }
+                  ]
                 }
               }
-            ]
           }
         }
-      }
-    }
   ],
   "parameters": [
     {
