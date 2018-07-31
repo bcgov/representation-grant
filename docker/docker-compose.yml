@@ -1,9 +1,9 @@
 version: '3'
 services:
   # 
-  # fpo-web
+  # web
   # 
-  fpo-web:
+  web:
     image: angular-on-nginx
     environment:
       - API_URL=${API_URL}
@@ -14,10 +14,10 @@ services:
     ports:
       - "${WEB_HTTP_PORT}:8080"
     depends_on:
-      - fpo-api
+      - api
 
   # 
-  # fpo-api
+  # api
   #-------------------------------------------------
   # The API performs the migrations on the database.
   # Therefore, it needs to come up after the database
@@ -28,7 +28,7 @@ services:
   # of the configuration for details.  It would be 
   # nice to implement a more deterministic solution.
   # 
-  fpo-api:
+  api:
     image: django
     environment:
       - DATABASE_SERVICE_NAME=${DATABASE_SERVICE_NAME}
@@ -43,13 +43,13 @@ services:
       - FPO_DB_SERVICE_HOST=${DATABASE_SERVICE_NAME}
       - FPO_DB_SERVICE_PORT=5432
     volumes:
-      - ../fpo-api/api:/opt/app-root/src/api
+      - ../api/api:/opt/app-root/src/api
     networks:
       - fpo
     ports:
       - "${API_HTTP_PORT}:8080"
     depends_on:
-      - fpo-db
+      - db
     command: >
       /bin/bash -c "
         echo Waiting for the database service to start up ...;
@@ -80,16 +80,16 @@ services:
     ports:
       - 8082:8080
     depends_on:
-      - fpo-db
+      - db
     command: >
       /bin/sh -c "
         echo sleeping ...;
         sleep 20;
         ./start.sh;"
   # 
-  # fpo-db
+  # db
   # 
-  fpo-db:
+  db:
     image: registry.access.redhat.com/rhscl/postgresql-95-rhel7@sha256:155cf81a3d3a8bbcab3a1f61b177cab75a4105306146d172ef8fb29488cf58b4
     environment:
       - POSTGRESQL_USER=${POSTGRESQL_USER}
@@ -103,9 +103,9 @@ services:
       # - fpo-data:/var/lib/pgsql/data 
 
   # 
-  # fpo-pdf
+  # pdf
   # 
-  fpo-pdf:
+  pdf:
     image: aquavitae/weasyprint
     networks:
       - fpo

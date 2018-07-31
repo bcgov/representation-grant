@@ -33,12 +33,12 @@ usage() {
           You can pass in a list of containers to start.  
           By default all containers will be started.
           
-          The API_URL used by fpo-web can also be redirected.
+          The API_URL used by web can also be redirected.
 
           Examples:
           $0 start
-          $0 start fpo-web
-          $0 start fpo-web API_URL=http://docker.for.win.localhost:56325/api/v1
+          $0 start web
+          $0 start web API_URL=http://docker.for.win.localhost:56325/api/v1
 
   stop - Stops the services.  This is a non-destructive process.  The containers
          are not deleted so they will be reused the next time you run start.
@@ -50,13 +50,13 @@ exit 1
 # -----------------------------------------------------------------------------------------------------------------
 # Default Settings:
 # -----------------------------------------------------------------------------------------------------------------
-DEFAULT_CONTAINERS="fpo-db fpo-api schema-spy fpo-web fpo-pdf"
+DEFAULT_CONTAINERS="db api schema-spy web pdf"
 # -----------------------------------------------------------------------------------------------------------------
 # Functions:
 # -----------------------------------------------------------------------------------------------------------------
 build-web() {
   #
-  # fpo-web
+  # web
   #
   # The nginx-runtime image is used for the final runtime image.
   # The angular-app image is used to build the artifacts for the angular distribution.
@@ -67,14 +67,14 @@ build-web() {
   echo -e "----------------------------------------------------------------------------------------------------"
   docker build \
     -t 'nginx-runtime' \
-    -f '../fpo-web/openshift/templates/nginx-runtime/Dockerfile' '../fpo-web/openshift/templates/nginx-runtime/'
+    -f '../web/openshift/templates/nginx-runtime/Dockerfile' '../web/openshift/templates/nginx-runtime/'
   echo -e "===================================================================================================="
   
   echo -e "\n\n===================================================================================================="
   echo -e "Building the angular-app image using s2i ..."
   echo -e "----------------------------------------------------------------------------------------------------"
   ${S2I_EXE} build \
-    '../fpo-web' \
+    '../web' \
     'centos/nodejs-6-centos7:6' \
     'angular-app'
   echo -e "===================================================================================================="
@@ -84,13 +84,13 @@ build-web() {
   echo -e "----------------------------------------------------------------------------------------------------"
   docker build \
     -t 'angular-on-nginx' \
-    -f '../fpo-web/openshift/templates/angular-on-nginx/Dockerfile' '../fpo-web/openshift/templates/angular-on-nginx/'
+    -f '../web/openshift/templates/angular-on-nginx/Dockerfile' '../web/openshift/templates/angular-on-nginx/'
   echo -e "===================================================================================================="
 }
 
 build-db() {
   #
-  # fpo-db
+  # db
   #
   # Nothing to build here ...
   echo
@@ -108,18 +108,18 @@ build-schema-spy() {
 
 build-api() {
   #
-  # fpo-api
+  # api
   #
   echo -e "\nBuilding django image ..."
   ${S2I_EXE} build \
-    '../fpo-api' \
+    '../api' \
     'centos/python-36-centos7' \
     'django'
 }
 
 build-pdf() {
   #
-  # fpo-pdf
+  # pdf
   #
   echo -e "\nGetting pdf image ..."
   docker pull aquavitae/weasyprint
@@ -150,22 +150,22 @@ configureEnvironment () {
     esac
   done
   
-  # fpo-db
+  # db
   export POSTGRESQL_DATABASE="FAMILY_PROTECTION_ORDER"
   export POSTGRESQL_USER="DB_USER"
   export POSTGRESQL_PASSWORD="DB_PASSWORD"
 
   # schema-spy
-  export DATABASE_SERVICE_NAME="fpo-db"
+  export DATABASE_SERVICE_NAME="db"
   export POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}
   export POSTGRESQL_USER=${POSTGRESQL_USER}
   export POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}
 
-  # fpo-api
+  # api
   export API_HTTP_PORT=${API_HTTP_PORT-8081}
-  export PDF_SERVICE_URL=${PDF_SERVICE_URL-http://fpo-pdf:5001}
+  export PDF_SERVICE_URL=${PDF_SERVICE_URL-http://pdf:5001}
   export OVERRIDE_USER_ID=${OVERRIDE_USER_ID-}
-  export DATABASE_SERVICE_NAME="fpo-db"
+  export DATABASE_SERVICE_NAME="db"
   export DATABASE_ENGINE="postgresql"
   export DATABASE_NAME=${POSTGRESQL_DATABASE}
   export DATABASE_USER=${POSTGRESQL_USER}
@@ -173,9 +173,9 @@ configureEnvironment () {
   export DJANGO_SECRET_KEY=wpn1GZrouOryH2FshRrpVHcEhMfMLtmTWMC2K5Vhx8MAi74H5y
   export DJANGO_DEBUG=True
 
-  # fpo-web
+  # web
   export WEB_HTTP_PORT=${WEB_HTTP_PORT-8080}
-  export API_URL=${API_URL-http://fpo-api:8080/api/v1/}
+  export API_URL=${API_URL-http://api:8080/api/v1/}
   export IpFilterRules='#allow all; deny all;'
   export RealIpFrom='127.0.0.0/16'
 }
@@ -246,16 +246,16 @@ case "$COMMAND" in
     ;;
   build)
     case "$@" in
-      fpo-api)
+      api)
         build-api
         ;;
-      fpo-web)
+      web)
         build-web
         ;;
       fpo-solr)
         build-solr
         ;;
-      fpo-pdf)
+      pdf)
         build-pdf
         ;;
       *)

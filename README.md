@@ -3,16 +3,16 @@ Representation Grant
 
 ## Structure
 
-### Client Application (fpo-web)
+### Client Application (web)
 An AngularJS client application which serves out the SurveyJS based questionnaire.
 
-###	REST API (fpo-api)
+###	REST API (api)
 A Django based REST API which provides the heavy lifting.  The API includes a Swagger interface containing API documentation and UI that allows you to interact with the various APIs manually.
 
-### PDF Microservice (fpo-pdf)
+### PDF Microservice (pdf)
 An html to PDF microservice used to generate reports.
 
-###	Database (fpo-db)
+###	Database (db)
 A PostgreSQL database for storage, complete with a SchemaSpy instance for documentation.
 
 ## Development Instances

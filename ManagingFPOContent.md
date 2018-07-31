@@ -1,6 +1,6 @@
-# Managing Family Protection Order Content
+# Managing Representation Grant Content
 
-The Family Protection Order (FPO) application is technically a relatively simple application with a number of ways to easily update content - the information provided to end users as they use the application. The theory on which we are basing the architecture of the application is that we can enable Content creators (business folks) to evolve the Content (question, glossary, help text, etc.), independent of the technical team. This means that the major focus of development can be on the Content without the need for a lot of technical resources to support the project.  We think this model can be applied to a number of conceptually similar applications in the Justice space.
+The Representation Grant (FPO) application is technically a relatively simple application with a number of ways to easily update content - the information provided to end users as they use the application. The theory on which we are basing the architecture of the application is that we can enable Content creators (business folks) to evolve the Content (question, glossary, help text, etc.), independent of the technical team. This means that the major focus of development can be on the Content without the need for a lot of technical resources to support the project.  We think this model can be applied to a number of conceptually similar applications in the Justice space.
 
 There are four parts of the app that have been separated out for Content Developers to manage:
 
@@ -30,7 +30,7 @@ This document details on how a Content Developer manages that content. The infor
 * Create github account
 * Fork the BC Gov's [Family-Protection-Order](https://github.com/bcgov/Family-Protection-Order) repository into your github account.
 * Find the survey's
-   * Within your github repo navigate to: fpo-web -> src -> assets
+   * Within your github repo navigate to: web -> src -> assets
 
 #### Updating the Survey
 
