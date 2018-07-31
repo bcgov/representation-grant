@@ -30,7 +30,7 @@ This document details on how a Content Developer manages that content. The infor
 * Create github account
 * Fork the BC Gov's [Family-Protection-Order](https://github.com/bcgov/Family-Protection-Order) repository into your github account.
 * Find the survey's
-   * Within your github repo navigate to: fpo-web -> src -> assets
+   * Within your github repo navigate to: web -> src -> assets
 
 #### Updating the Survey
 

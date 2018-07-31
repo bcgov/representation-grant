@@ -6,12 +6,12 @@ export PROJECT_OS_DIR=${PROJECT_OS_DIR:-../../openshift}
 # Templates NOT in this list will have they GIT referances over-ridden
 # with the values of GIT_URI and GIT_REF
 export skip_git_overrides="schema-spy-build.json"
-export GIT_URI="https://github.com/bcgov/Family-Protection-Order.git"
+export GIT_URI="https://github.com/bcgov/representation-grant.git"
 export GIT_REF="master"
 
 # The project components
 # - defaults to the support the Simple Project Structure
-export components=${components:-"fpo-db fpo-api fpo-web fpo-pdf"}
+export components=${components:-"db api web pdf"}
 
 # The builds to be triggered after buildconfigs created (not auto-triggered)
 export builds=${builds:-""}
