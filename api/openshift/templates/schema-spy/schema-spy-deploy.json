@@ -143,7 +143,7 @@
                   "timeoutSeconds": 30,
                   "initialDelaySeconds": 3,
                   "httpGet": {
-                    "path": "/health",
+                    "path": "/",
                     "port": 8080
                   }
                 },
@@ -151,7 +151,7 @@
                   "timeoutSeconds": 30,
                   "initialDelaySeconds": 300,
                   "httpGet": {
-                    "path": "/health",
+                    "path": "/",
                     "port": 8080
                   }
                 },
