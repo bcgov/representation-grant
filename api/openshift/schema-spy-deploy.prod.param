@@ -8,6 +8,6 @@
 # MEMORY_LIMIT=512Mi
 APPLICATION_DOMAIN=schema-spy-ag-csb-representation-grant-prod.pathfinder.gov.bc.ca
 # DATABASE_SERVICE_NAME=postgresql
-# DATABASE_NAME=FPO_Database
+# DATABASE_NAME=RG_Database
 TAG_NAME=prod
 # DATABASE_DEPLOYMENT_NAME=postgresql
