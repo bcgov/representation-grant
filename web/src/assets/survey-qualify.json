@@ -1,98 +1,131 @@
 {
+ "title": "Provincial Family Test",
  "pages": [
   {
-   "name": "Qualifying Questions",
+   "name": "Qualifying Questions - Rename",
    "elements": [
     {
      "type": "yesno",
-     "name": "Unsafe",
-     "title": "Is someone making you or your family feel `unsafe`?",
-     "isRequired": true
-    },
-    {
-     "type": "yesno",
-     "name": "UnsafePartner",
-     "visible": false,
-     "visibleIf": "{Unsafe} =  'y'",
-     "title": "Was (or is) this person your partner?",
-     "description": "A partner can include someone: \n<ul>\n<li>you were (or are) married to, or</li>\n<li>you lived (or live) with in a marriage-like relationship, or</li>\n<li>you have a child with</li>\n</ul>",
+     "name": "NeedGrant",
+     "title": "Do you need the Supreme Court of British Columbia's help to manage the estate of the person who died?",
      "isRequired": true
     },
     {
      "type": "helptext",
-     "name": "UnsafePartnerFAQ1",
-     "visible": false,
-     "visibleIf": "{Unsafe} =  'y'",
-     "title": "Does my ex-boyfriend or ex-girlfriend count as my partner?",
+     "name": "FAQNeedGrant1",
+     "title": "What can I do without the help of the court?",
      "titleLocation": "hidden",
-     "body": "If they lived (or live) with you in a marriage-like relationship for any period of time then, yes, they count as your partner. Also, if the two of you have a child together then, yes, they count as your partner."
+     "body": "You don't always need help from the Supreme Court of British Columbia to manage the estate. It depends on the kinds of assets the deceased left behind. If you can do this all on your own, you may be able to save some time and money. \n<br>\n<br>\nFor example, if the deceased had money in their bank account, depending on your relationship to that person, the bank may work with you to manage that money. However, different assets and the organizations who manage them, may have different policies.\n<br>\n<br>\nContact each of the organizations that hold the deceased's  assets to find out what each organization needs before they will let you manage the asset. You may be able to manage the whole estate without the help of the court."
+    },
+    {
+     "type": "helptext",
+     "name": "FAQNeedGrant2",
+     "title": "When do I need the court's help?",
+     "titleLocation": "hidden",
+     "body": "If any of the organizations that hold the deceased's assets will not allow you to manage the asset, you can apply to the Supreme Court of British Columbia for help.\n<br>\n<br>\nIf you are successful with the court process, you will receive a document called a Representation Grant. This will take some time to get processed by the court. The organization that holds the asset will respect your Representation Grant and let you to manage the asset."
     },
     {
      "type": "infotext",
-     "name": "ExplanationUnsafeNonPartner",
+     "name": "ExplanationNeedGrantYes",
      "visible": false,
-     "visibleIf": "{Unsafe} =  'y' and {UnsafePartner} = 'n'",
-     "title": "For now, this service has only been developed for a limited number of situations. This service can only be used to apply for a Provincial Court `Family Law Protection Order` against someone who was (or is) your partner.\n<br>\n<br>\nIf a `family member` that is not your ex-partner is making you feel `unsafe`, you can still apply for Provincial Court Family Law Protection Order.\n<br>\n<br>\n<a href=\"https://www2.gov.bc.ca/gov/content/justice/courthouse-services/documents-forms-records/court-forms/prov-family-forms\" target=\"_blank\">Click here for Provincial Court Family Forms.</a>\n<br>\n<br>\nIf someone that is not a family member is making you feel unsafe, you can still apply for an `order` to protect you. This order is called a `Peace Bond`. This service cannot be used to get a Peace Bond. If you think you need a Peace Bond, contact the police or RCMP for assistance.\n<br>\n<br>\nFor additional support, call VictimLink BC 1-800-563-0808 (no charge), 24 hours a day, 7 days a week.",
-     "titleLocation": "hidden",
-     "messageStyle": "error"
-    },
-    {
-     "type": "yesno",
-     "name": "EitherHaveChildren",
-     "visible": false,
-     "visibleIf": "{Unsafe} = 'y' and {UnsafePartner} = 'y'",
-     "title": "Do either of you have children?",
-     "isRequired": true
-    },
-    {
-     "type": "yesno",
-     "name": "ChildrenHaveOtherGuardians",
-     "visible": false,
-     "visibleIf": "{Unsafe} = 'y' and {UnsafePartner} = 'y' and {EitherHaveChildren} = 'y'",
-     "title": "Do any of these children have parents or `legal guardians` other than you and your ex-partner?",
-     "isRequired": true
+     "visibleIf": "{NeedGrant} = \"y\"",
+     "title": "This service will help you apply to for a Representation Grant. A Representation Grant costs money and will take time to process. If you do not a need a Representation Grant to manage the estate of a person who died, you may be able to save time and money.\n<br>\n<br>\nBefore proceeding with this service, contact each of the organizations that hold the deceased's  assets to find out if they will allow you to manage the assets on your own.",
+     "titleLocation": "hidden"
     },
     {
      "type": "infotext",
-     "name": "ExplanationChildrenHaveOtherGuardians",
+     "name": "ErrorNeedGrantNo",
      "visible": false,
-     "visibleIf": "{Unsafe} = 'y' and {UnsafePartner} = 'y' and {EitherHaveChildren} = 'y' and {ChildrenHaveOtherGuardians} = 'y'",
-     "title": "For now, this service has only been developed for a limited number of situations. This service is currently limited to situations where ex-partners have shared children. These children cannot have parents or guardians other than you and your ex-partner.\n<br>\n<br>\nIf any children have parents or guardians other than you and your ex-partner, you can still apply for Provincial Court `Family Law Protection Order`.\n<br>\n<br>\n<a href=\"https://www2.gov.bc.ca/gov/content/justice/courthouse-services/documents-forms-records/court-forms/prov-family-forms\" target=\"_blank\">Click here for Provincial Court Family Forms.</a>\n<br>\n<br>\nFor additional support, call VictimLink BC 1-800-563-0808 (no charge), 24 hours a day, 7 days a week.",
+     "visibleIf": "{NeedGrant} = \"n\"",
+     "title": "If you do not a need a Representation Grant from the Supreme Court of British Columbia, you do not need this service.",
      "titleLocation": "hidden",
      "messageStyle": "error"
     },
     {
      "type": "yesno",
-     "name": "OutsideOfBCPOR",
+     "name": "DiedAfterWESA",
      "visible": false,
-     "visibleIf": "{Unsafe} =  'y' and {UnsafePartner} = 'y' and ({EitherHaveChildren} = 'n' or {ChildrenHaveOtherGuardians} = 'n')",
-     "title": "Do you or your ex-partner plan to live or work outside of British Columbia within the next year?",
-     "description": "A Provincial Court Family Law Protection Order may not be valid outside of British Columbia. It will depend on the laws of the place.",
+     "visibleIf": "{NeedGrant} = 'y'",
+     "title": "Did the deceased die after March 31, 2014?",
      "isRequired": true
     },
     {
      "type": "infotext",
-     "name": "ExplanationOutsideOfBCPOR",
+     "name": "ErrorDiedAfterWESANo",
      "visible": false,
-     "visibleIf": "{Unsafe} =  'y' and {UnsafePartner} = 'y' and ({EitherHaveChildren} = 'n' or {ChildrenHaveOtherGuardians} = 'n') and {OutsideOfBCPOR} = 'y'",
-     "title": "You may consider a `Peace Bond` or a Supreme Court `Family Law Protection Order`. This service cannot help apply for either of these at this time. You may consider legal advice for looking into the place where the family member making you feel unsafe is located.\n<br>\n<br>\n<a href=\"http://www.lss.bc.ca/resources/pdfs/pubs/For-Your-Protection-eng.pdf\" target=\"_blank\">Click here to learn more about Peace Bonds.</a>\n<br>\n<br>\n<a href=\"https://www2.gov.bc.ca/gov/content/justice/courthouse-services/documents-forms-records/court-forms/sup-family-forms\" target=\"_blank\">Click here for Supreme Court Family Forms.</a>",
+     "visibleIf": "{NeedGrant} = \"y\" and {DiedAfterWESA} = \"n\"",
+     "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nThe Wills, Estate and Succession Act became law on April 1, 2014. If the person died on March 31, 2014 or before, the court process needs to comply with the old Estate Administration Act in addition to the current Wills, Estate and Succession Act. This service only supports the current laws. Please review both the <a href=\"http://www.bclaws.ca/civix/document/id/consol17/consol17/00_96122_01\" target=\"blank\">Estate Administration Act</a> and the <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/09013_01\" target=\"blank\">Wills, Estate and Succession Act</a> to make sure you <a href=\"https://www2.gov.bc.ca/gov/content/justice/about-bcs-justice-system/legislation-policy/legislation-updates/wills-estates-and-succession-act-and-new-probate-rules\" target=\"blank\">follow the right process.</a>\n\n",
      "titleLocation": "hidden",
      "messageStyle": "error"
     },
     {
      "type": "yesno",
-     "name": "ExistingPOR",
+     "name": "BCResident",
      "visible": false,
-     "visibleIf": "{Unsafe} =  'y' and {UnsafePartner} = 'y' and ({EitherHaveChildren} = 'n' or {ChildrenHaveOtherGuardians} = 'n') and {OutsideOfBCPOR} = 'n'",
-     "title": "Do you already have a Provincial Court `Family Law Protection Order` and you need to change it or add more time?",
+     "visibleIf": "{NeedGrant} = \"y\" and {DiedAfterWESA} = \"y\"",
+     "title": "Was the deceased a resident of British Columbia at the time of their death?",
+     "description": "Generally speaking, a person is a resident of British Columbia if their primary home and most of their financial and social connections are in British Columbia.",
      "isRequired": true
     },
     {
      "type": "infotext",
-     "name": "ExplanationExistingPOR",
+     "name": "ErrorBCResidentNo",
      "visible": false,
-     "visibleIf": "{Unsafe} =  'y' and {UnsafePartner} = 'y' and ({EitherHaveChildren} = 'n' or {ChildrenHaveOtherGuardians} = 'n') and {OutsideOfBCPOR} = 'n' and {ExistingPOR} = 'y'",
-     "title": "If you already have a Provincial Court Family Law Protection Order, there is a different form to complete. You can copy most of the content from the original forms you used to apply for your Protection Order.\n<br>\n<br>\n<a href=\"https://www2.gov.bc.ca/assets/gov/law-crime-and-justice/courthouse-services/court-files-records/court-forms/family/pfa004.pdf?forcedownload=true\" target=\"_blank\">Click here to download the form you need.</a>",
+     "visibleIf": "{BCResident} = \"n\"",
+     "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nIf the deceased was not a resident of British Columbia, at their time of death, it may involve other factors and filing requirements. You may need to apply to represent them somewhere else entirely. Or, if you do apply in British Columbia, please review the Supreme Court Civil Rules to use the appropriate Supreme Court Probate Form.",
+     "titleLocation": "hidden",
+     "messageStyle": "error"
+    },
+    {
+     "type": "yesno",
+     "name": "Will",
+     "visible": false,
+     "visibleIf": "{BCResident} = \"y\"",
+     "title": "Did the deceased leave a will?",
+     "isRequired": true
+    },
+    {
+     "type": "helptext",
+     "name": "FAQWill1",
+     "visible": false,
+     "visibleIf": "{BCResident} = \"y\"",
+     "title": "I'm not sure the person who died left a will.\n\n",
+     "titleLocation": "hidden",
+     "body": "To apply to represent a person who died, you are responsible for making sure if they left a will."
+    },
+    {
+     "type": "helptext",
+     "name": "FAQWill2",
+     "visible": false,
+     "visibleIf": "{BCResident} = \"y\"",
+     "title": "How do I check for a will?",
+     "titleLocation": "hidden",
+     "body": "You should start by checking in places where the deceased usually kept their documents. You may not find their will but you may find clues to where the will is kept. The will may be at a variety of places, including the deceased's home, their safety deposit box, or at the office of the lawyer who helped create the will.<br><br>As part of applying for a Representation Grant, you will be required to do a <a href=\"https://www2.gov.bc.ca/assets/gov/health/forms/vital-statistics/vsa532_fill.pdf\" target=\"blank\">\"Search of Wills Notice\"</a> and provide the results to the court. This is done through the Vital Statistics Agency of British Columbia. If a will was registered with the Vital Statistics Agency, they will have information about the location of the will, but not the actual will itself.<br><br>The \"Search of Wills Notice\" must include a search of all of the different names and spellings that the deceased used in their will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later stage."
+    },
+    {
+     "type": "infotext",
+     "name": "ErrorWillYes",
+     "visible": false,
+     "visibleIf": "{Will} = \"y\"",
+     "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nClicklaw outlines the forms required to <a href=\"https://www.clicklaw.bc.ca/question/commonquestion/1112\" target=\"blank\">applying for a Representation Grant where the deceased left a will.</a>",
+     "titleLocation": "hidden",
+     "messageStyle": "error"
+    },
+    {
+     "type": "yesno",
+     "name": "AnotherGrant",
+     "visible": false,
+     "visibleIf": "{Will} = \"n\"",
+     "title": "Is there already a Representation Grant for the deceased?",
+     "description": "This grant could be from British Columbia or anywhere else in the world.",
+     "isRequired": true
+    },
+    {
+     "type": "infotext",
+     "name": "ErrorAnotherGrantYes",
+     "visible": false,
+     "visibleIf": "{AnotherGrant} = \"y\"",
+     "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nIf the existing Representation Grant is from British Columbia, and you need to add a new person onto the existing Representation Grant, please seek help from a lawyer. This is not a simple matter.\n<br>\n<br>\nIf the existing Representation Grant is from British Columbia, and you have more assets to report, do not apply for another Representation Grant. Use either form P14 or P15 to tell the court.\n<br>\n<br>\nIf the grant is from a British Commonwealth country, the United States of America or Hong Kong, you will have to reseal the original grant. Please refer to the Supreme Court Civil Rules under <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/168_2009_03_1#rule25-6\" target=\"blank\">Rule 25-6 - Application for Resealing</a> for information on resealing your grant.\n<br>\n<br>\nIf the grant is not from a British Commonwealth country, the United States of America or Hong Kong, you will have to apply for an ancillary grant. <a href=\"https://www2.gov.bc.ca/gov/content/justice/courthouse-services/documents-forms-records/court-forms/probate-forms\" target=\"blank\">The forms to apply for an ancillary grant can be found here.</a>\n\n",
      "titleLocation": "hidden",
      "messageStyle": "error"
     },
@@ -100,19 +133,20 @@
      "type": "checkbox",
      "name": "PORConfirmed",
      "visible": false,
-     "visibleIf": "{Unsafe} =  'y' and {UnsafePartner} = 'y' and ({EitherHaveChildren} = 'n' or {ChildrenHaveOtherGuardians} = 'n') and {OutsideOfBCPOR} = 'n' and {ExistingPOR} = 'n'",
-     "title": "You appear to meet the requirements to use this service to apply for a Provincial Court `Family Law Protection Order`.\n<br>\n<br>\nYou may also want to consider applying for a `Peace Bond`, which is another kind of `Protection Order`. A Peace Bond can do everything a Provincial Court Family Law Protection Order can do. A Peace Bond can also protect your property.\n<br>\n<br>\nTo get a Peace Bond, you will need to tell your story to the police or the RCMP. The police may decide to tell your story to Crown Counsel. Crown Counsel will then decide if a judge is likely to make your Protection Order. Your ex-partner will have an opportunity to tell their story. You may be called as witness.\n<br>\n<br>\nTo apply for a Family Law Protection Order, you will need to tell your story in person to a judge in Family Court. You can apply on your own or you can hire a lawyer to help. A judge may decide to make your Protection Order without your ex-partner needing to be in court.\n<br>\n<br>\nYou can also apply for both Protection Orders at the same time. \n<br>\n<br>\n<a href=\"http://www.lss.bc.ca/resources/pdfs/pubs/For-Your-Protection-eng.pdf\" target=\"_blank\">Click here for more information about the differences between a Peace Bond and a Provincial Court Family Law Protection Order.</a>\n<br>\n<br>\nConfirm that you want to apply for a Provincial Court Family Law Protection Order.",
+     "visibleIf": "{AnotherGrant} = \"n\"",
+     "title": "You appear to meet the requirements to use this service. Confirm that you want to apply for a Representation Grant",
      "isRequired": true,
      "choices": [
       {
        "value": "confirmed",
-       "text": "I want to apply for a Provincial Court Family Law Protection Order"
+       "text": "I want to apply for a Representation Grant"
       }
      ]
     }
    ],
-   "title": "Before we begin...",
-   "description": "There is more than one kind of order that can protect you and your family. This service is for applying for a protection order under the Family Law Act. The following questions will help you decide if the Provincial Court Family Law Protection Order is right for you."
+   "title": "Your Story"
   }
- ]
+ ],
+ "showQuestionNumbers": "off",
+ "requiredText": ""
 }
