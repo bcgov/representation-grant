@@ -26,9 +26,9 @@
     },
     {
      "type": "infotext",
-     "name": "needGrantYesInfo",
+     "name": "needGrantYesExplanation",
      "visible": false,
-     "visibleIf": "{NeedGrant} = \"y\"",
+     "visibleIf": "{needGrant} = \"y\"",
      "title": "This service will help you apply to for a Representation Grant. A Representation Grant costs money and will take time to process. If you do not a need a Representation Grant to manage the estate of a person who died, you may be able to save time and money.\n<br>\n<br>\nBefore proceeding with this service, contact each of the organizations that hold the deceased's  assets to find out if they will allow you to manage the assets on your own.",
      "titleLocation": "hidden"
     },
@@ -36,7 +36,7 @@
      "type": "infotext",
      "name": "needGrantNoError",
      "visible": false,
-     "visibleIf": "{NeedGrant} = \"n\"",
+     "visibleIf": "{needGrant} = \"n\"",
      "title": "If you do not a need a Representation Grant from the Supreme Court of British Columbia, you do not need this service.",
      "titleLocation": "hidden",
      "messageStyle": "error"
@@ -45,7 +45,7 @@
      "type": "yesno",
      "name": "diedAfterWESA",
      "visible": false,
-     "visibleIf": "{NeedGrant} = 'y'",
+     "visibleIf": "{needGrant} = 'y'",
      "title": "Did the deceased die after March 31, 2014?",
      "isRequired": true
     },
@@ -53,7 +53,7 @@
      "type": "infotext",
      "name": "diedAfterWESANoError",
      "visible": false,
-     "visibleIf": "{NeedGrant} = \"y\" and {DiedAfterWESA} = \"n\"",
+     "visibleIf": "{needGrant} = \"y\" and {diedAfterWESA} = \"n\"",
      "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nThe Wills, Estate and Succession Act became law on April 1, 2014. If the person died on March 31, 2014 or before, the court process needs to comply with the old Estate Administration Act in addition to the current Wills, Estate and Succession Act. This service only supports the current laws. Please review both the <a href=\"http://www.bclaws.ca/civix/document/id/consol17/consol17/00_96122_01\" target=\"blank\">Estate Administration Act</a> and the <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/09013_01\" target=\"blank\">Wills, Estate and Succession Act</a> to make sure you <a href=\"https://www2.gov.bc.ca/gov/content/justice/about-bcs-justice-system/legislation-policy/legislation-updates/wills-estates-and-succession-act-and-new-probate-rules\" target=\"blank\">follow the right process.</a>\n\n",
      "titleLocation": "hidden",
      "messageStyle": "error"
@@ -62,7 +62,7 @@
      "type": "yesno",
      "name": "BCResident",
      "visible": false,
-     "visibleIf": "{NeedGrant} = \"y\" and {DiedAfterWESA} = \"y\"",
+     "visibleIf": "{needGrant} = \"y\" and {diedAfterWESA} = \"y\"",
      "title": "Was the deceased a resident of British Columbia at the time of their death?",
      "description": "Generally speaking, a person is a resident of British Columbia if their primary home and most of their financial and social connections are in British Columbia.",
      "isRequired": true
