@@ -6,27 +6,27 @@
    "elements": [
     {
      "type": "yesno",
-     "name": "NeedGrant",
+     "name": "needGrant",
      "title": "Do you need the Supreme Court of British Columbia's help to manage the estate of the person who died?",
      "isRequired": true
     },
     {
      "type": "helptext",
-     "name": "FAQNeedGrant1",
+     "name": "needGrantFAQ1",
      "title": "What can I do without the help of the court?",
      "titleLocation": "hidden",
      "body": "You don't always need help from the Supreme Court of British Columbia to manage the estate. It depends on the kinds of assets the deceased left behind. If you can do this all on your own, you may be able to save some time and money. \n<br>\n<br>\nFor example, if the deceased had money in their bank account, depending on your relationship to that person, the bank may work with you to manage that money. However, different assets and the organizations who manage them, may have different policies.\n<br>\n<br>\nContact each of the organizations that hold the deceased's  assets to find out what each organization needs before they will let you manage the asset. You may be able to manage the whole estate without the help of the court."
     },
     {
      "type": "helptext",
-     "name": "FAQNeedGrant2",
+     "name": "needGrantFAQ2",
      "title": "When do I need the court's help?",
      "titleLocation": "hidden",
      "body": "If any of the organizations that hold the deceased's assets will not allow you to manage the asset, you can apply to the Supreme Court of British Columbia for help.\n<br>\n<br>\nIf you are successful with the court process, you will receive a document called a Representation Grant. This will take some time to get processed by the court. The organization that holds the asset will respect your Representation Grant and let you to manage the asset."
     },
     {
      "type": "infotext",
-     "name": "ExplanationNeedGrantYes",
+     "name": "needGrantYesInfo",
      "visible": false,
      "visibleIf": "{NeedGrant} = \"y\"",
      "title": "This service will help you apply to for a Representation Grant. A Representation Grant costs money and will take time to process. If you do not a need a Representation Grant to manage the estate of a person who died, you may be able to save time and money.\n<br>\n<br>\nBefore proceeding with this service, contact each of the organizations that hold the deceased's  assets to find out if they will allow you to manage the assets on your own.",
@@ -34,7 +34,7 @@
     },
     {
      "type": "infotext",
-     "name": "ErrorNeedGrantNo",
+     "name": "needGrantNoError",
      "visible": false,
      "visibleIf": "{NeedGrant} = \"n\"",
      "title": "If you do not a need a Representation Grant from the Supreme Court of British Columbia, you do not need this service.",
@@ -43,7 +43,7 @@
     },
     {
      "type": "yesno",
-     "name": "DiedAfterWESA",
+     "name": "diedAfterWESA",
      "visible": false,
      "visibleIf": "{NeedGrant} = 'y'",
      "title": "Did the deceased die after March 31, 2014?",
@@ -51,7 +51,7 @@
     },
     {
      "type": "infotext",
-     "name": "ErrorDiedAfterWESANo",
+     "name": "diedAfterWESANoError",
      "visible": false,
      "visibleIf": "{NeedGrant} = \"y\" and {DiedAfterWESA} = \"n\"",
      "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nThe Wills, Estate and Succession Act became law on April 1, 2014. If the person died on March 31, 2014 or before, the court process needs to comply with the old Estate Administration Act in addition to the current Wills, Estate and Succession Act. This service only supports the current laws. Please review both the <a href=\"http://www.bclaws.ca/civix/document/id/consol17/consol17/00_96122_01\" target=\"blank\">Estate Administration Act</a> and the <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/09013_01\" target=\"blank\">Wills, Estate and Succession Act</a> to make sure you <a href=\"https://www2.gov.bc.ca/gov/content/justice/about-bcs-justice-system/legislation-policy/legislation-updates/wills-estates-and-succession-act-and-new-probate-rules\" target=\"blank\">follow the right process.</a>\n\n",
@@ -69,7 +69,7 @@
     },
     {
      "type": "infotext",
-     "name": "ErrorBCResidentNo",
+     "name": "BCResidentNoError",
      "visible": false,
      "visibleIf": "{BCResident} = \"n\"",
      "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nIf the deceased was not a resident of British Columbia, at their time of death, it may involve other factors and filing requirements. You may need to apply to represent them somewhere else entirely. Or, if you do apply in British Columbia, please review the Supreme Court Civil Rules to use the appropriate Supreme Court Probate Form.",
@@ -78,7 +78,7 @@
     },
     {
      "type": "yesno",
-     "name": "Will",
+     "name": "will",
      "visible": false,
      "visibleIf": "{BCResident} = \"y\"",
      "title": "Did the deceased leave a will?",
@@ -86,7 +86,7 @@
     },
     {
      "type": "helptext",
-     "name": "FAQWill1",
+     "name": "willFAQ1",
      "visible": false,
      "visibleIf": "{BCResident} = \"y\"",
      "title": "I'm not sure the person who died left a will.\n\n",
@@ -95,7 +95,7 @@
     },
     {
      "type": "helptext",
-     "name": "FAQWill2",
+     "name": "willFAQ2",
      "visible": false,
      "visibleIf": "{BCResident} = \"y\"",
      "title": "How do I check for a will?",
@@ -104,7 +104,7 @@
     },
     {
      "type": "infotext",
-     "name": "ErrorWillYes",
+     "name": "willYesError",
      "visible": false,
      "visibleIf": "{Will} = \"y\"",
      "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nClicklaw outlines the forms required to <a href=\"https://www.clicklaw.bc.ca/question/commonquestion/1112\" target=\"blank\">applying for a Representation Grant where the deceased left a will.</a>",
@@ -113,7 +113,7 @@
     },
     {
      "type": "yesno",
-     "name": "AnotherGrant",
+     "name": "anotherGrant",
      "visible": false,
      "visibleIf": "{Will} = \"n\"",
      "title": "Is there already a Representation Grant for the deceased?",
@@ -122,7 +122,7 @@
     },
     {
      "type": "infotext",
-     "name": "ErrorAnotherGrantYes",
+     "name": "anotherGrantYesError",
      "visible": false,
      "visibleIf": "{AnotherGrant} = \"y\"",
      "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nIf the existing Representation Grant is from British Columbia, and you need to add a new person onto the existing Representation Grant, please seek help from a lawyer. This is not a simple matter.\n<br>\n<br>\nIf the existing Representation Grant is from British Columbia, and you have more assets to report, do not apply for another Representation Grant. Use either form P14 or P15 to tell the court.\n<br>\n<br>\nIf the grant is from a British Commonwealth country, the United States of America or Hong Kong, you will have to reseal the original grant. Please refer to the Supreme Court Civil Rules under <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/168_2009_03_1#rule25-6\" target=\"blank\">Rule 25-6 - Application for Resealing</a> for information on resealing your grant.\n<br>\n<br>\nIf the grant is not from a British Commonwealth country, the United States of America or Hong Kong, you will have to apply for an ancillary grant. <a href=\"https://www2.gov.bc.ca/gov/content/justice/courthouse-services/documents-forms-records/court-forms/probate-forms\" target=\"blank\">The forms to apply for an ancillary grant can be found here.</a>\n\n",
