@@ -106,7 +106,7 @@
      "type": "infotext",
      "name": "willYesError",
      "visible": false,
-     "visibleIf": "{Will} = \"y\"",
+     "visibleIf": "{will} = \"y\"",
      "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nClicklaw outlines the forms required to <a href=\"https://www.clicklaw.bc.ca/question/commonquestion/1112\" target=\"blank\">applying for a Representation Grant where the deceased left a will.</a>",
      "titleLocation": "hidden",
      "messageStyle": "error"
@@ -115,7 +115,7 @@
      "type": "yesno",
      "name": "anotherGrant",
      "visible": false,
-     "visibleIf": "{Will} = \"n\"",
+     "visibleIf": "{will} = \"n\"",
      "title": "Is there already a Representation Grant for the deceased?",
      "description": "This grant could be from British Columbia or anywhere else in the world.",
      "isRequired": true
@@ -124,16 +124,16 @@
      "type": "infotext",
      "name": "anotherGrantYesError",
      "visible": false,
-     "visibleIf": "{AnotherGrant} = \"y\"",
+     "visibleIf": "{anotherGrant} = \"y\"",
      "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nIf the existing Representation Grant is from British Columbia, and you need to add a new person onto the existing Representation Grant, please seek help from a lawyer. This is not a simple matter.\n<br>\n<br>\nIf the existing Representation Grant is from British Columbia, and you have more assets to report, do not apply for another Representation Grant. Use either form P14 or P15 to tell the court.\n<br>\n<br>\nIf the grant is from a British Commonwealth country, the United States of America or Hong Kong, you will have to reseal the original grant. Please refer to the Supreme Court Civil Rules under <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/168_2009_03_1#rule25-6\" target=\"blank\">Rule 25-6 - Application for Resealing</a> for information on resealing your grant.\n<br>\n<br>\nIf the grant is not from a British Commonwealth country, the United States of America or Hong Kong, you will have to apply for an ancillary grant. <a href=\"https://www2.gov.bc.ca/gov/content/justice/courthouse-services/documents-forms-records/court-forms/probate-forms\" target=\"blank\">The forms to apply for an ancillary grant can be found here.</a>\n\n",
      "titleLocation": "hidden",
      "messageStyle": "error"
     },
     {
      "type": "checkbox",
-     "name": "PORConfirmed",
+     "name": "wantToApply",
      "visible": false,
-     "visibleIf": "{AnotherGrant} = \"n\"",
+     "visibleIf": "{anotherGrant} = \"n\"",
      "title": "You appear to meet the requirements to use this service. Confirm that you want to apply for a Representation Grant",
      "isRequired": true,
      "choices": [
