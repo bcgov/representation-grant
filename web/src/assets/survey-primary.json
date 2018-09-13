@@ -233,6 +233,448 @@
     }
    ],
    "title": "About the deceased's Spouse"
+  },
+  {
+   "name": "children",
+   "elements": [
+    {
+     "type": "yesno",
+     "name": "question1",
+     "title": "Did  have any children at the time of their death?",
+     "description": "Do not include a spouse that {deceasedName} has divorced."
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question2",
+     "visible": false,
+     "visibleIf": "{spouse} = 'y'",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "spouseName",
+       "title": "Please enter the full name of 's child.",
+       "placeHolder": "Ghost Text TBD Dependent on how we ask for names. Single Input vs Separated Input"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseIsAlive",
+       "title": "Is {panel.spouseName} alive?"
+      },
+      {
+       "type": "helptext",
+       "name": "spouseIsAliveFAQ1",
+       "title": "What if {panel.spouseName} is on life support?",
+       "titleLocation": "hidden",
+       "body": "{panel.spouseName} are considered alive."
+      },
+      {
+       "type": "yesno",
+       "name": "spouseIsAdult",
+       "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"y\"",
+       "title": "Is {panel.spouseName} 19 years of age or older?"
+      },
+      {
+       "type": "infotext",
+       "name": "spouseIsAdultNoExplanation",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"n\"",
+       "title": "Because {spouseName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {spouseName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseHasGuardian",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"n\"",
+       "title": "Does {panel.spouseName} have a living parent or legal guardian?"
+      },
+      {
+       "type": "text",
+       "name": "spouseGuardianName",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseHasGuardian} = \"y\"",
+       "title": "Full name of living parent/ guardian",
+       "placeHolder": "Ghost Text TBD Dependent on how we ask for names. Single Input vs Separated Input"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseIsCompetent",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"y\"",
+       "title": "Is {panel.spouseName} `mentally competent`?"
+      },
+      {
+       "type": "infotext",
+       "name": "spouseIsCompetentNoExplanation",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsCompetent} = \"n\"",
+       "title": "In this scenario, the Public Guardian and Trustee (PGT) needs to be notified in addition to {spouseName}'s committee (if there is one).",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseHasCommittee",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsCompetent} = \"n\"",
+       "title": "Does {panel.spouseName} have a committee?",
+       "description": "If someone has been declared mentally incompetent by a court, a committee (or equivalent), will have been appointed to take care of the mentally incompetent person's finances. "
+      },
+      {
+       "type": "text",
+       "name": "spouseCommitteeName",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseHasCommittee} = \"y\"",
+       "title": "Full name of {panel.spouseName}'s committee"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseDied5DaysAfter",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"n\"",
+       "title": "Did {panel.spouseName} die after <Deceased Date of Death + 4 days>?"
+      },
+      {
+       "type": "helptext",
+       "name": "spouseDied5DaysAfterFAQ1",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"n\"",
+       "title": "Why does this date matter?",
+       "titleLocation": "hidden",
+       "body": "In determining who gets part of estate, it is important to know who died first. This may not sound strange, but under the law, if they died less than 5 days after Deceased Name, they are considered to have died before Deceased Name. For more information, refer to Five-day survival rule from the Wills, Estate and Succession Act (WESA).\nhttp://www.bclaws.ca/civix/document/id/complete/statreg/00_09013_01#section10"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseHasPersonalRep",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseDied5DaysAfter} = \"y\"",
+       "title": "Does {panel.spouseName} have a `personal representative`?"
+      },
+      {
+       "type": "text",
+       "name": "spousePersonalRepName",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseHasPersonalRep} = \"y\"",
+       "title": "Full name of {spouseName}'s personal representative"
+      }
+     ],
+     "panelCount": 1,
+     "panelAddText": "Add a spouse",
+     "panelRemoveText": "Delete this spouse"
+    },
+    {
+     "type": "panel",
+     "name": "panel1",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question3",
+       "title": "Are you a child of ?"
+      },
+      {
+       "type": "yesno",
+       "name": "question4",
+       "visible": false,
+       "visibleIf": "{spouseIsYou} = \"y\"",
+       "title": "Did you enter your information as part of this step?"
+      },
+      {
+       "type": "infotext",
+       "name": "question5",
+       "visible": false,
+       "visibleIf": "{spouseIsYouIncluded} = \"n\"",
+       "title": "Before moving on to the next step, please add your information as a spouse or descendant. It is important to identify your relationship to <Deceased Name> as this service will prepare the paperwork based on this information.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{spouse} = \"y\""
+    }
+   ],
+   "title": "About the deceased's children"
+  },
+  {
+   "name": "grandchildren",
+   "elements": [
+    {
+     "type": "yesno",
+     "name": "question6",
+     "title": "Did deceasedChildX have any children at the time of their death?",
+     "description": "Do not include a spouse that {deceasedName} has divorced."
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question7",
+     "visible": false,
+     "visibleIf": "{spouse} = 'y'",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "spouseName",
+       "title": "Please enter the full name of deceasedChildX's child.",
+       "placeHolder": "Ghost Text TBD Dependent on how we ask for names. Single Input vs Separated Input"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseIsAlive",
+       "title": "Is {panel.spouseName} alive?"
+      },
+      {
+       "type": "helptext",
+       "name": "spouseIsAliveFAQ1",
+       "title": "What if {panel.spouseName} is on life support?",
+       "titleLocation": "hidden",
+       "body": "{panel.spouseName} are considered alive."
+      },
+      {
+       "type": "yesno",
+       "name": "spouseIsAdult",
+       "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"y\"",
+       "title": "Is {panel.spouseName} 19 years of age or older?"
+      },
+      {
+       "type": "infotext",
+       "name": "spouseIsAdultNoExplanation",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"n\"",
+       "title": "Because {spouseName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {spouseName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseHasGuardian",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"n\"",
+       "title": "Does {panel.spouseName} have a living parent or legal guardian?"
+      },
+      {
+       "type": "text",
+       "name": "spouseGuardianName",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseHasGuardian} = \"y\"",
+       "title": "Full name of living parent/ guardian",
+       "placeHolder": "Ghost Text TBD Dependent on how we ask for names. Single Input vs Separated Input"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseIsCompetent",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"y\"",
+       "title": "Is {panel.spouseName} `mentally competent`?"
+      },
+      {
+       "type": "infotext",
+       "name": "spouseIsCompetentNoExplanation",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsCompetent} = \"n\"",
+       "title": "In this scenario, the Public Guardian and Trustee (PGT) needs to be notified in addition to {spouseName}'s committee (if there is one).",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseHasCommittee",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsCompetent} = \"n\"",
+       "title": "Does {panel.spouseName} have a committee?",
+       "description": "If someone has been declared mentally incompetent by a court, a committee (or equivalent), will have been appointed to take care of the mentally incompetent person's finances. "
+      },
+      {
+       "type": "text",
+       "name": "spouseCommitteeName",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseHasCommittee} = \"y\"",
+       "title": "Full name of {panel.spouseName}'s committee"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseDied5DaysAfter",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"n\"",
+       "title": "Did {panel.spouseName} die after <Deceased Date of Death + 4 days>?"
+      },
+      {
+       "type": "helptext",
+       "name": "spouseDied5DaysAfterFAQ1",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"n\"",
+       "title": "Why does this date matter?",
+       "titleLocation": "hidden",
+       "body": "In determining who gets part of estate, it is important to know who died first. This may not sound strange, but under the law, if they died less than 5 days after Deceased Name, they are considered to have died before Deceased Name. For more information, refer to Five-day survival rule from the Wills, Estate and Succession Act (WESA).\nhttp://www.bclaws.ca/civix/document/id/complete/statreg/00_09013_01#section10"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseHasPersonalRep",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseDied5DaysAfter} = \"y\"",
+       "title": "Does {panel.spouseName} have a `personal representative`?"
+      },
+      {
+       "type": "text",
+       "name": "spousePersonalRepName",
+       "visible": false,
+       "visibleIf": "{spouseInformation[0].spouseHasPersonalRep} = \"y\"",
+       "title": "Full name of {spouseName}'s personal representative"
+      }
+     ],
+     "panelCount": 2,
+     "panelAddText": "Add a spouse",
+     "panelRemoveText": "Delete this spouse"
+    },
+    {
+     "type": "panel",
+     "name": "panel2",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question8",
+       "title": "Are you a child of deceasedChildX, deceasedChildY or deceasedChildZ?"
+      },
+      {
+       "type": "yesno",
+       "name": "question9",
+       "visible": false,
+       "visibleIf": "{spouseIsYou} = \"y\"",
+       "title": "Did you enter your information as part of this step?"
+      },
+      {
+       "type": "infotext",
+       "name": "question10",
+       "visible": false,
+       "visibleIf": "{spouseIsYouIncluded} = \"n\"",
+       "title": "Before moving on to the next step, please add your information as a spouse or descendant. It is important to identify your relationship to <Deceased Name> as this service will prepare the paperwork based on this information.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{spouse} = \"y\""
+    }
+   ],
+   "title": "About the deceased's grandchildren"
+  },
+  {
+   "name": "applicants",
+   "title": "who are the applicants?"
+  },
+  {
+   "name": "land or buildings",
+   "elements": [
+    {
+     "type": "yesno",
+     "name": "question11",
+     "title": "Did  have any land or buildings at the time of their death?"
+    }
+   ],
+   "title": "About land or buildings"
+  },
+  {
+   "name": "bank",
+   "elements": [
+    {
+     "type": "yesno",
+     "name": "question12",
+     "title": "Did  have any bank accounts at the time of their death?"
+    }
+   ],
+   "title": "about bank accounts"
+  },
+  {
+   "name": "vehicles",
+   "elements": [
+    {
+     "type": "yesno",
+     "name": "question13",
+     "title": "Did  have any vehicles at the time of their death?"
+    }
+   ],
+   "title": "about vehicles"
+  },
+  {
+   "name": "print notification",
+   "elements": [
+    {
+     "type": "comment",
+     "name": "question14",
+     "title": "Need to exist the last survey to print the P1. If anything is modified on the previous survey, must inform applicants they need to re-notify"
+    }
+   ],
+   "title": "print notification"
+  },
+  {
+   "name": "notifying",
+   "elements": [
+    {
+     "type": "matrixdynamic",
+     "name": "question15",
+     "columns": [
+      {
+       "name": "Person to Notify"
+      },
+      {
+       "name": "Service Method"
+      },
+      {
+       "name": "Date"
+      }
+     ],
+     "choices": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    }
+   ],
+   "title": "Notify Checklist"
+  },
+  {
+   "name": "finalize assets",
+   "elements": [
+    {
+     "type": "matrixdynamic",
+     "name": "question16",
+     "columns": [
+      {
+       "name": "Missing Asset Value 1",
+       "title": "Value"
+      },
+      {
+       "name": "Column 2"
+      }
+     ],
+     "choices": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    }
+   ],
+   "title": "finalize assets"
+  },
+  {
+   "name": "will search double check",
+   "elements": [
+    {
+     "type": "yesno",
+     "name": "question17",
+     "title": "did you do a will search with all of these names?"
+    }
+   ],
+   "title": "will search double check"
+  },
+  {
+   "name": "print final forms",
+   "elements": [
+    {
+     "type": "comment",
+     "name": "question18",
+     "title": "print forms - swear affidavits - take them to a courthouse"
+    }
+   ],
+   "title": "print final forms"
   }
  ],
  "showQuestionNumbers": "off",
