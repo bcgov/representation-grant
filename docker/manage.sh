@@ -11,7 +11,7 @@ if [ -z $(type -P "$S2I_EXE") ]; then
 fi
 
 SCRIPT_HOME="$( cd "$( dirname "$0" )" && pwd )"
-export COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME-fpo}"
+export COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME-repg}"
 
 # =================================================================================================================
 # Usage:
@@ -83,7 +83,7 @@ build-web() {
   echo -e "Building the angular-on-nginx image using Docker ..."
   echo -e "----------------------------------------------------------------------------------------------------"
   docker build \
-    -t 'angular-on-nginx' \
+    -t 'repg-angular-on-nginx' \
     -f '../web/openshift/templates/angular-on-nginx/Dockerfile' '../web/openshift/templates/angular-on-nginx/'
   echo -e "===================================================================================================="
 }
@@ -114,7 +114,7 @@ build-api() {
   ${S2I_EXE} build \
     '../api' \
     'centos/python-36-centos7' \
-    'django'
+    'repg-django'
 }
 
 build-pdf() {
@@ -151,7 +151,7 @@ configureEnvironment () {
   done
   
   # db
-  export POSTGRESQL_DATABASE="FAMILY_PROTECTION_ORDER"
+  export POSTGRESQL_DATABASE="REPRESENTATION_GRANT"
   export POSTGRESQL_USER="DB_USER"
   export POSTGRESQL_PASSWORD="DB_PASSWORD"
 
@@ -251,9 +251,6 @@ case "$COMMAND" in
         ;;
       web)
         build-web
-        ;;
-      fpo-solr)
-        build-solr
         ;;
       pdf)
         build-pdf

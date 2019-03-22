@@ -4,13 +4,13 @@ services:
   # web
   # 
   web:
-    image: angular-on-nginx
+    image: repg-angular-on-nginx
     environment:
       - API_URL=${API_URL}
       - IpFilterRules=${IpFilterRules}
       - RealIpFrom=${RealIpFrom}
     networks:
-      - fpo
+      - repg
     ports:
       - "${WEB_HTTP_PORT}:8080"
     depends_on:
@@ -29,7 +29,7 @@ services:
   # nice to implement a more deterministic solution.
   # 
   api:
-    image: django
+    image: repg-django
     environment:
       - DATABASE_SERVICE_NAME=${DATABASE_SERVICE_NAME}
       - DATABASE_ENGINE=${DATABASE_ENGINE}
@@ -40,12 +40,12 @@ services:
       - OVERRIDE_USER_ID=${OVERRIDE_USER_ID}
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_DEBUG=${DJANGO_DEBUG}
-      - FPO_DB_SERVICE_HOST=${DATABASE_SERVICE_NAME}
-      - FPO_DB_SERVICE_PORT=5432
+      - DB_SERVICE_HOST=${DATABASE_SERVICE_NAME}
+      - DB_SERVICE_PORT=5432
     volumes:
       - ../api/api:/opt/app-root/src/api
     networks:
-      - fpo
+      - repg
     ports:
       - "${API_HTTP_PORT}:8080"
     depends_on:
@@ -76,7 +76,7 @@ services:
       - POSTGRESQL_USER=${POSTGRESQL_USER}
       - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}
     networks:
-      - fpo
+      - repg
     ports:
       - 8082:8080
     depends_on:
@@ -96,11 +96,11 @@ services:
       - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}
       - POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}
     networks:
-      - fpo
+      - repg
     ports:
       - 5432:5432
     # volumes:
-      # - fpo-data:/var/lib/pgsql/data 
+      # - repg-data:/var/lib/pgsql/data 
 
   # 
   # pdf
@@ -108,12 +108,12 @@ services:
   pdf:
     image: aquavitae/weasyprint
     networks:
-      - fpo
+      - repg
     ports:
       - 8083:5001
 
 networks:
-  fpo:
+  repg:
 
 # volumes:
-  # fpo-data:
+  # repg-data:
