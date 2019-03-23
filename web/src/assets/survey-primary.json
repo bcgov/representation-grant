@@ -1,79 +1,125 @@
 {
- "title": "Representation Grant (but this should not appear)",
+ "title": "Representation Grant (this should not appear)",
  "pages": [
   {
    "name": "deceased",
    "elements": [
     {
-     "type": "text",
-     "name": "deceasedName",
-     "title": "Please enter the name of the person who died.  [New Name Input that separates First, Middle and Last names]",
-     "description": "This is the name you want to appear on the final representation grant given by the Supreme Court of British Columbia.\n<br>\n<br>\nIs the death certificate the right name to have here as the \"legal name\"? No. Depends on how the person inputed the name.\nIf it is, is the format on the death certificate the same as First, Middle, Last?"
-    },
-    {
-     "type": "helptext",
-     "name": "deceasedNameFAQ1",
-     "title": "What if the deceased has more than one middle name?",
-     "titleLocation": "hidden",
-     "body": "Write all the middle names in on one line and add a space between each middle name."
-    },
-    {
-     "type": "helptext",
-     "name": "deceasedNameFAQ2",
-     "title": "What if the deceased's name is originally in a different language?",
-     "titleLocation": "hidden",
-     "body": "You will need to provide the English translation of the deceased's name. The Supreme Court of British Columbia requires that all forms are completed in the English language."
-    },
-    {
-     "type": "helptext",
-     "name": "deceasedNameFAQ3",
-     "title": "What if the deceased used more than one version of their name?",
-     "titleLocation": "hidden",
-     "body": "This service will ask you, in future questions, for any additional names. This includes any different spellings that the deceased would have used, such as leaving out any of their middle names."
-    },
-    {
-     "type": "text",
-     "name": "deceasedDateOfDeath",
-     "title": "What is the date of death as it appears on {deceasedName}'s death certificate?",
-     "inputType": "date"
-    },
-    {
-     "type": "address",
-     "name": "deceasedAddress",
-     "title": "Where did {deceasedName} live?",
-     "description": "Enter the address where Deceased Name spent the majority of their time."
-    },
-    {
-     "type": "helptext",
-     "name": "deceasedAddressFAQ1",
-     "title": "What if the {deceasedName} was homeless?",
-     "titleLocation": "hidden",
-     "body": "If {deceasedName} was homeless, write \"no fixed address\" for the street number and street name."
-    },
-    {
-     "type": "yesno",
-     "name": "firstNation",
-     "title": "Was {deceasedName} a Nisga'a citizen or a member of a Treaty First Nation?"
-    },
-    {
-     "type": "radiogroup",
-     "name": "firstNationName",
-     "visible": false,
-     "visibleIf": "{firstNation} = \"y\"",
-     "title": "Which of the following applied to {deceasedName}?",
-     "choices": [
-      "Nisga'a",
-      "Huu-ay-aht",
-      "Ka:'yu:'k't'h'/Chek'tles7et'h'",
-      "Tla'amin",
-      "Toquaht",
-      "Tsawwassen",
-      "Uchucklesaht",
-      "Ucluelet"
+     "type": "panel",
+     "name": "introPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "explanationIntro",
+       "title": "We're asking for information about the person who died first. Everything revolves around them. not you the applicant. Applicant information at a later step.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
      ]
+    },
+    {
+     "type": "panel",
+     "name": "deceasedNamePanel",
+     "elements": [
+      {
+       "type": "personname",
+       "name": "deceasedName",
+       "title": "What is the name of the person who died?",
+       "description": "This is the name you want to appear on the final representation grant given by the Supreme Court of British Columbia.<br><br>Is the death certificate the right name to have here as the \"legal name\"? No. Depends on how the person inputed the name.If it is, is the format on the death certificate the same as First, Middle, Last?",
+       "defaultSubstitution": "(the person who died)"
+      },
+      {
+       "type": "helptext",
+       "name": "deceasedNameFAQ1",
+       "title": "What if {deceasedName} has more than one middle name?",
+       "titleLocation": "hidden",
+       "body": "Write all the middle names in on one line and add a space between each middle name."
+      },
+      {
+       "type": "helptext",
+       "name": "deceasedNameFAQ2",
+       "title": "What if {deceasedName}'s name is originally in a different language?",
+       "titleLocation": "hidden",
+       "body": "You will need to provide the English translation of the deceased's name. The Supreme Court of British Columbia requires that all forms are completed in the English language."
+      },
+      {
+       "type": "helptext",
+       "name": "deceasedNameFAQ3",
+       "title": "What if {deceasedName} used more than one version of their name?",
+       "titleLocation": "hidden",
+       "body": "This service will ask you, in future questions, for any additional names. This includes any different spellings that the deceased would have used, such as leaving out any of their middle names."
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{explanationIntro} > 0"
+    },
+    {
+     "type": "panel",
+     "name": "deceasedDateOfDeathPanel",
+     "elements": [
+      {
+       "type": "text",
+       "name": "deceasedDateOfDeath",
+       "title": "What is the date of death as it appears on {deceasedName}'s death certificate?",
+       "inputType": "date"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{explanationIntro} > 0"
+    },
+    {
+     "type": "panel",
+     "name": "deceasedAddressPanel",
+     "elements": [
+      {
+       "type": "address",
+       "name": "deceasedAddress",
+       "title": "Where did {deceasedName} live?",
+       "description": "Enter the address where Deceased Name spent the majority of their time."
+      },
+      {
+       "type": "helptext",
+       "name": "deceasedAddressFAQ1",
+       "title": "What if {deceasedName} was homeless?",
+       "titleLocation": "hidden",
+       "body": "If {deceasedName} was homeless, write \"no fixed address\" for the street number and street name."
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{explanationIntro} > 0"
+    },
+    {
+     "type": "panel",
+     "name": "firstNationsPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "firstNations",
+       "title": "Was {deceasedName} a Nisga'a citizen or a member of a Treaty First Nation?"
+      },
+      {
+       "type": "radiogroup",
+       "name": "firstNationsName",
+       "visible": false,
+       "visibleIf": "{firstNation} = \"y\"",
+       "title": "Which of the following applied to {deceasedName}?",
+       "choices": [
+        "Nisga'a",
+        "Huu-ay-aht",
+        "Ka:'yu:'k't'h'/Chek'tles7et'h'",
+        "Tla'amin",
+        "Toquaht",
+        "Tsawwassen",
+        "Uchucklesaht",
+        "Ucluelet"
+       ]
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{explanationIntro} > 0"
     }
    ],
-   "title": "About the Deceased",
+   "title": "{deceasedName}",
    "description": "We have questions about the person who died. Make sure you have the information from their death certificate to help you answer some of the questions."
   },
   {
