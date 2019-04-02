@@ -101,7 +101,7 @@
        "type": "radiogroup",
        "name": "firstNationsName",
        "visible": false,
-       "visibleIf": "{firstNation} = \"y\"",
+       "visibleIf": "{firstNations} = \"y\"",
        "title": "Which of the following applied to {deceasedName}?",
        "choices": [
         "Nisga'a",
@@ -119,11 +119,11 @@
      "visibleIf": "{explanationIntro} > 0"
     }
    ],
-   "title": "{deceasedName}",
+   "title": "{deceasedName}'s Information",
    "description": "We have questions about the person who died. Make sure you have the information from their death certificate to help you answer some of the questions."
   },
   {
-   "name": "spouse",
+   "name": "spouse1",
    "elements": [
     {
      "type": "yesno",
@@ -278,7 +278,7 @@
      "visibleIf": "{spouse} = \"y\""
     }
    ],
-   "title": "About the deceased's Spouse"
+   "title": "{deceasedName.first}'s Spouse"
   },
   {
    "name": "children",
@@ -437,7 +437,7 @@
      "visibleIf": "{spouse} = \"y\""
     }
    ],
-   "title": "About the deceased's children"
+   "title": "{deceasedName.first}'s Children"
   },
   {
    "name": "grandchildren",
@@ -596,7 +596,7 @@
      "visibleIf": "{spouse} = \"y\""
     }
    ],
-   "title": "About the deceased's grandchildren"
+   "title": "{deceasedName.first}'s Grandchildren"
   },
   {
    "name": "applicants",
