@@ -448,6 +448,7 @@
       }
      ],
      "panelCount": 1,
+     "minPanelCount": 1,
      "panelAddText": "Add a child",
      "panelRemoveText": "Delete this child"
     },
