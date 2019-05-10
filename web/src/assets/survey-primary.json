@@ -159,9 +159,12 @@
        "title": "What is the date the will is made?",
        "inputType": "date"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{will} = 'y'"
     }
-   ]
+   ],
+   "title": "{deceasedName}'s Will"
   },
   {
    "name": "spousePage",
@@ -305,7 +308,7 @@
        "name": "spouseIsYouIncluded",
        "visible": false,
        "visibleIf": "{spouseIsYou} = \"y\"",
-       "title": "Did you enter your information as part of this step?"
+       "title": "Did you enter your own information as part of this step?"
       },
       {
        "type": "infotext",
@@ -321,106 +324,104 @@
      "visibleIf": "{spouse} = \"y\""
     }
    ],
-   "title": "{first.deceasedName}'s Spouse"
+   "title": "{deceasedName}'s Spouse"
   },
   {
    "name": "childrenPage",
    "elements": [
     {
      "type": "yesno",
-     "name": "question1",
-     "title": "Did  have any children at the time of their death?",
-     "description": "Do not include a spouse that {deceasedName} has divorced."
+     "name": "child",
+     "title": "Did {deceasedName} have any children at the time of their death?"
     },
     {
      "type": "paneldynamic",
-     "name": "question2",
+     "name": "childrenPanel",
      "visible": false,
-     "visibleIf": "{spouse} = 'y'",
+     "visibleIf": "{child} = 'y'",
      "templateElements": [
       {
        "type": "text",
-       "name": "spouseName",
-       "title": "Please enter the full name of 's child.",
-       "placeHolder": "Ghost Text TBD Dependent on how we ask for names. Single Input vs Separated Input"
+       "name": "childName",
+       "title": "Please enter the full name of {deceasedName}'s child."
       },
       {
        "type": "yesno",
-       "name": "spouseIsAlive",
-       "title": "Is {panel.spouseName} alive?"
+       "name": "childIsAlive",
+       "title": "Is {panel.childName} alive?"
       },
       {
        "type": "helptext",
-       "name": "spouseIsAliveFAQ1",
-       "title": "What if {panel.spouseName} is on life support?",
+       "name": "childIsAliveFAQ1",
+       "title": "What if {panel.childName} is on life support?",
        "titleLocation": "hidden",
        "body": "{panel.spouseName} are considered alive."
       },
       {
        "type": "yesno",
-       "name": "spouseIsAdult",
-       "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"y\"",
-       "title": "Is {panel.spouseName} 19 years of age or older?"
+       "name": "childIsAdult",
+       "visible": false,
+       "visibleIf": "{panel.childIsAlive} = \"y\"",
+       "title": "Is {panel.childName} 19 years of age or older?"
       },
       {
        "type": "infotext",
-       "name": "spouseIsAdultNoExplanation",
+       "name": "childIsAdultNoExplanation",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"n\"",
-       "title": "Because {spouseName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {spouseName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
+       "title": "Because {panel.childName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.childName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "spouseHasGuardian",
+       "name": "childHasGuardian",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"n\"",
-       "title": "Does {panel.spouseName} have a living parent or legal guardian?"
+       "title": "Does {panel.childName} have a living parent or legal guardian?"
       },
       {
        "type": "text",
-       "name": "spouseGuardianName",
+       "name": "childGuardianName",
        "visible": false,
-       "visibleIf": "{spouseInformation[0].spouseHasGuardian} = \"y\"",
-       "title": "Full name of living parent/ guardian",
-       "placeHolder": "Ghost Text TBD Dependent on how we ask for names. Single Input vs Separated Input"
+       "visibleIf": "{panel.childHasGuardian} = \"y\"",
+       "title": "Full name of living parent/ guardian"
       },
       {
        "type": "yesno",
        "name": "spouseIsCompetent",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"y\"",
-       "title": "Is {panel.spouseName} `mentally competent`?"
+       "title": "Is {panel.childName} `mentally competent`?"
       },
       {
        "type": "infotext",
-       "name": "spouseIsCompetentNoExplanation",
+       "name": "childIsCompetentNoExplanation",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseIsCompetent} = \"n\"",
-       "title": "In this scenario, the Public Guardian and Trustee (PGT) needs to be notified in addition to {spouseName}'s committee (if there is one).",
+       "title": "In this scenario, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.childName}'s committee (if there is one).",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "spouseHasCommittee",
+       "name": "childHasCommittee",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseIsCompetent} = \"n\"",
-       "title": "Does {panel.spouseName} have a committee?",
+       "title": "Does {panel.childName} have a committee?",
        "description": "If someone has been declared mentally incompetent by a court, a committee (or equivalent), will have been appointed to take care of the mentally incompetent person's finances. "
       },
       {
        "type": "text",
-       "name": "spouseCommitteeName",
+       "name": "childCommitteeName",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseHasCommittee} = \"y\"",
-       "title": "Full name of {panel.spouseName}'s committee"
+       "title": "Full name of {panel.childName}'s committee"
       },
       {
        "type": "yesno",
-       "name": "spouseDied5DaysAfter",
+       "name": "childDied5DaysAfter",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"n\"",
-       "title": "Did {panel.spouseName} die after <Deceased Date of Death + 4 days>?"
+       "title": "Did {panel.childName} die after <Deceased Date of Death + 4 days>?"
       },
       {
        "type": "helptext",
@@ -433,10 +434,10 @@
       },
       {
        "type": "yesno",
-       "name": "spouseHasPersonalRep",
+       "name": "childHasPersonalRep",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseDied5DaysAfter} = \"y\"",
-       "title": "Does {panel.spouseName} have a `personal representative`?"
+       "title": "Does {panel.childName} have a `personal representative`?"
       },
       {
        "type": "text",
@@ -447,37 +448,36 @@
       }
      ],
      "panelCount": 1,
-     "panelAddText": "Add a spouse",
-     "panelRemoveText": "Delete this spouse"
+     "panelAddText": "Add a child",
+     "panelRemoveText": "Delete this child"
     },
     {
      "type": "panel",
-     "name": "panel1",
+     "name": "childIsYouPanel",
      "elements": [
       {
        "type": "yesno",
-       "name": "question3",
-       "title": "Are you a child of ?"
+       "name": "childIsYou",
+       "title": "Are you a child of {deceasedName}?"
       },
       {
        "type": "yesno",
-       "name": "question4",
+       "name": "childIsYouIncluded",
        "visible": false,
-       "visibleIf": "{spouseIsYou} = \"y\"",
-       "title": "Did you enter your information as part of this step?"
+       "visibleIf": "{childIsYou} = \"y\"",
+       "title": "Did you enter your own information as part of this step?"
       },
       {
        "type": "infotext",
-       "name": "question5",
+       "name": "childIsYouIncludedNoExplanation",
        "visible": false,
-       "visibleIf": "{spouseIsYouIncluded} = \"n\"",
-       "title": "Before moving on to the next step, please add your information as a spouse or descendant. It is important to identify your relationship to <Deceased Name> as this service will prepare the paperwork based on this information.",
+       "visibleIf": "{childIsYouIncluded} = \"n\"",
+       "title": "Before moving on to the next step, please add your information as a descendant. It is important to identify your relationship to {deceasedName} as this service will prepare the paperwork based on this information.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
      ],
-     "visible": false,
-     "visibleIf": "{spouse} = \"y\""
+     "visibleIf": "{child} = \"y\""
     }
    ],
    "title": "{deceasedName}'s Children"
