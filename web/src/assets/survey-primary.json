@@ -181,8 +181,7 @@
       {
        "type": "text",
        "name": "spouseName",
-       "title": "Please enter the full name of {deceasedName}'s `spouse`.",
-       "placeHolder": "Ghost Text TBD Dependent on how we ask for names. Single Input vs Separated Input"
+       "title": "Please enter the full name of {deceasedName}'s `spouse`."
       },
       {
        "type": "yesno",
@@ -194,20 +193,21 @@
        "name": "spouseIsAliveFAQ1",
        "title": "What if {panel.spouseName} is on life support?",
        "titleLocation": "hidden",
-       "body": "{panel.spouseName} are considered alive."
+       "body": "{panel.spouseName} is considered alive."
       },
       {
        "type": "yesno",
        "name": "spouseIsAdult",
-       "visibleIf": "{spouseInformation[0].spouseIsAlive} = \"y\"",
+       "visible": false,
+       "visibleIf": "{panel.spouseIsAlive} = \"y\"",
        "title": "Is {panel.spouseName} 19 years of age or older?"
       },
       {
        "type": "infotext",
        "name": "spouseIsAdultNoExplanation",
        "visible": false,
-       "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"n\"",
-       "title": "Because {spouseName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {spouseName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
+       "visibleIf": "{panel.spouseIsAdult} = \"n\"",
+       "title": "Because {panel.spouseName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.spouseName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
        "titleLocation": "hidden"
       },
       {
@@ -221,15 +221,14 @@
        "type": "text",
        "name": "spouseGuardianName",
        "visible": false,
-       "visibleIf": "{spouseInformation[0].spouseHasGuardian} = \"y\"",
-       "title": "Full name of living parent/ guardian",
-       "placeHolder": "Ghost Text TBD Dependent on how we ask for names. Single Input vs Separated Input"
+       "visibleIf": "{panel.spouseHasGuardian} = \"y\"",
+       "title": "Full name of living parent/ guardian"
       },
       {
        "type": "yesno",
        "name": "spouseIsCompetent",
        "visible": false,
-       "visibleIf": "{spouseInformation[0].spouseIsAdult} = \"y\"",
+       "visibleIf": "{panel.spouseIsAdult} = \"y\"",
        "title": "Is {panel.spouseName} `mentally competent`?"
       },
       {
@@ -237,7 +236,7 @@
        "name": "spouseIsCompetentNoExplanation",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseIsCompetent} = \"n\"",
-       "title": "In this scenario, the Public Guardian and Trustee (PGT) needs to be notified in addition to {spouseName}'s committee (if there is one).",
+       "title": "In this scenario, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.spouseName}'s committee (if there is one).",
        "titleLocation": "hidden"
       },
       {
@@ -275,7 +274,7 @@
        "type": "yesno",
        "name": "spouseHasPersonalRep",
        "visible": false,
-       "visibleIf": "{spouseInformation[0].spouseDied5DaysAfter} = \"y\"",
+       "visibleIf": "{panel.spouseDied5DaysAfter} = \"y\"",
        "title": "Does {panel.spouseName} have a `personal representative`?"
       },
       {
@@ -283,9 +282,12 @@
        "name": "spousePersonalRepName",
        "visible": false,
        "visibleIf": "{spouseInformation[0].spouseHasPersonalRep} = \"y\"",
-       "title": "Full name of {spouseName}'s personal representative"
+       "title": "Full name of {panel.spouseName}'s personal representative"
       }
      ],
+     "panelCount": 1,
+     "minPanelCount": 1,
+     "confirmDelete": true,
      "panelAddText": "Add a spouse",
      "panelRemoveText": "Delete this spouse"
     },
@@ -319,7 +321,7 @@
      "visibleIf": "{spouse} = \"y\""
     }
    ],
-   "title": "{deceasedName}'s Spouse"
+   "title": "{first.deceasedName}'s Spouse"
   },
   {
    "name": "childrenPage",
