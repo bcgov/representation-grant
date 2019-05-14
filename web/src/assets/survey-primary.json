@@ -6,7 +6,7 @@
    "elements": [
     {
      "type": "panel",
-     "name": "introPanel",
+     "name": "deceasedIntroPanel",
      "elements": [
       {
        "type": "infotext",
@@ -686,20 +686,173 @@
      "visibleIf": "{grandchildIsYou} = 'n' or ({grandchildIsYou} = 'y' and {grandchildIsYouIncluded} = 'y')"
     }
    ],
+   "visible": false,
    "visibleIf": "{childPanel[1].childIsAlive} = \"n\"",
    "title": "{deceasedName}'s Grandchildren"
   },
   {
    "name": "applicants",
-   "title": "who are the applicants?"
+   "elements": [
+    {
+     "type": "panel",
+     "name": "applicantPanel",
+     "elements": [
+      {
+       "type": "checkbox",
+       "name": "applicant",
+       "title": "Who is applying to represent {deceasedName} in dealing with their stuff?",
+       "hasOther": true,
+       "choices": [
+        {
+         "value": "item1",
+         "text": "Jillian Patricia Taylor"
+        },
+        {
+         "value": "item2",
+         "text": "Bradley Michael Taylor"
+        },
+        {
+         "value": "item3",
+         "text": "Austin Healy Taylor"
+        },
+        {
+         "value": "item4",
+         "text": "Marcus Jason Taylor"
+        }
+       ],
+       "otherText": "Add a different applicant"
+      },
+      {
+       "type": "helptext",
+       "name": "applicantFAQ1",
+       "title": "Can more than 1 person apply to represent {deceasedName}",
+       "titleLocation": "hidden",
+       "body": "Yes, you will share responsibilities for representing {deceasedName}."
+      },
+      {
+       "type": "infotext",
+       "name": "applicantExplanationSpouseOnly",
+       "visible": false,
+       "visibleIf": "{applicant} = [\"item1\"]",
+       "title": "Because Jillian Patricia Taylor is {deceasedName}'s spouse, we don't need to check if any other of {deceasedName}'s successors agree with your application.",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "jillPanel",
+     "elements": [
+      {
+       "type": "text",
+       "name": "jillOccupation",
+       "title": "What is Jillian Patricia Taylor's job or profession?",
+       "description": "For example: Nurse, Homemaker, Carpenter, Accountant, etc."
+      },
+      {
+       "type": "address",
+       "name": "question4",
+       "title": "Where does Jillian Patricia Taylor usually live?"
+      },
+      {
+       "type": "contactinfo",
+       "name": "jillContact",
+       "labelEmail": "Email (optional)",
+       "labelFax": "Fax (optional)"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "applicantExitPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "applicantExitSpouseOnly",
+       "title": "Now will we ask about the assets that you, Jillian Patricia Taylor, are applying to manage.",
+       "titleLocation": "hidden"
+      }
+     ]
+    }
+   ],
+   "title": "The applicant(s)"
   },
   {
    "name": "land or buildings",
    "elements": [
     {
+     "type": "panel",
+     "name": "landEntryPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "landIntroExplanation",
+       "title": "It's time to enter information about any land or buildings that {deceasedName}owned in British Columbia.\n<br>\n<br>\nIf {deceasedName} owned any land or buildings, make sure you have the Land Title Certificate(s) to help fill in the information.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
      "type": "yesno",
-     "name": "question11",
-     "title": "Did  have any land or buildings at the time of their death?"
+     "name": "land",
+     "visible": false,
+     "visibleIf": "{landIntroExplanation} > 0",
+     "title": "Did {deceasedName} own any land or buildings at the time of their death?"
+    },
+    {
+     "type": "paneldynamic",
+     "name": "landInfoPanel",
+     "visible": false,
+     "visibleIf": "{land} = \"y\"",
+     "templateElements": [
+      {
+       "type": "address",
+       "name": "question1",
+       "title": "What is the address of this land or building? (Province and Country shouldn't be here)"
+      },
+      {
+       "type": "yesno",
+       "name": "landSoleOwner",
+       "title": "Is {deceasedName} the only registered owner of {panel.landAddress}?"
+      },
+      {
+       "type": "radiogroup",
+       "name": "landOwnershipType",
+       "visible": false,
+       "visibleIf": "{panel.landSoleOwner} = 'n'",
+       "title": "What type of ownership is {panel.landAddress} registered under?",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "Joint Tenancy"
+        },
+        {
+         "value": "item2",
+         "text": "Tenancy in Common"
+        }
+       ]
+      },
+      {
+       "type": "yesno",
+       "name": "landJointAlive",
+       "visible": false,
+       "visibleIf": "{panel.landOwnershipType} = [\"item1\"]",
+       "title": "Are any of the other registered owners alive?"
+      },
+      {
+       "type": "infotext",
+       "name": "landJointAliveYesExplanation",
+       "visible": false,
+       "visibleIf": "{panel.landJointAlive} = \"y\"",
+       "title": "Because another joint tenant of {panel.landAddress} is alive, this land or building passes to them automatically and you do not need to manage it as part of {deceasedName}'s estate.",
+       "titleLocation": "hidden"
+      }
+     ],
+     "panelCount": 1,
+     "minPanelCount": 1,
+     "panelAddText": "Add a land or building",
+     "panelRemoveText": "Remove a land or building"
     }
    ],
    "title": "About land or buildings"
