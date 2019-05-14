@@ -140,12 +140,6 @@
        "title": "How do I check for a will?",
        "titleLocation": "hidden",
        "body": "You should start by checking in places where the deceased usually kept their documents. You may not find their will but you may find clues to where the will is kept. The will may be at a variety of places, including the deceased's home, their safety deposit box, or at the office of the lawyer who helped create the will.\n<br>\n<br>\nAs part of applying for a Representation Grant, you will be required to do a \"Search of Wills Notice\" and provide the results to the court. This is done through the Vital Statistics Agency of British Columbia. If a will was registered with the Vital Statistics Agency, they will have information about the location of the will, but not the actual will itself.\n<br>\n<br>\nThe \"Search of Wills Notice\" must include a search of all of the different names and spellings that the deceased used in their will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later stage."
-      },
-      {
-       "type": "infotext",
-       "name": "willNoExplanation",
-       "title": "Because {deceasedName} didn't leave a will, we can move on to asking about {deceasedName}'s spouse and children.",
-       "titleLocation": "hidden"
       }
      ]
     },
@@ -162,6 +156,20 @@
      ],
      "visible": false,
      "visibleIf": "{will} = 'y'"
+    },
+    {
+     "type": "panel",
+     "name": "willExitPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "willNoExplanation",
+       "visible": false,
+       "visibleIf": "{will} = \"n\"",
+       "title": "Because {deceasedName} didn't leave a will, we can move on to asking about {deceasedName}'s spouse and children.",
+       "titleLocation": "hidden"
+      }
+     ]
     }
    ],
    "title": "{deceasedName}'s Will"
