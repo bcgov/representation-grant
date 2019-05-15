@@ -1035,7 +1035,7 @@
    "title": "about vehicles"
   },
   {
-   "name": "bank",
+   "name": "bankPage",
    "elements": [
     {
      "type": "panel",
@@ -1043,7 +1043,7 @@
      "elements": [
       {
        "type": "yesno",
-       "name": "bank1",
+       "name": "bank",
        "title": "Did {deceasedName} have any bank accounts at the time of their death?"
       }
      ]
@@ -1129,9 +1129,12 @@
          "otherText": "Yes, I know the exact value:"
         }
        ],
-       "panelCount": 2
+       "panelCount": 2,
+       "minPanelCount": 1
       }
-     ]
+     ],
+     "panelCount": 1,
+     "minPanelCount": 1
     }
    ],
    "title": "about bank accounts"
