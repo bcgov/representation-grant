@@ -946,12 +946,23 @@
        "title": "How is {deceasedName}'s name spelled exactly on the registration papers for the {panel.vehicleYear} {panel.vehicleMake} {panel.vehicleModel}?"
       },
       {
-       "type": "text",
+       "type": "radiogroup",
        "name": "vehicleValue",
        "visible": false,
-       "visibleIf": "{panel.vehicleSoleOwner} = \"y\"",
-       "title": "What is the value of the {panel.vehicleYear} {panel.vehicleMake} {panel.vehicleModel} at the time of {deceasedName}'s death?",
-       "inputType": "number"
+       "visibleIf": "{panel.vehicleSoleOwner} = \"y\")",
+       "title": "Do you have the exact value of the {panel.vehicleYear} {panel.vehicleMake} {panel.vehicleModel} at the time of {deceasedName}'s death?",
+       "hasOther": true,
+       "choices": [
+        {
+         "value": "item1",
+         "text": "No, the financial institution will not give it to me."
+        },
+        {
+         "value": "item2",
+         "text": "No, I but I can get it at a later time."
+        }
+       ],
+       "otherText": "Yes, I know the exact value:"
       },
       {
        "type": "helptext",
@@ -1027,9 +1038,100 @@
    "name": "bank",
    "elements": [
     {
-     "type": "yesno",
-     "name": "question12",
-     "title": "Did  have any bank accounts at the time of their death?"
+     "type": "panel",
+     "name": "bankPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "bank1",
+       "title": "Did {deceasedName} have any bank accounts at the time of their death?"
+      }
+     ]
+    },
+    {
+     "type": "paneldynamic",
+     "name": "bankInfoPanel",
+     "visible": false,
+     "visibleIf": "{bank} = \"y\"",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "bankName",
+       "title": "Name of Financial Institution"
+      },
+      {
+       "type": "paneldynamic",
+       "name": "accountPanel",
+       "title": "Accounts at {panel.bankName}",
+       "templateElements": [
+        {
+         "type": "radiogroup",
+         "name": "accountType",
+         "title": "Type of Account",
+         "hasOther": true,
+         "choices": [
+          {
+           "value": "item1",
+           "text": "Savings"
+          },
+          {
+           "value": "item2",
+           "text": "Chequing"
+          },
+          {
+           "value": "item3",
+           "text": "GIC"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "name": "accountNumber",
+         "title": "Account Number"
+        },
+        {
+         "type": "yesno",
+         "name": "accountJoint",
+         "title": "Is this a joint account?"
+        },
+        {
+         "type": "yesno",
+         "name": "accountJointAlive",
+         "visible": false,
+         "visibleIf": "{panel.accountJoint} = \"y\"",
+         "title": "Is the joint account holder for this account alive?"
+        },
+        {
+         "type": "infotext",
+         "name": "accountJointAliveYesExplanation",
+         "visible": false,
+         "visibleIf": "{panel.accountJointAlive} = \"y\"",
+         "title": "Because the joint account holder of this account is still alive, this account will go to them automatically. You do not need to include this account as part of the estate. ",
+         "titleLocation": "hidden"
+        },
+        {
+         "type": "radiogroup",
+         "name": "accountValue",
+         "visible": false,
+         "visibleIf": "{panel.accountJoint} = \"n\" or ({panel.accountJoint} = \"y\" and {panel.accountJointAlive} = \"n\")",
+         "title": "Do you have the exact value of this account at the time of {deceasedName}'s death?",
+         "hasOther": true,
+         "choices": [
+          {
+           "value": "item1",
+           "text": "No, the financial institution will not give it to me."
+          },
+          {
+           "value": "item2",
+           "text": "No, I but I can get it at a later time."
+          }
+         ],
+         "otherText": "Yes, I know the exact value:"
+        }
+       ],
+       "panelCount": 2
+      }
+     ]
     }
    ],
    "title": "about bank accounts"
@@ -1108,30 +1210,41 @@
    "title": "Notify Checklist"
   },
   {
-   "name": "finalize assets",
+   "name": "finalizeAssets",
    "elements": [
     {
-     "type": "matrixdynamic",
-     "name": "question16",
-     "columns": [
+     "type": "panel",
+     "name": "panel1",
+     "elements": [
       {
-       "name": "Missing Asset Value 1",
-       "title": "Value"
-      },
-      {
-       "name": "Column 2"
+       "type": "matrixdropdown",
+       "name": "finalizeAssetPlaceholder",
+       "title": "What is the value for the following items on the date of {deceasedName}'s death?",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "Value",
+         "cellType": "text"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "rows": [
+        {
+         "value": "Row 1",
+         "text": "1969 Ford Mustang"
+        }
+       ]
       }
-     ],
-     "choices": [
-      1,
-      2,
-      3,
-      4,
-      5
      ]
     }
    ],
-   "title": "finalize assets"
+   "title": "Finalize Asset Values"
   },
   {
    "name": "willSearchCheck",
