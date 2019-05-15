@@ -1035,39 +1035,73 @@
    "title": "about bank accounts"
   },
   {
-   "name": "print notification",
+   "name": "p1",
    "elements": [
     {
-     "type": "comment",
-     "name": "question14",
-     "title": "Need to exist the last survey to print the P1. If anything is modified on the previous survey, must inform applicants they need to re-notify"
+     "type": "infotext",
+     "name": "PrintP1",
+     "title": "This is the first review and print page to print the P1 form (to notify successors).\n<br>\n<br>\n It will generated a PDF that the applicant would download.\n<br>\n<br>\nIt will give instructions on how to notify the successors.\n<br>\n<br>\nIf any changes are made in the prior questions, need to inform applicants they may need to re-notify.",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     }
    ],
-   "title": "print notification"
+   "title": "Review and Print P1"
   },
   {
    "name": "notifying",
    "elements": [
     {
-     "type": "matrixdynamic",
-     "name": "question15",
-     "columns": [
+     "type": "panel",
+     "name": "notifyPanel",
+     "elements": [
       {
-       "name": "Person to Notify"
-      },
-      {
-       "name": "Service Method"
-      },
-      {
-       "name": "Date"
+       "type": "matrixdropdown",
+       "name": "notifyingPlaceholder",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "Service Method",
+         "cellType": "radiogroup"
+        },
+        {
+         "name": "Column 2",
+         "title": "Date",
+         "cellType": "text"
+        }
+       ],
+       "choices": [
+        {
+         "value": 1,
+         "text": "In Person"
+        },
+        {
+         "value": 2,
+         "text": "By Mail"
+        },
+        {
+         "value": 3,
+         "text": "Electronic"
+        }
+       ],
+       "rows": [
+        {
+         "value": "item1",
+         "text": "Bradley Michael Taylor"
+        },
+        {
+         "value": "item3",
+         "text": "Marcus Jason Taylor"
+        },
+        {
+         "value": "item2",
+         "text": "Lauren Taylor (for Austin Healy Taylor)"
+        },
+        {
+         "value": "item4",
+         "text": "PGT (for Austin Healy Taylor)"
+        }
+       ]
       }
-     ],
-     "choices": [
-      1,
-      2,
-      3,
-      4,
-      5
      ]
     }
    ],
@@ -1100,26 +1134,42 @@
    "title": "finalize assets"
   },
   {
-   "name": "will search double check",
+   "name": "willSearchCheck",
    "elements": [
     {
-     "type": "yesno",
-     "name": "question17",
-     "title": "did you do a will search with all of these names?"
+     "type": "panel",
+     "name": "willSearchPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willSearchAll",
+       "title": "Dd you do a will search with all of these spellings of {deceasedName}'s name?\n<br>\n<br>\n{deceasedName}\n<br>\n<br>\nTim A. Taylor"
+      },
+      {
+       "type": "infotext",
+       "name": "willSearchAllNoExplanation",
+       "visible": false,
+       "visibleIf": "{willSearchAll} = \"n\"",
+       "title": "You will need to do a will search for all of the spellings of {deceasedName}'s name. Click here to download the form. (Click here to generate a PDF?)",
+       "titleLocation": "hidden"
+      }
+     ]
     }
    ],
-   "title": "will search double check"
+   "title": "Will Search Check"
   },
   {
-   "name": "print final forms",
+   "name": "printFinal",
    "elements": [
     {
-     "type": "comment",
-     "name": "question18",
-     "title": "print forms - swear affidavits - take them to a courthouse"
+     "type": "infotext",
+     "name": "PrintFinalForms",
+     "title": "This is the review and print page.\n<br>\n<br>\n It will generated PDFs that the applicant would download.\n<br>\n<br>\nIt will give instructions and the applicant the earliest date they can file based on when they finished all of their service.\n<br>\n<br>\nIf any changes are made in the prior questions, need to inform applicants they may need to reprint the forms.",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     }
    ],
-   "title": "print final forms"
+   "title": "Review and Print Final Forms"
   }
  ],
  "showQuestionNumbers": "off",
