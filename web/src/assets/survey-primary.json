@@ -411,6 +411,82 @@
     },
     {
      "type": "panel",
+     "name": "willMakerAgePanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willMakerOver16",
+       "title": "Was {deceasedName} over the age 16 when they made this will?"
+      },
+      {
+       "type": "infotext",
+       "name": "willMakerOver16NoError",
+       "title": "What happens?",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "willSignedPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willSigned",
+       "title": "Does this will have {deceasedName}'s signature at the end?"
+      },
+      {
+       "type": "infotext",
+       "name": "willSignedNoExplanation",
+       "title": "what happens?",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "willMilitary",
+       "title": "Military Will? Is this the best place for this question?"
+      },
+      {
+       "type": "infotext",
+       "name": "willMilitaryMark",
+       "title": "Placeholder for how the will was signed by a different mark?",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "willWitnessesPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willWitnessesSigned",
+       "title": "Witnessed (signed) by 2 others in the presence of the other witness and will-maker (everyone must sign in the same room)"
+      },
+      {
+       "type": "yesno",
+       "name": "willWitnessesOver19",
+       "title": "Witnesses over 19 at the time?"
+      },
+      {
+       "type": "yesno",
+       "name": "willWitnessesCompetent",
+       "title": "Witnesses were mentally capable at the time?"
+      },
+      {
+       "type": "infotext",
+       "name": "willWitnessesProblemPlaceholder",
+       "title": "Placeholder\n<br>\n\"Priority of Attestation Clause addressing\n<br>\n1. affidavit of witness\n<br>\n2. affidavit of person who was there but not a witness\n<br>\n3. affidavit confirming signature of willmaker and witnesses... (2 affidavits)\n<br>\n4. affidavit of circumstances. \n<br>\n5.\"",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      }
+     ]
+    },
+    {
+     "type": "panel",
      "name": "willExitPanel",
      "elements": [
       {
