@@ -179,35 +179,235 @@
    "elements": [
     {
      "type": "panel",
-     "name": "willPanel",
+     "name": "willIntroPanel",
      "elements": [
       {
-       "type": "yesno",
-       "name": "will",
-       "title": "Did {deceasedName} leave a will?"
-      },
-      {
-       "type": "helptext",
-       "name": "willFAQ1",
-       "title": "How do I check for a will?",
-       "titleLocation": "hidden",
-       "body": "You should start by checking in places where the deceased usually kept their documents. You may not find their will but you may find clues to where the will is kept. The will may be at a variety of places, including the deceased's home, their safety deposit box, or at the office of the lawyer who helped create the will.\n<br>\n<br>\nAs part of applying for a Representation Grant, you will be required to do a \"Search of Wills Notice\" and provide the results to the court. This is done through the Vital Statistics Agency of British Columbia. If a will was registered with the Vital Statistics Agency, they will have information about the location of the will, but not the actual will itself.\n<br>\n<br>\nThe \"Search of Wills Notice\" must include a search of all of the different names and spellings that the deceased used in their will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later stage."
+       "type": "infotext",
+       "name": "willIntroExplanation",
+       "title": "It is important to make a diligent search to see if {deceasedName} made a will or any other testamentary documents.",
+       "isRequired": true,
+       "titleLocation": "hidden"
       }
      ]
     },
     {
      "type": "panel",
-     "name": "willDatePanel",
+     "name": "willCheckPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willCheck",
+       "title": "Have you made a diligent search for a will or any other testamentary documents that {deceasedName} may have made?",
+       "description": "Testamentary documents are usually Wills, sometimes a Codicils, or rarely, any other written documents that  would have made to describe what they want to happen with the things they owned after they die."
+      },
+      {
+       "type": "helptext",
+       "name": "willCheckFAQ1",
+       "title": "I'm not sure the person who died left a will.",
+       "titleLocation": "hidden",
+       "body": "To apply to represent {deceasedName}, you are responsible for making sure if they left a will."
+      },
+      {
+       "type": "helptext",
+       "name": "willCheckFAQ2",
+       "title": "How do I/we check for a will?",
+       "titleLocation": "hidden",
+       "body": "You should start by checking in places where the deceased usually kept their documents. You may not find their will but you may find clues to where the will is kept. The will may be at a variety of places, including the deceased's home, their safety deposit box, or at the office of the lawyer who helped create the will.\n<br>\n<br>\nAs part of applying for a Representation Grant, you will be required to do a \"Search of Wills Notice\" and provide the results to the court. This is done through the Vital Statistics Agency of British Columbia. If a will was registered with the Vital Statistics Agency, they will have information about the location of the will, but not the actual will itself.\n<br>\n<br>\nThe \"Search of Wills Notice\" must include a search of all of the different names and spellings that the deceased used in their will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later stage."
+      },
+      {
+       "type": "infotext",
+       "name": "willCheckError",
+       "visible": false,
+       "title": "If you have not made a diligent search, please do so before continuing with this service. This makes all the difference in what questions this service will ask you.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel2",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "will",
+       "title": "Did {deceasedName} make a will (or any other testamentary document)?"
+      },
+      {
+       "type": "helptext",
+       "name": "willFAQ1",
+       "visible": false,
+       "visibleIf": "{willCheck} = \"y\"",
+       "title": "What if I believe {deceasedName} made a will but I/we cannot find it?",
+       "titleLocation": "hidden",
+       "body": "If you did not find a will after checking all reasonable places, select \"No\". You will fill out the forms as if {deceasedName} did not leave a will. \n\nIf you find {deceasedName}'s will in the future ..."
+      },
+      {
+       "type": "radiogroup",
+       "name": "willStatus",
+       "visible": false,
+       "visibleIf": "{will} = \"y\"",
+       "title": "Do you have a this will? (plural?)",
+       "description": "Pick the situation that best applies to your situation.",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "Yes, and I/we have the original will."
+        },
+        {
+         "value": "item2",
+         "text": "Yes, but I/we only have copies of the will."
+        },
+        {
+         "value": "item3",
+         "text": "No, I/we don't have them (neither an original nor a copy). (because someone won't give them to me/us?)"
+        }
+       ]
+      },
+      {
+       "type": "yesno",
+       "name": "willOriginalExists",
+       "title": "Does someone else have the original and won't give it to you?"
+      },
+      {
+       "type": "infotext",
+       "name": "willOriginalExistsYes",
+       "title": "Placeholder for forms to make someone give you the will?\n<br>\nHave you asked them to go ahead and apply? \n<br>\nDid they say no?\n<br>\nPrint this form to get them to give you the will. You can still continue with this service if you have a copy.",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "willOriginalExistsNoExplanation",
+       "title": "If you think the original will is gone forever, that's fine. We'll just use the copy.",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "willInfoPanel",
      "elements": [
       {
        "type": "text",
        "name": "willDate",
        "title": "What is the date the will is made?",
        "inputType": "date"
+      },
+      {
+       "type": "helptext",
+       "name": "willDateFAQ1",
+       "title": "Explain how you can have multiple wills? Pick the latest one unless there is a problem.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willLast",
+       "title": "Move to bottom?\n<br>\nDo you believe this Will dated {willDate} is {deceasedName}'s last will that deals with property in BC?"
+      },
+      {
+       "type": "helptext",
+       "name": "willLastFAQ1",
+       "title": "Will that deals with property outside of BC?",
+       "titleLocation": "hidden"
       }
      ],
      "visible": false,
      "visibleIf": "{will} = 'y'"
+    },
+    {
+     "type": "panel",
+     "name": "willNameMatchPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willNameMatch",
+       "title": "Is {deceasedName}'s name spelled exactly as <b>{deceasedName}</b> on this will?",
+       "description": "We care about any minor difference here. If for example, if the deceased's legal name is Abe Ben Carter, but the registered owner is Abe B. Carter, then this is not exactly the same. You will get the opportunity to write exactly how it is spelled in the next question."
+      },
+      {
+       "type": "yesno",
+       "name": "willAlias",
+       "title": "How is {deceasedName}'s name spelled exactly on this will?"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "willWrittenPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willWritten",
+       "title": "Is this will written? (no audio or video)"
+      },
+      {
+       "type": "infotext",
+       "name": "willWrittenNoError",
+       "title": "What happens if the will is not written?",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "willEnglish",
+       "title": "Is this will/document written in English?"
+      },
+      {
+       "type": "infotext",
+       "name": "willEnglishNoExplanation",
+       "title": "The reviewers will need the Will translated into English. You will also need an affidavit (sworn statement) that the translator is in fact good at this language and what they translated is accurate. This translator could be you if you are good at this language and English.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willTranslated",
+       "title": "Has this will been translated into English?"
+      },
+      {
+       "type": "infotext",
+       "name": "willTranslatedNoExplanation",
+       "title": "If you can the will in its original language, please continue this service. But if you cannot read this will, please get it translated by someone who knows English and the language of the will first before continuing on.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "dropdown",
+       "name": "willLanguage",
+       "title": "What language is this will written in?",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "French"
+        },
+        {
+         "value": "item2",
+         "text": "Chinese"
+        },
+        {
+         "value": "item3",
+         "text": "Punjabi"
+        }
+       ]
+      },
+      {
+       "type": "yesno",
+       "name": "willTranslatorName",
+       "title": "What is the name of the translator of the will?"
+      },
+      {
+       "type": "text",
+       "name": "willTranslatorOccupation",
+       "title": "What is {willTranslatorName}'s job or profession?",
+       "description": "For example: Nurse, Homemaker, Carpenter, Accountant, etc."
+      },
+      {
+       "type": "address",
+       "name": "willTranslatorResidence",
+       "title": "Where does {willTranslatorName} usually live? (City and Country only)"
+      }
+     ]
     },
     {
      "type": "panel",
