@@ -344,7 +344,7 @@
       {
        "type": "infotext",
        "name": "willWrittenNoError",
-       "title": "What happens if the will is not written?",
+       "title": "What happens if the will is not written? P4 special conditions questions?",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
@@ -392,7 +392,7 @@
        ]
       },
       {
-       "type": "yesno",
+       "type": "text",
        "name": "willTranslatorName",
        "title": "What is the name of the translator of the will?"
       },
@@ -411,8 +411,77 @@
     },
     {
      "type": "panel",
-     "name": "willMakerAgePanel",
+     "name": "willSignedPanel",
      "elements": [
+      {
+       "type": "yesno",
+       "name": "willSigned",
+       "title": "Did {deceasedName} sign this will?",
+       "description": "Check the last page"
+      },
+      {
+       "type": "yesno",
+       "name": "question6",
+       "title": "Was {deceasedName} blind (when they signed the will)?"
+      },
+      {
+       "type": "yesno",
+       "name": "question10",
+       "title": "Is there an acknowledgement/explanation on the will that {deceasedName} was blind when they signed their will?"
+      },
+      {
+       "type": "yesno",
+       "name": "question12",
+       "title": "Is there someone that will swear/affirm that {deceasedName} understood and approved of the content of their even if they were blind? Usually a witness."
+      },
+      {
+       "type": "yesno",
+       "name": "question14",
+       "title": "no witness for blind deceased - section 80 "
+      },
+      {
+       "type": "infotext",
+       "name": "question13",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question3",
+       "title": "Was this will signed by a mark instead of hand written words?",
+       "description": "An example of a mark would be a stamp or check mark."
+      },
+      {
+       "type": "yesno",
+       "name": "question11",
+       "title": "Is there an acknowledgement/explanation on the will that {deceasedName} was blind when they signed their will?"
+      },
+      {
+       "type": "yesno",
+       "name": "question5",
+       "title": "not signed at all? <br>Was this will made somewhere that allows for wills to be made without a signature?<br> [probably going too far? change this to an explanation to consider that this will is invalid and to go with admin without will]"
+      },
+      {
+       "type": "yesno",
+       "name": "question8",
+       "title": "Did {deceasedName} fully understand the language in which the will was written? [How do we make it so we don't have to ask this multiple times?]"
+      },
+      {
+       "type": "yesno",
+       "name": "question9",
+       "title": "If no, Was {deceasedName} illiterate? [How do we make it so we don't have to ask this multiple times?]"
+      },
+      {
+       "type": "yesno",
+       "name": "question1",
+       "title": "Was this will signed by someone else on behalf of {deceasedName}?",
+       "description": "Not talking about witnesses here."
+      },
+      {
+       "type": "yesno",
+       "name": "question2",
+       "title": "Was this person who signed the will also a witness?",
+       "description": "The will can not be signed and witnessed by the same person."
+      },
       {
        "type": "yesno",
        "name": "willMakerOver16",
@@ -422,24 +491,6 @@
        "type": "infotext",
        "name": "willMakerOver16NoError",
        "title": "What happens?",
-       "titleLocation": "hidden",
-       "messageStyle": "error"
-      }
-     ]
-    },
-    {
-     "type": "panel",
-     "name": "willSignedPanel",
-     "elements": [
-      {
-       "type": "yesno",
-       "name": "willSigned",
-       "title": "Does this will have {deceasedName}'s signature at the end?"
-      },
-      {
-       "type": "infotext",
-       "name": "willSignedNoExplanation",
-       "title": "what happens?",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
@@ -482,6 +533,17 @@
        "title": "Placeholder\n<br>\n\"Priority of Attestation Clause addressing\n<br>\n1. affidavit of witness\n<br>\n2. affidavit of person who was there but not a witness\n<br>\n3. affidavit confirming signature of willmaker and witnesses... (2 affidavits)\n<br>\n4. affidavit of circumstances. \n<br>\n5.\"",
        "titleLocation": "hidden",
        "messageStyle": "inline"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel3",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question7",
+       "title": "Was {deceasedName} blind?"
       }
      ]
     },
