@@ -218,24 +218,27 @@
        "type": "infotext",
        "name": "willCheckError",
        "visible": false,
+       "visibleIf": "{willCheck} = \"n\"",
        "title": "If you have not made a diligent search, please do so before continuing with this service. This makes all the difference in what questions this service will ask you.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{willIntroExplanation} > 0"
     },
     {
      "type": "panel",
-     "name": "panel2",
+     "name": "willExistsPanel",
      "elements": [
       {
        "type": "yesno",
-       "name": "will",
+       "name": "willExists",
        "title": "Did {deceasedName} make a will (or any other testamentary document)?"
       },
       {
        "type": "helptext",
-       "name": "willFAQ1",
+       "name": "willExistsFAQ1",
        "visible": false,
        "visibleIf": "{willCheck} = \"y\"",
        "title": "What if I believe {deceasedName} made a will but I/we cannot find it?",
@@ -246,8 +249,8 @@
        "type": "radiogroup",
        "name": "willStatus",
        "visible": false,
-       "visibleIf": "{will} = \"y\"",
-       "title": "Do you have a this will? (plural?)",
+       "visibleIf": "{willExists} = \"y\"",
+       "title": "Do you have this will? (plural?)",
        "description": "Pick the situation that best applies to your situation.",
        "choices": [
         {
@@ -260,29 +263,42 @@
         },
         {
          "value": "item3",
-         "text": "No, I/we don't have them (neither an original nor a copy). (because someone won't give them to me/us?)"
+         "text": "No, I/we don't have neither an original nor a copy of the will."
+        },
+        {
+         "value": "item4",
+         "text": "No, a Will Search identified a will but the will wasn't anywhere I/we checked."
         }
        ]
       },
       {
        "type": "yesno",
        "name": "willOriginalExists",
+       "visible": false,
+       "visibleIf": "{willStatus} = \"item2\" or {willStatus} = \"item3\"",
        "title": "Does someone else have the original and won't give it to you?"
       },
       {
        "type": "infotext",
-       "name": "willOriginalExistsYes",
+       "name": "willCitationPlaceholder",
+       "visible": false,
+       "visibleIf": "{willOriginalExists} = \"y\"",
        "title": "Placeholder for forms to make someone give you the will?\n<br>\nHave you asked them to go ahead and apply? \n<br>\nDid they say no?\n<br>\nPrint this form to get them to give you the will. You can still continue with this service if you have a copy.",
+       "isRequired": true,
        "titleLocation": "hidden",
        "messageStyle": "inline"
       },
       {
        "type": "infotext",
        "name": "willOriginalExistsNoExplanation",
+       "visible": false,
+       "visibleIf": "{willOriginalExists} = \"n\"",
        "title": "If you think the original will is gone forever, that's fine. We'll just use the copy.",
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{willCheck} = \"y\""
     },
     {
      "type": "panel",
@@ -302,35 +318,47 @@
       },
       {
        "type": "yesno",
-       "name": "willLast",
-       "title": "Move to bottom?\n<br>\nDo you believe this Will dated {willDate} is {deceasedName}'s last will that deals with property in BC?"
+       "name": "willNameMatch",
+       "title": "Is {deceasedName}'s name spelled exactly as <b>{deceasedName}</b> on this will?<br>\n[We need this early even if the will is no good, so that we capture the alias for the will search]",
+       "description": "We care about any minor difference here. If for example, if the deceased's legal name is Abe Ben Carter, but the registered owner is Abe B. Carter, then this is not exactly the same. You will get the opportunity to write exactly how it is spelled in the next question."
+      },
+      {
+       "type": "text",
+       "name": "willAlias",
+       "visible": false,
+       "visibleIf": "{willNameMatch} = \"n\"",
+       "title": "How is {deceasedName}'s name spelled exactly on this will?"
+      },
+      {
+       "type": "yesno",
+       "name": "willMadeInBC",
+       "title": "Do you believe {deceasedName} made this will in BC?"
+      },
+      {
+       "type": "yesno",
+       "name": "willLastForBCProperty",
+       "title": "cross ref with will-search-latest-will believe this is the latest vs will search saying there is one later - how can applicant “believe”\n<br>\nDo you believe this Will dated {willDate} is {deceasedName}'s last will that deals with property in BC?"
       },
       {
        "type": "helptext",
        "name": "willLastFAQ1",
        "title": "Will that deals with property outside of BC?",
        "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "willLastForBCPropertyNo",
+       "title": "Go back and use a newer will? Or enter data from this one and tell reasons why you won't use the newer one.",
+       "titleLocation": "hidden"
       }
      ],
      "visible": false,
-     "visibleIf": "{will} = 'y'"
+     "visibleIf": "{will} = 'y' or \n{willStatus} = \"item2\"\nor {willCitationPlaceholder} > 0\n{willOriginalExists} = \"n\""
     },
     {
      "type": "panel",
      "name": "willNameMatchPanel",
-     "elements": [
-      {
-       "type": "yesno",
-       "name": "willNameMatch",
-       "title": "Is {deceasedName}'s name spelled exactly as <b>{deceasedName}</b> on this will?",
-       "description": "We care about any minor difference here. If for example, if the deceased's legal name is Abe Ben Carter, but the registered owner is Abe B. Carter, then this is not exactly the same. You will get the opportunity to write exactly how it is spelled in the next question."
-      },
-      {
-       "type": "yesno",
-       "name": "willAlias",
-       "title": "How is {deceasedName}'s name spelled exactly on this will?"
-      }
-     ]
+     "visible": false
     },
     {
      "type": "panel",
@@ -344,6 +372,8 @@
       {
        "type": "infotext",
        "name": "willWrittenNoError",
+       "visible": false,
+       "visibleIf": "{willWritten} = \"n\"",
        "title": "What happens if the will is not written? P4 special conditions questions?",
        "titleLocation": "hidden",
        "messageStyle": "error"
@@ -351,11 +381,14 @@
       {
        "type": "yesno",
        "name": "willEnglish",
+       "visible": false,
+       "visibleIf": "{willWritten} = \"y\"",
        "title": "Is this will/document written in English?"
       },
       {
        "type": "infotext",
        "name": "willEnglishNoExplanation",
+       "visibleIf": "{willWritten} = \"n\"\n",
        "title": "The reviewers will need the Will translated into English. You will also need an affidavit (sworn statement) that the translator is in fact good at this language and what they translated is accurate. This translator could be you if you are good at this language and English.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -363,11 +396,15 @@
       {
        "type": "yesno",
        "name": "willTranslated",
+       "visible": false,
+       "visibleIf": "{willEnglishNoExplanation} > 0",
        "title": "Has this will been translated into English?"
       },
       {
        "type": "infotext",
        "name": "willTranslatedNoExplanation",
+       "visible": false,
+       "visibleIf": "{willTranslated} = \"n\"",
        "title": "If you can the will in its original language, please continue this service. But if you cannot read this will, please get it translated by someone who knows English and the language of the will first before continuing on.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -375,6 +412,8 @@
       {
        "type": "dropdown",
        "name": "willLanguage",
+       "visible": false,
+       "visibleIf": "{willTranslated} = \"y\" or {willTranslatedNoExplanation} > 0",
        "title": "What language is this will written in?",
        "choices": [
         {
@@ -394,20 +433,26 @@
       {
        "type": "text",
        "name": "willTranslatorName",
+       "visible": false,
+       "visibleIf": "{willTranslated} = \"y\" or {willTranslatedNoExplanation} > 0",
        "title": "What is the name of the translator of the will?"
       },
       {
        "type": "text",
        "name": "willTranslatorOccupation",
+       "visibleIf": "{willTranslated} = \"y\" or {willTranslatedNoExplanation} > 0",
        "title": "What is {willTranslatorName}'s job or profession?",
        "description": "For example: Nurse, Homemaker, Carpenter, Accountant, etc."
       },
       {
        "type": "address",
        "name": "willTranslatorResidence",
+       "visibleIf": "{willTranslated} = \"y\" or {willTranslatedNoExplanation} > 0",
        "title": "Where does {willTranslatorName} usually live? (City and Country only)"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{willLastForBCProperty} = \"y\""
     },
     {
      "type": "panel",
@@ -418,6 +463,45 @@
        "name": "willSigned",
        "title": "Did {deceasedName} sign this will?",
        "description": "Check the last page"
+      },
+      {
+       "type": "yesno",
+       "name": "willSignedByMark",
+       "visibleIf": "{willSigned} = \"n\"",
+       "title": "Did {deceasedName} sign this will by a mark instead of hand written signature/words?",
+       "description": "An example of a mark would be an X or something else that is easily reproducible.\nA stamp, etc checkmark."
+      },
+      {
+       "type": "yesno",
+       "name": "willSignedByMarkAcknowledged",
+       "visible": false,
+       "visibleIf": "{willSignedByMark} = \"y\"",
+       "title": "Is there an acknowledgement/explanation on the will that {deceasedName} signed their will with a mark instead of a signature??"
+      },
+      {
+       "type": "radiogroup",
+       "name": "willNotSigned",
+       "visible": false,
+       "title": "not signed at all? choices - admin without will now or (rare) make an application to go before a judge to explain, then come back to the app when done and keep going",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "do Admin without will as if will doesn't exist"
+        },
+        {
+         "value": "item2",
+         "text": "want to cure this will"
+        }
+       ]
+      },
+      {
+       "type": "infotext",
+       "name": "willNotSignedError",
+       "visible": false,
+       "visibleIf": "{willNotSigned} = \"item2\"",
+       "title": "Placeholder with more questions to come. tell them which forms to use wesa sec58 P42 or P43. investigate this further later:\n<br>\n<br>\nAn application under WESA s. 58 is made in accordance\nwith SCCR 25-14(2)(c). If there is an existing probate\nproceeding, the application is brought using a Notice of\nApplication in probate form P42. If there is no existing\nprobate proceeding, the order may be sought by requisition\nin probate form P43.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
       },
       {
        "type": "yesno",
@@ -435,30 +519,49 @@
        "title": "Is there someone that will swear/affirm that {deceasedName} understood and approved of the content of their even if they were blind? Usually a witness."
       },
       {
+       "type": "text",
+       "name": "question15",
+       "title": "name of witness who can attest to blindness and understanding will"
+      },
+      {
+       "type": "text",
+       "name": "question16",
+       "title": "occupation"
+      },
+      {
+       "type": "address",
+       "name": "question17",
+       "title": "city and country of witness"
+      },
+      {
        "type": "yesno",
        "name": "question14",
-       "title": "no witness for blind deceased - section 80 "
+       "title": "no witness for blind deceased - was the will made in BC? [make this its own section somewhere else]"
+      },
+      {
+       "type": "yesno",
+       "name": "question18",
+       "title": "Sec80a - Is the will valid according to the law of the place where the will is made,"
+      },
+      {
+       "type": "yesno",
+       "name": "question21",
+       "title": "sec 80 b and c - domiciled is where they would normally live? ordinary residence would be off-shore oil rig 200 days a year. business and social connections. possibly on the form, could fill out with something like \"Sec80 b and/or Sec80 b\""
+      },
+      {
+       "type": "yesno",
+       "name": "question22",
+       "title": "forget sec80 f - not for us in BC to use"
+      },
+      {
+       "type": "yesno",
+       "name": "question23",
+       "title": "print out sec 80 (2) and (3) in addition to sec 80 (1) a-e as safety net? Can delete later if unnecessary as they work in the background. "
       },
       {
        "type": "infotext",
        "name": "question13",
        "titleLocation": "hidden"
-      },
-      {
-       "type": "yesno",
-       "name": "question3",
-       "title": "Was this will signed by a mark instead of hand written words?",
-       "description": "An example of a mark would be a stamp or check mark."
-      },
-      {
-       "type": "yesno",
-       "name": "question11",
-       "title": "Is there an acknowledgement/explanation on the will that {deceasedName} was blind when they signed their will?"
-      },
-      {
-       "type": "yesno",
-       "name": "question5",
-       "title": "not signed at all? <br>Was this will made somewhere that allows for wills to be made without a signature?<br> [probably going too far? change this to an explanation to consider that this will is invalid and to go with admin without will]"
       },
       {
        "type": "yesno",
@@ -481,6 +584,12 @@
        "name": "question2",
        "title": "Was this person who signed the will also a witness?",
        "description": "The will can not be signed and witnessed by the same person."
+      },
+      {
+       "type": "infotext",
+       "name": "question19",
+       "title": "sec 58, see above. either go with admin w/o will or apply using P42/P43",
+       "titleLocation": "hidden"
       },
       {
        "type": "yesno",
@@ -506,7 +615,9 @@
        "titleLocation": "hidden",
        "messageStyle": "inline"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{willTranslated} = \"y\""
     },
     {
      "type": "panel",
@@ -538,12 +649,58 @@
     },
     {
      "type": "panel",
-     "name": "panel3",
+     "name": "panel5",
      "elements": [
+      {
+       "type": "infotext",
+       "name": "question26",
+       "title": "25-3 (6) f\n<br>\nthe will is not a military will executed in accordance with the requirements of section 38 of the Wills, Estates and Succession Act",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel8",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question27",
+       "title": "25-3 (6) g\n<br>\nany issues respecting execution of the will\n<br>\nspecial circumstances",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
       {
        "type": "yesno",
        "name": "question7",
-       "title": "Was {deceasedName} blind?"
+       "title": "Was {deceasedName} blind (when they signed the will)?"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel6",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question25",
+       "title": "25-3 (6) h\n<br>\nany interlineations, erasures or obliterations in, or other alterations to, the will",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel7",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question24",
+       "title": "25-3 (6) i\n<br>\nany issues arising from the appearance of the will",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
       }
      ]
     },
