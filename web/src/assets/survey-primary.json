@@ -337,7 +337,7 @@
       {
        "type": "yesno",
        "name": "willLastForBCProperty",
-       "title": "cross ref with will-search-latest-will believe this is the latest vs will search saying there is one later - how can applicant “believe”\n<br>\nDo you believe this Will dated {willDate} is {deceasedName}'s last will that deals with property in BC?"
+       "title": "move to will search double check cross ref with will-search-latest-will believe this is the latest vs will search saying there is one later - how can applicant “believe”<br>Do you believe this Will dated {willDate} is {deceasedName}'s last will that deals with property in BC?"
       },
       {
        "type": "helptext",
@@ -353,7 +353,7 @@
       }
      ],
      "visible": false,
-     "visibleIf": "{will} = 'y' or \n{willStatus} = \"item2\"\nor {willCitationPlaceholder} > 0\n{willOriginalExists} = \"n\""
+     "visibleIf": "{will} = 'y' or \n{willStatus} = \"item1\" or\n{willStatus} = \"item2\"\nor {willCitationPlaceholder} > 0\n{willOriginalExists} = \"n\""
     },
     {
      "type": "panel",
@@ -449,6 +449,17 @@
        "name": "willTranslatorResidence",
        "visibleIf": "{willTranslated} = \"y\" or {willTranslatedNoExplanation} > 0",
        "title": "Where does {willTranslatorName} usually live? (City and Country only)"
+      },
+      {
+       "type": "yesno",
+       "name": "question8",
+       "title": "Did {deceasedName} fully understand the language in which the will was written? [How do we make it so we don't have to ask this multiple times?]"
+      },
+      {
+       "type": "yesno",
+       "name": "question9",
+       "visible": false,
+       "title": "If no, Was {deceasedName} illiterate? [How do we make it so we don't have to ask this multiple times?]"
       }
      ],
      "visible": false,
@@ -511,83 +522,75 @@
       {
        "type": "yesno",
        "name": "question10",
+       "visible": false,
        "title": "Is there an acknowledgement/explanation on the will that {deceasedName} was blind when they signed their will?"
       },
       {
        "type": "yesno",
        "name": "question12",
+       "visible": false,
        "title": "Is there someone that will swear/affirm that {deceasedName} understood and approved of the content of their even if they were blind? Usually a witness."
       },
       {
        "type": "text",
        "name": "question15",
+       "visible": false,
        "title": "name of witness who can attest to blindness and understanding will"
       },
       {
        "type": "text",
        "name": "question16",
+       "visible": false,
        "title": "occupation"
       },
       {
        "type": "address",
        "name": "question17",
+       "visible": false,
        "title": "city and country of witness"
       },
       {
        "type": "yesno",
        "name": "question14",
+       "visible": false,
        "title": "no witness for blind deceased - was the will made in BC? [make this its own section somewhere else]"
       },
       {
        "type": "yesno",
        "name": "question18",
+       "visible": false,
        "title": "Sec80a - Is the will valid according to the law of the place where the will is made,"
       },
       {
        "type": "yesno",
        "name": "question21",
+       "visible": false,
        "title": "sec 80 b and c - domiciled is where they would normally live? ordinary residence would be off-shore oil rig 200 days a year. business and social connections. possibly on the form, could fill out with something like \"Sec80 b and/or Sec80 b\""
-      },
-      {
-       "type": "yesno",
-       "name": "question22",
-       "title": "forget sec80 f - not for us in BC to use"
-      },
-      {
-       "type": "yesno",
-       "name": "question23",
-       "title": "print out sec 80 (2) and (3) in addition to sec 80 (1) a-e as safety net? Can delete later if unnecessary as they work in the background. "
       },
       {
        "type": "infotext",
        "name": "question13",
+       "visible": false,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question8",
-       "title": "Did {deceasedName} fully understand the language in which the will was written? [How do we make it so we don't have to ask this multiple times?]"
-      },
-      {
-       "type": "yesno",
-       "name": "question9",
-       "title": "If no, Was {deceasedName} illiterate? [How do we make it so we don't have to ask this multiple times?]"
-      },
-      {
-       "type": "yesno",
        "name": "question1",
+       "visible": false,
        "title": "Was this will signed by someone else on behalf of {deceasedName}?",
        "description": "Not talking about witnesses here."
       },
       {
        "type": "yesno",
        "name": "question2",
+       "visible": false,
        "title": "Was this person who signed the will also a witness?",
        "description": "The will can not be signed and witnessed by the same person."
       },
       {
        "type": "infotext",
        "name": "question19",
+       "visible": false,
        "title": "sec 58, see above. either go with admin w/o will or apply using P42/P43",
        "titleLocation": "hidden"
       },
@@ -599,21 +602,16 @@
       {
        "type": "infotext",
        "name": "willMakerOver16NoError",
+       "visible": false,
        "title": "What happens?",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
       {
        "type": "yesno",
-       "name": "willMilitary",
-       "title": "Military Will? Is this the best place for this question?"
-      },
-      {
-       "type": "infotext",
-       "name": "willMilitaryMark",
-       "title": "Placeholder for how the will was signed by a different mark?",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
+       "name": "willWitnessesSigned",
+       "visible": false,
+       "title": "Witnessed (signed) by 2 others in the presence of the other witness and will-maker (everyone must sign in the same room)"
       }
      ],
      "visible": false,
@@ -623,11 +621,6 @@
      "type": "panel",
      "name": "willWitnessesPanel",
      "elements": [
-      {
-       "type": "yesno",
-       "name": "willWitnessesSigned",
-       "title": "Witnessed (signed) by 2 others in the presence of the other witness and will-maker (everyone must sign in the same room)"
-      },
       {
        "type": "yesno",
        "name": "willWitnessesOver19",
@@ -641,11 +634,14 @@
       {
        "type": "infotext",
        "name": "willWitnessesProblemPlaceholder",
-       "title": "Placeholder\n<br>\n\"Priority of Attestation Clause addressing\n<br>\n1. affidavit of witness\n<br>\n2. affidavit of person who was there but not a witness\n<br>\n3. affidavit confirming signature of willmaker and witnesses... (2 affidavits)\n<br>\n4. affidavit of circumstances. \n<br>\n5.\"",
+       "visible": false,
+       "title": "Placeholder (does this apply to will-maker too or just witnesses?)\n<br>\n\"Priority of Attestation Clause addressing\n<br>\n1. affidavit of witness\n<br>\n2. affidavit of person who was there but not a witness\n<br>\n3. affidavit confirming signature of willmaker and witnesses... (2 affidavits)\n<br>\n4. affidavit of circumstances. \n<br>\n5.\"",
        "titleLocation": "hidden",
        "messageStyle": "inline"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{willStatus} = \"item1\""
     },
     {
      "type": "panel",
@@ -658,7 +654,8 @@
        "titleLocation": "hidden",
        "messageStyle": "inline"
       }
-     ]
+     ],
+     "visible": false
     },
     {
      "type": "panel",
@@ -676,7 +673,9 @@
        "name": "question7",
        "title": "Was {deceasedName} blind (when they signed the will)?"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{willStatus} = \"item1\""
     },
     {
      "type": "panel",
@@ -688,21 +687,41 @@
        "title": "25-3 (6) h\n<br>\nany interlineations, erasures or obliterations in, or other alterations to, the will",
        "titleLocation": "hidden",
        "messageStyle": "inline"
-      }
-     ]
-    },
-    {
-     "type": "panel",
-     "name": "panel7",
-     "elements": [
+      },
+      {
+       "type": "yesno",
+       "name": "question11",
+       "title": "Does it look like any words were crossed out on this will?"
+      },
+      {
+       "type": "yesno",
+       "name": "question20",
+       "title": "Does it look like anything was erased on this will?"
+      },
+      {
+       "type": "yesno",
+       "name": "question22",
+       "title": "Does it look like there are any other changes to the will after it was made?"
+      },
       {
        "type": "infotext",
        "name": "question24",
-       "title": "25-3 (6) i\n<br>\nany issues arising from the appearance of the will",
        "titleLocation": "hidden",
        "messageStyle": "inline"
+      },
+      {
+       "type": "yesno",
+       "name": "question5",
+       "title": "25-3 (6) i\n<br>\nAre there any issues about the appearance of the will?",
+       "description": "For example, the will looks like it was crumped up and thrown in the garbage."
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{willStatus} = \"item1\""
+    },
+    {
+     "type": "panel",
+     "name": "panel7"
     },
     {
      "type": "panel",
@@ -712,8 +731,16 @@
        "type": "infotext",
        "name": "willNoExplanation",
        "visible": false,
-       "visibleIf": "{will} = \"n\"",
+       "visibleIf": "{willExists} = \"n\"",
        "title": "Because {deceasedName} didn't leave a will, we can move on to asking about {deceasedName}'s spouse and children.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question3",
+       "visible": false,
+       "visibleIf": "{willStatus} = \"item1\"",
+       "title": "This will is good.  Even if it is a military, the will doesn't need to be treated as a military will and will save you time and paper so you will be swearing that it is not a military will. ??",
        "titleLocation": "hidden"
       }
      ]
