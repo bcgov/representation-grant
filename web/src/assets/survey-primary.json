@@ -184,7 +184,7 @@
       {
        "type": "infotext",
        "name": "willIntroExplanation",
-       "title": "It is important to make a diligent search to see if {deceasedName} made a will or any other testamentary documents.",
+       "title": "Next, this service will ask if {decesedName} made a will or other testamentary documents.\n<br>\n<br>\nIf they made a will, the court will need to see if the will is valid.\n",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -332,7 +332,7 @@
       {
        "type": "yesno",
        "name": "willMadeInBC",
-       "title": "Do you believe {deceasedName} made this will in BC?"
+       "title": "Do you believe {deceasedName} made this will in BC?\n<br>\nInfo here about leaving codicil or other testamentary docs later. "
       },
       {
        "type": "yesno",
@@ -623,6 +623,11 @@
      "elements": [
       {
        "type": "yesno",
+       "name": "witnessquestion",
+       "title": "Where there 2 witnesses?"
+      },
+      {
+       "type": "yesno",
        "name": "willWitnessesOver19",
        "title": "Witnesses over 19 at the time?"
       },
@@ -672,6 +677,11 @@
        "type": "yesno",
        "name": "question7",
        "title": "Was {deceasedName} blind (when they signed the will)?"
+      },
+      {
+       "type": "yesno",
+       "name": "question23",
+       "title": "Do you think is any other reason that someone may question whether {deceasedName} and/or the witnesses may not have understood the contents of the will when they signed it?\n\nfor example they were blind, illiterate, etc. or any other.\n\nPhrase this as an opportunity. to write an affidavit\n(check with Sheri if this could all be one big affidavit - with respect to subject X, blah blah)"
       }
      ],
      "visible": false,
@@ -691,12 +701,12 @@
       {
        "type": "yesno",
        "name": "question11",
-       "title": "Does it look like any words were crossed out on this will?"
+       "title": "Does it look like any words were added after this will was made? (written in by pen or pencil)"
       },
       {
        "type": "yesno",
        "name": "question20",
-       "title": "Does it look like anything was erased on this will?"
+       "title": "Does it look like anything was crossed out, scribbled over or erased on this will?"
       },
       {
        "type": "yesno",
@@ -712,8 +722,8 @@
       {
        "type": "yesno",
        "name": "question5",
-       "title": "25-3 (6) i\n<br>\nAre there any issues about the appearance of the will?",
-       "description": "For example, the will looks like it was crumped up and thrown in the garbage."
+       "title": "25-3 (6) i\n<br>\nAre there any issues about the appearance of the will?\n\ndo the same as problems executing (get them to submit an affidavit)",
+       "description": "For example, the will looks like it was crumped up and thrown in the garbage.\nfood stains.\nburnt."
       }
      ],
      "visible": false,
@@ -721,7 +731,39 @@
     },
     {
      "type": "panel",
-     "name": "panel7"
+     "name": "panel7",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question28",
+       "title": "(j) any documents referred to in the will are attached to the will\n",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "yesno",
+       "name": "question29",
+       "title": "Does this will refer to any other documents?",
+       "description": "distribution list\nlist of location of assets (that might be updated from time to time)\nfee schedule doesn't count \n"
+      },
+      {
+       "type": "yesno",
+       "name": "question32",
+       "title": "Are all the documents referred to in the will attached at this moment? (stapled, bound as a book)\n(if documents are attached together, leave them attached - if documents are not attached, do not attach them now, leave them unattached)"
+      },
+      {
+       "type": "text",
+       "name": "question31",
+       "title": "Dynamic matrix - Name each document; What is the name of document 1?"
+      },
+      {
+       "type": "yesno",
+       "name": "question30",
+       "title": "Are you able to include a copy of this document with the application package? (give it an exhibit number) "
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{willStatus} = \"item1\""
     },
     {
      "type": "panel",
