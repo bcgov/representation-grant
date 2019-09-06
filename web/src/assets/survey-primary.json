@@ -184,7 +184,7 @@
       {
        "type": "infotext",
        "name": "willIntroExplanation",
-       "title": "Next, this service will ask if {decesedName} made a will or other testamentary documents.\n<br>\n<br>\nIf they made a will, the court will need to see if the will is valid.\n",
+       "title": "Next, this service Will ask if {decesedName} made a will or other testamentary documents.\n<br>\n<br>\nIf they made a Will, the following questions will check if it is valid.\n",
        "isRequired": true,
        "titleLocation": "hidden"
       }
