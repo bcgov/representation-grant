@@ -184,7 +184,7 @@
       {
        "type": "infotext",
        "name": "willIntroExplanation",
-       "title": "Next, this service Will ask if {decesedName} made a will or other testamentary documents.\n<br>\n<br>\nIf they made a Will, the following questions will check if it is valid.\n",
+       "title": "Next, this service will ask if {decesedName} made a `Will`.\n<br>\n<br>\nIf they made a Will, the following questions will check if it is valid and if there are `other testamentary documents`.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -197,29 +197,29 @@
       {
        "type": "yesno",
        "name": "willCheck",
-       "title": "Have you made a diligent search for a will or any other testamentary documents that {deceasedName} may have made?",
-       "description": "Testamentary documents are usually Wills, sometimes a Codicils, or rarely, any other written documents that  would have made to describe what they want to happen with the things they owned after they die."
+       "title": "Have you diligently searched the places where {deceasedName} would keep important documents?",
+       "description": "You are responsible for making sure if {deceasedName} made a Will or not."
       },
       {
        "type": "helptext",
        "name": "willCheckFAQ1",
-       "title": "I'm not sure the person who died left a will.",
+       "title": "What is a diligent search?",
        "titleLocation": "hidden",
-       "body": "To apply to represent {deceasedName}, you are responsible for making sure if they left a will."
+       "body": "A diligent search is checking all the places where {deceasedName} usually kept their documents.\n<br>\n<br>\nYou may not find their Will but you may find clues to where the Will is kept. The Will may be at a variety of places, including their home, their safety deposit box, or at the office of the lawyer who helped create the Will.\n<br>\n<br>\nIf you checked all the places and followed all the clues, this is considered a diligent search."
       },
       {
-       "type": "helptext",
-       "name": "willCheckFAQ2",
-       "title": "How do I/we check for a will?",
-       "titleLocation": "hidden",
-       "body": "You should start by checking in places where the deceased usually kept their documents. You may not find their will but you may find clues to where the will is kept. The will may be at a variety of places, including the deceased's home, their safety deposit box, or at the office of the lawyer who helped create the will.\n<br>\n<br>\nAs part of applying for a Representation Grant, you will be required to do a \"Search of Wills Notice\" and provide the results to the court. This is done through the Vital Statistics Agency of British Columbia. If a will was registered with the Vital Statistics Agency, they will have information about the location of the will, but not the actual will itself.\n<br>\n<br>\nThe \"Search of Wills Notice\" must include a search of all of the different names and spellings that the deceased used in their will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later stage."
+       "type": "infotext",
+       "name": "question33",
+       "title": "In addition to diligently searching on your own, you will also need to get a \"Search of Wills Notice\". You do not need to get this right away to continue with this service, but you will eventually need to provide the results.\n<br>\n<br>\nYou get a \"Search of Wills Notice\" from the [link?] Vital Statistics Agency of British Columbia. If {deceasedName} registered a Will, the \"Search of Wills Notice\" will have information about the location of the Will.\n<br>\n<br>\nThe \"Search of Wills Notice\" must include a search of all of the different names and spellings that {deceasedName} used in their Will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later step.",
+       "isRequired": true,
+       "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "willCheckError",
        "visible": false,
        "visibleIf": "{willCheck} = \"n\"",
-       "title": "If you have not made a diligent search, please do so before continuing with this service. This makes all the difference in what questions this service will ask you.",
+       "title": "If you have not diligently searched yet, please do so before continuing with this service. This makes all the difference in what questions this service will ask you.\n<br>\n<br>\nIn addition to diligently searching on your own, you will also need to get a \"Search of Wills Notice\" and eventually provide the results.\n<br>\n<br>\nYou get a \"Search of Wills Notice\" from the [link?] Vital Statistics Agency of British Columbia. If {deceasedName} registered a Will, the \"Search of Wills Notice\" will have information about the location of the Will.\n<br>\n<br>\nThe \"Search of Wills Notice\" must include a search of all of the different names and spellings that {deceasedName} used in their Will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later step.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
@@ -234,7 +234,7 @@
       {
        "type": "yesno",
        "name": "willExists",
-       "title": "Did {deceasedName} make a will (or any other testamentary document)?"
+       "title": "Did {deceasedName} make a `Will`"
       },
       {
        "type": "helptext",
@@ -243,7 +243,66 @@
        "visibleIf": "{willCheck} = \"y\"",
        "title": "What if I believe {deceasedName} made a will but I/we cannot find it?",
        "titleLocation": "hidden",
-       "body": "If you did not find a will after checking all reasonable places, select \"No\". You will fill out the forms as if {deceasedName} did not leave a will. \n\nIf you find {deceasedName}'s will in the future ..."
+       "body": "If you cannot confirm that a Will exists, you have to decide how you want to proceed. \n\nThe first option is to continue searching for a Will. Do not select \"Yes\" to this question unless you can confirm a Will exists.\n\nThe other option is to select \"No\" to this question. This service will treat the situation as if {deceasedName} did not make a Will. If you discover the Will later, it can still be recognized. [???consistent language]"
+      },
+      {
+       "type": "yesno",
+       "name": "question34",
+       "visible": false,
+       "visibleIf": "{willExists} = \"N\"",
+       "title": "Did {deceasedName} make any `other testamentary documents` or recordings?"
+      },
+      {
+       "type": "yesno",
+       "name": "question35",
+       "visible": false,
+       "title": "Do you want to have these `other testamentary documents` recognized as a `Will`?"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question39",
+       "title": "Explain why you think each `other testamentary document` is not valid or not relevant:\nname of document:\npre-made list of documents for dropdown + other\nreason: radio with other. radio options: cannot find the will to which codicil relates;\ndoes not reflect deceased's final intention; working draft/draft document; unwitnessed draft;",
+       "columns": [
+        {
+         "name": "Column 1"
+        },
+        {
+         "name": "Column 2"
+        },
+        {
+         "name": "Column 3"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "rowCount": 1,
+       "addRowText": "Add other testamentary document"
+      },
+      {
+       "type": "checkbox",
+       "name": "question38",
+       "title": "Why do you think these testamentary document(s) is/are invalid or otherwise not relevant to this application for the following reasons: ...........[briefly state the reasons]...........\n\n[Reminder] A copy of the testamentary document(s) is attached as an exhibit to the affidavit.",
+       "choices": [
+        "item1",
+        "item2",
+        "item3"
+       ]
+      },
+      {
+       "type": "infotext",
+       "name": "question36",
+       "title": "[If no, P5]\nThis service will treat the situation as if {deceasedName} did not make a Will.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question37",
+       "titleLocation": "hidden"
       },
       {
        "type": "radiogroup",
