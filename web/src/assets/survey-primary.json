@@ -243,14 +243,22 @@
        "visibleIf": "{willCheck} = \"y\"",
        "title": "What if I believe {deceasedName} made a will but I/we cannot find it?",
        "titleLocation": "hidden",
-       "body": "If you cannot confirm that a Will exists, you have to decide how you want to proceed. \n\nThe first option is to continue searching for a Will. Do not select \"Yes\" to this question unless you can confirm a Will exists.\n\nThe other option is to select \"No\" to this question. This service will treat the situation as if {deceasedName} did not make a Will. If you discover the Will later, it can still be recognized. [???consistent language]"
+       "body": "If you cannot confirm that a Will exists, you have to decide how you want to proceed. \n\nThe first option is to continue searching for a Will. Do not select \"Yes\" to this question unless you can confirm a Will exists.\n\nThe other option is to select \"No\" to this question. If you discover a Will later, it can still be recognized. [???consistent language]"
+      },
+      {
+       "type": "helptext",
+       "name": "question42",
+       "title": "What if {deceasedName} made a Will but I/we believe it is invalid?",
+       "titleLocation": "hidden",
+       "body": "If you believe {deceasedName}'s has no valid Will, select \"No\" to this question.\n<br><br>\nYou will be asked to explain why you think the Will is invalid and you will need to provide a copy of this document."
       },
       {
        "type": "yesno",
        "name": "question34",
        "visible": false,
        "visibleIf": "{willExists} = \"N\"",
-       "title": "Did {deceasedName} make any `other testamentary documents` or recordings?"
+       "title": "Did {deceasedName} make any `other testamentary documents` or recordings?",
+       "description": "If {deceasedName} made an invalid Will, select \"Yes\" to this question."
       },
       {
        "type": "yesno",
@@ -261,48 +269,48 @@
       {
        "type": "matrixdynamic",
        "name": "question39",
-       "title": "Explain why you think each `other testamentary document` is not valid or not relevant:\nname of document:\npre-made list of documents for dropdown + other\nreason: radio with other. radio options: cannot find the will to which codicil relates;\ndoes not reflect deceased's final intention; working draft/draft document; unwitnessed draft;",
+       "title": "Explain why you think each of {deceasedName}'s `other testamentary documents` are not valid or not relevant:\nTrello: Add Other for Pulldown or Radio\n<br>\nField2: reason: radio with other. radio options: cannot find the will to which codicil relates; does not reflect deceased's final intention; working draft/draft document; unwitnessed draft;\n[Reminder] A copy of the testamentary document(s) is attached as an exhibit to the affidavit.",
        "columns": [
         {
-         "name": "Column 1"
+         "name": "Column 1",
+         "title": "Type of Document"
         },
         {
-         "name": "Column 2"
-        },
-        {
-         "name": "Column 3"
+         "name": "Column 2",
+         "title": "Reason"
         }
        ],
        "choices": [
-        1,
-        2,
-        3,
-        4,
-        5
+        {
+         "value": "item1",
+         "text": "invalid will"
+        },
+        {
+         "value": 1,
+         "text": "codicil"
+        },
+        {
+         "value": 2,
+         "text": "memorandum"
+        },
+        {
+         "value": 3,
+         "text": "other"
+        }
        ],
+       "cellType": "radiogroup",
        "rowCount": 1,
-       "addRowText": "Add other testamentary document"
+       "addRowText": "Add other testamentary document",
+       "removeRowText": "Delete this document"
       },
       {
-       "type": "checkbox",
-       "name": "question38",
-       "title": "Why do you think these testamentary document(s) is/are invalid or otherwise not relevant to this application for the following reasons: ...........[briefly state the reasons]...........\n\n[Reminder] A copy of the testamentary document(s) is attached as an exhibit to the affidavit.",
+       "type": "radiogroup",
+       "name": "question37",
+       "title": "You have an invalid document. Do you want this service to help cure it first [P43] (you go to court) and come back with more certainty? Or do you want to keep going with this service and this service will help you with that [42]?",
        "choices": [
         "item1",
-        "item2",
-        "item3"
+        "item2"
        ]
-      },
-      {
-       "type": "infotext",
-       "name": "question36",
-       "title": "[If no, P5]\nThis service will treat the situation as if {deceasedName} did not make a Will.",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question37",
-       "titleLocation": "hidden"
       },
       {
        "type": "radiogroup",
@@ -833,7 +841,31 @@
        "name": "willNoExplanation",
        "visible": false,
        "visibleIf": "{willExists} = \"n\"",
-       "title": "Because {deceasedName} didn't leave a will, we can move on to asking about {deceasedName}'s spouse and children.",
+       "title": "[P5 no will, no other docs]\nBecause {deceasedName} didn't leave a will, we can move on to asking about {deceasedName}'s spouse and children.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question36",
+       "visible": false,
+       "visibleIf": "{willExists} = \"n\"",
+       "title": "[P5 no will, yes other doc, do not recognize, invalid will only] \nYou will need to provide a copy of the invalid Will. This service will remind you to make a copy at the end.\n<br><br>\nBecause {deceasedName} didn't leave a valid Will, we can move on to asking about {deceasedName}'s spouse and children. \n",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question40",
+       "visible": false,
+       "visibleIf": "{willExists} = \"n\"",
+       "title": "[P5 no will, yes other doc, do not recognize, invalid will and other docs] \nYou will need to provide a copy of the invalid Will and the `other testamentary documents` that you've listed. This service will remind you to make copies at the end.\n<br><br>\nBecause {deceasedName} didn't leave a valid Will, we can move on to asking about {deceasedName}'s spouse and children. \n",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question38",
+       "visible": false,
+       "visibleIf": "{willExists} = \"n\"",
+       "title": "[P5 no will, yes other doc, do not recognize, all other docs except invalid will] \nYou will need to provide a copy of the `other testamentary documents` that you've listed. This service will remind you to make a copy at the end.\n\nBecause {deceasedName} didn't leave a Will, we can move on to asking about {deceasedName}'s spouse and children.",
        "titleLocation": "hidden"
       },
       {
