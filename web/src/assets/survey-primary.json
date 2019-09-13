@@ -184,7 +184,7 @@
       {
        "type": "infotext",
        "name": "willIntroExplanation",
-       "title": "Next, this service will ask if {decesedName} made a `Will`.\n<br>\n<br>\nIf they made a Will, the following questions will check if it is valid and if there are `other testamentary documents`.",
+       "title": "Next, this service will ask if {decesedName} made a `Will`.\n<br><br>\nIf they made a Will, the following questions will check if it is valid and if there are `other testamentary documents`.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -197,7 +197,7 @@
       {
        "type": "yesno",
        "name": "willCheck",
-       "title": "Have you diligently searched the places where {deceasedName} would keep important documents?",
+       "title": "Have you diligently searched the places where {deceasedName} would have kept important documents?",
        "description": "You are responsible for making sure if {deceasedName} made a Will or not."
       },
       {
@@ -205,7 +205,7 @@
        "name": "willCheckFAQ1",
        "title": "What is a diligent search?",
        "titleLocation": "hidden",
-       "body": "A diligent search is checking all the places where {deceasedName} usually kept their documents.\n<br>\n<br>\nYou may not find their Will but you may find clues to where the Will is kept. The Will may be at a variety of places, including their home, their safety deposit box, or at the office of the lawyer who helped create the Will.\n<br>\n<br>\nIf you checked all the places and followed all the clues, this is considered a diligent search."
+       "body": "A diligent search is checking all the places where {deceasedName} usually kept their documents.\n<br><br>\nYou may not find their Will but you may find clues to where the Will is kept. The Will may be at a variety of places, including their home, their safety deposit box, or at the office of the lawyer who helped create the Will.\n<br>\n<br>\nIf you checked all the places and followed all the clues, this is considered a diligent search."
       },
       {
        "type": "infotext",
@@ -247,10 +247,10 @@
       },
       {
        "type": "helptext",
-       "name": "question42",
-       "title": "What if {deceasedName} made a Will but I/we believe it is invalid?",
+       "name": "willExistsFAQ2",
+       "title": "What if I/we don't know if the Will is valid or not?",
        "titleLocation": "hidden",
-       "body": "If you believe {deceasedName}'s has no valid Will, select \"No\" to this question.\n<br><br>\nYou will be asked to explain why you think the Will is invalid and you will need to provide a copy of this document."
+       "body": "If you don't know if {deceasedName}'s Will is valid or not, select \"Yes\". This service will ask questions to check if the Will is valid. \n<br><br>\nIf necessary, this service may ask if {deceasedName} made more than one Will."
       },
       {
        "type": "yesno",
@@ -304,13 +304,59 @@
        "removeRowText": "Delete this document"
       },
       {
-       "type": "radiogroup",
+       "type": "infotext",
        "name": "question37",
-       "title": "You have an invalid document. Do you want this service to help cure it first [P43] (you go to court) and come back with more certainty? Or do you want to keep going with this service and this service will help you with that [42]?",
-       "choices": [
-        "item1",
-        "item2"
-       ]
+       "title": "If you want a document with issues to be recognized, this service will ask questions to identify the issues.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question45",
+       "title": "The following information deals with situations where someone may have made more than one Will. If {deceasedName} only made one Will\n<br><br>\nIf {deceasedName} made a new Will that replaced an older one, answer the following questions using information from the most recent Will.\n<br>\nbullet point? If their most recent Will is valid, you will not need to answer questions about old Wills. \n<br>\nbullet point? If their most recent Will has any issues, this service may ask about their next most recent Will.\n<br><br>\nIn some situations, people may have made more than one Will that each deal with different property/assets. Answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question46",
+       "title": "Did {deceasedName} make more than one Will?",
+       "description": "This includes making a new Will to replace an older one."
+      },
+      {
+       "type": "helptext",
+       "name": "superquestion1",
+       "title": "Do I/we include `other testamentary documents`?",
+       "titleLocation": "hidden",
+       "body": "No. This question is only about the Will.\n<br><br>\nIf {deceasedName} made a `codicil` or `other testamentary documents`, this service will ask about those documents later."
+      },
+      {
+       "type": "yesno",
+       "name": "question47",
+       "title": "Did the latest will replace older wills?",
+       "description": "Look at the will. Usually at the beginning. \"This is the last will and revokes/replaces all previous wills\" or similar wording."
+      },
+      {
+       "type": "infotext",
+       "name": "question51",
+       "title": "If {deceasedName} made a new Will that replaced an older one, answer the following questions using information from the most recent Will.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question48",
+       "title": "did they make multiple wills that deal with different assets?"
+      },
+      {
+       "type": "infotext",
+       "name": "question49",
+       "title": "yes, copy from big block to say, pick this one",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question50",
+       "title": "no, super rare, we will ask about the most recent will first, then we will ask about the older wills. ",
+       "titleLocation": "hidden"
       },
       {
        "type": "radiogroup",
@@ -577,7 +623,7 @@
        "name": "willNotSignedError",
        "visible": false,
        "visibleIf": "{willNotSigned} = \"item2\"",
-       "title": "Placeholder with more questions to come. tell them which forms to use wesa sec58 P42 or P43. investigate this further later:\n<br>\n<br>\nAn application under WESA s. 58 is made in accordance\nwith SCCR 25-14(2)(c). If there is an existing probate\nproceeding, the application is brought using a Notice of\nApplication in probate form P42. If there is no existing\nprobate proceeding, the order may be sought by requisition\nin probate form P43.",
+       "title": "Placeholder with more questions to come. tell them which forms to use wesa sec58 P42 or P43. investigate this further later:\nYou have an invalid document. Do you want this service to help cure it first [P43] (you go to court) and come back with more certainty? Or do you want to keep going with this service and this service will help you with that [42]?\n\n<br>\n<br>\nAn application under WESA s. 58 is made in accordance\nwith SCCR 25-14(2)(c). If there is an existing probate\nproceeding, the application is brought using a Notice of\nApplication in probate form P42. If there is no existing\nprobate proceeding, the order may be sought by requisition\nin probate form P43.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
@@ -670,9 +716,31 @@
        "type": "infotext",
        "name": "willMakerOver16NoError",
        "visible": false,
-       "title": "What happens?",
+       "title": "sec 80, then sec 58, then option to proceed with no will",
        "titleLocation": "hidden",
        "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "question41",
+       "title": "mentally competent?"
+      },
+      {
+       "type": "infotext",
+       "name": "question43",
+       "title": "sec58 or proceed as if no will.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question42",
+       "title": "undue influence"
+      },
+      {
+       "type": "infotext",
+       "name": "question44",
+       "title": "sec58 or proceed as if no will.",
+       "titleLocation": "hidden"
       },
       {
        "type": "yesno",
