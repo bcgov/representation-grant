@@ -2,7 +2,7 @@
  "title": "Representation Grant (this should not appear)",
  "pages": [
   {
-   "name": "deceased",
+   "name": "deceasedPage",
    "elements": [
     {
      "type": "panel",
@@ -264,7 +264,7 @@
        "type": "yesno",
        "name": "question35",
        "visible": false,
-       "title": "Do you want to have these `other testamentary documents` recognized as a `Will`?"
+       "title": "Do you want to have these `other testamentary documents` recognized as {deceasedName}'s `Will`?"
       },
       {
        "type": "matrixdynamic",
@@ -307,12 +307,6 @@
        "type": "infotext",
        "name": "question37",
        "title": "If you want a document with issues to be recognized, this service will ask questions to identify the issues.",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question45",
-       "title": "The following information deals with situations where someone may have made more than one Will. If {deceasedName} only made one Will\n<br><br>\nIf {deceasedName} made a new Will that replaced an older one, answer the following questions using information from the most recent Will.\n<br>\nbullet point? If their most recent Will is valid, you will not need to answer questions about old Wills. \n<br>\nbullet point? If their most recent Will has any issues, this service may ask about their next most recent Will.\n<br><br>\nIn some situations, people may have made more than one Will that each deal with different property/assets. Answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].",
        "isRequired": true,
        "titleLocation": "hidden"
       },
@@ -332,30 +326,42 @@
       {
        "type": "yesno",
        "name": "question47",
-       "title": "Did the latest will replace older wills?",
+       "title": "Did {deceasedName}'s latest Will replace their older Wills?",
        "description": "Look at the will. Usually at the beginning. \"This is the last will and revokes/replaces all previous wills\" or similar wording."
       },
       {
        "type": "infotext",
        "name": "question51",
-       "title": "If {deceasedName} made a new Will that replaced an older one, answer the following questions using information from the most recent Will.",
+       "title": "If {deceasedName} made a new Will that replaced an older one, answer the following questions using information from the most recent Will. If their most recent Will is valid, you will not need to answer questions about old Wills. \n<br><br>\nIf {deceasedName}'s most recent Will has any issues, this service may ask about their next most recent Will.",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question48",
-       "title": "did they make multiple wills that deal with different assets?"
-      },
-      {
-       "type": "infotext",
-       "name": "question49",
-       "title": "yes, copy from big block to say, pick this one",
-       "titleLocation": "hidden"
+       "title": "Did {deceasedName} make more than one `Will` that each deal with different `assets`"
       },
       {
        "type": "infotext",
        "name": "question50",
-       "title": "no, super rare, we will ask about the most recent will first, then we will ask about the older wills. ",
+       "title": "[No - Super Rare]<br>Start by answering the following questions with information from {deceasedName}'s most recent Will first. This service will have questions about the older Wills separately.\n[Trigger a series of questions: Ask questions about the existence of the older one(s)? 1. Date made. 2. Alias. Nothing else. 3. Does this revoke a previous will? ifNo. 4. Is there a previous will?\n<br>\nreminders to make copies as well.]\n[In the other successors page, ask if prior wills list any other executors, beneficiaries etc].",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question52",
+       "title": "Did {deceasedName} make more than one will, that each deal with different assets, that you want to administer?"
+      },
+      {
+       "type": "infotext",
+       "name": "question49",
+       "title": "[No]<br>Answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].\n\n[what if they want to administer more than 1 will?]",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question53",
+       "title": "[Yes]<br>If {deceasedName} made more than one Will that each deal with different property/assets, answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].\n\nStart by answering the following questions with information from {deceasedName}'s most recent Will first. This service will have questions about the older Wills separately.\n\nIf theer are more than one will on same date, doesn't matter.",
        "titleLocation": "hidden"
       },
       {
@@ -363,7 +369,7 @@
        "name": "willStatus",
        "visible": false,
        "visibleIf": "{willExists} = \"y\"",
-       "title": "Do you have this will? (plural?)",
+       "title": "Do you have this Will?",
        "description": "Pick the situation that best applies to your situation.",
        "choices": [
         {
@@ -901,6 +907,12 @@
      "visibleIf": "{willStatus} = \"item1\""
     },
     {
+     "type": "infotext",
+     "name": "question45",
+     "title": "[See above for questions for multiple wills that did not get revoked by newer wills]",
+     "titleLocation": "hidden"
+    },
+    {
      "type": "panel",
      "name": "willExitPanel",
      "elements": [
@@ -948,6 +960,12 @@
     }
    ],
    "title": "{deceasedName}'s Will"
+  },
+  {
+   "name": "foreignWillPage"
+  },
+  {
+   "name": "executorsPage"
   },
   {
    "name": "spousePage",
