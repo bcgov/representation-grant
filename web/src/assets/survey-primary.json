@@ -374,7 +374,7 @@
        "name": "willStatus",
        "visible": false,
        "visibleIf": "{willExists} = \"y\"",
-       "title": "Do you have this Will?",
+       "title": "Remember Sep 23 when we redid this section 3 times? Do you have this Will?",
        "description": "Pick the situation that best applies to your situation.",
        "choices": [
         {
@@ -397,10 +397,71 @@
       },
       {
        "type": "yesno",
+       "name": "question33",
+       "title": "Do you have this Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "question34",
+       "title": "Do you have the original Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "question35",
+       "title": "Do you have an idea who has the original Will?"
+      },
+      {
+       "type": "yesno",
        "name": "willOriginalExists",
        "visible": false,
        "visibleIf": "{willStatus} = \"item2\" or {willStatus} = \"item3\"",
-       "title": "Does someone else have the original and won't give it to you?"
+       "title": "Will this person give you the original Will?",
+       "description": "Make sure they give you the original and not a copy.If they will only give a copy, select \"No\" to this question."
+      },
+      {
+       "type": "infotext",
+       "name": "question54",
+       "title": "Go get the original will. Select \"Yes\" for Will they give you the original Will? [JIRA - jump to relevant question.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "question37",
+       "title": "Do you have an idea who has a copy of {deceasedName}'s Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "question39",
+       "title": "Will this person give you a copy of {deceasedName}'s Will?"
+      },
+      {
+       "type": "infotext",
+       "name": "question55",
+       "title": "Go get the copy the will. \n<br><br>\nSelect \"Yes\" for Will they give you the original Will? [JIRA - jump to relevant question.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question56",
+       "title": "you can do court docs that compel this person to apply to represent deceased. this is called a citation.\n<br><br>\nif they do apply, they will send you a copy of the will. you will have the opportunity to dispute. \n<br><br>\na dispute will stop their application from going through. someone else including you can apply.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "text",
+       "name": "question57",
+       "title": "What is the name of the person who has the Will?"
+      },
+      {
+       "type": "address",
+       "name": "question58",
+       "title": "Address"
+      },
+      {
+       "type": "contactinfo",
+       "name": "question59",
+       "title": "Contact info"
       },
       {
        "type": "infotext",
