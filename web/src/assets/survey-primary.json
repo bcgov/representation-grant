@@ -209,14 +209,16 @@
       },
       {
        "type": "infotext",
-       "name": "question33",
+       "name": "willCheckYesExplanation",
+       "visible": false,
+       "visibleIf": "{willCheck} = \"y\"",
        "title": "In addition to diligently searching on your own, you will also need to get a \"Search of Wills Notice\". You do not need to get this right away to continue with this service, but you will eventually need to provide the results.\n<br>\n<br>\nYou get a \"Search of Wills Notice\" from the [link?] Vital Statistics Agency of British Columbia. If {deceasedName} registered a Will, the \"Search of Wills Notice\" will have information about the location of the Will.\n<br>\n<br>\nThe \"Search of Wills Notice\" must include a search of all of the different names and spellings that {deceasedName} used in their Will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later step.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "willCheckError",
+       "name": "willCheckNoError",
        "visible": false,
        "visibleIf": "{willCheck} = \"n\"",
        "title": "If you have not diligently searched yet, please do so before continuing with this service. This makes all the difference in what questions this service will ask you.\n<br>\n<br>\nIn addition to diligently searching on your own, you will also need to get a \"Search of Wills Notice\" and eventually provide the results.\n<br>\n<br>\nYou get a \"Search of Wills Notice\" from the [link?] Vital Statistics Agency of British Columbia. If {deceasedName} registered a Will, the \"Search of Wills Notice\" will have information about the location of the Will.\n<br>\n<br>\nThe \"Search of Wills Notice\" must include a search of all of the different names and spellings that {deceasedName} used in their Will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later step.",
@@ -254,21 +256,23 @@
       },
       {
        "type": "yesno",
-       "name": "question34",
+       "name": "otherDocExists",
        "visible": false,
-       "visibleIf": "{willExists} = \"N\"",
+       "visibleIf": "{willExist} = \"N\"",
        "title": "Did {deceasedName} make any `other testamentary documents` or recordings?",
        "description": "If {deceasedName} made an invalid Will, select \"Yes\" to this question."
       },
       {
        "type": "yesno",
-       "name": "question35",
+       "name": "otherDocRecognize",
        "visible": false,
+       "visibleIf": "{otherDocExists} = \"y\"",
        "title": "Do you want to have these `other testamentary documents` recognized as {deceasedName}'s `Will`?"
       },
       {
        "type": "matrixdynamic",
-       "name": "question39",
+       "name": "otherDocRecognizeNoReasons",
+       "visibleIf": "{otherDocRecognize} = \"n\"",
        "title": "Explain why you think each of {deceasedName}'s `other testamentary documents` are not valid or not relevant:\nTrello: Add Other for Pulldown or Radio\n<br>\nField2: reason: radio with other. radio options: cannot find the will to which codicil relates; does not reflect deceased's final intention; working draft/draft document; unwitnessed draft;\n[Reminder] A copy of the testamentary document(s) is attached as an exhibit to the affidavit.",
        "columns": [
         {
@@ -305,7 +309,8 @@
       },
       {
        "type": "infotext",
-       "name": "question37",
+       "name": "otherDocRecognizeYesExplanation",
+       "visibleIf": "{otherDocRecognize} = \"y\"",
        "title": "If you want a document with issues to be recognized, this service will ask questions to identify the issues.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -417,7 +422,7 @@
       }
      ],
      "visible": false,
-     "visibleIf": "{willCheck} = \"y\""
+     "visibleIf": "{willCheck} = \"y\" and {willCheckYesExplanation} > 0"
     },
     {
      "type": "panel",
