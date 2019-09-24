@@ -258,7 +258,7 @@
        "type": "yesno",
        "name": "otherDocExists",
        "visible": false,
-       "visibleIf": "{willExist} = \"N\"",
+       "visibleIf": "{willExists} = \"n\"",
        "title": "Did {deceasedName} make any `other testamentary documents` or recordings?",
        "description": "If {deceasedName} made an invalid Will, select \"Yes\" to this question."
       },
@@ -355,46 +355,29 @@
       {
        "type": "yesno",
        "name": "question52",
-       "title": "Did {deceasedName} make more than one will, that each deal with different assets, that you want to administer?"
+       "title": "Did you want to administer more than one of {deceasedName}'s Wills?"
       },
       {
        "type": "infotext",
        "name": "question49",
-       "title": "[No]<br>Answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].\n\n[what if they want to administer more than 1 will?]",
+       "title": "[No]<br>Answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question53",
-       "title": "[Yes]<br>If {deceasedName} made more than one Will that each deal with different property/assets, answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].\n\nStart by answering the following questions with information from {deceasedName}'s most recent Will first. This service will have questions about the older Wills separately.\n\nIf theer are more than one will on same date, doesn't matter.",
+       "title": "[Yes]<br>\nIf {deceasedName} made more than one Will that each deal with different property/assets, you will have to apply for more than one Representation Grant, for each will.\n<br>[lost this work. need to redo.]",
+       "isRequired": true,
        "titleLocation": "hidden"
-      },
-      {
-       "type": "radiogroup",
-       "name": "willStatus",
-       "visible": false,
-       "visibleIf": "{willExists} = \"y\"",
-       "title": "Remember Sep 23 when we redid this section 3 times? Do you have this Will?",
-       "description": "Pick the situation that best applies to your situation.",
-       "choices": [
-        {
-         "value": "item1",
-         "text": "Yes, and I/we have the original will."
-        },
-        {
-         "value": "item2",
-         "text": "Yes, but I/we only have copies of the will."
-        },
-        {
-         "value": "item3",
-         "text": "No, I/we don't have neither an original nor a copy of the will."
-        },
-        {
-         "value": "item4",
-         "text": "No, a Will Search identified a will but the will wasn't anywhere I/we checked."
-        }
-       ]
-      },
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{willCheck} = \"y\" and {willCheckYesExplanation} > 0"
+    },
+    {
+     "type": "panel",
+     "name": "panel4",
+     "elements": [
       {
        "type": "yesno",
        "name": "question33",
@@ -409,6 +392,14 @@
        "type": "yesno",
        "name": "question35",
        "title": "Do you have an idea who has the original Will?"
+      },
+      {
+       "type": "infotext",
+       "name": "willOriginalExistsNoExplanation",
+       "visible": false,
+       "visibleIf": "{willOriginalExists} = \"n\"",
+       "title": "[necessary?]<br>If you think the original will is gone forever, that's fine. We'll just use the copy.",
+       "titleLocation": "hidden"
       },
       {
        "type": "yesno",
@@ -445,9 +436,49 @@
       {
        "type": "infotext",
        "name": "question56",
+       "visible": false,
        "title": "you can do court docs that compel this person to apply to represent deceased. this is called a citation.\n<br><br>\nif they do apply, they will send you a copy of the will. you will have the opportunity to dispute. \n<br><br>\na dispute will stop their application from going through. someone else including you can apply.",
+       "isRequired": true,
        "titleLocation": "hidden"
-      },
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel9",
+     "elements": [
+      {
+       "type": "radiogroup",
+       "name": "willStatus",
+       "visible": false,
+       "visibleIf": "{willExists} = \"y\"",
+       "title": "forced will search",
+       "description": "Pick the situation that best applies to your situation.",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "Yes, and I/we have the original will."
+        },
+        {
+         "value": "item2",
+         "text": "Yes, but I/we only have copies of the will."
+        },
+        {
+         "value": "item3",
+         "text": "No, I/we don't have neither an original nor a copy of the will."
+        },
+        {
+         "value": "item4",
+         "text": "No, a Will Search identified a will but the will wasn't anywhere I/we checked."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel2",
+     "elements": [
       {
        "type": "text",
        "name": "question57",
@@ -464,26 +495,133 @@
        "title": "Contact info"
       },
       {
+       "type": "yesno",
+       "name": "question61",
+       "title": "Do you have an idea when {deceasedName} made the will/other doc?",
+       "description": "You don't need to provide the exact date if you don't know it."
+      },
+      {
+       "type": "text",
+       "name": "question63",
+       "title": "When do you believe {deceasedName} made the Will?",
+       "description": "Provide as much info as you are aware to provide the recipient which document you are talking about in case there was more than one will."
+      },
+      {
+       "type": "yesno",
+       "name": "question62",
+       "title": "Do you have an idea where {deceasedName}'s Will is located?",
+       "description": "You do not need to provide an exact address."
+      },
+      {
+       "type": "text",
+       "name": "question64",
+       "title": "Where do you believe is {deceasedName}'s Will located?"
+      },
+      {
+       "type": "yesno",
+       "name": "question65",
+       "title": "Do you have an identifying information about {deceasedName}'s Will?"
+      },
+      {
+       "type": "text",
+       "name": "question66",
+       "title": "Describe extra info about the Will"
+      },
+      {
+       "type": "text",
+       "name": "question67",
+       "title": "[Present] Describe why you believe the Will exists:"
+      },
+      {
+       "type": "text",
+       "name": "question68",
+       "title": "[Possible Future] Explain why you believe {citeeName} has the Will:"
+      },
+      {
+       "type": "text",
+       "name": "question70",
+       "title": "What is your name (the name of the person is going to be applying)? Not sure if it matters?"
+      },
+      {
+       "type": "address",
+       "name": "question71",
+       "title": "Service address to receive {citeeName}'s response"
+      },
+      {
+       "type": "contactinfo",
+       "name": "question72",
+       "title": "Additional contact info to receive {citeeName}'s response."
+      },
+      {
        "type": "infotext",
-       "name": "willCitationPlaceholder",
-       "visible": false,
-       "visibleIf": "{willOriginalExists} = \"y\"",
-       "title": "Placeholder for forms to make someone give you the will?\n<br>\nHave you asked them to go ahead and apply? \n<br>\nDid they say no?\n<br>\nPrint this form to get them to give you the will. You can still continue with this service if you have a copy.",
+       "name": "question73",
+       "title": "[JIRA] Print Citation Button",
        "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question74",
+       "title": "Citation Next Steps. Follow the instructions.\n<br><br>\nExpect a response within 14 days of {citeeName} receiving the citation.\n<br><br>\nExpect the response to be grant itself, status update, or P33 with other info.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "text",
+       "name": "question75",
+       "title": "[JIRA] Enter date you served {citeeName}"
+      },
+      {
+       "type": "dropdown",
+       "name": "question76",
+       "title": "[JIRA - maybe unnecessary to combine the date and method]<br>\nWhat is method you served {citeeName}?",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "in person"
+        },
+        {
+         "value": "item2",
+         "text": "email"
+        },
+        {
+         "value": "item3",
+         "text": "mail"
+        },
+        {
+         "value": "item4",
+         "text": "fax"
+        }
+       ]
+      },
+      {
+       "type": "infotext",
+       "name": "question77",
+       "title": "[JIRA Date + X Days] Calcualtor based on service method [should the app lock the ability to answer if the day is not up yet? Maybe not]",
        "titleLocation": "hidden",
        "messageStyle": "inline"
       },
       {
        "type": "infotext",
-       "name": "willOriginalExistsNoExplanation",
-       "visible": false,
-       "visibleIf": "{willOriginalExists} = \"n\"",
-       "title": "If you think the original will is gone forever, that's fine. We'll just use the copy.",
+       "name": "question79",
+       "title": "Based on the day you served and service method, you should receive a response by X date.",
        "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question78"
       }
-     ],
-     "visible": false,
-     "visibleIf": "{willCheck} = \"y\" and {willCheckYesExplanation} > 0"
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel3",
+     "elements": [
+      {
+       "type": "text",
+       "name": "question60",
+       "title": "subpoena"
+      }
+     ]
     },
     {
      "type": "panel",
@@ -1023,6 +1161,11 @@
        "titleLocation": "hidden"
       }
      ]
+    },
+    {
+     "type": "infotext",
+     "name": "question69",
+     "titleLocation": "hidden"
     }
    ],
    "title": "{deceasedName}'s Will"
