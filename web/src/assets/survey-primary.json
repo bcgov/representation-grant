@@ -184,7 +184,7 @@
       {
        "type": "infotext",
        "name": "willIntroExplanation",
-       "title": "Next, this service will ask if {decesedName} made a `Will`.\n<br><br>\nIf they made a Will, the following questions will check if it is valid and if there are `other testamentary documents`.",
+       "title": "Next, this service will ask if {deceasedName} made a `Will`.\n<br><br>\nIf they made a Will, the following questions will check if it is valid and if there are `other testamentary documents`.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -241,8 +241,6 @@
       {
        "type": "helptext",
        "name": "willExistsFAQ1",
-       "visible": false,
-       "visibleIf": "{willCheck} = \"y\"",
        "title": "What if I believe {deceasedName} made a will but I/we cannot find it?",
        "titleLocation": "hidden",
        "body": "If you cannot confirm that a Will exists, you have to decide how you want to proceed. \n\nThe first option is to continue searching for a Will. Do not select \"Yes\" to this question unless you can confirm a Will exists.\n\nThe other option is to select \"No\" to this question. If you discover a Will later, it can still be recognized. [???consistent language]"
@@ -266,13 +264,14 @@
        "type": "yesno",
        "name": "otherDocRecognize",
        "visible": false,
-       "visibleIf": "{otherDocExists} = \"y\"",
+       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\"",
        "title": "Do you want to have these `other testamentary documents` recognized as {deceasedName}'s `Will`?"
       },
       {
        "type": "matrixdynamic",
        "name": "otherDocRecognizeNoReasons",
-       "visibleIf": "{otherDocRecognize} = \"n\"",
+       "visible": false,
+       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "Explain why you think each of {deceasedName}'s `other testamentary documents` are not valid or not relevant:\nTrello: Add Other for Pulldown or Radio\n<br>\nField2: reason: radio with other. radio options: cannot find the will to which codicil relates; does not reflect deceased's final intention; working draft/draft document; unwitnessed draft;\n[Reminder] A copy of the testamentary document(s) is attached as an exhibit to the affidavit.",
        "columns": [
         {
@@ -310,63 +309,8 @@
       {
        "type": "infotext",
        "name": "otherDocRecognizeYesExplanation",
-       "visibleIf": "{otherDocRecognize} = \"y\"",
+       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\"",
        "title": "If you want a document with issues to be recognized, this service will ask questions to identify the issues.",
-       "isRequired": true,
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "yesno",
-       "name": "question46",
-       "title": "Did {deceasedName} make more than one Will?",
-       "description": "This includes making a new Will to replace an older one."
-      },
-      {
-       "type": "helptext",
-       "name": "superquestion1",
-       "title": "Do I/we include `other testamentary documents`?",
-       "titleLocation": "hidden",
-       "body": "No. This question is only about the Will.\n<br><br>\nIf {deceasedName} made a `codicil` or `other testamentary documents`, this service will ask about those documents later."
-      },
-      {
-       "type": "yesno",
-       "name": "question47",
-       "title": "Did {deceasedName}'s latest Will replace their older Wills?",
-       "description": "Look at the will. Usually at the beginning. \"This is the last will and revokes/replaces all previous wills\" or similar wording."
-      },
-      {
-       "type": "infotext",
-       "name": "question51",
-       "title": "If {deceasedName} made a new Will that replaced an older one, answer the following questions using information from the most recent Will. If their most recent Will is valid, you will not need to answer questions about old Wills. \n<br><br>\nIf {deceasedName}'s most recent Will has any issues, this service may ask about their next most recent Will.",
-       "isRequired": true,
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "yesno",
-       "name": "question48",
-       "title": "Did {deceasedName} make more than one `Will` that each deal with different `assets`"
-      },
-      {
-       "type": "infotext",
-       "name": "question50",
-       "title": "[No - Super Rare]<br>Start by answering the following questions with information from {deceasedName}'s most recent Will first. This service will have questions about the older Wills separately.\n[Trigger a series of questions: Ask questions about the existence of the older one(s)? 1. Date made. 2. Alias. Nothing else. 3. Does this revoke a previous will? ifNo. 4. Is there a previous will?\n<br>\nreminders to make copies as well.]\n[In the other successors page, ask if prior wills list any other executors, beneficiaries etc].",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "yesno",
-       "name": "question52",
-       "title": "Did you want to administer more than one of {deceasedName}'s Wills?"
-      },
-      {
-       "type": "infotext",
-       "name": "question49",
-       "title": "[No]<br>Answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question53",
-       "title": "[Yes]<br>\nIf {deceasedName} made more than one Will that each deal with different property/assets, you will have to apply for more than one Representation Grant, for each will.\n<br>[lost this work. need to redo.]",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -376,21 +320,106 @@
     },
     {
      "type": "panel",
-     "name": "panel4",
+     "name": "willMultiplePanel",
      "elements": [
       {
        "type": "yesno",
-       "name": "question33",
+       "name": "willMultiple",
+       "title": "Did {deceasedName} make more than one Will?",
+       "description": "This includes making a new Will to replace an older one."
+      },
+      {
+       "type": "helptext",
+       "name": "willMultipleFAQ1",
+       "visible": false,
+       "visibleIf": "{willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0)",
+       "title": "Do I/we include `other testamentary documents`?",
+       "titleLocation": "hidden",
+       "body": "No. This question is only about the Will.\n<br><br>\nIf {deceasedName} made a `codicil` or `other testamentary documents`, this service will ask about those documents later."
+      },
+      {
+       "type": "yesno",
+       "name": "willRevoked",
+       "visible": false,
+       "visibleIf": "{willMultiple} = \"y\"",
+       "title": "Did {deceasedName}'s latest Will replace their older Wills?",
+       "description": "Look at the will. Usually at the beginning. \"This is the last will and revokes/replaces all previous wills\" or similar wording."
+      },
+      {
+       "type": "infotext",
+       "name": "willRevokedYesExplanation",
+       "visible": false,
+       "visibleIf": "{willMultiple} = \"y\" and {willRevoked} = \"y\"",
+       "title": "If {deceasedName} made a new Will that replaced an older one, answer the following questions using information from the most recent Will. If their most recent Will is valid, you will not need to answer questions about old Wills. \n<br><br>\nIf {deceasedName}'s most recent Will has any issues, this service may ask about their next most recent Will.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willDifferentAssets",
+       "visible": false,
+       "visibleIf": "{willMultiple} = \"y\" and {willRevoked} = \"n\"",
+       "title": "Did {deceasedName} make more than one `Will` that each deal with different `assets`"
+      },
+      {
+       "type": "infotext",
+       "name": "willDifferentAssetsNoExplanation",
+       "visible": false,
+       "visibleIf": "{willMultiple} = \"y\" and {willRevoked} = \"n\" and {willDifferentAssets} = \"n\"",
+       "title": "[No - Super Rare]<br>Start by answering the following questions with information from {deceasedName}'s most recent Will first. This service will have questions about the older Wills separately.\n[Trigger a series of questions: Ask questions about the existence of the older one(s)? 1. Date made. 2. Alias. Nothing else. 3. Does this revoke a previous will? ifNo. 4. Is there a previous will?\n<br>\nreminders to make copies as well.]\n[In the other successors page, ask if prior wills list any other executors, beneficiaries etc].",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willAdministerMultiple",
+       "visible": false,
+       "visibleIf": "{willMultiple} = \"y\" and {willRevoked} = \"n\" and {willDifferentAssets} = \"y\"",
+       "title": "Did you want to administer more than one of {deceasedName}'s Wills?"
+      },
+      {
+       "type": "infotext",
+       "name": "willAdministerMultipleNoExplanation",
+       "visible": false,
+       "visibleIf": "{willMultiple} = \"y\" and {willRevoked} = \"n\" and {willDifferentAssets} = \"y\" and {willAdministerMultiple} = \"n\"",
+       "title": "[No]<br>Answer the following questions using information from the Will that deals with the assets that you wish to administer. [??revisit with consistent language].",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "willAdministerMultipleYesExplanation",
+       "visible": false,
+       "visibleIf": "{willMultiple} = \"y\" and {willRevoked} = \"n\" and {willDifferentAssets} = \"y\" and {willAdministerMultiple} = \"y\"",
+       "title": "[Yes]<br>\nIf {deceasedName} made more than one Will that each deal with different property/assets, you will have to apply for more than one Representation Grant, for each will.\n<br>[lost this work. need to redo.]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{willCheck} = \"y\" and {willCheckYesExplanation} > 0 and ({willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0))"
+    },
+    {
+     "type": "panel",
+     "name": "willPossessionPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willHave",
        "title": "Do you have this Will?"
       },
       {
        "type": "yesno",
-       "name": "question34",
+       "name": "willOriginal",
+       "visible": false,
+       "visibleIf": "{willHave} = \"y\"",
        "title": "Do you have the original Will?"
       },
       {
        "type": "yesno",
-       "name": "question35",
+       "name": "willOriginalExists",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\"",
        "title": "Do you have an idea who has the original Will?"
       },
       {
@@ -398,12 +427,13 @@
        "name": "willOriginalExistsNoExplanation",
        "visible": false,
        "visibleIf": "{willOriginalExists} = \"n\"",
-       "title": "[necessary?]<br>If you think the original will is gone forever, that's fine. We'll just use the copy.",
+       "title": "If you think the original will is gone forever, that's fine. We'll just use the copy.",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "willOriginalExists",
+       "name": "willOriginalVoluntaryTransfer",
        "visible": false,
        "visibleIf": "{willStatus} = \"item2\" or {willStatus} = \"item3\"",
        "title": "Will this person give you the original Will?",
@@ -411,7 +441,9 @@
       },
       {
        "type": "infotext",
-       "name": "question54",
+       "name": "willOriginalVoluntaryTransferYesExplanation",
+       "visible": false,
+       "visibleIf": "{willOriginalVoluntaryTransfer} = \"y\"",
        "title": "Go get the original will. Select \"Yes\" for Will they give you the original Will? [JIRA - jump to relevant question.",
        "titleLocation": "hidden",
        "messageStyle": "error"
@@ -419,16 +451,20 @@
       {
        "type": "yesno",
        "name": "question37",
+       "visible": false,
        "title": "Do you have an idea who has a copy of {deceasedName}'s Will?"
       },
       {
        "type": "yesno",
-       "name": "question39",
+       "name": "willCopyVoluntaryTransfer",
+       "visible": false,
        "title": "Will this person give you a copy of {deceasedName}'s Will?"
       },
       {
        "type": "infotext",
        "name": "question55",
+       "visible": false,
+       "visibleIf": "{willCopyVoluntaryTransfer} = \"y\"",
        "title": "Go get the copy the will. \n<br><br>\nSelect \"Yes\" for Will they give you the original Will? [JIRA - jump to relevant question.",
        "titleLocation": "hidden",
        "messageStyle": "error"
@@ -437,11 +473,14 @@
        "type": "infotext",
        "name": "question56",
        "visible": false,
+       "visibleIf": "{willOriginalVoluntaryTransfer} = \"n\"\n{willCopyVoluntaryTransfer} = \"n\"",
        "title": "you can do court docs that compel this person to apply to represent deceased. this is called a citation.\n<br><br>\nif they do apply, they will send you a copy of the will. you will have the opportunity to dispute. \n<br><br>\na dispute will stop their application from going through. someone else including you can apply.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{willCheck} = \"y\" and {willCheckYesExplanation} > 0 and ({willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0)) and \n\n({willMultiple} = \"n\" or ({willMultiple} = \"y\" and {willRevoked} = \"y\" and ({willRevokedYesExplanation} > 0) or {willRevokedNoExplanation} > 0)))"
     },
     {
      "type": "panel",
@@ -449,24 +488,12 @@
      "elements": [
       {
        "type": "radiogroup",
-       "name": "willStatus",
+       "name": "willStatus2rqwe",
        "visible": false,
        "visibleIf": "{willExists} = \"y\"",
        "title": "forced will search",
        "description": "Pick the situation that best applies to your situation.",
        "choices": [
-        {
-         "value": "item1",
-         "text": "Yes, and I/we have the original will."
-        },
-        {
-         "value": "item2",
-         "text": "Yes, but I/we only have copies of the will."
-        },
-        {
-         "value": "item3",
-         "text": "No, I/we don't have neither an original nor a copy of the will."
-        },
         {
          "value": "item4",
          "text": "No, a Will Search identified a will but the will wasn't anywhere I/we checked."
@@ -481,7 +508,7 @@
      "elements": [
       {
        "type": "text",
-       "name": "question57",
+       "name": "citeeName",
        "title": "What is the name of the person who has the Will?"
       },
       {
@@ -608,9 +635,81 @@
       },
       {
        "type": "yesno",
-       "name": "question78"
+       "name": "question78",
+       "title": "Did you receive a Representation Grant from {citeeName}?"
+      },
+      {
+       "type": "radiogroup",
+       "name": "question34",
+       "title": "What kind of response did {citeeName} give you?",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "A Representation Grant (grant of probate?) that {citeeName} already got"
+        },
+        {
+         "value": "item2",
+         "text": "Court forms showing that {citeeName} is applying for a Representation Grant (P2)"
+        },
+        {
+         "value": "item6",
+         "text": "Court forms show that {citeeName} intends to apply (P1)"
+        },
+        {
+         "value": "item3",
+         "text": "I got a P33 and they said they will apply for a Rep Grant within the next 6 months"
+        },
+        {
+         "value": "item4",
+         "text": "I got a P33 and they renounced"
+        },
+        {
+         "value": "item5",
+         "text": "None of the above"
+        }
+       ]
+      },
+      {
+       "type": "infotext",
+       "name": "question49",
+       "title": "notes\n<br>\ngrant - explain; satisfied yes/no; if yes, stop and wait; if no; lawyer up\nP1 - explain; satisfied yes/no; if no notice of dispute (possibly lawyer); do you want to apply for your own; if yes, keep checking to see when P2 is done; continue your own application (will not valid, or not appropriate person)\nP2 - explain; satisfied yes/no; if yes stop and wait (if the will they have is the one you want); if no notice of dispute (possibly lawyer) and continue your own application (will not valid, or not appropriate person)\nP33 will apply - satisfied yes/no; if yes stop and wait; if no, same as P1\nP33 renounce - did they give you the will? or will they? if no, subpoena. \nnone of the above - if they didn't reply, they are deemed to announce or are not executor. do you still believe they have the will? if you believe they have the will, subpoena; if no, use an older will or use your copy. [problems if it is copy vs original]\n",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question35",
+       "title": "[grant already got - part 1]<br>\nThey already got a grant. This is what it means.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question47",
+       "title": "[item 3 - P1]<br>\nThey are applying. \n<br>\nThey have to submit the will (original if they have it??). Wait for that.\nKeep checking the court every so often to see if their P2 came in.\n<br>\n If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].\n<br><br>\nIf you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.\n",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question39",
+       "title": "[item 2 - P2]<br>\nThey are applying.  If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].\nAlong with their documentation, they gave the original (or a copy if they have that) to the court. [Do these messages copy conflict with earlier regarding original vs copy?]\n<br><br>\nIf you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "question46",
+       "title": "Are you satisfied with this response"
+      },
+      {
+       "type": "infotext",
+       "name": "question48",
+       "title": "[grant got - part 2]<b>If you want to challenge, continue reading. [Link to more info \nApplication to challenge the representation grant.]\n<br><br>\nrecommendation for a form?\n<br><br>\nLawyer up probably\n<br><br>\nif you are successful with the challenge, come back and say no one has the will you're talking about.<br>\nA. re-use existing will at the court. <br>\nB. use another will that you have. <br>\nC. say it doesn't exist.\n",
+       "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false
     },
     {
      "type": "panel",
@@ -621,7 +720,8 @@
        "name": "question60",
        "title": "subpoena"
       }
-     ]
+     ],
+     "visible": false
     },
     {
      "type": "panel",
@@ -1113,6 +1213,7 @@
     {
      "type": "infotext",
      "name": "question45",
+     "visible": false,
      "title": "[See above for questions for multiple wills that did not get revoked by newer wills]",
      "titleLocation": "hidden"
     },
@@ -1124,7 +1225,7 @@
        "type": "infotext",
        "name": "willNoExplanation",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\"",
+       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"n'",
        "title": "[P5 no will, no other docs]\nBecause {deceasedName} didn't leave a will, we can move on to asking about {deceasedName}'s spouse and children.",
        "titleLocation": "hidden"
       },
@@ -1132,7 +1233,7 @@
        "type": "infotext",
        "name": "question36",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\"",
+       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "[P5 no will, yes other doc, do not recognize, invalid will only] \nYou will need to provide a copy of the invalid Will. This service will remind you to make a copy at the end.\n<br><br>\nBecause {deceasedName} didn't leave a valid Will, we can move on to asking about {deceasedName}'s spouse and children. \n",
        "titleLocation": "hidden"
       },
@@ -1140,7 +1241,7 @@
        "type": "infotext",
        "name": "question40",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\"",
+       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "[P5 no will, yes other doc, do not recognize, invalid will and other docs] \nYou will need to provide a copy of the invalid Will and the `other testamentary documents` that you've listed. This service will remind you to make copies at the end.\n<br><br>\nBecause {deceasedName} didn't leave a valid Will, we can move on to asking about {deceasedName}'s spouse and children. \n",
        "titleLocation": "hidden"
       },
@@ -1148,8 +1249,16 @@
        "type": "infotext",
        "name": "question38",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\"",
+       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "[P5 no will, yes other doc, do not recognize, all other docs except invalid will] \nYou will need to provide a copy of the `other testamentary documents` that you've listed. This service will remind you to make a copy at the end.\n\nBecause {deceasedName} didn't leave a Will, we can move on to asking about {deceasedName}'s spouse and children.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question33",
+       "visible": false,
+       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
+       "title": "[P5 yes will, no original, no copy, will search no luck] \ntreat as if no will. if you find a will later, you can apply again.\n<br><br>\nwe can move on to asking about {deceasedName}'s spouse and children.",
        "titleLocation": "hidden"
       },
       {
