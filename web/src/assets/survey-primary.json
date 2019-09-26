@@ -397,7 +397,7 @@
       }
      ],
      "visible": false,
-     "visibleIf": "{willCheck} = \"y\" and {willCheckYesExplanation} > 0 and ({willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0))"
+     "visibleIf": "{willCheck} = \"y\" and ({willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0))"
     },
     {
      "type": "panel",
@@ -419,14 +419,14 @@
        "type": "yesno",
        "name": "willOriginalExists",
        "visible": false,
-       "visibleIf": "{willHave} = \"n\"",
+       "visibleIf": "{willHave} = \"n\" \nor \n({willHave} = \"y\" and {willOriginal} = \"n\")",
        "title": "Do you have an idea who has the original Will?"
       },
       {
        "type": "infotext",
        "name": "willOriginalExistsNoExplanation",
        "visible": false,
-       "visibleIf": "{willOriginalExists} = \"n\"",
+       "visibleIf": "{willHave} = \"y\" and {willOriginal} = \"n\" and {willOriginalExists} = \"n\"",
        "title": "If you think the original will is gone forever, that's fine. We'll just use the copy.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -435,7 +435,7 @@
        "type": "yesno",
        "name": "willOriginalVoluntaryTransfer",
        "visible": false,
-       "visibleIf": "{willStatus} = \"item2\" or {willStatus} = \"item3\"",
+       "visibleIf": "{willOriginal} = \"n\" and {willOriginalExists} = \"y\"",
        "title": "Will this person give you the original Will?",
        "description": "Make sure they give you the original and not a copy.If they will only give a copy, select \"No\" to this question."
       },
@@ -443,44 +443,55 @@
        "type": "infotext",
        "name": "willOriginalVoluntaryTransferYesExplanation",
        "visible": false,
-       "visibleIf": "{willOriginalVoluntaryTransfer} = \"y\"",
+       "visibleIf": "{willOriginal} = \"n\" and {willOriginalExists} = \"y\" and {willOriginalVoluntaryTransfer} = \"y\"",
        "title": "Go get the original will. Select \"Yes\" for Will they give you the original Will? [JIRA - jump to relevant question.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
       {
        "type": "yesno",
-       "name": "question37",
+       "name": "willCopyExists",
        "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willOriginalExists} = \"n\"",
        "title": "Do you have an idea who has a copy of {deceasedName}'s Will?"
       },
       {
        "type": "yesno",
        "name": "willCopyVoluntaryTransfer",
        "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} = \"y\"",
        "title": "Will this person give you a copy of {deceasedName}'s Will?"
       },
       {
        "type": "infotext",
-       "name": "question55",
+       "name": "willCopyVoluntaryTransferYesExplanation",
        "visible": false,
-       "visibleIf": "{willCopyVoluntaryTransfer} = \"y\"",
+       "visibleIf": "{willHave} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} = \"y\" and {willCopyVoluntaryTransfer} = \"y\"",
        "title": "Go get the copy the will. \n<br><br>\nSelect \"Yes\" for Will they give you the original Will? [JIRA - jump to relevant question.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
       {
        "type": "infotext",
-       "name": "question56",
+       "name": "willLost",
        "visible": false,
-       "visibleIf": "{willOriginalVoluntaryTransfer} = \"n\"\n{willCopyVoluntaryTransfer} = \"n\"",
+       "visibleIf": "{willHave} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} = \"n\"\n",
+       "title": "Force a will search info<br><br>\nSelect \"Yes\" for Will they give you the original Will? [JIRA - jump to relevant question.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "citationExplanation",
+       "visible": false,
+       "visibleIf": "({willHave} = \"y\" and {willOriginal} = \"n\" and {willOriginalExists} = \"y\" and {willOriginalVoluntaryTransfer} = \"n\") or ({willHave} = \"n\" and {willOriginalExists} = \"y\" and {willOriginalVoluntaryTransfer} = \"n\") or ({willHave} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} = \"y\" and {willCopyVoluntaryTransfer} = \"n\")",
        "title": "you can do court docs that compel this person to apply to represent deceased. this is called a citation.\n<br><br>\nif they do apply, they will send you a copy of the will. you will have the opportunity to dispute. \n<br><br>\na dispute will stop their application from going through. someone else including you can apply.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
      ],
      "visible": false,
-     "visibleIf": "{willCheck} = \"y\" and {willCheckYesExplanation} > 0 and ({willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0)) and \n\n({willMultiple} = \"n\" or ({willMultiple} = \"y\" and {willRevoked} = \"y\" and ({willRevokedYesExplanation} > 0) or {willRevokedNoExplanation} > 0)))"
+     "visibleIf": "{willCheck} = \"y\"\nand \n({willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0)) \nand \n({willMultiple} = \"n\" or ({willMultiple} = \"y\" and (({willRevoked} = \"y\" and {willRevokedYesExplanation} > 0) or ({willRevoked} = \"n\" and {willDifferentAssets} = \"n\" and {willDifferentAssetsNoExplanation} > 0) or ({willRevoked} = \"n\" and {willAdministerMultiple} = \"n\" and {willAdministerMultipleNoExplanation} > 0) or ({willRevoked} = \"n\" and {willAdministerMultiple} = \"y\" and {willAdministerMultipleYesExplanation} > 0))))"
     },
     {
      "type": "panel",
@@ -1270,11 +1281,6 @@
        "titleLocation": "hidden"
       }
      ]
-    },
-    {
-     "type": "infotext",
-     "name": "question69",
-     "titleLocation": "hidden"
     }
    ],
    "title": "{deceasedName}'s Will"
