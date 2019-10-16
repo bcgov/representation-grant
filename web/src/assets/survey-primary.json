@@ -417,6 +417,24 @@
       },
       {
        "type": "yesno",
+       "name": "question80",
+       "title": "Does a courthouse (anywhere in the world) have {deceasedName}'s original Will?",
+       "description": "The courthouse would have the will if someone else applied for a Rep Grant or someone was served a subpoena to file that will at the courthouse."
+      },
+      {
+       "type": "infotext",
+       "name": "question95",
+       "title": "[no have will + original at court] Go get a copy from that courthouse and use the info from that will.\n<br>\naffidavit questions",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question84",
+       "title": "[yes have will + original at court] Make sure the info on your copy is the same as the original and use that for the following questions.\n<br>\naffidavit questions",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
        "name": "willOriginalExists",
        "visible": false,
        "visibleIf": "{willHave} = \"n\" \nor \n({willHave} = \"y\" and {willOriginal} = \"n\")",
@@ -433,10 +451,20 @@
       },
       {
        "type": "yesno",
+       "name": "question107",
+       "title": "[yes idea] Is this person who has the original Will an executor named in the Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "question110",
+       "title": "[yes] Are you the highest level, living executor? (who has not renounced) [yes - subpoena; no cite the highest living, non-renounced executor]"
+      },
+      {
+       "type": "yesno",
        "name": "willOriginalVoluntaryTransfer",
        "visible": false,
        "visibleIf": "{willOriginal} = \"n\" and {willOriginalExists} = \"y\"",
-       "title": "Will this person give you the original Will?",
+       "title": "[yes highest level or not executor] Will the person who has the original Will give it to you?",
        "description": "Make sure they give you the original and not a copy.If they will only give a copy, select \"No\" to this question."
       },
       {
@@ -457,10 +485,28 @@
       },
       {
        "type": "yesno",
+       "name": "question83",
+       "title": "Does a courthouse (anywhere in the world) have a copy of {deceasedName}'s Will?",
+       "description": "The courthouse would have the will if someone else applied for a Rep Grant or someone was served a subpoena to file that will at the courthouse."
+      },
+      {
+       "type": "infotext",
+       "name": "question82",
+       "title": "[no have will + no original at court + no original anywhere + yes court has copy] Go get a copy from that courthouse and use the info from that will.\n<br>\naffidavit questions",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question81",
+       "title": "[JIRA - markup for highlight in yellow?] The word Copy here for example",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
        "name": "willCopyVoluntaryTransfer",
        "visible": false,
        "visibleIf": "{willHave} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} = \"y\"",
-       "title": "Will this person give you a copy of {deceasedName}'s Will?"
+       "title": "Will the person who has it give you a copy of {deceasedName}'s Will?"
       },
       {
        "type": "infotext",
@@ -488,6 +534,24 @@
        "title": "you can do court docs that compel this person to apply to represent deceased. this is called a citation.\n<br><br>\nif they do apply, they will send you a copy of the will. you will have the opportunity to dispute. \n<br><br>\na dispute will stop their application from going through. someone else including you can apply.",
        "isRequired": true,
        "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question37",
+       "title": "Do you want to create these court forms (citation)..."
+      },
+      {
+       "type": "infotext",
+       "name": "question108",
+       "visible": false,
+       "visibleIf": "({willHave} = \"y\" and {willOriginal} = \"n\" and {willOriginalExists} = \"y\" and {willOriginalVoluntaryTransfer} = \"n\") or ({willHave} = \"n\" and {willOriginalExists} = \"y\" and {willOriginalVoluntaryTransfer} = \"n\") or ({willHave} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} = \"y\" and {willCopyVoluntaryTransfer} = \"n\")",
+       "title": "[have copy; non-executor has original] subpoena<br><br>\nexplain subpoena for this situation.\n<br><br>\n???a dispute will stop their application from going through. someone else including you can apply.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question109"
       }
      ],
      "visible": false,
@@ -510,217 +574,90 @@
          "text": "No, a Will Search identified a will but the will wasn't anywhere I/we checked."
         }
        ]
+      },
+      {
+       "type": "yesno",
+       "name": "question66",
+       "title": "Did the will search reveal the will's location?"
+      },
+      {
+       "type": "yesno",
+       "name": "question67",
+       "title": "Did you look there?"
+      },
+      {
+       "type": "infotext",
+       "name": "question65",
+       "title": "[multiple wills, No original, no copy, will search yes, cannot find the latest will???]\nGo back to \"do you have this will? and answer using an older will",
+       "titleLocation": "hidden"
       }
      ]
     },
     {
      "type": "panel",
-     "name": "panel2",
+     "name": "panel10",
      "elements": [
       {
-       "type": "text",
-       "name": "citeeName",
-       "title": "What is the name of the person who has the Will?"
-      },
-      {
-       "type": "address",
-       "name": "question58",
-       "title": "Address"
-      },
-      {
-       "type": "contactinfo",
-       "name": "question59",
-       "title": "Contact info"
-      },
-      {
        "type": "yesno",
-       "name": "question61",
-       "title": "Do you have an idea when {deceasedName} made the will/other doc?",
-       "description": "You don't need to provide the exact date if you don't know it."
-      },
-      {
-       "type": "text",
-       "name": "question63",
-       "title": "When do you believe {deceasedName} made the Will?",
-       "description": "Provide as much info as you are aware to provide the recipient which document you are talking about in case there was more than one will."
-      },
-      {
-       "type": "yesno",
-       "name": "question62",
-       "title": "Do you have an idea where {deceasedName}'s Will is located?",
-       "description": "You do not need to provide an exact address."
-      },
-      {
-       "type": "text",
-       "name": "question64",
-       "title": "Where do you believe is {deceasedName}'s Will located?"
-      },
-      {
-       "type": "yesno",
-       "name": "question65",
-       "title": "Do you have an identifying information about {deceasedName}'s Will?"
-      },
-      {
-       "type": "text",
-       "name": "question66",
-       "title": "Describe extra info about the Will"
-      },
-      {
-       "type": "text",
-       "name": "question67",
-       "title": "[Present] Describe why you believe the Will exists:"
-      },
-      {
-       "type": "text",
-       "name": "question68",
-       "title": "[Possible Future] Explain why you believe {citeeName} has the Will:"
-      },
-      {
-       "type": "text",
-       "name": "question70",
-       "title": "What is your name (the name of the person is going to be applying)? Not sure if it matters?"
-      },
-      {
-       "type": "address",
-       "name": "question71",
-       "title": "Service address to receive {citeeName}'s response"
-      },
-      {
-       "type": "contactinfo",
-       "name": "question72",
-       "title": "Additional contact info to receive {citeeName}'s response."
-      },
-      {
-       "type": "infotext",
-       "name": "question73",
-       "title": "[JIRA] Print Citation Button",
-       "isRequired": true,
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question74",
-       "title": "Citation Next Steps. Follow the instructions.\n<br><br>\nExpect a response within 14 days of {citeeName} receiving the citation.\n<br><br>\nExpect the response to be grant itself, status update, or P33 with other info.",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "text",
-       "name": "question75",
-       "title": "[JIRA] Enter date you served {citeeName}"
+       "name": "question85",
+       "title": "Courthouse in BC?"
       },
       {
        "type": "dropdown",
-       "name": "question76",
-       "title": "[JIRA - maybe unnecessary to combine the date and method]<br>\nWhat is method you served {citeeName}?",
+       "name": "question86",
+       "title": "Courthouses in BC",
        "choices": [
-        {
-         "value": "item1",
-         "text": "in person"
-        },
-        {
-         "value": "item2",
-         "text": "email"
-        },
-        {
-         "value": "item3",
-         "text": "mail"
-        },
-        {
-         "value": "item4",
-         "text": "fax"
-        }
+        "item1",
+        "item2",
+        "item3"
        ]
       },
       {
-       "type": "infotext",
-       "name": "question77",
-       "title": "[JIRA Date + X Days] Calcualtor based on service method [should the app lock the ability to answer if the day is not up yet? Maybe not]",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
+       "type": "address",
+       "name": "question88",
+       "title": "Address of Courthouse "
       },
       {
-       "type": "infotext",
-       "name": "question79",
-       "title": "Based on the day you served and service method, you should receive a response by X date.",
-       "titleLocation": "hidden"
+       "type": "contactinfo",
+       "name": "question89",
+       "title": "Contact info for courthouse"
       },
       {
        "type": "yesno",
-       "name": "question78",
-       "title": "Did you receive a Representation Grant from {citeeName}?"
+       "name": "question87",
+       "title": "DId you talk to them directly and they said they have the will? (invisible for copy at court)"
       },
       {
-       "type": "radiogroup",
-       "name": "question34",
-       "title": "What kind of response did {citeeName} give you?",
-       "choices": [
-        {
-         "value": "item1",
-         "text": "A Representation Grant (grant of probate?) that {citeeName} already got"
-        },
-        {
-         "value": "item2",
-         "text": "Court forms showing that {citeeName} is applying for a Representation Grant (P2)"
-        },
-        {
-         "value": "item6",
-         "text": "Court forms show that {citeeName} intends to apply (P1)"
-        },
-        {
-         "value": "item3",
-         "text": "I got a P33 and they said they will apply for a Rep Grant within the next 6 months"
-        },
-        {
-         "value": "item4",
-         "text": "I got a P33 and they renounced"
-        },
-        {
-         "value": "item5",
-         "text": "None of the above"
-        }
-       ]
+       "type": "text",
+       "name": "question90",
+       "title": "Name of person who did the detective work (invisible to copy at court)"
+      },
+      {
+       "type": "address",
+       "name": "question92",
+       "title": "city and country  (invisible to copy at court)"
+      },
+      {
+       "type": "contactinfo",
+       "name": "question93",
+       "title": " (invisible to copy at court)"
+      },
+      {
+       "type": "text",
+       "name": "question91",
+       "title": "profession (invisible to copy at court)"
       },
       {
        "type": "infotext",
-       "name": "question49",
-       "title": "notes\n<br>\ngrant - explain; satisfied yes/no; if yes, stop and wait; if no; lawyer up\nP1 - explain; satisfied yes/no; if no notice of dispute (possibly lawyer); do you want to apply for your own; if yes, keep checking to see when P2 is done; continue your own application (will not valid, or not appropriate person)\nP2 - explain; satisfied yes/no; if yes stop and wait (if the will they have is the one you want); if no notice of dispute (possibly lawyer) and continue your own application (will not valid, or not appropriate person)\nP33 will apply - satisfied yes/no; if yes stop and wait; if no, same as P1\nP33 renounce - did they give you the will? or will they? if no, subpoena. \nnone of the above - if they didn't reply, they are deemed to announce or are not executor. do you still believe they have the will? if you believe they have the will, subpoena; if no, use an older will or use your copy. [problems if it is copy vs original]\n",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
-      },
-      {
-       "type": "infotext",
-       "name": "question35",
-       "title": "[grant already got - part 1]<br>\nThey already got a grant. This is what it means.",
-       "isRequired": true,
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question47",
-       "title": "[item 3 - P1]<br>\nThey are applying. \n<br>\nThey have to submit the will (original if they have it??). Wait for that.\nKeep checking the court every so often to see if their P2 came in.\n<br>\n If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].\n<br><br>\nIf you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.\n",
-       "titleLocation": "hidden",
-       "messageStyle": "error"
-      },
-      {
-       "type": "infotext",
-       "name": "question39",
-       "title": "[item 2 - P2]<br>\nThey are applying.  If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].\nAlong with their documentation, they gave the original (or a copy if they have that) to the court. [Do these messages copy conflict with earlier regarding original vs copy?]\n<br><br>\nIf you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.",
-       "titleLocation": "hidden",
-       "messageStyle": "error"
-      },
-      {
-       "type": "yesno",
-       "name": "question46",
-       "title": "Are you satisfied with this response"
-      },
-      {
-       "type": "infotext",
-       "name": "question48",
-       "title": "[grant got - part 2]<b>If you want to challenge, continue reading. [Link to more info \nApplication to challenge the representation grant.]\n<br><br>\nrecommendation for a form?\n<br><br>\nLawyer up probably\n<br><br>\nif you are successful with the challenge, come back and say no one has the will you're talking about.<br>\nA. re-use existing will at the court. <br>\nB. use another will that you have. <br>\nC. say it doesn't exist.\n",
+       "name": "question94",
+       "title": "[JIRA] - generate PDF affidavit for third party Will detective",
        "titleLocation": "hidden"
       }
-     ],
-     "visible": false
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel4"
     },
     {
      "type": "panel",
@@ -1284,6 +1221,541 @@
     }
    ],
    "title": "{deceasedName}'s Will"
+  },
+  {
+   "name": "citationPage",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "citationIntroPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "citationIntroExplanation",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "citationPagePersistenceFunction",
+       "visible": false,
+       "title": "[JIRA] page should show up but not disappear when someone needs to do a citation because afterwards, the questions that would enable citation would be answered differently when successfully done with citation/subpoena",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "citationCreationPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "citationAgainExplanation",
+       "visible": false,
+       "title": "[JIRA - clear some fields?]\nUpon redo-ing a citation, reminder pops up to review info and update if necessary. [figure out code to make this appear upon second viewing]",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "text",
+       "name": "citeeName",
+       "title": "What is the name of the person who has the Will?"
+      },
+      {
+       "type": "address",
+       "name": "citeAddress",
+       "title": "Address"
+      },
+      {
+       "type": "contactinfo",
+       "name": "citeeContactInfo",
+       "title": "Contact info"
+      },
+      {
+       "type": "yesno",
+       "name": "citationWillDate",
+       "title": "Do you have an idea when {deceasedName} made the will/other doc?",
+       "description": "You don't need to provide the exact date if you don't know it."
+      },
+      {
+       "type": "text",
+       "name": "citationWillDateText",
+       "visible": false,
+       "visibleIf": "{citationWillDate} = \"y\"",
+       "title": "When do you believe {deceasedName} made the Will?",
+       "description": "Provide as much info as you are aware to provide the recipient which document you are talking about in case there was more than one will."
+      },
+      {
+       "type": "yesno",
+       "name": "citationWillLocation",
+       "title": "Do you have an idea where {deceasedName}'s Will is located?",
+       "description": "You do not need to provide an exact address."
+      },
+      {
+       "type": "text",
+       "name": "citationWillLocationText",
+       "visible": false,
+       "visibleIf": "{citationWillLocation} = \"y\"",
+       "title": "Where do you believe is {deceasedName}'s Will located?"
+      },
+      {
+       "type": "yesno",
+       "name": "citationOtherInfo",
+       "title": "Do you have an identifying information about {deceasedName}'s Will?"
+      },
+      {
+       "type": "text",
+       "name": "citationOtherInfoText",
+       "visible": false,
+       "visibleIf": "{citationOtherInfo} = \"y\"",
+       "title": "Describe extra info about the Will"
+      },
+      {
+       "type": "text",
+       "name": "citationReason",
+       "title": "[Present] Describe why you believe the Will exists:"
+      },
+      {
+       "type": "text",
+       "name": "citationReasonFuture",
+       "visible": false,
+       "title": "[Possible Future] Explain why you believe {citeeName} has the Will:"
+      },
+      {
+       "type": "text",
+       "name": "citorName",
+       "title": "What is your name (the name of the person is going to be applying)? Not sure if it matters?"
+      },
+      {
+       "type": "address",
+       "name": "citorAddress",
+       "title": "Service address to receive {citeeName}'s response"
+      },
+      {
+       "type": "contactinfo",
+       "name": "citorContactInfo",
+       "title": "Additional contact info to receive {citeeName}'s response."
+      },
+      {
+       "type": "infotext",
+       "name": "citationGenerateButton",
+       "title": "[JIRA] Print Citation Button",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{citationIntroExplanation} > 0"
+    },
+    {
+     "type": "infotext",
+     "name": "citationCalculatorBookmark",
+     "visible": false,
+     "title": "Citation Date Calculator",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "citationCalculatorPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "citationCalculateAgain",
+       "visible": false,
+       "title": "[JIRA - clear some fields?]\nUpon redo-ing a citation, reminder pops up to review info and update if necessary. [figure out code to make this appear upon second viewing]",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "citationCalculatorExplanation",
+       "title": "Citation Next Steps. Follow the instructions.\n<br><br>\nExpect a response within 14 days of {citeeName} receiving the citation.\n<br><br>\nExpect the response to be grant itself, status update, or P33 with other info.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question62",
+       "title": "Did you serve {citeeName} by yourself?"
+      },
+      {
+       "type": "text",
+       "name": "question63",
+       "title": "What is the name of the person who served {citeeName}?"
+      },
+      {
+       "type": "text",
+       "name": "citationServedDate",
+       "visible": false,
+       "visibleIf": "{citationCalculatorExplanation} > 0",
+       "title": "[JIRA] Enter date that {citeeName} was served",
+       "inputType": "date"
+      },
+      {
+       "type": "radiogroup",
+       "name": "citationServedMethod",
+       "visible": false,
+       "visibleIf": "{citationCalculatorExplanation} > 0",
+       "title": "[JIRA - maybe unnecessary to combine the date and method]<br>What is method {citeeName} was served?",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "in person"
+        },
+        {
+         "value": "item2",
+         "text": "email"
+        },
+        {
+         "value": "item3",
+         "text": "mail"
+        },
+        {
+         "value": "item4",
+         "text": "fax"
+        }
+       ]
+      },
+      {
+       "type": "yesno",
+       "name": "question64",
+       "title": "Did you get an affidavit of service from {serverName}"
+      },
+      {
+       "type": "infotext",
+       "name": "citationCalculatorFunction",
+       "visible": false,
+       "visibleIf": "{citationCalculatorExplanation} > 0",
+       "title": "[JIRA Date + X Days] Calcualtor based on service method [should the app lock the ability to answer if the day is not up yet? Maybe not]",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "citationResponseDate",
+       "visible": false,
+       "visibleIf": "{citationCalculatorExplanation} > 0",
+       "title": "Based on the day you served and service method, you should receive a response by X date.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{citationGenerateButton} > 0"
+    },
+    {
+     "type": "infotext",
+     "name": "citationResponseTypeBookmark",
+     "visible": false,
+     "title": "Citation Response Type",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "citationResponseTypePanel",
+     "elements": [
+      {
+       "type": "radiogroup",
+       "name": "citationResponseType",
+       "title": "What kind of response did {citeeName} give you?",
+       "choices": [
+        {
+         "value": "repGrant",
+         "text": "A Representation Grant (grant of probate?) that {citeeName} already got"
+        },
+        {
+         "value": "p2",
+         "text": "Court forms showing that {citeeName} is applying for a Representation Grant (P2)"
+        },
+        {
+         "value": "p1",
+         "text": "Court forms show that {citeeName} intends to apply (P1)"
+        },
+        {
+         "value": "p33Apply",
+         "text": "I got a P33 and they said they will apply for a Rep Grant within the next 6 months"
+        },
+        {
+         "value": "p33Renounce",
+         "text": "I got a P33 refuse"
+        },
+        {
+         "value": "noResponse",
+         "text": "No response"
+        },
+        {
+         "value": "item7",
+         "text": "Something else??"
+        },
+        {
+         "value": "item8",
+         "text": "Not applying"
+        }
+       ]
+      },
+      {
+       "type": "infotext",
+       "name": "citationResponseRepGrantExplanation",
+       "visible": false,
+       "visibleIf": "{citationResponseType} = \"repGrant\"",
+       "title": "[repGrant]<br>\nThey already got a grant. This is what it means. they are in charge tim's assets. ",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "citationResponseP1Explanation",
+       "visible": false,
+       "title": "[P1]<br>\nThey are applying. \n<br><br>\nTheir next step is to submit the will (original if they have it??).",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question39",
+       "visible": false,
+       "title": "[item 2 - P2]<br>\nThey are applying.  If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].\nAlong with their documentation, they gave the original (or a copy if they have that) to the court. [Do these messages copy conflict with earlier regarding original vs copy?]\n<br><br>\nIf you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question59",
+       "title": "[P33 Will Apply]<br>\nExplain process\n<br><br>\nCountdown clock for 6 months. ",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question58",
+       "title": "[P33 Will Apply]<br>\nHave they applied?"
+      },
+      {
+       "type": "yesno",
+       "name": "question61",
+       "title": "[P33 Will Apply]<br>Did they get a time extension?"
+      },
+      {
+       "type": "yesno",
+       "name": "citationResponseSatisfied",
+       "visible": false,
+       "visibleIf": "{citationResponseType} = \"repGrant\" and {citationResponseRepGrantExplanation} > 0",
+       "title": "Are you satisfied with the result of the citation (the response)? [JIRA] display response type? Or not?"
+      },
+      {
+       "type": "infotext",
+       "name": "citationResponseRepGrantSatisfiedError",
+       "visible": false,
+       "visibleIf": "{citationResponseType} = \"repGrant\" and {citationResponseSatisfied} = \"y\"",
+       "title": "[repGrant]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question35",
+       "visible": false,
+       "visibleIf": "{citationResponseType} = \"repGrant\" and {citationResponseSatisfied} = \"y\"",
+       "title": "[P1]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{citationResponseDate} > 0"
+    },
+    {
+     "type": "infotext",
+     "name": "question105",
+     "visible": false,
+     "title": "Citation Response - Rep Grant\n",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "citationRGPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "citationRGWillGood",
+       "visible": false,
+       "visibleIf": "{citationRepGrantWantMoreRecent} = \"n\"",
+       "title": "Is the rep grant for the will that you intended on using"
+      },
+      {
+       "type": "yesno",
+       "name": "citationRGWillGoodHighExec",
+       "visible": false,
+       "visibleIf": "{citationRGWillMostRecent} = \"y\" or ({citationRGWillMostRecent} = \"n\" and {citationRGWantMoreRecent} = \"n\" and {citationRGWillGood} = \"y\")",
+       "title": "Are you a higher priority executor on that will than the person who got the rep grant? [yes citee's will is fine] "
+      },
+      {
+       "type": "yesno",
+       "name": "citationRGWantMoreRecent",
+       "visible": false,
+       "visibleIf": "{citationRGWillMostRecent} = \"n\"",
+       "title": "[rg will not good] Do you want to apply for a representation grant using {deceasedName}'s Will that is more recent?",
+       "description": "the only reason to answer yes to this question is if you believe the most recent will is valid"
+      },
+      {
+       "type": "yesno",
+       "name": "citationRepGrantSomething??HighExecutor",
+       "visible": false,
+       "title": "??[want different will] Are you a higher priority executor on that will that you want to use [info gap]"
+      },
+      {
+       "type": "infotext",
+       "name": "question97",
+       "visible": false,
+       "visibleIf": "{citationRGWillGoodHighExec} = \"y\"",
+       "title": "[yes higher executor] this service cannot help you.\nif this is the will you want to use and the will is good, go get a lawyer to get your name subsituted for {citeeName}'s.\n<br>\n25-5 (5)\n25-14 (1) c\ngeneral Rule 8\n<br>\nToo complex? lawyer up.\n",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "citationRGCapable",
+       "visible": false,
+       "title": "[not higher executor] Do you believe {deceasedName} was mentally capable when they made their Will under which {citeeName} got their Rep grant?"
+      },
+      {
+       "type": "yesno",
+       "name": "citationRGInfluence",
+       "visible": false,
+       "title": "[not sure if this should be contingent on mental capacity] Do you believe there was undue influence when {deceasedName} made their Will under which {citeeName} got their Rep grant??"
+      },
+      {
+       "type": "yesno",
+       "name": "citationRGFraud",
+       "visible": false,
+       "title": "Do you think fraud happened?",
+       "description": "for example, not deceased's signature, etc"
+      },
+      {
+       "type": "infotext",
+       "name": "question99",
+       "visible": false,
+       "visibleIf": "{citationRGCapable} = \"y\" and {citationRGInfluence} = \"n\" and {citationRGFraud} = \"n\"",
+       "title": "[not mentally capable and/or no undue influence and/or yes fraud]<br> You can apply to get this rep grant revoked under the basis that you believe they were mentally incapable or undue influence at the time they made the will.\n<br><br>\nThis service cannot help you revoke that last rep grant. See resources..\n<br><br>\nThis service can help you complete your application for another will. You should try and get the other grant revoked first. \n<br><br>\n[JIRA] If you are successful in getting that grant revoked, go back to \"Did they make a will\" keeping in mind that all wills exist and you will have opoprtunity to say why a particular is not valid. [revise for if newer or older or in-between will].",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question55",
+       "visible": false,
+       "visibleIf": "{citationRGWillMostRecent} = \"y\" and {citationRGWillGoodHighExec} = \"n\" and {citationRGCapable} = \"y\" and {citationRGInfluence} = \"n\" and {citationRGFraud} = \"n\"",
+       "title": "[not higher level executor; yes mentally capable and no undue influence and no fraud]<br> Latest will used, not higher priority executor, will was valid, you're done, son.\n<br><br>\ndisclaimer for going to a lawyer if you believe there is another reason that will is no good (if you are successful in getting it revoked, go back to [which question?]",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question52",
+       "visible": false,
+       "title": "[JIRA - suggestion to product owner for suggestions]",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question101",
+       "visible": false,
+       "title": "[want newer will, have copy, don't have original, post-citation]<br>You you apply to get {citeeName}'s rep grant revoked. This service currently can't help you with the revoking. \n<br><br>\n(see further information) a lawyer would be able to help.\n<br><br>\nyou can still use this service. \n<br><br>\n[JIRA] cite same person to do the proper will [regenereate citation] [go back to name of person] It's the same form, just different date, because they seem to have misunderstood your original citation",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question57",
+       "visible": false,
+       "title": "[want newer will, have copy, don't have original, post-citation]<br>You you apply to get {citeeName}'s rep grant revoked. This service currently can't help you with the revoking. \n<br><br>\n(see further information) a lawyer would be able to help.\n<br><br>\nyou can still use this service. \n<br><br>\n[JIRA] cite same person to do the proper will [regenereate citation] [go back to name of person]",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question104",
+       "visible": false,
+       "title": "Oct4 - clean this up - belief-based citation [don't have copy, don't have original + citation]<br>You you apply to get {citeeName}'s rep grant revoked. This service currently can't help you with the revoking. \n<br><br>\n(see further information) a lawyer would be able to help.\n<br><br>\nyou can still use this service. \n\nsame questions from have original will stream [will we need to retain that info for after citation??]\nare you highest exectuor? \n\nThey either don't have the original like you believe or they are committing fraud. Doesn't matter.\n\ngo back to (do you have an idea who has the original and say \" and proceed with the copy\n\ncite someone else\ncarry on with copy\n\nsubpoena original citee\n\n\nhave will = no\noriginal someone else has = yes (citation)\ncopy someone else has = yes (citation)\n",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question34",
+       "visible": false,
+       "title": "Did you successfully get {citee}'s Rep Grant revoked?"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{citationResponseSatisfied} = \"n\" and {citationResponseType} = \"repGrant\""
+    },
+    {
+     "type": "infotext",
+     "name": "citationP1Bookmark",
+     "visible": false,
+     "title": "Citation Response - P1",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "panel2",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question50",
+       "title": "Is the rep grant for the will that you intended on using"
+      },
+      {
+       "type": "infotext",
+       "name": "question46",
+       "visible": false,
+       "title": "If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question47",
+       "title": "Do you want to file a Notice of Dispute?"
+      },
+      {
+       "type": "infotext",
+       "name": "question51",
+       "title": "If you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question53",
+       "title": "Do you want to apply also?"
+      },
+      {
+       "type": "infotext",
+       "name": "question54",
+       "title": "keep checking to see when P2 is done; continue your own application (will not valid, or not appropriate person)",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question49",
+       "visible": false,
+       "title": "notes\n<br>\nP33 will apply - satisfied yes/no; if yes stop and wait; after 6 months [email reminder?] have they applied yes/no; if yes, wrap up message; if no, are you the next highest yes/no; no, cite; yes subpoena;\n<br><br>\nP33 renounce - did they give you the will? or will they? are you the next highest yes/no; no, cite; yes subpoena; \n<br><br>\nno response - are you the next highest yes/no; yes, do you still believe they have the will? if you believe they have the will, subpoena; if no, use an older will or use your copy.  no, cite; yes subpoena; \n<br><br>\nnone of the above - if they didn't reply, they are deemed to announce or are not executor. do you still believe they have the will? if you believe they have the will, subpoena; if no, use an older will or use your copy. [problems if it is copy vs original]\n<br><br>What about a third party who doesn't have the will. Or Jill has it but is not an executor",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      }
+     ]
+    },
+    {
+     "type": "infotext",
+     "name": "question56",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question48",
+     "visible": false,
+     "title": "[cross off list]<b>\n[no original, no copy, belief-based citation, no response] - if you are successful with the challenge, come back and say no one has the will you're talking about.<br>\nA. re-use existing will at the court. <br>\nB. use another will that you have. <br>\nC. say it doesn't exist.\n",
+     "titleLocation": "hidden"
+    }
+   ]
   },
   {
    "name": "foreignWillPage"
