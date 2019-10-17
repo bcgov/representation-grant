@@ -1496,6 +1496,23 @@
       },
       {
        "type": "infotext",
+       "name": "question59",
+       "title": "[P33 Will Apply]<br>\nExplain process\n<br><br>\nCountdown clock for 6 months. ",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question58",
+       "title": "[P33 Will Apply]<br>\nHave they applied?"
+      },
+      {
+       "type": "yesno",
+       "name": "question61",
+       "title": "[P33 Will Apply]<br>Did they get a time extension?"
+      },
+      {
+       "type": "infotext",
        "name": "citationResponseRepGrantExplanation",
        "visible": false,
        "visibleIf": "{citationResponseType} = \"repGrant\"",
@@ -1515,25 +1532,7 @@
        "name": "question39",
        "visible": false,
        "title": "[item 2 - P2]<br>\nThey are applying.  If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].\nAlong with their documentation, they gave the original (or a copy if they have that) to the court. [Do these messages copy conflict with earlier regarding original vs copy?]\n<br><br>\nIf you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.",
-       "titleLocation": "hidden",
-       "messageStyle": "error"
-      },
-      {
-       "type": "infotext",
-       "name": "question59",
-       "title": "[P33 Will Apply]<br>\nExplain process\n<br><br>\nCountdown clock for 6 months. ",
-       "isRequired": true,
        "titleLocation": "hidden"
-      },
-      {
-       "type": "yesno",
-       "name": "question58",
-       "title": "[P33 Will Apply]<br>\nHave they applied?"
-      },
-      {
-       "type": "yesno",
-       "name": "question61",
-       "title": "[P33 Will Apply]<br>Did they get a time extension?"
       },
       {
        "type": "yesno",
@@ -1557,6 +1556,15 @@
        "visible": false,
        "visibleIf": "{citationResponseType} = \"repGrant\" and {citationResponseSatisfied} = \"y\"",
        "title": "[P1]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question68",
+       "visible": false,
+       "visibleIf": "{citationResponseType} = \"repGrant\" and {citationResponseSatisfied} = \"y\"",
+       "title": "[P2]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
@@ -1732,21 +1740,48 @@
        "name": "question54",
        "title": "keep checking to see when P2 is done; continue your own application (will not valid, or not appropriate person)",
        "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question49",
-       "visible": false,
-       "title": "notes\n<br>\nP33 will apply - satisfied yes/no; if yes stop and wait; after 6 months [email reminder?] have they applied yes/no; if yes, wrap up message; if no, are you the next highest yes/no; no, cite; yes subpoena;\n<br><br>\nP33 renounce - did they give you the will? or will they? are you the next highest yes/no; no, cite; yes subpoena; \n<br><br>\nno response - are you the next highest yes/no; yes, do you still believe they have the will? if you believe they have the will, subpoena; if no, use an older will or use your copy.  no, cite; yes subpoena; \n<br><br>\nnone of the above - if they didn't reply, they are deemed to announce or are not executor. do you still believe they have the will? if you believe they have the will, subpoena; if no, use an older will or use your copy. [problems if it is copy vs original]\n<br><br>What about a third party who doesn't have the will. Or Jill has it but is not an executor",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
       }
      ]
     },
     {
      "type": "infotext",
      "name": "question56",
-     "titleLocation": "hidden"
+     "visible": false,
+     "title": "Citation Response - P2",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "infotext",
+     "name": "question69",
+     "visible": false,
+     "title": "Citation Response - P33 Apply",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "infotext",
+     "name": "question70",
+     "visible": false,
+     "title": "Citation Response - P33 Refuse",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "infotext",
+     "name": "question71",
+     "visible": false,
+     "title": "Citation Response - No Response",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "infotext",
+     "name": "question49",
+     "visible": false,
+     "title": "notes\n<br>\nno response - are you the next highest yes/no; yes, do you still believe they have the will? if you believe they have the will, subpoena; if no, use an older will or use your copy.  no, cite; yes subpoena; \n<br><br>\nnone of the above - if they didn't reply, they are deemed to announce or are not executor. do you still believe they have the will? if you believe they have the will, subpoena; if no, use an older will or use your copy. [problems if it is copy vs original]\n<br><br>What about a third party who doesn't have the will. Or Jill has it but is not an executor",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "infotext",
