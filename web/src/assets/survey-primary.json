@@ -679,6 +679,7 @@
     {
      "type": "infotext",
      "name": "question158",
+     "visible": false,
      "title": "Will Date",
      "titleLocation": "hidden",
      "messageStyle": "inline"
@@ -736,7 +737,8 @@
     {
      "type": "infotext",
      "name": "question159",
-     "title": "Will Written??",
+     "visible": false,
+     "title": "Will Written",
      "titleLocation": "hidden",
      "messageStyle": "inline"
     },
@@ -930,13 +932,6 @@
        "type": "yesno",
        "name": "question168",
        "title": "[if yes sig anywhere other than last page] Is there an acknowledgement/explanation on the will that {deceasedName} signed their will with a signature somewhere other than the last page??"
-      },
-      {
-       "type": "infotext",
-       "name": "question170",
-       "title": "Oct25<br>Need to mind map - go down sec80, then sec58\nSec80<br>\nD) citizen of another country between will date and death date?<br>yes path, does the law in that country, between will date and death date allow for X problem?<br>\n[JIRA: dynamically load problem?]<br>not citizen other country, move on to next question<br>yes citizen not valid - move onto next.\nyes, affidavit explaining the law of the other country. suggest lawyer somewhere\nB+C) spend a significant amount of time outside of BC.<br>yes, does the law in that country between will date and death date allow for X problem?<br>",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
       },
       {
        "type": "infotext",
@@ -1319,7 +1314,7 @@
        "type": "infotext",
        "name": "citationPagePersistenceFunction",
        "visible": false,
-       "title": "[JIRA] page should show up but not disappear when someone needs to do a citation because afterwards, the questions that would enable citation would be answered differently when successfully done with citation/subpoena",
+       "title": "[JIRA] page should show up but not disappear when someone needs to do a citation because afterwards, the questions that would enable citation would be answered differently when successfully done with citation/subpoena<br>\nMaybe a note at the top that says \"Citation Generated/Printed on X Date.\"??",
        "titleLocation": "hidden",
        "messageStyle": "inline"
       }
@@ -1398,7 +1393,6 @@
       {
        "type": "text",
        "name": "citationReasonFuture",
-       "visible": false,
        "title": "[Possible Future] Explain why you believe {citeeName} has the Will:"
       },
       {
@@ -1418,7 +1412,7 @@
       },
       {
        "type": "infotext",
-       "name": "citationGenerateButton",
+       "name": "citationGenerateButtonJIRA",
        "title": "[JIRA] Print Citation Button",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -1437,11 +1431,11 @@
     },
     {
      "type": "panel",
-     "name": "citationCalculatorPanel",
+     "name": "subpoenaCalculatorPanel",
      "elements": [
       {
        "type": "infotext",
-       "name": "citationCalculateAgain",
+       "name": "citationCalculateAgainJIRA",
        "visible": false,
        "title": "[JIRA - clear some fields?]\nUpon redo-ing a citation, reminder pops up to review info and update if necessary. [figure out code to make this appear upon second viewing]",
        "titleLocation": "hidden"
@@ -1455,12 +1449,12 @@
       },
       {
        "type": "yesno",
-       "name": "question62",
+       "name": "citeeServedByCitor",
        "title": "Did you serve {citeeName} by yourself?"
       },
       {
        "type": "text",
-       "name": "question63",
+       "name": "citationServerName",
        "title": "What is the name of the person who served {citeeName}?"
       },
       {
@@ -1473,23 +1467,23 @@
       },
       {
        "type": "text",
-       "name": "question132",
-       "title": "[JIRA] Add time of day to service details",
+       "name": "citationServedTime",
+       "title": "[JIRA] Add time of day to service details [how much detail? pulldown with 24hours?]",
        "inputType": "time"
       },
       {
        "type": "address",
-       "name": "question133",
-       "title": "[JIRA] Double check city and country of service"
+       "name": "asdfsdfadsf",
+       "title": "[JIRA] Double check city and country of service - no need for street address, province or postal code"
       },
       {
        "type": "yesno",
-       "name": "question64",
+       "name": "subpoenaServedasf",
        "title": "[Do we need to do this affidavit now automatically OR just when they didn't respond and you want to proceed? - need separate affidavit from subpoena warrant] Did you get an affidavit of service from {serverName}"
       },
       {
        "type": "infotext",
-       "name": "citationCalculatorFunction",
+       "name": "citationCalculatorFunctionJIRA",
        "visible": false,
        "visibleIf": "{citationCalculatorExplanation} > 0",
        "title": "[JIRA Date + X Days] Calcualtor based on service method [should the app lock the ability to answer if the day is not up yet? Maybe not]",
@@ -1498,7 +1492,7 @@
       },
       {
        "type": "infotext",
-       "name": "citationResponseDate",
+       "name": "citationResponseDateExplanation",
        "visible": false,
        "visibleIf": "{citationCalculatorExplanation} > 0",
        "title": "Based on the day you served and service method, you should receive a response by X date.",
@@ -1645,39 +1639,67 @@
       {
        "type": "yesno",
        "name": "citationRGWillGood",
-       "visible": false,
-       "visibleIf": "{citationRepGrantWantMoreRecent} = \"n\"",
-       "title": "Is the rep grant for the will that you intended on using"
+       "title": "Is <citeeName>'s Representation Grant for the Will that you intended on using for your application?"
       },
       {
        "type": "yesno",
        "name": "citationRGWillGoodHighExec",
        "visible": false,
-       "visibleIf": "{citationRGWillMostRecent} = \"y\" or ({citationRGWillMostRecent} = \"n\" and {citationRGWantMoreRecent} = \"n\" and {citationRGWillGood} = \"y\")",
-       "title": "Are you a higher priority executor on that will than the person who got the rep grant? [yes citee's will is fine] "
+       "visibleIf": "{citationRGWillGood} = \"y\"",
+       "title": "Are you a higher priority executor on that will than the person who got the rep grant?"
+      },
+      {
+       "type": "infotext",
+       "name": "citationRGWillGoodHighExecYesError",
+       "visible": false,
+       "visibleIf": "{citationRGWillGood} = \"y\" and {citationRGWillGoodHighExec} = \"y\"",
+       "title": "Because you are a higher priority executor on the Will that {citeeName} has already got a Representation Grant for, you may get your name substituted and take over the Representation Grant.\n<br><br>\nThis service cannot help you with this process.\n<br><br>\nCheck out\n25-5 (5), 25-14 (1) c, general Rule 8. Use X form?\nA lawyer may be able to help with this process.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "citationRGWillGoodHighExecNoError",
+       "visible": false,
+       "visibleIf": "{citationRGWillGood} = \"y\" and {citationRGWillGoodHighExec} = \"n\"",
+       "title": "Because {citeeName} is a higher priority executor on the Will you want to use and they are a higher priority executor on this Will, this service cannot help you. {citeeName} is legally the person who should be executing {deceasedName}'s Will.\n<br><br>\nIf you are unsatisfied with the job that {citeeName} is doing executing {deceasedName}'s Will, you can complain in this way???\n<br><br>\n(assuming you want to use a Will that is valid)",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
       },
       {
        "type": "yesno",
        "name": "citationRGWantMoreRecent",
        "visible": false,
-       "visibleIf": "{citationRGWillMostRecent} = \"n\"",
+       "visibleIf": "{citationRGWillGood} = \"n\"",
        "title": "[rg will not good] Do you want to apply for a representation grant using {deceasedName}'s Will that is more recent?",
        "description": "the only reason to answer yes to this question is if you believe the most recent will is valid"
       },
       {
-       "type": "yesno",
-       "name": "citationRepGrantSomething??HighExecutor",
+       "type": "infotext",
+       "name": "citationRGWantMoreRecentYesExplanation",
        "visible": false,
-       "title": "??[want different will] Are you a higher priority executor on that will that you want to use [info gap]"
+       "visibleIf": "{citationRGWillGood} = \"n\" and {citationRGWantMoreRecent} = \"y\"",
+       "title": "[y (2019) have copy] <br>\nIf you believe that {deceasedName} made a valid Will that is more recent that the Will that {citeeName} used to get their Representation Grant, you may apply to get {citeeName}'s Representation Grant revoked.\n<br><br>\nThis service currently can't help you with the revoking. \n(see further information) a lawyer would be able to help.\n<br><br>\nYou can still use this service [afterward??]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question171",
+       "title": "Were you successful in getting grant revoked?"
       },
       {
        "type": "infotext",
        "name": "question97",
        "visible": false,
-       "visibleIf": "{citationRGWillGoodHighExec} = \"y\"",
-       "title": "[yes higher executor] this service cannot help you.\nif this is the will you want to use and the will is good, go get a lawyer to get your name subsituted for {citeeName}'s.\n<br>\n25-5 (5)\n25-14 (1) c\ngeneral Rule 8\n<br>\nToo complex? lawyer up.\n",
-       "titleLocation": "hidden",
-       "messageStyle": "error"
+       "title": "[Successfully revoked] Continue - Cite the person again\n<br>\n[JIRA] cite same person to do the proper will [regenereate citation] [go back to name of person] It's the same form, just different date, because they seem to have misunderstood your original citation",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question172",
+       "title": "[not successful]<br>\n[JIRA] Jump back to \"Is this the will you wanted to use?",
+       "titleLocation": "hidden"
       },
       {
        "type": "yesno",
@@ -1763,7 +1785,7 @@
     },
     {
      "type": "panel",
-     "name": "panel2",
+     "name": "citationP1Panel",
      "elements": [
       {
        "type": "yesno",
@@ -1852,7 +1874,6 @@
       {
        "type": "infotext",
        "name": "question112",
-       "visible": false,
        "title": "[JIRA] page should show up but not disappear when someone needs to do a citation because afterwards, the questions that would enable citation would be answered differently when successfully done with citation/subpoena",
        "titleLocation": "hidden",
        "messageStyle": "inline"
@@ -1861,7 +1882,7 @@
     },
     {
      "type": "panel",
-     "name": "panel11",
+     "name": "subpoenaCreationPanel",
      "elements": [
       {
        "type": "infotext",
@@ -1872,17 +1893,17 @@
       },
       {
        "type": "text",
-       "name": "question49",
+       "name": "subpoeneeName",
        "title": "What is the name of the person who has the Will?"
       },
       {
        "type": "address",
-       "name": "question72",
+       "name": "subpoeneeAddress",
        "title": "Address"
       },
       {
        "type": "matrixdynamic",
-       "name": "question73",
+       "name": "subpoenaDocuments",
        "title": "List the types of documents. date and other info option (break down to each bank if possible instead of ALL financial records)",
        "columns": [
         {
@@ -1918,7 +1939,7 @@
       },
       {
        "type": "matrixdynamic",
-       "name": "question74",
+       "name": "subpoenaEvidence",
        "title": "List the different kinds of evidence that you have that proves/suggests/indicates {subpoenaName} has the(se) documents you need.",
        "description": "corresepondence with official institutions that suggest {subpoenaName} has stuff; affidavit evidence",
        "columns": [
@@ -1942,39 +1963,47 @@
       },
       {
        "type": "text",
-       "name": "question100",
+       "name": "subpoenorName",
        "title": "What is your name (the name of the person is going to be applying)? Not sure if it matters?"
       },
       {
        "type": "address",
-       "name": "question102",
+       "name": "subpoenorAddress",
        "title": "Service address to receive {citeeName}'s response"
       },
       {
        "type": "contactinfo",
-       "name": "question103",
+       "name": "subpoenorContactInfo",
        "title": "Additional contact info to receive {citeeName}'s response."
       },
       {
        "type": "dropdown",
-       "name": "question75",
+       "name": "subpoenaCourt",
        "title": "Which Supreme Court of BC Location do you want {subpoenaName} to deliver the documents to?",
        "choices": [
-        "item1",
-        "item2",
-        "item3"
+        "Vancouver Law Courts",
+        "Victoria",
+        "New Westminster"
        ]
       },
       {
        "type": "infotext",
-       "name": "question106",
+       "name": "subpoenaGenerateButtonJIRA",
        "title": "[JIRA] Print Subpoena Button",
        "isRequired": true,
        "titleLocation": "hidden"
       }
      ],
      "visible": false,
-     "visibleIf": "{citationIntroExplanation} > 0"
+     "visibleIf": "{subpoenaIntroExplanation} > 0"
+    },
+    {
+     "type": "infotext",
+     "name": "subpoenaCalculatorBookmark",
+     "visible": false,
+     "title": "Subpoena Date Calculator",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
@@ -1982,64 +2011,72 @@
      "elements": [
       {
        "type": "infotext",
-       "name": "question76",
+       "name": "subpoenaCalculateAgainJIRA",
        "visible": false,
-       "title": "[JIRA - clear some fields?]\nUpon redo-ing a citation, reminder pops up to review info and update if necessary. [figure out code to make this appear upon second viewing]",
+       "title": "[JIRA - clear some fields?]\nUpon redo-ing a subpoena, reminder pops up to review info and update if necessary. [figure out code to make this appear upon second viewing]",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question77",
-       "title": "Citation Next Steps. Follow the instructions.\n<br><br>\nExpect a response within 14 days of {citeeName} receiving the citation.\n<br><br>\nExpect the response to be grant itself, status update, or P33 with other info.",
+       "name": "subpoenaCalculatorExplanation",
+       "title": "Subpoena Next Steps. Follow the instructions.\n<br><br>\nExpect a response within 14 days of {citeeName} receiving the citation.\n<br><br>\nExpect the response to be grant itself, status update, or P33 with other info.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question137",
+       "name": "subpoenaApproved",
        "title": "Did the court approve your subpoena?"
       },
       {
        "type": "yesno",
-       "name": "question138",
+       "name": "subpoenaSomeoneElse",
+       "visible": false,
        "title": "Is there anyone else you believe has the will/other docs?"
       },
       {
+       "type": "infotext",
+       "name": "question49",
+       "visible": false,
+       "title": "What to do? Go back to Will Questions and say \"no original/no copy?\" Need two of these?",
+       "titleLocation": "hidden"
+      },
+      {
        "type": "yesno",
-       "name": "question139",
+       "name": "subpoenaSomeoneElseVoluntaryTransfer",
        "title": "[yes someone else has docs] will they give it to you voluntarily?"
       },
       {
        "type": "infotext",
-       "name": "question149",
+       "name": "subpoenaSomeoneElseVoluntaryTransferYesExplanation",
        "title": "[yes] get them",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question151",
+       "name": "subpoenaSomeoneElseVoluntaryTransferNoExplanationJIRA",
        "title": "[no] subpoena some one else [back to the top]",
        "titleLocation": "hidden"
       },
       {
        "type": "text",
-       "name": "question135",
+       "name": "subpoenaDateStamp",
        "title": "Date Stamp on the Subpoena",
        "inputType": "date"
       },
       {
        "type": "yesno",
-       "name": "question78",
+       "name": "subpoenaServedBySubpoenor",
        "title": "Did you serve {subpoenaName} by yourself?"
       },
       {
        "type": "text",
-       "name": "question79",
+       "name": "subpoenaServerName",
        "title": "What is the name of the person who served {subpoenaName}?"
       },
       {
        "type": "text",
-       "name": "question96",
+       "name": "subpoenaServedDate",
        "visible": false,
        "visibleIf": "{citationCalculatorExplanation} > 0",
        "title": "[JIRA] Enter date that {citeeName} was served",
@@ -2047,13 +2084,13 @@
       },
       {
        "type": "text",
-       "name": "question131",
-       "title": "[JIRA] Add time of day to service details",
+       "name": "subpoenaServedTime",
+       "title": "[JIRA] Add time of day to service details [how much detail? pulldown with 24hours?]",
        "inputType": "time"
       },
       {
        "type": "infotext",
-       "name": "question113",
+       "name": "subpoenaResponseFunctionJIRA",
        "visible": false,
        "visibleIf": "{citationCalculatorExplanation} > 0",
        "title": "[JIRA Date + X Days] Calcualtor based on service method [should the app lock the ability to answer if the day is not up yet? Maybe not]",
@@ -2062,7 +2099,7 @@
       },
       {
        "type": "infotext",
-       "name": "question114",
+       "name": "subpoenaResponseDateExplanation",
        "visible": false,
        "visibleIf": "{citationCalculatorExplanation} > 0",
        "title": "Based on the day you served and service method, {subpoenaLocation} should receive a response by X date.",
@@ -2072,6 +2109,14 @@
      ],
      "visible": false,
      "visibleIf": "{citationGenerateButton} > 0"
+    },
+    {
+     "type": "infotext",
+     "name": "subpoenaResultBookmark",
+     "visible": false,
+     "title": "Subpoena Result",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
@@ -2142,6 +2187,14 @@
      ]
     },
     {
+     "type": "infotext",
+     "name": "subpoenaWarrantBookmark",
+     "visible": false,
+     "title": "Warrant After Subpoena",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
      "type": "panel",
      "name": "panel14",
      "elements": [
@@ -2179,6 +2232,14 @@
        "titleLocation": "hidden"
       }
      ]
+    },
+    {
+     "type": "infotext",
+     "name": "subpoenaWarrantResultBookmark",
+     "visible": false,
+     "title": "Warrant After Subpoena Result",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
