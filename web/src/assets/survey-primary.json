@@ -1867,14 +1867,14 @@
       {
        "type": "infotext",
        "name": "subpoenaIntroExplanation",
-       "title": "you can subpoena for will, codicil, or any other type of document you reasonable need to complete an application for repgrant. for example (bank account info)",
+       "title": "you can subpoena for will, codicil, or any other testamentary document that {deceasedName} made so that you can complete an application for rep grant.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question112",
-       "title": "[JIRA] page should show up but not disappear when someone needs to do a citation because afterwards, the questions that would enable citation would be answered differently when successfully done with citation/subpoena",
+       "title": "[JIRA] page should show up but not disappear when someone needs to do a subpoena because afterwards, the questions that would enable subpoena would be answered differently when successfully done with citation/subpoena",
        "titleLocation": "hidden",
        "messageStyle": "inline"
       }
@@ -1886,9 +1886,10 @@
      "elements": [
       {
        "type": "infotext",
-       "name": "question48",
+       "name": "subpoenaAgainExplanation",
        "visible": false,
-       "title": "[JIRA - clear some fields?]\nUpon redo-ing a citation, reminder pops up to review info and update if necessary. [figure out code to make this appear upon second viewing]",
+       "visibleIf": "{subpoenaWarrantNoNewPersonSubpoenaYesExplanation} > 0 or {subpoenaWarrantNewPersonVoluntaryTransferNoExplanation} > 0 or\n{subpoenaNewPersonVoluntaryTransferNoExplanation} > 0 or\n{subpoenaUnapprovedNewPersonVoluntaryTransferNoExplanation} > 0",
+       "title": "[JIRA - clear some fields?]\nUpon redo-ing a subpoena, reminder pops up to review info and update if necessary. [figure out code to make this appear upon second viewing]",
        "titleLocation": "hidden"
       },
       {
@@ -1932,7 +1933,6 @@
       {
        "type": "infotext",
        "name": "question121",
-       "visible": false,
        "title": "[after public testing - if people complain that they could have subpoenaed financial docs in one go instead of after the P18, we can add extra options]",
        "description": "find a way to redescribe other testamentary doc",
        "titleLocation": "hidden"
@@ -1988,7 +1988,7 @@
       },
       {
        "type": "infotext",
-       "name": "subpoenaGenerateButtonJIRA",
+       "name": "subpoenaGenerateButton",
        "title": "[JIRA] Print Subpoena Button",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -2007,11 +2007,11 @@
     },
     {
      "type": "panel",
-     "name": "panel12",
+     "name": "subpoenaCalculatorPanel1",
      "elements": [
       {
        "type": "infotext",
-       "name": "subpoenaCalculateAgainJIRA",
+       "name": "subpoenaCalculateAgain",
        "visible": false,
        "title": "[JIRA - clear some fields?]\nUpon redo-ing a subpoena, reminder pops up to review info and update if necessary. [figure out code to make this appear upon second viewing]",
        "titleLocation": "hidden"
@@ -2026,73 +2026,87 @@
       {
        "type": "yesno",
        "name": "subpoenaApproved",
+       "visible": false,
+       "visibleIf": "{subpoenaCalculatorExplanation} > 0",
        "title": "Did the court approve your subpoena?"
       },
       {
        "type": "yesno",
-       "name": "subpoenaSomeoneElse",
+       "name": "subpoenaUnapprovedNewPerson",
        "visible": false,
+       "visibleIf": "{subpoenaApproved} = \"n\"",
        "title": "Is there anyone else you believe has the will/other docs?"
       },
       {
        "type": "infotext",
-       "name": "question49",
+       "name": "subpoenaUnapprovedNewPersonNo",
        "visible": false,
-       "title": "What to do? Go back to Will Questions and say \"no original/no copy?\" Need two of these?",
+       "visibleIf": "{subpoenaApproved} = \"n\" and {subpoenaUnapprovedNewPerson} = \"n\"",
+       "title": "[no] What to do? Go back to Will Questions and say \"no original/no copy?\" Need two of these to customize for no original and no copy?\n<br>[JIRA]",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "subpoenaSomeoneElseVoluntaryTransfer",
+       "name": "subpoenaUnapprovedNewPersonVoluntaryTransfer",
+       "visible": false,
+       "visibleIf": "{subpoenaApproved} = \"n\" and {subpoenaUnapprovedNewPerson} = \"y\"",
        "title": "[yes someone else has docs] will they give it to you voluntarily?"
       },
       {
        "type": "infotext",
-       "name": "subpoenaSomeoneElseVoluntaryTransferYesExplanation",
-       "title": "[yes] get them",
+       "name": "subpoenaUnapprovedNewPersonVoluntaryTransferYesExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaApproved} = \"n\" and {subpoenaUnapprovedNewPerson} = \"y\" and {subpoenaUnapprovedNewPersonVoluntaryTransfer} = \"y\"",
+       "title": "[yes] get them, go back and say I have them (original or copy)\n<br>[JIRA]",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "subpoenaSomeoneElseVoluntaryTransferNoExplanationJIRA",
-       "title": "[no] subpoena some one else [back to the top]",
+       "name": "subpoenaUnapprovedNewPersonVoluntaryTransferNoExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaApproved} = \"n\" and {subpoenaUnapprovedNewPerson} = \"y\" and {subpoenaUnapprovedNewPersonVoluntaryTransfer} = \"n\"",
+       "title": "[no] subpoena some one else [back to the top]\n<br>[JIRA]",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "text",
        "name": "subpoenaDateStamp",
+       "visible": false,
+       "visibleIf": "{subpoenaApproved} = \"y\"",
        "title": "Date Stamp on the Subpoena",
        "inputType": "date"
       },
       {
-       "type": "yesno",
-       "name": "subpoenaServedBySubpoenor",
-       "title": "Did you serve {subpoenaName} by yourself?"
-      },
-      {
        "type": "text",
        "name": "subpoenaServerName",
-       "title": "What is the name of the person who served {subpoenaName}?"
+       "visible": false,
+       "visibleIf": "{subpoenaApproved} = \"y\"",
+       "title": "What is the name of the person who served {subpoeneeName}?"
       },
       {
        "type": "text",
        "name": "subpoenaServedDate",
        "visible": false,
-       "visibleIf": "{citationCalculatorExplanation} > 0",
+       "visibleIf": "{{subpoenaApproved} = \"y\"",
        "title": "[JIRA] Enter date that {citeeName} was served",
        "inputType": "date"
       },
       {
        "type": "text",
        "name": "subpoenaServedTime",
+       "visible": false,
+       "visibleIf": "{subpoenaApproved} = \"y\"",
        "title": "[JIRA] Add time of day to service details [how much detail? pulldown with 24hours?]",
        "inputType": "time"
       },
       {
        "type": "infotext",
-       "name": "subpoenaResponseFunctionJIRA",
+       "name": "subpoenaResponseFunction",
        "visible": false,
-       "visibleIf": "{citationCalculatorExplanation} > 0",
+       "visibleIf": "{subpoenaApproved} = \"y\"",
        "title": "[JIRA Date + X Days] Calcualtor based on service method [should the app lock the ability to answer if the day is not up yet? Maybe not]",
        "titleLocation": "hidden",
        "messageStyle": "inline"
@@ -2101,14 +2115,14 @@
        "type": "infotext",
        "name": "subpoenaResponseDateExplanation",
        "visible": false,
-       "visibleIf": "{citationCalculatorExplanation} > 0",
+       "visibleIf": "{subpoenaApproved} = \"y\"",
        "title": "Based on the day you served and service method, {subpoenaLocation} should receive a response by X date.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
      ],
      "visible": false,
-     "visibleIf": "{citationGenerateButton} > 0"
+     "visibleIf": "{subpoenaGenerateButton} > 0"
     },
     {
      "type": "infotext",
@@ -2120,71 +2134,104 @@
     },
     {
      "type": "panel",
-     "name": "panel13",
+     "name": "subpoenaResultPanel",
      "elements": [
       {
        "type": "yesno",
-       "name": "question115",
+       "name": "subpoenaAllDocsFiled",
        "title": "Did all the documents you requested in the subpoena end up at {subpoenaLocation} ?"
       },
       {
        "type": "infotext",
-       "name": "question116",
-       "title": "Go back to will questions and say court house has the will",
+       "name": "subpoenaAllDocsFiledYesExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaAllDocsFiled} = \"y\"",
+       "title": "Go back to will questions and say court house has the will\n<br>[JIRA] Return Button",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question117",
+       "name": "subpoenaExcuseFiled",
+       "visible": false,
+       "visibleIf": "{subpoenaAllDocsFiled} = \"n\"",
        "title": "Was there an affidavit explaining why the documents you requested in your subpoena were not given to {subpoenaLocation}?"
       },
       {
        "type": "infotext",
-       "name": "question129",
+       "name": "subpoenaExcuseFiledNoExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaAllDocsFiled} = \"n\" and {subpoenaExcuseFiled} = \"n\"",
        "title": "[not all docs + no affidavit]<br>\nEven if you have spoken with them and they gave you answers, you still need them to do a formal affidavit explaining this stuff. go back and ask if they will give you an affidavit explaining why they did not put those documents in court.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question128",
-       "title": "Were you able to get an affidavit from {subpoenaName}?"
+       "name": "subpoenaExcuseGotten",
+       "visible": false,
+       "visibleIf": "{subpoenaAllDocsFiled} = \"n\" and {subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseFiledNoExplanation} > 0",
+       "title": "Were you able to get an affidavit from {subpoeneeName}?"
       },
       {
        "type": "infotext",
-       "name": "question118",
+       "name": "subpoenaExcuseGottenNoExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaAllDocsFiled} = \"n\" and {subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseGotten} = \"n\"",
        "title": "[not all docs + no affidavit+no voluntary subpoena]<br>\nIf you believe {subpoenaName} still has the documents you requested in your subpoena, you will need to request a Warrant after subpoena which will force peace officers to go get the docs.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question119",
+       "name": "subpoenaNewPerson",
+       "visibleIf": "({subpoenaAllDocsFiled} = \"n\" and ({subpoenaExcuseFiled} = \"y\" or ({subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseGotten} = \"y\")",
        "title": "[not all docs + yes affidavit]<br>Do you now know who has those other documents that you requested in your subpoena?"
       },
       {
        "type": "infotext",
-       "name": "question123",
+       "name": "subpoenaNewPersonNoExplanation",
+       "visible": false,
+       "visibleIf": "({subpoenaAllDocsFiled} = \"n\" and ({subpoenaExcuseFiled} = \"y\" or ({subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseGotten} = \"y\") and {subpoenaNewPerson} = \"n\"",
        "title": "[no other person] just use the documents that you have and consider the other docs non-existent. ",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question122",
+       "name": "subpoenaNewPersonVoluntaryTransfer",
+       "visible": false,
+       "visibleIf": "({subpoenaAllDocsFiled} = \"n\" and ({subpoenaExcuseFiled} = \"y\" or ({subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseGotten} = \"y\") and {subpoenaNewPerson} = \"y\"",
        "title": "[not all docs + yes affidavit+yes other person]<br>Will the person who has those documents give them to you?"
       },
       {
        "type": "yesno",
-       "name": "question124",
-       "title": "[not voluntarily giving to you]<br>Do you want to subpoena them? [sends you to the top??]"
+       "name": "subpoenaNewPersonSubpoena",
+       "visible": false,
+       "visibleIf": "{subpoenaAllDocsFiled} = \"n\" and {subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseGotten} = \"y\" and {subpoenaNewPerson} = \"y\" and {subpoenaNewPersonVoluntaryTransfer} = \"n\"",
+       "title": "[old not voluntarily giving to you]<br>Do you want to subpoena them? [sends you to the top??] [why is this a yes/no instead of a \"Continue\"?]"
       },
       {
        "type": "infotext",
-       "name": "question120",
-       "title": "[yes voluntarily give to you] go get them and return to 'do you have this will'",
+       "name": "subpoenaNewPersonVoluntaryTransferNoExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaAllDocsFiled} = \"n\" and {subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseGotten} = \"y\" and {subpoenaNewPerson} = \"y\" and {subpoenaNewPersonVoluntaryTransfer} = \"n\"",
+       "title": "[new not voluntarily giving to you]<br>Go subpoena them<br>[JIRA sends you to the top]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "subpoenaNewPersonVoluntaryTransferYesExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaAllDocsFiled} = \"n\" and {subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseGotten} = \"y\" and {subpoenaNewPerson} = \"y\" and {subpoenaNewPersonVoluntaryTransfer} = \"y\"",
+       "title": "[yes voluntarily give to you] go get them and return to 'do you have this will'\n<br>[JIRA]",
+       "isRequired": true,
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{subpoenaApproved} = \"y\" and {subpoenaResponseDateExplanation} > 0"
     },
     {
      "type": "infotext",
@@ -2196,42 +2243,47 @@
     },
     {
      "type": "panel",
-     "name": "panel14",
+     "name": "subpoenaWarrantCreationPanel",
      "elements": [
       {
        "type": "infotext",
-       "name": "question125",
+       "name": "subpoenaWarrantCreationExplanation",
        "title": "warrant after subpoena will cost $200 + cost of swearing the affidavit (usually $40).",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "address",
-       "name": "question130",
-       "title": "home address (if different from service address)"
+       "name": "subpoenaServerAddress",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantCreationExplanation} > 0",
+       "title": "{subpoenaServerName}'s home address (if different from service address)"
       },
       {
        "type": "text",
-       "name": "question127",
-       "title": "occupation"
+       "name": "subpoenaServerOccupation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantCreationExplanation} > 0",
+       "title": "{subpoenaServerName}'s occupation"
       },
       {
        "type": "address",
-       "name": "question134",
+       "name": "subpoenaServedLocation",
+       "visibleIf": "{subpoenaWarrantCreationExplanation} > 0",
        "title": "[JIRA] Double check city and country of service"
       },
       {
        "type": "infotext",
-       "name": "question126",
-       "title": "[JIRA] generate P36 + Form 15 affidavit of personal service [you served subpoena]",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question111",
-       "title": "[JIRA] generate P36 + Form 15 affidavit of personal service [someone else served subpoena] - custom messaging or 1 unified is fine?",
+       "name": "subpoenaGenerateWarrantButton",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantCreationExplanation} > 0",
+       "title": "[JIRA] generate P36 + Form 15 affidavit of personal service + instructions",
+       "isRequired": true,
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{subpoenaAllDocsFiled} = \"n\" and {subpoenaExcuseFiled} = \"n\" and {subpoenaExcuseGotten} = \"n\" and\n{subpoenaExcuseGottenNoExplanation} > 0"
     },
     {
      "type": "infotext",
@@ -2243,76 +2295,122 @@
     },
     {
      "type": "panel",
-     "name": "panel15",
+     "name": "subpoenaWarrantResultsPanel",
      "elements": [
       {
        "type": "yesno",
-       "name": "question136",
+       "name": "subpoenaWarrantApproved",
        "title": "Did the court approve your warrant after subpoena?"
       },
       {
        "type": "yesno",
-       "name": "question140",
+       "name": "subpoenaWarrantNoNewPerson",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} = \"n\"",
        "title": "Someone else who have the docs?"
       },
       {
        "type": "infotext",
-       "name": "question98",
-       "title": "[no] Go back to 'do you have this will' and consider the documents non-existent (don't know who has it)",
+       "name": "subpoenaWarrantNoNewPersonNoExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} = \"n\" and {subpoenaWarrantNoNewPerson} = \"n\"",
+       "title": "[no] Go back to 'do you have this will' and consider the documents non-existent (don't know who has it)\n<br>[JIRA] Go to anchor button??",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question143",
+       "name": "subpoenaWarrantNoNewPersonSubpoena",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} = \"n\" and {subpoenaWarrantNoNewPerson} = \"y\"",
        "title": "Do you want to subpoena them?"
       },
       {
        "type": "infotext",
-       "name": "question141",
-       "title": "[yes] subpoena them, go back to the top",
+       "name": "subpoenaWarrantNoNewPersonSubpoenaYesExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} = \"n\" and {subpoenaWarrantNoNewPerson} = \"y\" and {subpoenaWarrantNoNewPersonSubpoena} = \"y\"",
+       "title": "[yes] subpoena them, go back to the top\n<br>[JIRA]",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question142",
+       "name": "subpoenaWarrantNoNewPersonSubpoenaNoExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} = \"n\" and {subpoenaWarrantNoNewPerson} = \"y\" and {subpoenaWarrantNoNewPersonSubpoena} = \"n\"",
+       "title": "[no] what to do? go back and say these documents don't exist???\n<br>[JIRA]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "subpoenaWarrantApprovedYesExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} =\"y\"",
        "title": "[warrant approved] You need to wait until the warrant is executed by a peace officer",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question144",
+       "name": "subpoenaDocsAtCourt",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} = \"y\" and {subpoenaWarrantApprovedYesExplanation} > 0",
        "title": "Are all the documents that you requested in the subpoena now at the courthouse?"
       },
       {
        "type": "infotext",
-       "name": "question146",
-       "title": "go to \"do you the will\" and answer that the courthouse them?",
+       "name": "subpoenaDocsAtCourtYesExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} =\"y\" and {subpoenaDocsAtCourt} = \"y\"",
+       "title": "[yes] go to \"do you have the will\" and answer that the courthouse them?\n<br>[JIRA]",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question145",
+       "name": "subpoenaWarrantNewPerson",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} =\"y\" and {subpoenaDocsAtCourt} = \"n\"",
        "title": "[not all at the courthouse] Do you now believe someone else has the documents that you need?"
       },
       {
+       "type": "infotext",
+       "name": "subpoenaWarrantNewPersonNoExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} =\"y\" and {subpoenaDocsAtCourt} = \"n\" and {subpoenaWarrantNewPerson} = \"n\"",
+       "title": "Nov22 [no new person??]What to do here? Ask about affidavit explaining excuses?<br>Go back to Will page and consider the doc you needed doesn't exist?",
+       "titleLocation": "hidden"
+      },
+      {
        "type": "yesno",
-       "name": "question147",
+       "name": "subpoenaWarrantNewPersonVoluntaryTransfer",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} =\"y\" and {subpoenaDocsAtCourt} = \"n\" and {subpoenaWarrantNewPerson} = \"y\"",
        "title": "[yes someone else] Will they give them to you voluntarily?"
       },
       {
        "type": "infotext",
-       "name": "question148",
-       "title": "[yes someone else + yes voluntary]\nGo go get them and then back to \"do you have this will\"",
+       "name": "subpoenaWarrantNewPersonVoluntaryTransferYesExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} =\"y\" and {subpoenaDocsAtCourt} = \"n\" and {subpoenaWarrantNewPerson} = \"y\" and {subpoenaWarrantNewPersonVoluntaryTransfer} = \"y\"",
+       "title": "[yes someone else + yes voluntary]\nGo go get them and then back to \"do you have this will\"\n<br>[JIRA]",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question150",
-       "title": "[no] you need to subpoena them. go back to the top",
+       "name": "subpoenaWarrantNewPersonVoluntaryTransferNoExplanation",
+       "visible": false,
+       "visibleIf": "{subpoenaWarrantApproved} =\"y\" and {subpoenaDocsAtCourt} = \"n\" and {subpoenaWarrantNewPerson} = \"y\" and {subpoenaWarrantNewPersonVoluntaryTransfer} = \"n\"",
+       "title": "[no] you need to subpoena them. go back to the top\n<br>[JIRA]",
+       "isRequired": true,
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{subpoenaGenerateWarrantButton} > 0"
     }
    ]
   },
