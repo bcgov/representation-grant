@@ -425,53 +425,65 @@
       },
       {
        "type": "yesno",
-       "name": "question80",
+       "name": "willCourtHasOriginal",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\"\nor\n({willHave} = \"y\" and {willOriginal} = \"n\")\n",
        "title": "Does a courthouse (anywhere in the world) have {deceasedName}'s original Will?",
        "description": "The courthouse would have the will if someone else applied for a Rep Grant or someone was served a subpoena to file that will at the courthouse."
       },
       {
        "type": "infotext",
-       "name": "question95",
-       "title": "[no have will + original at court] Go get a copy from that courthouse and use the info from that will.\n<br>\naffidavit questions",
+       "name": "willHaveNoCourtHasOriginalYesExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"y\"",
+       "title": "[no have will + original at court] Go get a copy from that courthouse and use the info from that will.",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question84",
-       "title": "[yes have will + original at court] Make sure the info on your copy is the same as the original and use that for the following questions.\n<br>\naffidavit questions",
+       "name": "willHaveYesCourtHasOriginalYesExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"y\" and {willOriginal} = \"n\" and {willCourtHasOriginal} = \"y\"",
+       "title": "[yes have will + original at court] Make sure the info on your copy is the same as the original and use that for the following questions.",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "willOriginalExists",
        "visible": false,
-       "visibleIf": "{willHave} = \"n\" \nor \n({willHave} = \"y\" and {willOriginal} = \"n\")",
+       "visibleIf": "({willHave} = \"n\" or ({willHave} = \"y\" and {willOriginal} = \"n\")) and {willCourtHasOriginal} = \"n\"\n\n",
        "title": "Do you have an idea who has the original Will?"
       },
       {
        "type": "infotext",
        "name": "willOriginalExistsNoExplanation",
        "visible": false,
-       "visibleIf": "{willHave} = \"y\" and {willOriginal} = \"n\" and {willOriginalExists} = \"n\"",
+       "visibleIf": "({willHave} = \"n\" or ({willHave} = \"y\" and {willOriginal} = \"n\")) and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\"\n",
        "title": "If you think the original will is gone forever, that's fine. We'll just use the copy.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question107",
-       "title": "[yes idea] Is this person who has the original Will an executor named in the Will?"
+       "name": "willOriginalPossessorExec",
+       "visible": false,
+       "visibleIf": "({willHave} = \"n\" or ({willHave} = \"y\" and {willOriginal} = \"n\")) and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"y\"\n",
+       "title": "Is this person who has the original Will an executor named in the Will?"
       },
       {
        "type": "yesno",
-       "name": "question110",
+       "name": "willApplicantHighestExec",
+       "visible": false,
+       "visibleIf": "({willHave} = \"n\" or ({willHave} = \"y\" and {willOriginal} = \"n\")) and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"y\" and {willOriginalPossessorExec} = \"y\"",
        "title": "[yes] Are you the highest level, living executor? (who has not renounced) [yes - subpoena; no cite the highest living, non-renounced executor]"
       },
       {
        "type": "yesno",
        "name": "willOriginalVoluntaryTransfer",
        "visible": false,
-       "visibleIf": "{willOriginal} = \"n\" and {willOriginalExists} = \"y\"",
+       "visibleIf": "({willHave} = \"n\" or ({willHave} = \"y\" and {willOriginal} = \"n\")) and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"y\" and \n\n{willOriginalPossessorExec} = \"n\"",
        "title": "[yes highest level or not executor] Will the person who has the original Will give it to you?",
        "description": "Make sure they give you the original and not a copy.If they will only give a copy, select \"No\" to this question."
       },
@@ -493,7 +505,7 @@
       },
       {
        "type": "yesno",
-       "name": "question83",
+       "name": "willCourtHasCopy",
        "title": "Does a courthouse (anywhere in the world) have a copy of {deceasedName}'s Will?",
        "description": "The courthouse would have the will if someone else applied for a Rep Grant or someone was served a subpoena to file that will at the courthouse."
       },
@@ -521,7 +533,7 @@
        "name": "willCopyVoluntaryTransferYesExplanation",
        "visible": false,
        "visibleIf": "{willHave} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} = \"y\" and {willCopyVoluntaryTransfer} = \"y\"",
-       "title": "Go get the copy the will. \n<br><br>\nSelect \"Yes\" for Will they give you the original Will? [JIRA - jump to relevant question.",
+       "title": "Go get the copy the will. \n<br><br>\nSelect \"Yes\" for haveWill [JIRA - jump to relevant question.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
@@ -607,7 +619,7 @@
     },
     {
      "type": "panel",
-     "name": "panel10",
+     "name": "willCourtAasfasdfas",
      "elements": [
       {
        "type": "yesno",
@@ -665,7 +677,8 @@
        "title": "[JIRA] - generate PDF affidavit for third party Will detective",
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false
     },
     {
      "type": "panel",
@@ -732,7 +745,7 @@
       }
      ],
      "visible": false,
-     "visibleIf": "{will} = 'y' or \n{willStatus} = \"item1\" or\n{willStatus} = \"item2\"\nor {willCitationPlaceholder} > 0\n{willOriginalExists} = \"n\""
+     "visibleIf": "({willHave} = 'y' and {willOriginal} = \"y\") or \n{willStatus} = \"item1\" or\n{willStatus} = \"item2\"\nor {willCitationPlaceholder} > 0\n{willOriginalExists} = \"n\""
     },
     {
      "type": "infotext",
@@ -1448,13 +1461,10 @@
        "titleLocation": "hidden"
       },
       {
-       "type": "yesno",
-       "name": "citeeServedByCitor",
-       "title": "Did you serve {citeeName} by yourself?"
-      },
-      {
        "type": "text",
        "name": "citationServerName",
+       "visible": false,
+       "visibleIf": "{citationCalculatorExplanation} > 0",
        "title": "What is the name of the person who served {citeeName}?"
       },
       {
@@ -1468,18 +1478,24 @@
       {
        "type": "text",
        "name": "citationServedTime",
+       "visible": false,
+       "visibleIf": "{citationCalculatorExplanation} > 0",
        "title": "[JIRA] Add time of day to service details [how much detail? pulldown with 24hours?]",
        "inputType": "time"
       },
       {
        "type": "address",
-       "name": "asdfsdfadsf",
+       "name": "citationServedLocation",
+       "visible": false,
+       "visibleIf": "{citationCalculatorExplanation} > 0",
        "title": "[JIRA] Double check city and country of service - no need for street address, province or postal code"
       },
       {
        "type": "yesno",
        "name": "subpoenaServedasf",
-       "title": "[Do we need to do this affidavit now automatically OR just when they didn't respond and you want to proceed? - need separate affidavit from subpoena warrant] Did you get an affidavit of service from {serverName}"
+       "visible": false,
+       "visibleIf": "{citationCalculatorExplanation} > 0",
+       "title": "???[Do we need to do this affidavit now automatically OR just when they didn't respond and you want to proceed? - need separate affidavit from subpoena warrant] Did you get an affidavit of service from {serverName}"
       },
       {
        "type": "infotext",
@@ -1549,6 +1565,7 @@
       {
        "type": "infotext",
        "name": "question59",
+       "visible": false,
        "title": "[P33 Will Apply]<br>\nExplain process\n<br><br>\nCountdown clock for 6 months. ",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -1622,7 +1639,7 @@
       }
      ],
      "visible": false,
-     "visibleIf": "{citationResponseDate} > 0"
+     "visibleIf": "{citationResponseDateExplanation} > 0"
     },
     {
      "type": "infotext",
@@ -1849,11 +1866,189 @@
     },
     {
      "type": "infotext",
-     "name": "question71",
+     "name": "citationNRBookmark",
      "visible": false,
      "title": "Citation Response - No Response",
      "titleLocation": "hidden",
      "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "citationNRPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "citationNRHaveCopy",
+       "visible": false,
+       "visibleIf": "{willHave} = \"y\" and {willOriginal} = \"n\" and {willCourtHasOriginal} = \"n\"",
+       "title": "If you are applying, you will do a P34 later at the end of the service",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNRNoCopy",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\"",
+       "title": "If you are applying, you will do a P34 later at the end of the service; they might not be an executor. ",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNRNowHaveCopy",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNoCopy} > 0",
+       "title": "Do you now have a copy of the Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNRCopyExists",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\"",
+       "title": "Do you know who has a copy?"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNRCopyExistsNoExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"n\"",
+       "title": "Continue - Go back to will page and answer \"No\" to \"do you know how has a copy??",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNRCopyVoluntaryTransfer",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\"",
+       "title": "Will they give it to you?"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNRCopyVoluntaryTransferNoExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"n\"",
+       "title": "Subpoena",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNRApplicantHighestExec",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\"",
+       "title": "[multi-start point - for have copy and now have copy] Are you now the highest priority executor on the will?\n<br>(worth keeping this or redundant?? -> maybe citee refused/renounced)"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNRAnotherHigherExec",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"n\"",
+       "title": "Will another higher priority exeuctor now apply using the will you want? "
+      },
+      {
+       "type": "infotext",
+       "name": "citationNRAnotherHigherExecYesExplanationPart1",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"n\" and {citationNRAnotherHigherExec} = \"y\"",
+       "title": "Stop - Wait as long as everything is good, that's good. Keep following up with them until they have applied (P1). If you believe they didn't apply in a reasonable time. Cite them.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNRAnotherHigherExecYesExplanationPart2",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"n\" and {citationNRAnotherHigherExec} = \"y\" and {citationNRAnotherHigherExecYesExplanationPart1} > 0",
+       "title": "?? do we need this? Did they apply within a reasonable time? For example, a month??"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNRAnotherHigherExecYesExplanationPart3",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"n\" and {citationNRAnotherHigherExec} = \"y\" and {citationNRAnotherHigherExecYesExplanationPart1} > 0 and {citationNRAnotherHigherExecYesExplanationPart2} = \"n\"",
+       "title": "??? do we need this? Cite again [JIRA takes you to the top]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNRAnotherHigherExecYesExplanationPart2YesExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"n\" and {citationNRAnotherHigherExec} = \"y\" and {citationNRAnotherHigherExecYesExplanationPart1} > 0 and {citationNRAnotherHigherExecYesExplanationPart2} = \"y\"",
+       "title": "Good, nothing further for you to do. ??? Notice of Dispute info.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNRAnotherHigherExecNoExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"n\" and {citationNRAnotherHigherExec} = \"n\"",
+       "title": "Continue - Cite them",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNROriginal",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"y\"",
+       "title": "[all] Do you now have the original Will that you want to use? [have copy should not have \"that you want to use\" will this make it weird? should we split this into two?]"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNROriginalYesExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"y\" and {citationNROriginal} = \"y\"",
+       "title": "Stop / Go back to \"I have this will/original\" [JIRA]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNROriginalExists",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"y\" and {citationNROriginal} = \"n\"",
+       "title": "Do you know who has the original?"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNROriginalExistsNoExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"y\" and {citationNROriginal} = \"n\" and {citationNROriginalExists} = \"n\"",
+       "title": "Use Copy. Go back to will page and say no I have a copy",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationNROriginalVoluntaryTransfer",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"y\" and {citationNROriginal} = \"n\" and {citationNROriginalExists} = \"y\"",
+       "title": "Will they give it to you?"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNROriginalVoluntaryTransferYesExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"y\" and {citationNROriginal} = \"n\" and {citationNROriginalExists} = \"y\" and {citationNROriginalVoluntaryTransfer} = \"y\"",
+       "title": "Go get it. Return to will page and answer \"yes to \"do you have the original\"\n<br>[JIRA jump to page]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "citationNROriginalVoluntaryTransferNoExplanation",
+       "visible": false,
+       "visibleIf": "{willHave} = \"n\" and {willCourtHasOriginal} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} \"y\" and {willCourtHasCopy} = \"n\" and {citationNRNowHaveCopy} = \"n\" and {citationNRCopyExists} = \"y\" and {citationNRCopyVoluntaryTransfer} = \"y\" and {citationNRApplicantHighestExec} = \"y\" and {citationNROriginal} = \"n\" and {citationNROriginalExists} = \"y\" and {citationNROriginalVoluntaryTransfer} = \"n\"",
+       "title": "Subpoena them. [JIRA go to Subpoena page]",
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{citationResponseType} = \"noResponse\""
     }
    ]
   },
@@ -1873,7 +2068,7 @@
       },
       {
        "type": "infotext",
-       "name": "question112",
+       "name": "subpoenaPagePersistenceFunction",
        "title": "[JIRA] page should show up but not disappear when someone needs to do a subpoena because afterwards, the questions that would enable subpoena would be answered differently when successfully done with citation/subpoena",
        "titleLocation": "hidden",
        "messageStyle": "inline"
