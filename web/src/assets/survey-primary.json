@@ -1425,7 +1425,7 @@
       },
       {
        "type": "infotext",
-       "name": "citationGenerateButtonJIRA",
+       "name": "citationGenerateButton",
        "title": "[JIRA] Print Citation Button",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -1838,7 +1838,8 @@
        "title": "keep checking to see when P2 is done; continue your own application (will not valid, or not appropriate person)",
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false
     },
     {
      "type": "infotext",
