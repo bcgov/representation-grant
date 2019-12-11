@@ -1561,10 +1561,26 @@
          "text": "No response"
         }
        ]
-      },
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{citationResponseDateExplanation} > 0"
+    },
+    {
+     "type": "infotext",
+     "name": "question69",
+     "visible": false,
+     "title": "Citation Response - P33 Apply",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "citationP33ApplyPanel",
+     "elements": [
       {
        "type": "infotext",
-       "name": "question59",
+       "name": "citationP33ACountdown",
        "visible": false,
        "title": "[P33 Will Apply]<br>\nExplain process\n<br><br>\nCountdown clock for 6 months. ",
        "isRequired": true,
@@ -1572,14 +1588,58 @@
       },
       {
        "type": "yesno",
-       "name": "question58",
+       "name": "citationP33Apply",
+       "visible": false,
+       "visibleIf": "{citationP33ACountdown} > 0 and {citationResponseType} = \"p33Apply\"",
        "title": "[P33 Will Apply]<br>\nHave they applied?"
       },
       {
        "type": "yesno",
-       "name": "question61",
+       "name": "citationP33ATimeExtension",
+       "visible": false,
+       "visibleIf": "{citationP33Apply} = \"n\"",
        "title": "[P33 Will Apply]<br>Did they get a time extension?"
       },
+      {
+       "type": "infotext",
+       "name": "citationP33ATimeExtensionNoExplanation",
+       "visible": false,
+       "visibleIf": "{citationP33ATimeExtension} = \"n\"",
+       "title": "[P33 Will Apply no time extension] [JIRA]<br>\nInformation about re-routing to No Response",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "citationP33ANewCountdown",
+       "visible": false,
+       "visibleIf": "{citationP33ATimeExtension} = \"y\"",
+       "title": "[P33 Will Apply yes Time Extension] [JIRA] New Countdown Clock (pre-determined time? Or do we need questions to determine time?) Another 6 months?",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationP33AExtendedApply",
+       "visible": false,
+       "visibleIf": "{citationP33ANewCountdown} > 0",
+       "title": "[P33 Will Apply - After new clock] Has {citeeName} now applied?"
+      }
+     ],
+     "visible": false
+    },
+    {
+     "type": "infotext",
+     "name": "question48",
+     "visible": false,
+     "title": "Satisfied Panel???",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "panel2",
+     "elements": [
       {
        "type": "infotext",
        "name": "citationResponseRepGrantExplanation",
@@ -1637,9 +1697,7 @@
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
-     ],
-     "visible": false,
-     "visibleIf": "{citationResponseDateExplanation} > 0"
+     ]
     },
     {
      "type": "infotext",
@@ -1846,14 +1904,6 @@
      "name": "question56",
      "visible": false,
      "title": "Citation Response - P2",
-     "titleLocation": "hidden",
-     "messageStyle": "inline"
-    },
-    {
-     "type": "infotext",
-     "name": "question69",
-     "visible": false,
-     "title": "Citation Response - P33 Apply",
      "titleLocation": "hidden",
      "messageStyle": "inline"
     },
