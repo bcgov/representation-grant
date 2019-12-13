@@ -812,7 +812,8 @@
        "name": "willEnglish",
        "visible": false,
        "visibleIf": "{willWritten} = \"y\"",
-       "title": "Is this Will written in English?"
+       "title": "Is this Will written in English?",
+       "description": "Haptic/Tactile languages such as Braille, even if in English, answer No."
       },
       {
        "type": "infotext",
@@ -890,6 +891,11 @@
        "name": "question9",
        "visible": false,
        "title": "If no, Was {deceasedName} illiterate?"
+      },
+      {
+       "type": "yesno",
+       "name": "question48",
+       "title": "Lost work? Blind question"
       }
      ],
      "visible": false,
@@ -1537,27 +1543,27 @@
        "title": "What kind of response did {citeeName} give you?",
        "choices": [
         {
-         "value": "repGrant",
+         "value": "RG",
          "text": "A Representation Grant (grant of probate?) that {citeeName} already got"
         },
         {
-         "value": "p2",
+         "value": "P2",
          "text": "Court forms showing that {citeeName} is applying for a Representation Grant (P2)"
         },
         {
-         "value": "p1",
+         "value": "P1",
          "text": "Court forms show that {citeeName} intends to apply (P1)"
         },
         {
-         "value": "p33Apply",
+         "value": "P33A",
          "text": "I got a P33 and they said they will apply for a Rep Grant within the next 6 months"
         },
         {
-         "value": "p33Renounce",
+         "value": "P33R",
          "text": "I got a P33 refuse"
         },
         {
-         "value": "noResponse",
+         "value": "NR",
          "text": "No response"
         }
        ]
@@ -1568,7 +1574,7 @@
     },
     {
      "type": "infotext",
-     "name": "question69",
+     "name": "citationP33ABookmark",
      "visible": false,
      "title": "Citation Response - P33 Apply",
      "titleLocation": "hidden",
@@ -1576,7 +1582,7 @@
     },
     {
      "type": "panel",
-     "name": "citationP33ApplyPanel",
+     "name": "citationP33APanel",
      "elements": [
       {
        "type": "infotext",
@@ -1624,13 +1630,41 @@
        "visible": false,
        "visibleIf": "{citationP33ANewCountdown} > 0",
        "title": "[P33 Will Apply - After new clock] Has {citeeName} now applied?"
+      },
+      {
+       "type": "infotext",
+       "name": "question58",
+       "visible": false,
+       "title": "Deemed to have renounced (if they were an executor)\n<br>[re-route to No Response]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "radiogroup",
+       "name": "question49",
+       "visible": false,
+       "title": "Select which stage of application they are at",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "{citeeName} already got a Rep Grant"
+        },
+        {
+         "value": "item2",
+         "text": "{citeeName} submitted a P2 to the Court"
+        },
+        {
+         "value": "item3",
+         "text": "{citeeName} submitted a P1 to successors"
+        }
+       ]
       }
      ],
      "visible": false
     },
     {
      "type": "infotext",
-     "name": "question48",
+     "name": "citationSatisfiedBookmark",
      "visible": false,
      "title": "Satisfied Panel???",
      "titleLocation": "hidden",
@@ -1638,11 +1672,11 @@
     },
     {
      "type": "panel",
-     "name": "panel2",
+     "name": "citationSatisfiedPanel",
      "elements": [
       {
        "type": "infotext",
-       "name": "citationResponseRepGrantExplanation",
+       "name": "citationResponseRGExplanation",
        "visible": false,
        "visibleIf": "{citationResponseType} = \"repGrant\"",
        "title": "[repGrant]<br>\nThey already got a grant. This is what it means. they are in charge tim's assets. ",
@@ -1651,16 +1685,16 @@
       },
       {
        "type": "infotext",
-       "name": "citationResponseP1Explanation",
+       "name": "question39",
        "visible": false,
-       "title": "[P1]<br>\nThey are applying. \n<br><br>\nTheir next step is to submit the will (original if they have it??).",
+       "title": "[item 2 - P2]<br>\nThey are applying.  If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].\nAlong with their documentation, they gave the original (or a copy if they have that) to the court. [Do these messages copy conflict with earlier regarding original vs copy?]\n<br><br>\nIf you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question39",
+       "name": "citationResponseP1Explanation",
        "visible": false,
-       "title": "[item 2 - P2]<br>\nThey are applying.  If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].\nAlong with their documentation, they gave the original (or a copy if they have that) to the court. [Do these messages copy conflict with earlier regarding original vs copy?]\n<br><br>\nIf you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.",
+       "title": "[P1]<br>\nThey are applying. \n<br><br>\nTheir next step is to submit the will (original if they have it??).",
        "titleLocation": "hidden"
       },
       {
@@ -1672,36 +1706,58 @@
       },
       {
        "type": "infotext",
-       "name": "citationResponseRepGrantSatisfiedError",
+       "name": "citationRGSatisfiedYesError",
        "visible": false,
        "visibleIf": "{citationResponseType} = \"repGrant\" and {citationResponseSatisfied} = \"y\"",
-       "title": "[repGrant]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
+       "title": "[repGrant satisfied]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
       {
        "type": "infotext",
-       "name": "question35",
+       "name": "citationP2SatisfiedYesError",
        "visible": false,
        "visibleIf": "{citationResponseType} = \"repGrant\" and {citationResponseSatisfied} = \"y\"",
-       "title": "[P1]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
+       "title": "[P2 satisfied]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
       {
        "type": "infotext",
-       "name": "question68",
+       "name": "citationP1SatisfiedYesError",
        "visible": false,
        "visibleIf": "{citationResponseType} = \"repGrant\" and {citationResponseSatisfied} = \"y\"",
-       "title": "[P2]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
+       "title": "[P1 satisfied]<br>Good. You don't need to apply. Just and see how well they do as an executor/administrator.",
        "titleLocation": "hidden",
        "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "citationP33ATimeOutExplanation",
+       "visible": false,
+       "title": "[P33A Post Time Extension P1/P2]<br>\nthis is considered deemed renunciation (affidavit) technically. the court may still take in their application but be more receptive to the competing application. re-route to existing content. ",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationP33ADeemedRenunciation",
+       "visible": false,
+       "title": "do you want to do an affidavit of deemed renunciation? it will cost $40 to $80. \nthis is useful if you still want to apply to represent {deceasedName}. it will help the court decide who they should give the rep grant to."
+      },
+      {
+       "type": "infotext",
+       "name": "citationP33ADeemedRenunciationYesExplanation",
+       "visible": false,
+       "title": "Affidavit of Deemed Renunciation will be generated at the end for you as part of your application package.",
+       "isRequired": true,
+       "titleLocation": "hidden"
       }
      ]
     },
     {
      "type": "infotext",
-     "name": "question105",
+     "name": "citationRGBookmark",
      "visible": false,
      "title": "Citation Response - Rep Grant\n",
      "titleLocation": "hidden",
@@ -1865,35 +1921,334 @@
       {
        "type": "yesno",
        "name": "question50",
-       "title": "Is the rep grant for the will that you intended on using"
+       "title": "Is {citeeName} applying for a Rep Grant using the will that you intended on using?"
       },
       {
        "type": "infotext",
-       "name": "question46",
-       "visible": false,
-       "title": "If you want to challenge, [Link to forms for Notice of Dispute. - Future make an app for Notice of Dispute].",
+       "name": "question129",
+       "title": "[start y (have copy)]",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "yesno",
+       "name": "question139",
+       "title": "Are you a higher priority executor than {citeeName} on the will you want to use?"
+      },
+      {
+       "type": "infotext",
+       "name": "question140",
+       "title": "STOP\nNotice of Dispute - but warning that it might not stand up in court. no good reasons.",
        "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question141",
+       "title": "Continue - Notice of Dispute [Link here]. Best practice is to wait for {citeeName} to file the original will with their P2. urgency for notice of dispute because you need to do it before they get their grant",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question142",
+       "title": "do you still feel like you should apply?"
+      },
+      {
+       "type": "infotext",
+       "name": "question143",
+       "title": "Stop and wait. You can formally renounce. but it's also important to not interfere if you renounce. you could be found liable.  reminder notice of dispute lasts 1 yaer.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question144",
+       "title": "do you want to renounce?"
+      },
+      {
+       "type": "infotext",
+       "name": "question145",
+       "title": "Y - chill out then",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question146",
+       "title": "You don't need to renounce. don't meddle.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "question147",
+       "title": "Does your copy of the will match the copy of the will that came with the P1?"
+      },
+      {
+       "type": "infotext",
+       "name": "question148",
+       "title": "Continue with this service. Select \"Courthouse has the original\". Keep checking the courthouse that they are applying to see when they filed their P2. Wait to submit your P1 so you guarantee that they submit the will to court.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question151",
+       "title": "Do you believe your copy of {deceasedName}'s Will is the version you want to use"
+      },
+      {
+       "type": "infotext",
+       "name": "question149",
+       "title": "Continue with the service. Select \"Courthouse has the original\". answer the questions about the version the court has. you will have the opportunity to explain why the changes are are no good. when you submit, attach the copy that you have that better reflects what the original looks like.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question150",
+       "title": "Continue with this service. Select \"Courthouse has the original\". Keep checking the courthouse that they are applying to see when they filed their P2. Wait to submit your P1 so you guarantee that they submit the will to court.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question130",
+       "title": "[end y (have copy)]",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question131",
+       "title": "[start y (no copy)]",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "yesno",
+       "name": "question133",
+       "title": "Are you a higher priority executor than {citeeName} on the will you want to use?"
+      },
+      {
+       "type": "infotext",
+       "name": "question134",
+       "title": "STOP<br>\nNotice of Dispute - but warning that it might not stand up in court. no good reasons.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question136",
+       "title": "Continue - Notice of Dispute [Link here]. Continue with the service. Select \"Courthouse has a copy\". You don't need go to the courthouse to get a copy because you have one one now.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question135",
+       "title": "do you still feel like you should apply?"
+      },
+      {
+       "type": "infotext",
+       "name": "question137",
+       "title": "[Y] take some form the continue message.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question138",
+       "title": "Stop and wait. reminder notice of dispute lasts 1 yaer.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question132",
+       "title": "[end y (no copy)]",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question128",
+       "title": "[start n (2019 or 2015) have copy or no copy]",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "yesno",
+       "name": "question46",
+       "title": "Do you want to apply for a representation grant using {deceasedName}'s Will that is more recent?"
       },
       {
        "type": "yesno",
        "name": "question47",
-       "title": "Do you want to file a Notice of Dispute?"
+       "title": "Do you believe {deceasedName} was mentally capable when they made their Will under which {citeeName} has in their P1"
       },
       {
-       "type": "infotext",
+       "type": "yesno",
        "name": "question51",
-       "title": "If you want to continue applying, you will be able to go to the court (who should have the original) and get a copy, and use the copy for your application.\n<br><br> \nwhen there is more than one application for a representation grant, the court will determine who's application they should accept.",
-       "titleLocation": "hidden"
+       "title": "Do you believe there was undue influence when {deceasedName} made their Will under which {citeeName} has in their P1"
       },
       {
        "type": "yesno",
        "name": "question53",
-       "title": "Do you want to apply also?"
+       "title": "Do you believe there was some kind of Fraud in the creation of {deceasedName}'s Will?"
       },
       {
        "type": "infotext",
        "name": "question54",
-       "title": "keep checking to see when P2 is done; continue your own application (will not valid, or not appropriate person)",
+       "visible": false,
+       "title": "STOP<br>\nNotice of Dispute - but warning that it might not stand up in court. no good reasons. <br>Continue doing your application. It might not be successful. You should answer the will questions based on the most recent  will first and state why you believe it is invalid. work your way back to the will you want to use.\n<br>[JIRA] Jump back anchor",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question73",
+       "title": "Continue - Notice of Dispute. \n<br>This will prevent them in (for 1 year) to get the RG using that will until they address your concerns. hopefully you have a conversation with them. This service can help you complete your application for another will. ",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question127",
+       "title": "[y 2019 have copy] Continue - Notice of Dispute.<br>\nThis will prevent them in (for 1 year) to get the RG using that will until they address your concerns. hopefully you have a conversation with them.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question96",
+       "title": "do you still feel like you should apply?"
+      },
+      {
+       "type": "infotext",
+       "name": "question120",
+       "title": "[start n 2015 have copy]",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question124",
+       "title": "Stop and wait. reminder notice of dispute lasts 1 yaer.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question123",
+       "title": "Will the executor now apply using the will you want? "
+      },
+      {
+       "type": "infotext",
+       "name": "question125",
+       "title": "Stop - Good we're done. Wait. If they suck as an executor, blah blah.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question126",
+       "title": "Continue - Cite them again",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question122",
+       "title": "[end n 2015 have copy]",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question98",
+       "title": "Stop and wait. reminder notice of dispute lasts 1 yaer.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "question100",
+       "title": "Do you now have a copy of the Will that you want to use?"
+      },
+      {
+       "type": "yesno",
+       "name": "question102",
+       "title": "Do you know who has a copy?"
+      },
+      {
+       "type": "infotext",
+       "name": "question103",
+       "title": "Continue - Go back to will page and fill in info about the will that {ctieeName} gave you. You will have an oppportunity to state why it is invald and the service will help you do a AWOW. or work your way back to use an older will.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question105",
+       "title": "Will they give it to you?"
+      },
+      {
+       "type": "infotext",
+       "name": "question106",
+       "title": "Stop / Subpoena",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question107",
+       "title": "Are you a higher priority executor than {citeeName} on the will you want to use?"
+      },
+      {
+       "type": "yesno",
+       "name": "question110",
+       "title": "Will {citeeName} or another higher priority exeuctor now apply using the will you want? "
+      },
+      {
+       "type": "infotext",
+       "name": "question111",
+       "title": "Continue - Cite them again.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question112",
+       "title": "Stop - When you get the P1 for the will you want, go back to \"Is the will they are using the one that you want?\"",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question113",
+       "title": "Do you now have the original Will that you want to use?"
+      },
+      {
+       "type": "infotext",
+       "name": "question114",
+       "title": "Stop / Go back to \"I have this will/original\"",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question115",
+       "title": "Do you know who has the original?"
+      },
+      {
+       "type": "infotext",
+       "name": "question117",
+       "title": "Stop / Use Copy",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question116",
+       "title": "Will they give it to you?"
+      },
+      {
+       "type": "infotext",
+       "name": "question119",
+       "title": "Stop / Go get it. Return to \"I have the original\"",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question118",
+       "title": "Stop / Subpoena",
        "titleLocation": "hidden"
       }
      ],
@@ -1901,7 +2256,7 @@
     },
     {
      "type": "infotext",
-     "name": "question56",
+     "name": "citationP2Bookmark",
      "visible": false,
      "title": "Citation Response - P2",
      "titleLocation": "hidden",
@@ -1909,11 +2264,137 @@
     },
     {
      "type": "infotext",
-     "name": "question70",
+     "name": "citationP33RBookmark",
      "visible": false,
      "title": "Citation Response - P33 Refuse",
      "titleLocation": "hidden",
      "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "citationP33RPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "citationP33RPhotocopy",
+       "title": "make/keep a copy of the P33 for future records<br>\nwe'll help you continue with your application",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationP33RNowHaveCopy",
+       "visible": false,
+       "title": "Do you now have a copy of the Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "citationP33RCopyExists",
+       "visible": false,
+       "title": "Do you know who has a copy?"
+      },
+      {
+       "type": "infotext",
+       "name": "citationP33RCopyExistsNoExplanation",
+       "visible": false,
+       "title": "Continue - Go back to will page and answer \"No\" to \"do you know how has a copy??\n[JIRA] Skip to that question",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationP33RCopyVoluntaryTransfer",
+       "title": "Will they give it to you?"
+      },
+      {
+       "type": "infotext",
+       "name": "citationP33RCopyVoluntaryTransferNoExplanation",
+       "visible": false,
+       "title": "Subpoena",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "citationP33RApplicantHighestExec",
+       "title": "Are you now the highest priority executor on the will (citee refused/renounced)?"
+      },
+      {
+       "type": "yesno",
+       "name": "question35",
+       "title": "Will another higher priority executor now apply using the will you want? "
+      },
+      {
+       "type": "infotext",
+       "name": "question56",
+       "title": "Stop - Wait as long as everything is good, that's good. Keep following up with them until they have applied (P1). If you believe they didn't apply in a reasonable time. Cite them.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question59",
+       "visible": false,
+       "title": "Do you believe {citeeName} apply in a reasonable amount of time? "
+      },
+      {
+       "type": "yesno",
+       "name": "question61",
+       "title": "Do you want to cite them?"
+      },
+      {
+       "type": "infotext",
+       "name": "question62",
+       "title": "Continue - Cite them",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question63",
+       "visible": false,
+       "title": "Do you now have the original Will that you want to use?"
+      },
+      {
+       "type": "infotext",
+       "name": "question64",
+       "visible": false,
+       "title": "Stop / Go back to \"I have this will/original\"",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question68",
+       "title": "Do you know who has the original?"
+      },
+      {
+       "type": "infotext",
+       "name": "question69",
+       "title": "Stop / Use Copy",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question70",
+       "title": "Will they give it to you?"
+      },
+      {
+       "type": "infotext",
+       "name": "question71",
+       "visible": false,
+       "title": "Stop / Subpoena",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question72",
+       "visible": false,
+       "title": "Stop / Go get it. Return to \"I have the original\"\n[JIRA] Jump to button",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false
     },
     {
      "type": "infotext",
@@ -2100,6 +2581,97 @@
      ],
      "visible": false,
      "visibleIf": "{citationResponseType} = \"noResponse\""
+    }
+   ]
+  },
+  {
+   "name": "disputePage",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "panel2",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question74",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "text",
+       "name": "disputantName",
+       "title": "What is the name of person who wants to file a dispute? (You)"
+      },
+      {
+       "type": "address",
+       "name": "question83",
+       "title": "{disputantName}'s address"
+      },
+      {
+       "type": "contactinfo",
+       "name": "question84",
+       "title": "{disputantName}'s contact info"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question76",
+       "title": "How best to add other aliases?",
+       "columns": [
+        {
+         "name": "Column 1"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1,
+       "addRowText": "Add an alternate spelling for {deceasedName}'s name",
+       "removeRowText": "Remove this spelling"
+      },
+      {
+       "type": "yesno",
+       "name": "question77",
+       "title": "Is there already a court file opened for {deceasedName}?"
+      },
+      {
+       "type": "dropdown",
+       "name": "question79",
+       "title": "Court Location",
+       "choices": [
+        "item1",
+        "item2",
+        "item3"
+       ]
+      },
+      {
+       "type": "text",
+       "name": "question78",
+       "title": "Court File Number"
+      },
+      {
+       "type": "yesno",
+       "name": "question75",
+       "title": "How detailed do we need to do paragraph 25-2 (2)?"
+      },
+      {
+       "type": "infotext",
+       "name": "question80",
+       "title": "Grounds for Dispute autopopulated or do we have free form text?",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question95",
+       "title": "Generate Notice of Dispute",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ]
     }
    ]
   },
