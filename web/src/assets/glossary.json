@@ -11,7 +11,7 @@
 
   "legal guardians": "A legal guardian is someone who was appointed by a court to be allowed to make decisions for a child under the age of 19.",
 
-  "order": "An order is a list of conditions set by a judge that you and/or the other person must follow. A judge can make an order after a trial or hearing, or when both people agree. Orders are sometimes called decisions or judgments.",
+  "other testamentary documents": "Other tesmtamenty documents add new information to a Will (somehow include: a document that lets people know how their belongings should be managed). Examples include a codicil and a memorandum. Also include anything you believe to be an invalid Will or anything else that describes how the person who died wants their belongings managed.",
 
   "peace bond": "A peace bond is a protection order from criminal court. It is a list of conditions set by a judge to protect one person from another person. This usually means no visits to your home or workplace, no phone calls, emails, or letters, and no messages through a friend or relative.\n\n  [Click here for more information](https://www2.gov.bc.ca/gov/content/justice/criminal-justice/bcs-criminal-justice-system/if-you-are-convicted-of-a-crime/no-contact/peace-bond)",
 
@@ -21,9 +21,9 @@
 
   "unsafe": "When a family member makes you feel unsafe, this is called Family Violence. Family violence includes many things such as:\n - physical abuse (or attempted abuse)\n  - emotional or mental abuse (stalking, threats, intimidation or harassment)\n - sexual abuse (or attempted abuse)\n - denying food or other basic needs\n  - children being exposed to family violence\n\n  [Click here for more information for what counts as Family Violence](http://www.justice.gc.ca/eng/cj-jp/fv-vf/laws-lois.html).",
 
-  "written agreement": "A written agreement is a document that is signed by you and an other person.",
-
-  "written agreements": "A written agreement is a document that is signed by you and an other person.",
+  "will": "A Will is a document made by someone to describe how they want their belongings managed after they die.",
 
   "weapon": "A *weapon* means any thing used, designed to be used or intended for use\n\n  - (a) in causing death or injury to any person, or\n  - (b) for the purpose of threatening or intimidating any person\n  \n  and, without restricting the generality of the foregoing, includes a firearm and, for the purposes of sections 88, 267 and 272, any thing used, designed to be used or intended for use in binding or tying up a person against their will; (arme)\n  Click [here for more information](http://laws-lois.justice.gc.ca/eng/acts/C-46/page-1.html)."
 }
+
+
