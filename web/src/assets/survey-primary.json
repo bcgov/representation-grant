@@ -774,6 +774,13 @@
        "messageStyle": "error"
       },
       {
+       "type": "infotext",
+       "name": "question80",
+       "title": "Jan 10 2020 - re-work this section about wills being recordings. offer the option to go with the newer video will ",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
        "type": "yesno",
        "name": "question160",
        "title": "Do you want to try and get the audio or video recording recognized as a Will?"
@@ -793,7 +800,7 @@
       {
        "type": "infotext",
        "name": "question169",
-       "title": "[JIRA] if recorded will is approved, can we auto-fill certain questions?",
+       "title": "[JIRA] if recorded will is approved, can we auto-fill certain questions? atestation clause questions etc. just treat the will is good.",
        "titleLocation": "hidden"
       },
       {
@@ -1908,6 +1915,14 @@
     },
     {
      "type": "infotext",
+     "name": "citationP2Bookmark",
+     "visible": false,
+     "title": "Citation Response - P2",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "infotext",
      "name": "citationP1Bookmark",
      "visible": false,
      "title": "Citation Response - P1",
@@ -2256,14 +2271,6 @@
     },
     {
      "type": "infotext",
-     "name": "citationP2Bookmark",
-     "visible": false,
-     "title": "Citation Response - P2",
-     "titleLocation": "hidden",
-     "messageStyle": "inline"
-    },
-    {
-     "type": "infotext",
      "name": "citationP33RBookmark",
      "visible": false,
      "title": "Citation Response - P33 Refuse",
@@ -2600,12 +2607,12 @@
       {
        "type": "text",
        "name": "disputantName",
-       "title": "What is the name of person who wants to file a dispute? (You)"
+       "title": "What is the name of person who wants to file a dispute? (You) [copy name from citation??]"
       },
       {
        "type": "address",
        "name": "question83",
-       "title": "{disputantName}'s address"
+       "title": "{disputantName}'s service address"
       },
       {
        "type": "contactinfo",
@@ -2636,7 +2643,7 @@
       {
        "type": "yesno",
        "name": "question77",
-       "title": "Is there already a court file opened for {deceasedName}?"
+       "title": "Is there already a court file opened for {deceasedName}? yes or \"i don't know\" instead of \"no\""
       },
       {
        "type": "dropdown",
@@ -2655,19 +2662,44 @@
       },
       {
        "type": "yesno",
+       "name": "question170",
+       "title": "nisga rep? [visible only if indicated in deceased page] 25-2 (2) (c)"
+      },
+      {
+       "type": "yesno",
+       "name": "question173",
+       "title": "treaty first nation rep? [visible only if indicated in deceased page] 25-2 (2) (d)"
+      },
+      {
+       "type": "yesno",
        "name": "question75",
-       "title": "How detailed do we need to do paragraph 25-2 (2)?"
+       "title": "are you an executor with equal or higher priority? 25-2 (2) (a) (i)"
+      },
+      {
+       "type": "yesno",
+       "name": "question174",
+       "title": "are you a beneficiary in {deceasedName}'s will 25-2 (2) (a) (2)"
+      },
+      {
+       "type": "yesno",
+       "name": "question175",
+       "title": "are you a spouse or child who is not a beneficiary in the will 25-2 (2) (a) (iii)"
       },
       {
        "type": "infotext",
-       "name": "question80",
-       "title": "Grounds for Dispute autopopulated or do we have free form text?",
+       "name": "question176",
+       "title": "25-2 (2) (f) we are going to note down on your Notice of Dispute that you are a person who served a citation on blah blah but are not otherwise entitled to notice.",
        "titleLocation": "hidden"
+      },
+      {
+       "type": "comment",
+       "name": "question177",
+       "title": "Grounds for Dispute [do a pulldown of most common reasons through Peter Ramsey?? assigned to Tyler]"
       },
       {
        "type": "infotext",
        "name": "question95",
-       "title": "Generate Notice of Dispute",
+       "title": "Generate Notice of Dispute [instructions that disputant can submit to any supreme court of bc location]",
        "isRequired": true,
        "titleLocation": "hidden"
       }
