@@ -890,19 +890,19 @@
       },
       {
        "type": "yesno",
-       "name": "question8",
-       "title": "Did {deceasedName} fully understand {languageType} when their Will was written?"
+       "name": "question48",
+       "title": "Was {deceasedName} blind?",
+       "description": "Were they capable of reading the will for themselves or did they need to have the will read for them? Legally blind is not considered blind in this question."
       },
       {
        "type": "yesno",
        "name": "question9",
-       "visible": false,
-       "title": "If no, Was {deceasedName} illiterate?"
+       "title": "Could {deceasedName} read and write?"
       },
       {
        "type": "yesno",
-       "name": "question48",
-       "title": "Lost work? Blind question"
+       "name": "question8",
+       "title": "Did {deceasedName} fully understand {languageType} when their Will was written?"
       }
      ],
      "visible": false,
@@ -958,6 +958,23 @@
        "type": "yesno",
        "name": "question168",
        "title": "[if yes sig anywhere other than last page] Is there an acknowledgement/explanation on the will that {deceasedName} signed their will with a signature somewhere other than the last page??"
+      },
+      {
+       "type": "infotext",
+       "name": "question210",
+       "title": "Jan 23 2020 - if yes to some hand written (or typed?) explanation anywhere\n\ngenerally, documents need to be signed at the end but because there is an explanation, it might be get accepted by court. there may be restrictions on what part of the will is recognized. If you are concerned, you can do an extra form (P42 sec59) to have the whole thing recognized.\n\nyou can do a sec59 later as well if any problems arise. (with 180 days of getting the grant)",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question211",
+       "title": "do you have do a sec 59 now?"
+      },
+      {
+       "type": "infotext",
+       "name": "question209",
+       "title": "Jan 23 2020 - sec80 first. exit to sec59 via P42",
+       "titleLocation": "hidden"
       },
       {
        "type": "infotext",
@@ -2592,122 +2609,6 @@
    ]
   },
   {
-   "name": "disputePage",
-   "elements": [
-    {
-     "type": "panel",
-     "name": "panel2",
-     "elements": [
-      {
-       "type": "infotext",
-       "name": "question74",
-       "isRequired": true,
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "text",
-       "name": "disputantName",
-       "title": "What is the name of person who wants to file a dispute? (You) [copy name from citation??]"
-      },
-      {
-       "type": "address",
-       "name": "question83",
-       "title": "{disputantName}'s service address"
-      },
-      {
-       "type": "contactinfo",
-       "name": "question84",
-       "title": "{disputantName}'s contact info"
-      },
-      {
-       "type": "matrixdynamic",
-       "name": "question76",
-       "title": "How best to add other aliases?",
-       "columns": [
-        {
-         "name": "Column 1"
-        }
-       ],
-       "choices": [
-        1,
-        2,
-        3,
-        4,
-        5
-       ],
-       "cellType": "text",
-       "rowCount": 1,
-       "addRowText": "Add an alternate spelling for {deceasedName}'s name",
-       "removeRowText": "Remove this spelling"
-      },
-      {
-       "type": "yesno",
-       "name": "question77",
-       "title": "Is there already a court file opened for {deceasedName}? yes or \"i don't know\" instead of \"no\""
-      },
-      {
-       "type": "dropdown",
-       "name": "question79",
-       "title": "Court Location",
-       "choices": [
-        "item1",
-        "item2",
-        "item3"
-       ]
-      },
-      {
-       "type": "text",
-       "name": "question78",
-       "title": "Court File Number"
-      },
-      {
-       "type": "yesno",
-       "name": "question170",
-       "title": "nisga rep? [visible only if indicated in deceased page] 25-2 (2) (c)"
-      },
-      {
-       "type": "yesno",
-       "name": "question173",
-       "title": "treaty first nation rep? [visible only if indicated in deceased page] 25-2 (2) (d)"
-      },
-      {
-       "type": "yesno",
-       "name": "question75",
-       "title": "are you an executor with equal or higher priority? 25-2 (2) (a) (i)"
-      },
-      {
-       "type": "yesno",
-       "name": "question174",
-       "title": "are you a beneficiary in {deceasedName}'s will 25-2 (2) (a) (2)"
-      },
-      {
-       "type": "yesno",
-       "name": "question175",
-       "title": "are you a spouse or child who is not a beneficiary in the will 25-2 (2) (a) (iii)"
-      },
-      {
-       "type": "infotext",
-       "name": "question176",
-       "title": "25-2 (2) (f) we are going to note down on your Notice of Dispute that you are a person who served a citation on blah blah but are not otherwise entitled to notice.",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "comment",
-       "name": "question177",
-       "title": "Grounds for Dispute [do a pulldown of most common reasons through Peter Ramsey?? assigned to Tyler]"
-      },
-      {
-       "type": "infotext",
-       "name": "question95",
-       "title": "Generate Notice of Dispute [instructions that disputant can submit to any supreme court of bc location]",
-       "isRequired": true,
-       "titleLocation": "hidden"
-      }
-     ]
-    }
-   ]
-  },
-  {
    "name": "subpoenaPage",
    "elements": [
     {
@@ -3265,7 +3166,364 @@
    ]
   },
   {
+   "name": "disputePage",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "panel2",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question74",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "text",
+       "name": "disputantName",
+       "title": "What is the name of person who wants to file a dispute? (You) [copy name from citation??]"
+      },
+      {
+       "type": "address",
+       "name": "question83",
+       "title": "{disputantName}'s service address"
+      },
+      {
+       "type": "contactinfo",
+       "name": "question84",
+       "title": "{disputantName}'s contact info"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question76",
+       "title": "How best to add other aliases?",
+       "columns": [
+        {
+         "name": "Column 1"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1,
+       "addRowText": "Add an alternate spelling for {deceasedName}'s name",
+       "removeRowText": "Remove this spelling"
+      },
+      {
+       "type": "yesno",
+       "name": "question77",
+       "title": "Is there already a court file opened for {deceasedName}? yes or \"i don't know\" instead of \"no\""
+      },
+      {
+       "type": "dropdown",
+       "name": "question79",
+       "title": "Court Location",
+       "choices": [
+        "item1",
+        "item2",
+        "item3"
+       ]
+      },
+      {
+       "type": "text",
+       "name": "question78",
+       "title": "Court File Number"
+      },
+      {
+       "type": "yesno",
+       "name": "question170",
+       "title": "nisga rep? [visible only if indicated in deceased page] 25-2 (2) (c)"
+      },
+      {
+       "type": "yesno",
+       "name": "question173",
+       "title": "treaty first nation rep? [visible only if indicated in deceased page] 25-2 (2) (d)"
+      },
+      {
+       "type": "yesno",
+       "name": "question75",
+       "title": "are you an executor with equal or higher priority? 25-2 (2) (a) (i)"
+      },
+      {
+       "type": "yesno",
+       "name": "question174",
+       "title": "are you a beneficiary in {deceasedName}'s will 25-2 (2) (a) (2)"
+      },
+      {
+       "type": "yesno",
+       "name": "question175",
+       "title": "are you a spouse or child who is not a beneficiary in the will 25-2 (2) (a) (iii)"
+      },
+      {
+       "type": "infotext",
+       "name": "question176",
+       "title": "25-2 (2) (f) we are going to note down on your Notice of Dispute that you are a person who served a citation on blah blah but are not otherwise entitled to notice.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "comment",
+       "name": "question177",
+       "title": "Grounds for Dispute [do a pulldown of most common reasons through Peter Ramsey?? assigned to Tyler]"
+      },
+      {
+       "type": "checkbox",
+       "name": "question178",
+       "title": "Grounds from Peter Ramsey/Chelsea Wilson\n1.       Suspected lack of testamentary capacity;\n2.       Suspected undue influence;\n3.       Will later than one being probated;\n4.       Existence of a will and application is for grant of letters of administration;\n5.       Applicant being improper person to receive estate grant",
+       "choices": [
+        "item1",
+        "item2",
+        "item3"
+       ]
+      },
+      {
+       "type": "infotext",
+       "name": "question95",
+       "title": "Generate Notice of Dispute [instructions that disputant can submit to any supreme court of bc location]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "name": "missingWillPage"
+  },
+  {
+   "name": "sec58Page",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "panel10",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question179",
+       "title": "intro info. jumped here from Will page",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question182",
+       "title": "For P43 form generation, insert the text \"Re: [insert names], on behalf of the estate of {deceasedName}\"",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question180",
+       "title": "sec 58 applicant names (change this to a dynamic panel later) (probably you)",
+       "columns": [
+        {
+         "name": "Column 1"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1,
+       "addRowText": "add applicant"
+      },
+      {
+       "type": "address",
+       "name": "question181",
+       "title": "service address of applicants"
+      },
+      {
+       "type": "infotext",
+       "name": "question183",
+       "title": "[P43] This proceeding is brought for the relief set out below, by {names of applicants} (the petitioner(s) )",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "dropdown",
+       "name": "question184",
+       "title": "courthouse location you want to file at",
+       "choices": [
+        "item1",
+        "item2",
+        "item3"
+       ]
+      },
+      {
+       "type": "contactinfo",
+       "name": "question185",
+       "title": "see P43 for requirements"
+      },
+      {
+       "type": "yesno",
+       "name": "question186",
+       "title": "do you have a lawyer for this? (if yes, address and contact info)"
+      },
+      {
+       "type": "infotext",
+       "name": "question187",
+       "title": "Part 1: ORDER(S) SOUGHT\n\nThe petitioner(s) seek(s) the following order under section 58 (2) (a) of the Wills, Estates and Succession Act:\n\n[indent] 1 that the attached record, document or writing represents the testamentary intentions of a deceased person\n",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question188",
+       "title": "Part 2: FACTUAL BASIS<br>\n<br>\n[Using numbered paragraphs, set out the material facts on which this petition is based.]\n<br>\n1\n<br>\n2",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question189",
+       "title": "What are the facts?<br> (you/someone else will need support these facts with evidence such affidavits or other documents)",
+       "description": "[Description]The key question is whether the document records a deliberate or fixed and final expression of intention as to the disposal of the deceased’s property on death. A deliberate or fixed and final intention is not the equivalent of an irrevocable intention, given that a will, by its nature, is revocable until the death of its maker. Rather, the intention must be fixed and final at the material time, which will vary depending on the circumstances.<br><br>\n[Reference: https://www.canlii.org/en/bc/bcsc/doc/2019/2019bcsc2040/2019bcsc2040.html?searchUrlHash=AAAAAQAoc2VjdGlvbiA1OCB3aWxscywgZXN0YXRlcyBhbmQgc3VjY2Vzc2lvbgAAAAAB&resultIndex=5]",
+       "columns": [
+        {
+         "name": "Fact 1"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "comment",
+       "rowCount": 1,
+       "addRowText": "Add another fact",
+       "removeRowText": "Remove this fact"
+      },
+      {
+       "type": "infotext",
+       "name": "question190",
+       "title": "Part 3: LEGAL BASIS\n<br>\n[Using numbered paragraphs, specify any rule or other enactment relied on and provide a brief summary of any other legal bases on which the petitioner(s) intend(s) to rely in support of the orders sought.]\nPara1 1 Section 58 of WESA empowers the court to give the relief requested.\n\nCourt order curing deficiencies\n58   (1)In this section, \"record\" includes data that\n\n(a)is recorded or stored electronically,\n\n(b)can be read by a person, and\n\n(c)is capable of reproduction in a visible form.\n\n(2)On application, the court may make an order under subsection (3) if the court determines that a record, document or writing or marking on a will or document represents\n\n(a)the testamentary intentions of a deceased person,\n\n(b)the intention of a deceased person to revoke, alter or revive a will or testamentary disposition of the deceased person, or\n\n(c)the intention of a deceased person to revoke, alter or revive a testamentary disposition contained in a document other than a will.\n\n(3)Even though the making, revocation, alteration or revival of a will does not comply with this Act, the court may, as the circumstances require, order that a record or document or writing or marking on a will or document be fully effective as though it had been made\n\n(a)as the will or part of the will of the deceased person,\n\n(b)as a revocation, alteration or revival of a will of the deceased person, or\n\n(c)as the testamentary intention of the deceased person.\n\n(4)If an alteration to a will makes a word or provision illegible and the court is satisfied that the alteration was not made in accordance with this Act, the court may reinstate the original word or provision if there is evidence to establish what the original word or provision was.",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question192",
+       "title": "Set up CanLII citation alert for Hadley. (should come in 2 days). Up to product manager to decide to change or not the legal basis that gets printed on the form.",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question191",
+       "title": "[Disclaimer] \nYou may want to include more research that you do on your own.\nHadley is the leading Case Law. [link to CanLII] \nRead this, on your own or with help, to see if your situation is similar. ",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question194",
+       "title": "Do you want to add reference to Hadley as part of your argument to cure the will?"
+      },
+      {
+       "type": "infotext",
+       "name": "question196",
+       "title": "[Printed Reference to Hadley]\nHadley Estate (Re), 2017 BCCA 311 is the leading case on what the court should consider when determining whether to grant and order under Sec 58 of WESA. \nhttps://www.canlii.org/en/bc/bcca/doc/2017/2017bcca311/2017bcca311.html",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question195",
+       "title": "There are links to other cases that reference Hadley to find more information as to why the court should recognize the \"flawed\" will. [Link here}\n\n",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question193",
+       "title": "Do you want to add any other legal information that the court should be aware of?"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question197",
+       "title": "Add legal basis/information/case reference",
+       "columns": [
+        {
+         "name": "Citation (for example Hadley Estate (Re), 2017 BCCA 311)",
+         "cellType": "text"
+        },
+        {
+         "name": "URL (optional)",
+         "cellType": "text"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "rowCount": 1
+      },
+      {
+       "type": "infotext",
+       "name": "question198",
+       "title": "Part 4: MATERIAL TO BE RELIED ON\n\n1 \"Affidavit #......... of ..........[name].........., made ........[dd/mmm/yyyy]........\".]\n2 \"Affidavit #......... of ..........[name].........., made ........[dd/mmm/yyyy]........\".]\n",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question201",
+       "title": "you can have multiple people writing affidavits. they can comment on the same facts.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "text",
+       "name": "question200",
+       "title": "dynamic panel"
+      },
+      {
+       "type": "text",
+       "name": "question199",
+       "title": "Name, occupation, where you live (dropdown list like address input so we can facilitate counting affidavits - check with Registry on numbering preference)"
+      },
+      {
+       "type": "comment",
+       "name": "question202",
+       "title": "provide evidence that support one or more of the facts stated above as to why the court should recognize/cure this will."
+      },
+      {
+       "type": "text",
+       "name": "question203",
+       "title": "time estimate for hearing. How many hours do you think it will take to talk through all your evidence in front of a justice/judge?",
+       "inputType": "number"
+      },
+      {
+       "type": "text",
+       "name": "question204",
+       "title": "P42 has estimate for time of day. Who does this?"
+      },
+      {
+       "type": "infotext",
+       "name": "question205",
+       "title": "P42 This matter is not within the jurisdiction of a master.",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      }
+     ]
+    },
+    {
+     "type": "infotext",
+     "name": "question208",
+     "title": "this will produce a document will help the court review if they should recognize this will. \nin the mean time, proceed with the rest of app as if this will is valid\n\n[Jump back to appropriate Will Question?? There are multiple entry points - DO we need multiple messages with jump backs based on how they got here?]",
+     "titleLocation": "hidden"
+    }
+   ]
   },
   {
    "name": "foreignWillPage"
@@ -3790,6 +4048,27 @@
    "title": "{deceasedName}'s Grandchildren"
   },
   {
+   "name": "beneficiariesPage",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "panel11"
+    },
+    {
+     "type": "panel",
+     "name": "panel12",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question206",
+       "title": "because you're doing a Section 58 (P42/P43)<br>\nare there any beneficiaries under a will that immediate predates the {willDate} that you want to have recognized, that you have not already listed in this service. (just go back 1 will)\nSame questions for Intestate Successors: Name>Alive?>PGT or find their personal rep",
+       "titleLocation": "hidden"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "name": "applicants",
    "elements": [
     {
@@ -4245,6 +4524,13 @@
      "type": "infotext",
      "name": "PrintP1",
      "title": "This is the first review and print page to print the P1 form (to notify successors).\n<br>\n<br>\n It will generated a PDF that the applicant would download.\n<br>\n<br>\nIt will give instructions on how to notify the successors.\n<br>\n<br>\nIf any changes are made in the prior questions, need to inform applicants they may need to re-notify.",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "infotext",
+     "name": "question207",
+     "title": "P42/P43 - don't need to notify creditors because they shouldn't have a say in what will is valid. ",
      "titleLocation": "hidden",
      "messageStyle": "inline"
     }
