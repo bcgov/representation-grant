@@ -961,115 +961,91 @@
       },
       {
        "type": "infotext",
+       "name": "question209",
+       "title": "yes to signature on rando page; no explanation. will is likely to get accepted but may only be recognized up the page it is signed. well ask more questions. - ask if they want to do sec80 first. ",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
        "name": "question210",
-       "title": "Jan 23 2020 - if yes to some hand written (or typed?) explanation anywhere\n\ngenerally, documents need to be signed at the end but because there is an explanation, it might be get accepted by court. there may be restrictions on what part of the will is recognized. If you are concerned, you can do an extra form (P42 sec59) to have the whole thing recognized.\n\nyou can do a sec59 later as well if any problems arise. (with 180 days of getting the grant)",
+       "title": "yes signature on rando page; yes to some hand written (or typed?) explanation anywhere\n<br>\ngenerally, documents need to be signed at the end but because there is an explanation, it might be get accepted by court. there may be restrictions on what part of the will is recognized. \n<br>\nyou may want to do sec 80. It will require affidavits. If you already have some, no extra cost. If you need someone to swear/affirm an affidavit, may cost up $40 per affidavit.",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question211",
-       "title": "do you have do a sec 59 now?"
+       "title": "do you want to do sec 80 now? (may cost up to $40 to swear affidavits) vs hoping no one disputes the will. can do 58 later"
       },
       {
        "type": "infotext",
-       "name": "question209",
-       "title": "Jan 23 2020 - sec80 first. exit to sec59 via P42",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question167",
-       "title": "defer info until after sec80 and sec58. [not signed at all]<br>This document is unlikely to be recognized as a will. \n\nhas to be some indication that deceased knew and approved the contents of the document for it be accepted as a will. this is expressed by a signature. it is unlikely that an unsigned doc will be recognized as a will in BC. if you believe there are exceptional circumstances that provide evidence that the deceased knew and approved the contents of the will, you may wish to seek a lawyer to get advice.",
+       "name": "question215",
+       "title": "yes to sig on rando page; yes to some hand written (or typed?) explanation anywhere\n[do we need a duplicate for yes explanation or no explanation?]\ngenerally, documents need to be signed at the end but because there is an explanation, it might be get accepted by court. there may be restrictions on what part of the will is recognized. If you are concerned, you can do an extra form (P42 sec58) to have the whole thing recognized.\n\nyou can do a sec58 later as well if any problems arise. (with 180 days of getting the grant). will cost $80.",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question166",
-       "title": "were you successful? do you have a court order recognizing this will?"
+       "name": "question216",
+       "title": "do you want to do a sec 58 now? ($80) vs hoping no one disputes the will. can do 58 later"
+      },
+      {
+       "type": "infotext",
+       "name": "question167",
+       "title": "[not signed at all]<br>This document is unlikely to be recognized as a will. \n<br>\n[distinction for future between multiple wills and single will]\n<br>\nhas to be some indication that deceased knew and approved the contents of the document for it be accepted as a will. this is expressed by a signature. it is unlikely that an unsigned doc will be recognized as a will in BC. if you believe there are exceptional circumstances that provide evidence that the deceased knew and approved the contents of the will, you may wish to seek a lawyer to get advice.\n\nyou can proceed as if this will did not exist (if the outcome for where who the assets go to are going to be the same (or can be settled within family/friends without argument). otherwise we proceed with questions, which will require affidavits explaining the will is not signed but should be recognized as a will. this may cost money in affadavit and/or application fees.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question217",
+       "title": "do you want to do a sec80 for this will? section 80 asks about laws of other places that the deceased had a connection with"
+      },
+      {
+       "type": "infotext",
+       "name": "question218",
+       "title": "if yes, go through sec80 script until it finishes",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question219",
+       "title": "do you want to do a sec58? cures wills - $80 "
       },
       {
        "type": "radiogroup",
-       "name": "willNotSigned",
-       "visible": false,
-       "title": "not signed at all? choices - admin without will now or (rare) make an application to go before a judge to explain, then come back to the app when done and keep going",
+       "name": "question221",
+       "title": "do you want to do a sec58 first? to resolve the validity of the will ahead of time? Or do it at the same time. ",
        "choices": [
         {
          "value": "item1",
-         "text": "do Admin without will as if will doesn't exist"
+         "text": "p43 ahead of the P2"
         },
         {
          "value": "item2",
-         "text": "want to cure this will"
+         "text": "p42 at the same time"
         }
        ]
       },
       {
        "type": "infotext",
-       "name": "willNotSignedError",
-       "visible": false,
-       "visibleIf": "{willNotSigned} = \"item2\"",
-       "title": "Placeholder with more questions to come. tell them which forms to use wesa sec58 P42 or P43. investigate this further later:\nYou have an invalid document. Do you want this service to help cure it first [P43] (you go to court) and come back with more certainty? Or do you want to keep going with this service and this service will help you with that [42]?\n\n<br>\n<br>\nAn application under WESA s. 58 is made in accordance\nwith SCCR 25-14(2)(c). If there is an existing probate\nproceeding, the application is brought using a Notice of\nApplication in probate form P42. If there is no existing\nprobate proceeding, the order may be sought by requisition\nin probate form P43.",
-       "titleLocation": "hidden",
-       "messageStyle": "error"
-      },
-      {
-       "type": "infotext",
-       "name": "question19",
-       "visible": false,
-       "title": "[for signed by someone else - no sec 80??] sec 58, see above. either go with admin w/o will or apply using P42/P43",
+       "name": "question222",
+       "title": "P43 option says we'll stop asking about the will, we will just enough about who to give notice to so you can do P43 first. then come to \"did you get your will recognized?\"",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question6",
-       "title": "Was {deceasedName} blind (when they signed the will)?"
+       "name": "question166",
+       "title": "were you successful? do you have a court order recognizing this will? [yes - keep going; no + single will - AWOW message; no + multiple will = do you want to use another will - is this a jump up?]"
       },
       {
        "type": "yesno",
-       "name": "question10",
-       "visible": false,
-       "title": "Is there an acknowledgement/explanation on the will that {deceasedName} was blind when they signed their will?"
-      },
-      {
-       "type": "yesno",
-       "name": "question12",
-       "visible": false,
-       "title": "Is there someone that will swear/affirm that {deceasedName} understood and approved of the content of their even if they were blind? Usually a witness."
-      },
-      {
-       "type": "text",
-       "name": "question15",
-       "visible": false,
-       "title": "name of witness who can attest to blindness and understanding will"
-      },
-      {
-       "type": "text",
-       "name": "question16",
-       "visible": false,
-       "title": "occupation"
-      },
-      {
-       "type": "address",
-       "name": "question17",
-       "visible": false,
-       "title": "city and country of witness"
-      },
-      {
-       "type": "yesno",
-       "name": "question18",
-       "visible": false,
-       "title": "Sec80a - Is the will valid according to the law of the place where the will is made,"
-      },
-      {
-       "type": "yesno",
-       "name": "question21",
-       "visible": false,
-       "title": "sec 80 b and c - domiciled is where they would normally live? ordinary residence would be off-shore oil rig 200 days a year. business and social connections. possibly on the form, could fill out with something like \"Sec80 b and/or Sec80 b\""
+       "name": "question220",
+       "title": "[will not signed; failed sec58; multiple wills] do you want to use a different will for this application [yes jumps back to certain point and clears data between; no goes to AWOW message]."
       },
       {
        "type": "infotext",
-       "name": "question13",
-       "visible": false,
+       "name": "question223",
+       "title": "P42 option jumps to sec58 page. and comes back to next question",
        "titleLocation": "hidden"
       },
       {
@@ -1081,25 +1057,26 @@
        "type": "infotext",
        "name": "willMakerOver16NoError",
        "visible": false,
-       "title": "sec 80, then sec 58, then option to proceed with no will",
+       "title": "[not 16]\nsec 80 first\nTyler to check if sec58 is possible (with Peter Ramsey)\nproceed as if no will if sec80 failed",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
       {
        "type": "yesno",
        "name": "question41",
-       "title": "mentally competent?"
+       "title": "mentally competent at the time they made the will?"
       },
       {
        "type": "infotext",
        "name": "question43",
-       "title": "sec58 or proceed as if no will.",
-       "titleLocation": "hidden"
+       "title": "not competent at will making date] no sec80. no sec58.<br>\n[proceed as if no will for single will. mulitple will - ask if they want to use another will]",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
       },
       {
        "type": "yesno",
        "name": "question42",
-       "title": "undue influence"
+       "title": "Jan 27 - undue influence"
       },
       {
        "type": "infotext",
@@ -1109,9 +1086,8 @@
       },
       {
        "type": "yesno",
-       "name": "willWitnessesSigned",
-       "visible": false,
-       "title": "Witnessed (signed) by 2 others in the presence of the other witness and will-maker (everyone must sign in the same room)"
+       "name": "question23",
+       "title": "Do you think is any other reason that someone may question whether {deceasedName} and/or the witnesses may not have understood the contents of the will when they signed it?\n\nfor example they were blind, illiterate, etc. or any other.\n\nPhrase this as an opportunity. to write an affidavit\n(check with Sheri if this could all be one big affidavit - with respect to subject X, blah blah)"
       }
      ],
      "visible": false,
@@ -1148,6 +1124,12 @@
        "title": "Witnesses were mentally capable at the time?"
       },
       {
+       "type": "yesno",
+       "name": "willWitnessesSigned",
+       "visible": false,
+       "title": "Witnessed (signed) by 2 others in the presence of the other witness and will-maker (everyone must sign in the same room)"
+      },
+      {
        "type": "infotext",
        "name": "willWitnessesProblemPlaceholder",
        "visible": false,
@@ -1172,31 +1154,6 @@
       }
      ],
      "visible": false
-    },
-    {
-     "type": "panel",
-     "name": "panel8",
-     "elements": [
-      {
-       "type": "infotext",
-       "name": "question27",
-       "title": "25-3 (6) g\n<br>\nany issues respecting execution of the will\n<br>\nspecial circumstances",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
-      },
-      {
-       "type": "yesno",
-       "name": "question7",
-       "title": "Was {deceasedName} blind (when they signed the will)?"
-      },
-      {
-       "type": "yesno",
-       "name": "question23",
-       "title": "Do you think is any other reason that someone may question whether {deceasedName} and/or the witnesses may not have understood the contents of the will when they signed it?\n\nfor example they were blind, illiterate, etc. or any other.\n\nPhrase this as an opportunity. to write an affidavit\n(check with Sheri if this could all be one big affidavit - with respect to subject X, blah blah)"
-      }
-     ],
-     "visible": false,
-     "visibleIf": "{willStatus} = \"item1\""
     },
     {
      "type": "panel",
@@ -3273,7 +3230,7 @@
       {
        "type": "checkbox",
        "name": "question178",
-       "title": "Grounds from Peter Ramsey/Chelsea Wilson\n1.       Suspected lack of testamentary capacity;\n2.       Suspected undue influence;\n3.       Will later than one being probated;\n4.       Existence of a will and application is for grant of letters of administration;\n5.       Applicant being improper person to receive estate grant",
+       "title": "Grounds from Peter Ramsey/Chelsea Wilson\n1.       Suspected lack of testamentary capacity;\n2.       Suspected undue influence;\n3.       Will later than one being probated;\n4.       Existence of a will and application is for grant of letters of administration;\n5.       Applicant being improper person to receive estate grant\n<br><br>\na CSB staff member could maybe do a search of them and record a summary of the reasons given (1 BC wide registry)",
        "choices": [
         "item1",
         "item2",
@@ -3297,6 +3254,13 @@
   {
    "name": "sec58Page",
    "elements": [
+    {
+     "type": "infotext",
+     "name": "question212",
+     "title": "Dani (Chilliwack) says that this could go to a Master (??) by consent order (Form 31 + Draft Order 35) if no one files a Notice of Dispute. It would get seen at the time of submission, result recorded, P2 will go into the queue after. Do we have a question asking if a Notice of Dispute is filed? Will also cost $80 (same as P42). This process might skip notifying the beneficiaries of an older will (they wouldn't get a P1 but would get a P42). ",
+     "titleLocation": "hidden",
+     "messageStyle": "error"
+    },
     {
      "type": "panel",
      "name": "panel10",
@@ -3442,6 +3406,12 @@
        "titleLocation": "hidden"
       },
       {
+       "type": "infotext",
+       "name": "question213",
+       "title": "Hadley Estate - https://www.canlii.org/en/bc/bcca/doc/2017/2017bcca311/2017bcca311.html<br>\nHubschi Estate - https://www.canlii.org/en/bc/bcsc/doc/2019/2019bcsc2040/2019bcsc2040.html<br>\nYoung Estate - \nhttps://www.canlii.org/en/bc/bcsc/doc/2015/2015bcsc182/2015bcsc182.html",
+       "titleLocation": "hidden"
+      },
+      {
        "type": "yesno",
        "name": "question193",
        "title": "Do you want to add any other legal information that the court should be aware of?"
@@ -3507,6 +3477,25 @@
        "type": "text",
        "name": "question204",
        "title": "P42 has estimate for time of day. Who does this?"
+      },
+      {
+       "type": "radiogroup",
+       "name": "question214",
+       "title": "How much time do you think it will take to explain all your evidence to a judge/court?",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "Less than 1 hour"
+        },
+        {
+         "value": "item2",
+         "text": "Less than 2 hours"
+        },
+        {
+         "value": "item3",
+         "text": "More than 2 hours"
+        }
+       ]
       },
       {
        "type": "infotext",
