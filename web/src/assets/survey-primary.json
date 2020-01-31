@@ -682,7 +682,15 @@
     },
     {
      "type": "panel",
-     "name": "panel4"
+     "name": "panel4",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question19",
+       "title": "P4 6. (c.1) Affidavit questions. Explain why you only have a copy. (move section up??)",
+       "titleLocation": "hidden"
+      }
+     ]
     },
     {
      "type": "panel",
@@ -1057,7 +1065,7 @@
        "type": "infotext",
        "name": "willMakerOver16NoError",
        "visible": false,
-       "title": "[not 16]\nsec 80 first\nTyler to check if sec58 is possible (with Peter Ramsey)\nproceed as if no will if sec80 failed",
+       "title": "[not 16]\nsec 80 first; proceed as if no will if sec80 failed",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
@@ -1069,25 +1077,79 @@
       {
        "type": "infotext",
        "name": "question43",
-       "title": "not competent at will making date] no sec80. no sec58.<br>\n[proceed as if no will for single will. mulitple will - ask if they want to use another will]",
+       "title": "not competent at will making date] no sec80. no sec58.<br>\n[proceed as if no will for single will. mulitple will - ask if they want to use another will]\n<br>\n",
        "titleLocation": "hidden",
        "messageStyle": "error"
       },
       {
        "type": "yesno",
-       "name": "question42",
-       "title": "Jan 27 - undue influence"
+       "name": "question6",
+       "title": "[multiple wills] Did {deceasedName} make one or more Wills while they were mentally competent?"
       },
       {
        "type": "infotext",
-       "name": "question44",
-       "title": "sec58 or proceed as if no will.",
+       "name": "question7",
+       "title": "[yes, use older will] clear answers, jump back to will date\n<br>\n[no, always mentally incompetent wills] - AWOW",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question42",
+       "title": "undue influence?"
+      },
+      {
+       "type": "infotext",
+       "name": "question15",
+       "title": "[undue influence at will making date] no sec80. no sec58.<br>\n[proceed as if no will for single will. mulitple will - ask if they want to use another will]",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "question16",
+       "title": "[multiple wills] Did {deceasedName} make one or more Wills where they were not under undue influence?"
+      },
+      {
+       "type": "infotext",
+       "name": "question17",
+       "title": "[yes, use older will] clear answers, jump back to will date\n<br>\n[no, always undue influence wills] - AWOW",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question23",
-       "title": "Do you think is any other reason that someone may question whether {deceasedName} and/or the witnesses may not have understood the contents of the will when they signed it?\n\nfor example they were blind, illiterate, etc. or any other.\n\nPhrase this as an opportunity. to write an affidavit\n(check with Sheri if this could all be one big affidavit - with respect to subject X, blah blah)"
+       "title": "Do you think is any other issue with how this will was made that someone (the DDR) may question? (make this question distinct from appearance problems)"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question18",
+       "title": "Describe the issue",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "Describe the issue",
+         "cellType": "comment"
+        },
+        {
+         "name": "Column 2",
+         "title": "Describe why the person reviewing the Will should not be concerned about it",
+         "cellType": "comment"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "rowCount": 1
+      },
+      {
+       "type": "infotext",
+       "name": "question21",
+       "title": "P4 6 (d). Could this be a non-affidavit statement so we don't need to produce an affidavit? or some other evidence? should make it an option to create an affidavit??",
+       "titleLocation": "hidden"
       }
      ],
      "visible": false,
@@ -1096,7 +1158,7 @@
     {
      "type": "yesno",
      "name": "willLastForBCProperty",
-     "title": "[after checking for validity] Is this Will dated {willDate} is {deceasedName}'s last will that deals with property in BC?"
+     "title": "Jan 30 2020 - [after checking for validity] Is this Will dated {willDate} is {deceasedName}'s last will that deals with property in BC?"
     },
     {
      "type": "helptext",
@@ -1239,6 +1301,50 @@
      "visible": false,
      "title": "[See above for questions for multiple wills that did not get revoked by newer wills]",
      "titleLocation": "hidden"
+    },
+    {
+     "type": "panel",
+     "name": "panel8",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question12",
+       "title": "[multiple wills] Any Wills newer than {willDate} that you are not using?"
+      },
+      {
+       "type": "yesno",
+       "name": "question13",
+       "title": "[AWOW but multiple invalid wills??] Any Wills than {willDate} that you are not using?"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question10",
+       "title": "Date and Reason not using that will",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "Date of Will/Doc [Date Input Selector]",
+         "cellType": "text"
+        },
+        {
+         "name": "Column 2",
+         "title": "Reason this doc should be considered irrelevnt or invalid",
+         "cellType": "checkbox"
+        }
+       ],
+       "choices": [
+        "lack of capacity",
+        "undue influence",
+        {
+         "value": "other",
+         "text": "other (specify)"
+        }
+       ],
+       "rowCount": 1,
+       "addRowText": "Add new Will/Testamentary Document?",
+       "removeRowText": "Remove document"
+      }
+     ]
     },
     {
      "type": "panel",
