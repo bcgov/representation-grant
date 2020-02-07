@@ -418,6 +418,23 @@
       },
       {
        "type": "yesno",
+       "name": "question44",
+       "title": "[know the contents of the will] Does this Will deal with property in BC?"
+      },
+      {
+       "type": "helptext",
+       "name": "willLastFAQ2",
+       "title": "Will that deals with property outside of BC?",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question27",
+       "title": "[no - single will] AWOW\n[no - multiple wills] - do they have an earlier will that deals with property in BC? yes, keep going - no - ask questions to get to citation/subpoena",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
        "name": "willOriginal",
        "visible": false,
        "visibleIf": "{willHave} = \"y\"",
@@ -567,6 +584,23 @@
        "visibleIf": "({willHave} = \"y\" and {willOriginal} = \"n\" and {willOriginalExists} = \"y\" and {willOriginalVoluntaryTransfer} = \"n\") or ({willHave} = \"n\" and {willOriginalExists} = \"y\" and {willOriginalVoluntaryTransfer} = \"n\") or ({willHave} = \"n\" and {willOriginalExists} = \"n\" and {willCopyExists} = \"y\" and {willCopyVoluntaryTransfer} = \"n\")",
        "title": "[have copy; non-executor has original] subpoena<br><br>\nexplain subpoena for this situation.\n<br><br>\n???a dispute will stop their application from going through. someone else including you can apply.",
        "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willLastForBCProperty22222",
+       "title": "[after citation/subpoena] Does this Will deal with property in BC?"
+      },
+      {
+       "type": "helptext",
+       "name": "question224",
+       "title": "Will that deals with property outside of BC?",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question225",
+       "title": "[no; single will] - AWOW\n[no; multiple will] - Is there an older will that does deal with BC property? [yes] - jump back to top of section \"do you have this will? [no - AWOW]",
        "titleLocation": "hidden"
       }
      ],
@@ -950,12 +984,17 @@
        "type": "yesno",
        "name": "question1",
        "visible": false,
-       "title": "Was this will signed by someone else on behalf of {deceasedName}? on the last page"
+       "title": "Was this will signed by someone else on behalf of {deceasedName} on the last page?"
       },
       {
        "type": "yesno",
        "name": "question2",
        "title": "[if signed by someone else] Is there an acknowledgement/explanation on the will that {deceasedName} signed by someone else?"
+      },
+      {
+       "type": "yesno",
+       "name": "question228",
+       "title": "[show for signature on the last page but hide if yes to any previous acknowledgement] Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name?"
       },
       {
        "type": "yesno",
@@ -1156,48 +1195,47 @@
      "visibleIf": "{willTranslated} = \"y\""
     },
     {
-     "type": "yesno",
-     "name": "willLastForBCProperty",
-     "title": "Jan 30 2020 - [after checking for validity] Is this Will dated {willDate} is {deceasedName}'s last will that deals with property in BC?"
-    },
-    {
-     "type": "helptext",
-     "name": "willLastFAQ1",
-     "title": "Will that deals with property outside of BC?",
-     "titleLocation": "hidden"
-    },
-    {
      "type": "panel",
      "name": "willWitnessesPanel",
      "elements": [
       {
        "type": "yesno",
        "name": "witnessquestion",
-       "title": "Where there 2 witnesses?"
+       "title": "Was the Will signed by at least 2 witnesses?"
       },
       {
        "type": "yesno",
-       "name": "willWitnessesOver19",
-       "title": "Witnesses over 19 at the time?"
+       "name": "question226",
+       "title": "[no 2 witnesses] Was the Will signed by 1 witness?"
       },
       {
        "type": "yesno",
-       "name": "willWitnessesCompetent",
-       "title": "Witnesses were mentally capable at the time?"
+       "name": "question230",
+       "title": "[yes 2 witnesess] Did the witnesses sign on the same page as {deceasedName}'s signature/mark?"
       },
       {
-       "type": "yesno",
-       "name": "willWitnessesSigned",
-       "visible": false,
-       "title": "Witnessed (signed) by 2 others in the presence of the other witness and will-maker (everyone must sign in the same room)"
+       "type": "infotext",
+       "name": "question231",
+       "title": "[not signed by 2] section 80 first (start at \"n (will made outside of BC)\" in X Mind; stuff before is irrelevant), then section 58",
+       "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "willWitnessesProblemPlaceholder",
        "visible": false,
-       "title": "Placeholder (does this apply to will-maker too or just witnesses?)\n<br>\n\"Priority of Attestation Clause addressing\n<br>\n1. affidavit of witness\n<br>\n2. affidavit of person who was there but not a witness\n<br>\n3. affidavit confirming signature of willmaker and witnesses... (2 affidavits)\n<br>\n4. affidavit of circumstances. \n<br>\n5.\"",
+       "title": "\"Priority of Attestation Clause addressing\n<br>\n1. affidavit of witness\n<br>\n2. affidavit of person who was there but not a witness\n<br>\n3. affidavit confirming signature of willmaker and witnesses... (2 affidavits)\n<br>\n4. affidavit of circumstances. \n<br>\n5.\"\n<br>\nstrictly attestation clause issues. If it doesn't exist, or if there weirdness that needs to be addressed?\noutside of this, is sec80/58 realm. can cure the fact that there are no witnesses so everything else can be cured.",
        "titleLocation": "hidden",
        "messageStyle": "inline"
+      },
+      {
+       "type": "yesno",
+       "name": "question229",
+       "title": "Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name?"
+      },
+      {
+       "type": "yesno",
+       "name": "question227",
+       "title": "series of questions confirming signatures???"
       }
      ],
      "visible": false,
@@ -1335,6 +1373,7 @@
        "choices": [
         "lack of capacity",
         "undue influence",
+        "will does not deal with property in BC",
         {
          "value": "other",
          "text": "other (specify)"
@@ -3624,7 +3663,116 @@
    "name": "foreignWillPage"
   },
   {
-   "name": "executorsPage"
+   "name": "executorsPage",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "panel13",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question232",
+       "title": "In this section, we need to figure out what rights people have to apply to manage {deceasedName}'s estate. This usually involves executors. We need to figure who is the most eligible to apply.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel16",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question233",
+       "title": "Does the will list any executors?",
+       "description": "Define executor. Sometimes it is written as trustees, etc."
+      }
+     ]
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question243",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "executorName",
+       "title": "What is the executor's name?\nExplain executors. Include the number even if some or all of the executors are not alive right now.  Possibly explain the difference between main executors and alternate/conditional ones.",
+       "description": "If there are main executors and alternate executors, start with the main executors first.  It makes sense to write their names exactly as it appears in 's will.   (What happens if the way the name is written on the will differs from the person's ID card and the document would be meaningless in practice?)"
+      },
+      {
+       "type": "yesno",
+       "name": "question235",
+       "title": "Is {executorName} alive?"
+      },
+      {
+       "type": "yesno",
+       "name": "question234",
+       "title": "Is {executorName} mentally competent???"
+      },
+      {
+       "type": "radiogroup",
+       "name": "question236",
+       "title": "Main executor or alternate executor?",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "Main executor  Contingent? "
+        },
+        {
+         "value": "item2",
+         "text": "Alternate executor"
+        },
+        {
+         "value": "item3",
+         "text": "Same as Alternate?"
+        }
+       ]
+      },
+      {
+       "type": "yesno",
+       "name": "question237",
+       "title": "Is {executorName} an ex-spouse of {deceasedName}?",
+       "description": "Define what spouse means? Marriage like-relationship, married, etc.  Ex-spouses drop down in the hierarchy of rights if they were named as an executor if...  (Does being a primary executor AND a current spouse grant extra rights?)"
+      },
+      {
+       "type": "yesno",
+       "name": "question238",
+       "title": "Is {executorName} capable of managing / co-managing {deceasedName}'s estate?",
+       "description": "Capable is defined as what? Mentally capable? Has the time to do it?"
+      },
+      {
+       "type": "yesno",
+       "name": "question239",
+       "title": "Does {executorName} plan to renounce executorship?",
+       "description": "Renouncing executorship means they are going give up all rights they have to become an executor of 's estate. They will have to sign an affidavit and they cannot reverse their decision.  The other option, if  does not wish to be an applicant on this application but they do not want to renounce their position, they can choose not to apply but reserve their right to execute 's estate in the future.  (Might have to ask if there any other reasons the executor is not applying.)"
+      },
+      {
+       "type": "yesno",
+       "name": "question240",
+       "title": "Are there any special conditions / requirements that {deceasedName} has specified in order for {executorName} to be allowed to be an executor?",
+       "description": "Example? Sometimes it might be that the executor has to wait 30 days after a primary executor dies?"
+      },
+      {
+       "type": "yesno",
+       "name": "question241",
+       "title": "Have those special conditions / requirements been met?"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel15",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question242",
+       "title": "Based on the responses,  and  have the highest rights to apply to be (co-)executors to 's estate.\n\nWe will generate a form for  to renounce their executorship. It is not required to be filled out by  but it will be prepared just in case they want to officially renounce their executorship. \n\nNow that we have identified the people who have the highest right to apply, other people can also apply if the named executors consent. We will figure out this later. \n\nNext we will move on to identifying the successors.",
+       "titleLocation": "hidden"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "spousePage",
