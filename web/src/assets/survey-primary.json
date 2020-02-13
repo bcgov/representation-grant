@@ -643,13 +643,8 @@
        "title": "[multiple wills, No original, no copy, will search yes, cannot find the latest will???]\nGo back to \"do you have this will? and answer using an older will",
        "titleLocation": "hidden"
       }
-     ]
-    },
-    {
-     "type": "infotext",
-     "name": "question157",
-     "title": "[P5 - believe there is a will but cannot be found - deceased only made 1 will] AWOW - Move to the bottom",
-     "titleLocation": "hidden"
+     ],
+     "visible": false
     },
     {
      "type": "panel",
@@ -724,7 +719,8 @@
        "title": "P4 6. (c.1) Affidavit questions. Explain why you only have a copy. (move section up??)",
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false
     },
     {
      "type": "panel",
@@ -953,6 +949,7 @@
     {
      "type": "infotext",
      "name": "question14",
+     "visible": false,
      "title": "Will Signed",
      "titleLocation": "hidden",
      "messageStyle": "inline"
@@ -993,8 +990,36 @@
       },
       {
        "type": "yesno",
+       "name": "question249",
+       "title": "[yes or no acknowledgement] military will?"
+      },
+      {
+       "type": "infotext",
+       "name": "question251",
+       "title": "[not military will] keep going as regular to sec80/58",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question250",
+       "title": "[yes military will] was there at least 1 witness that signed the last page when the will was signed on behalf of {deceasedName}?"
+      },
+      {
+       "type": "infotext",
+       "name": "question252",
+       "title": "[not witnessed] doesn't meet the qualifiations for a BC military will. go to sec80.then 58",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
        "name": "question228",
        "title": "[show for signature on the last page but hide if yes to any previous acknowledgement] Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name?"
+      },
+      {
+       "type": "infotext",
+       "name": "question244",
+       "title": "insert questions similar to witnesses signed ? then sec80, then 58",
+       "titleLocation": "hidden"
       },
       {
        "type": "yesno",
@@ -1101,12 +1126,23 @@
        "title": "Was {deceasedName} over the age 16 when they made this will?"
       },
       {
+       "type": "yesno",
+       "name": "question227",
+       "title": "[not 16 and will is signed on the LAST page] Did {deceasedName} make their Will while on military service?"
+      },
+      {
        "type": "infotext",
        "name": "willMakerOver16NoError",
        "visible": false,
-       "title": "[not 16]\nsec 80 first; proceed as if no will if sec80 failed",
+       "title": "[not 16 not military]\nsec 80 first; proceed as if no will if sec80 failed",
        "titleLocation": "hidden",
        "messageStyle": "error"
+      },
+      {
+       "type": "infotext",
+       "name": "question246",
+       "title": "military will, ignore mental competency, and other issues. do ask undue influence.\nyou will need to provide evidence that they were in the military and on activity duty when the will was made.",
+       "titleLocation": "hidden"
       },
       {
        "type": "yesno",
@@ -1195,9 +1231,23 @@
      "visibleIf": "{willTranslated} = \"y\""
     },
     {
+     "type": "infotext",
+     "name": "question26",
+     "visible": false,
+     "title": "Will Witnessed",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
      "type": "panel",
      "name": "willWitnessesPanel",
      "elements": [
+      {
+       "type": "infotext",
+       "name": "question247",
+       "title": "ignore witness section if military will and will is signed on the last page by signature or by mark.",
+       "titleLocation": "hidden"
+      },
       {
        "type": "yesno",
        "name": "witnessquestion",
@@ -1209,9 +1259,15 @@
        "title": "[no 2 witnesses] Was the Will signed by 1 witness?"
       },
       {
+       "type": "infotext",
+       "name": "question245",
+       "title": "[yes 1 witness signed] see X-Mind for 2 witnesses signing",
+       "titleLocation": "hidden"
+      },
+      {
        "type": "yesno",
        "name": "question230",
-       "title": "[yes 2 witnesess] Did the witnesses sign on the same page as {deceasedName}'s signature/mark?"
+       "title": "[yes 2 witnesess] Did the witnesses sign on the same page as {deceasedName}'s signature/mark? [See X-Mind]"
       },
       {
        "type": "infotext",
@@ -1220,22 +1276,15 @@
        "titleLocation": "hidden"
       },
       {
-       "type": "infotext",
-       "name": "willWitnessesProblemPlaceholder",
-       "visible": false,
-       "title": "\"Priority of Attestation Clause addressing\n<br>\n1. affidavit of witness\n<br>\n2. affidavit of person who was there but not a witness\n<br>\n3. affidavit confirming signature of willmaker and witnesses... (2 affidavits)\n<br>\n4. affidavit of circumstances. \n<br>\n5.\"\n<br>\nstrictly attestation clause issues. If it doesn't exist, or if there weirdness that needs to be addressed?\noutside of this, is sec80/58 realm. can cure the fact that there are no witnesses so everything else can be cured.",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
-      },
-      {
        "type": "yesno",
        "name": "question229",
-       "title": "Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name?"
+       "title": "Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name? [Same script for \"No\" as 2 witnesses did not sign. Try to double up instead of having to ask twice].",
+       "description": "Possible to have visual examples?"
       },
       {
        "type": "yesno",
-       "name": "question227",
-       "title": "series of questions confirming signatures???"
+       "name": "question248",
+       "title": "[military will signed by someone else] the signature of that other person must be witnessed by the signature of at least one person, who must sign the will in the presence of the will-maker and of that other person."
       }
      ],
      "visible": false,
@@ -1244,15 +1293,6 @@
     {
      "type": "panel",
      "name": "panel5",
-     "elements": [
-      {
-       "type": "infotext",
-       "name": "question26",
-       "title": "25-3 (6) f\n<br>\nthe will is not a military will executed in accordance with the requirements of section 38 of the Wills, Estates and Succession Act",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
-      }
-     ],
      "visible": false
     },
     {
@@ -1334,16 +1374,16 @@
      "visibleIf": "{willStatus} = \"item1\""
     },
     {
-     "type": "infotext",
-     "name": "question45",
-     "visible": false,
-     "title": "[See above for questions for multiple wills that did not get revoked by newer wills]",
-     "titleLocation": "hidden"
-    },
-    {
      "type": "panel",
      "name": "panel8",
      "elements": [
+      {
+       "type": "infotext",
+       "name": "question45",
+       "visible": false,
+       "title": "[See above for questions for multiple wills that did not get revoked by newer wills]",
+       "titleLocation": "hidden"
+      },
       {
        "type": "yesno",
        "name": "question12",
@@ -1383,7 +1423,8 @@
        "addRowText": "Add new Will/Testamentary Document?",
        "removeRowText": "Remove document"
       }
-     ]
+     ],
+     "visible": false
     },
     {
      "type": "panel",
@@ -1403,6 +1444,13 @@
        "visible": false,
        "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "[P5 no will, yes other doc, do not recognize, invalid will only] \nYou will need to provide a copy of the invalid Will. This service will remind you to make a copy at the end.\n<br><br>\nBecause {deceasedName} didn't leave a valid Will, we can move on to asking about {deceasedName}'s spouse and children. \n",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question157",
+       "visible": false,
+       "title": "[P5 - believe there is a will but cannot be found - deceased only made 1 will] AWOW\n",
        "titleLocation": "hidden"
       },
       {
