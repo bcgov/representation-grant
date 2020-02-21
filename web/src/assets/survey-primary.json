@@ -254,7 +254,7 @@
       },
       {
        "type": "yesno",
-       "name": "otherDocExists",
+       "name": "willOtherDocExists",
        "visible": false,
        "visibleIf": "{willExists} = \"n\"",
        "title": "Did {deceasedName} make any `other testamentary documents` or recordings?",
@@ -262,16 +262,16 @@
       },
       {
        "type": "yesno",
-       "name": "otherDocRecognize",
+       "name": "willOtherDocRecognize",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\"",
+       "visibleIf": "{willExists} = \"n\" and {willOtherDocExists} = \"y\"",
        "title": "Do you want to have these `other testamentary documents` recognized as {deceasedName}'s `Will`?"
       },
       {
        "type": "matrixdynamic",
-       "name": "otherDocRecognizeNoReasons",
+       "name": "willOtherDocRecognizeNoReasons",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
+       "visibleIf": "{willExists} = \"n\" and {willOtherDocExists} = \"y\" and {willOtherDocRecognize} = \"n\"",
        "title": "Explain why you think each of {deceasedName}'s `other testamentary documents` are not valid or not relevant:\nTrello: Add Other for Pulldown or Radio\n<br>\nField2: reason: radio with other. radio options: cannot find the will to which codicil relates; does not reflect deceased's final intention; working draft/draft document; unwitnessed draft;\n[Reminder] A copy of the testamentary document(s) is attached as an exhibit to the affidavit.",
        "columns": [
         {
@@ -308,8 +308,8 @@
       },
       {
        "type": "infotext",
-       "name": "otherDocRecognizeYesExplanation",
-       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\"",
+       "name": "willOtherDocRecognizeYesExplanation",
+       "visibleIf": "{willExists} = \"n\" and {willOtherDocExists} = \"y\" and {willOtherDocRecognize} = \"y\"",
        "title": "If you want a document with issues to be recognized, this service will ask questions to identify the issues.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -340,7 +340,7 @@
        "type": "helptext",
        "name": "willMultipleFAQ1",
        "visible": false,
-       "visibleIf": "{willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0)",
+       "visibleIf": "{willExists} = \"y\" or ({willExists} = \"n\" and {willOtherDocExists} = \"y\" and {willOtherDocRecognize} = \"y\" and {willOtherDocRecognizeYesExplanation} > 0)",
        "title": "Do I/we include `other testamentary documents`?",
        "titleLocation": "hidden",
        "body": "No. This question is only about the Will.\n<br><br>\nIf {deceasedName} made a `codicil` or `other testamentary documents`, this service will ask about those documents later."
@@ -405,7 +405,15 @@
       }
      ],
      "visible": false,
-     "visibleIf": "{willCheck} = \"y\" and ({willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0))"
+     "visibleIf": "{willCheck} = \"y\" and ({willExists} = \"y\" or ({willExists} = \"n\" and {willOtherDocExists} = \"y\" and {willOtherDocRecognize} = \"y\" and {willOtherDocRecognizeYesExplanation} > 0))"
+    },
+    {
+     "type": "infotext",
+     "name": "willPossessionBookmark",
+     "visible": false,
+     "title": "Will Possession",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
@@ -418,18 +426,23 @@
       },
       {
        "type": "yesno",
-       "name": "question44",
-       "title": "[know the contents of the will] Does this Will deal with property in BC?"
+       "name": "willPropertyInBC1",
+       "visible": false,
+       "visibleIf": "{willHave} = \"y\"",
+       "title": "Does this Will deal with property in BC?"
       },
       {
        "type": "helptext",
-       "name": "willLastFAQ2",
+       "name": "willPropertyInBC1FAQ1",
+       "visible": false,
+       "visibleIf": "{willHave} = \"y\"",
        "title": "Will that deals with property outside of BC?",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question27",
+       "visible": false,
        "title": "[no - single will] AWOW\n[no - multiple wills] - do they have an earlier will that deals with property in BC? yes, keep going - no - ask questions to get to citation/subpoena",
        "titleLocation": "hidden"
       },
@@ -437,7 +450,7 @@
        "type": "yesno",
        "name": "willOriginal",
        "visible": false,
-       "visibleIf": "{willHave} = \"y\"",
+       "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\"",
        "title": "Do you have the original Will?"
       },
       {
@@ -523,18 +536,21 @@
       {
        "type": "yesno",
        "name": "willCourtHasCopy",
+       "visible": false,
        "title": "Does a courthouse (anywhere in the world) have a copy of {deceasedName}'s Will?",
        "description": "The courthouse would have the will if someone else applied for a Rep Grant or someone was served a subpoena to file that will at the courthouse."
       },
       {
        "type": "infotext",
        "name": "question82",
+       "visible": false,
        "title": "[no have will + no original at court + no original anywhere + yes court has copy] Go get a copy from that courthouse and use the info from that will.\n<br>\naffidavit questions",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question81",
+       "visible": false,
        "title": "[JIRA - markup for highlight in yellow?] The word Copy here for example",
        "titleLocation": "hidden"
       },
@@ -575,6 +591,7 @@
       {
        "type": "yesno",
        "name": "question37",
+       "visible": false,
        "title": "Do you want to create these court forms (citation)..."
       },
       {
@@ -588,24 +605,27 @@
       },
       {
        "type": "yesno",
-       "name": "willLastForBCProperty22222",
+       "name": "willPropertyInBC2",
+       "visible": false,
        "title": "[after citation/subpoena] Does this Will deal with property in BC?"
       },
       {
        "type": "helptext",
-       "name": "question224",
+       "name": "willPropertyInBC2FAQ1",
+       "visible": false,
        "title": "Will that deals with property outside of BC?",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question225",
+       "visible": false,
        "title": "[no; single will] - AWOW\n[no; multiple will] - Is there an older will that does deal with BC property? [yes] - jump back to top of section \"do you have this will? [no - AWOW]",
        "titleLocation": "hidden"
       }
      ],
      "visible": false,
-     "visibleIf": "{willCheck} = \"y\"\nand \n({willExists} = \"y\" or ({willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"y\" and {otherDocRecognizeYesExplanation} > 0)) \nand \n({willMultiple} = \"n\" or ({willMultiple} = \"y\" and (({willRevoked} = \"y\" and {willRevokedYesExplanation} > 0) or ({willRevoked} = \"n\" and {willDifferentAssets} = \"n\" and {willDifferentAssetsNoExplanation} > 0) or ({willRevoked} = \"n\" and {willAdministerMultiple} = \"n\" and {willAdministerMultipleNoExplanation} > 0) or ({willRevoked} = \"n\" and {willAdministerMultiple} = \"y\" and {willAdministerMultipleYesExplanation} > 0))))"
+     "visibleIf": "{willCheck} = \"y\"\nand \n({willExists} = \"y\" or ({willExists} = \"n\" and {willOtherDocExists} = \"y\" and {willOtherDocRecognize} = \"y\" and {willOtherDocRecognizeYesExplanation} > 0)) \nand \n({willMultiple} = \"n\" or ({willMultiple} = \"y\" and (({willRevoked} = \"y\" and {willRevokedYesExplanation} > 0) or ({willRevoked} = \"n\" and {willDifferentAssets} = \"n\" and {willDifferentAssetsNoExplanation} > 0) or ({willRevoked} = \"n\" and {willAdministerMultiple} = \"n\" and {willAdministerMultipleNoExplanation} > 0) or ({willRevoked} = \"n\" and {willAdministerMultiple} = \"y\" and {willAdministerMultipleYesExplanation} > 0))))"
     },
     {
      "type": "panel",
@@ -748,18 +768,21 @@
       {
        "type": "infotext",
        "name": "question66",
+       "visible": false,
        "title": "[JIRA]<br>\nOption 1 only display \"(Will dated {willDate}\" if deceased only made 1 will<br>\nOption 2 - only display Month and Year, no day",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question153",
+       "visible": false,
        "title": "[JIRA] - Possibly not important but if multiple wills, future pages need to know which will date to include as part of the timing of questions. ",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question154",
+       "visible": false,
        "title": "[JIRA] Questions in separate round boxes for 1 will. All will questions in one round box for multiple wills? Probably a bad idea.\nTreat each will like a child in Protection Order/Family? with its own sub page?",
        "titleLocation": "hidden"
       },
@@ -783,7 +806,7 @@
       }
      ],
      "visible": false,
-     "visibleIf": "({willHave} = 'y' and {willOriginal} = \"y\") or \n{willStatus} = \"item1\" or\n{willStatus} = \"item2\"\nor {willCitationPlaceholder} > 0\n{willOriginalExists} = \"n\""
+     "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\""
     },
     {
      "type": "infotext",
@@ -814,6 +837,7 @@
       {
        "type": "infotext",
        "name": "question80",
+       "visible": false,
        "title": "Jan 10 2020 - re-work this section about wills being recordings. offer the option to go with the newer video will ",
        "titleLocation": "hidden",
        "messageStyle": "inline"
@@ -821,16 +845,19 @@
       {
        "type": "yesno",
        "name": "question160",
+       "visible": false,
        "title": "Do you want to try and get the audio or video recording recognized as a Will?"
       },
       {
        "type": "yesno",
        "name": "question161",
+       "visible": false,
        "title": "Do you now have a court order that recognizes the recording as a Will? [single will] No. We're going go AWOW."
       },
       {
        "type": "infotext",
        "name": "question163",
+       "visible": false,
        "title": "[yes] most of these questions are designed for a written will. There will an opportunity to describe why your recording is considered valid. you can attach your court order to the application package.[Need further instructions on how to answer the rest of the questions, for example signature.]",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -838,17 +865,20 @@
       {
        "type": "infotext",
        "name": "question169",
+       "visible": false,
        "title": "[JIRA] if recorded will is approved, can we auto-fill certain questions? atestation clause questions etc. just treat the will is good.",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question162",
+       "visible": false,
        "title": "[multiple wills = yes] Any older wills that are written? no - AWOW"
       },
       {
        "type": "infotext",
        "name": "question164",
+       "visible": false,
        "title": "[yes] disregard the recording and use an older written will. go back to willDate",
        "titleLocation": "hidden"
       },
@@ -863,6 +893,7 @@
       {
        "type": "infotext",
        "name": "willEnglishNoExplanation",
+       "visible": false,
        "visibleIf": "{willWritten} = \"n\"\n",
        "title": "The reviewers will need the Will translated into English. You will also need an affidavit (sworn statement) that the translator is in fact good at this language and what they translated is accurate. This translator could be you if you are good at this language and English.",
        "isRequired": true,
@@ -890,6 +921,7 @@
        "visible": false,
        "visibleIf": "{willTranslated} = \"y\" or {willTranslatedNoExplanation} > 0",
        "title": "What language is this will written in?",
+       "valueName": "English",
        "hasOther": true,
        "choices": [
         {
@@ -916,6 +948,7 @@
       {
        "type": "text",
        "name": "willTranslatorOccupation",
+       "visible": false,
        "visibleIf": "{willTranslated} = \"y\" or {willTranslatedNoExplanation} > 0",
        "title": "What is {willTranslatorName}'s job or profession?",
        "description": "For example: Nurse, Homemaker, Carpenter, Accountant, etc."
@@ -923,28 +956,29 @@
       {
        "type": "address",
        "name": "willTranslatorResidence",
+       "visible": false,
        "visibleIf": "{willTranslated} = \"y\" or {willTranslatedNoExplanation} > 0",
        "title": "Where does {willTranslatorName} usually live? (City and Country only)"
       },
       {
        "type": "yesno",
-       "name": "question48",
+       "name": "willBlind",
        "title": "Was {deceasedName} blind?",
        "description": "Were they capable of reading the will for themselves or did they need to have the will read for them? Legally blind is not considered blind in this question."
       },
       {
        "type": "yesno",
-       "name": "question9",
+       "name": "willLiterate",
        "title": "Could {deceasedName} read and write?"
       },
       {
        "type": "yesno",
-       "name": "question8",
-       "title": "Did {deceasedName} fully understand {languageType} when their Will was written?"
+       "name": "willLanguageUnderstood",
+       "title": "Did {deceasedName} fully understand {willLanguage} when their Will was made?"
       }
      ],
      "visible": false,
-     "visibleIf": "{willLastForBCProperty} = \"y\""
+     "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\" and {willMadeOutsideBC} notempty"
     },
     {
      "type": "infotext",
@@ -966,6 +1000,7 @@
       {
        "type": "yesno",
        "name": "willSignedByMark",
+       "visible": false,
        "visibleIf": "{willSigned} = \"n\"",
        "title": "Did {deceasedName} sign this will by a mark instead of hand written signature/words on the last page?",
        "description": "An example of a mark would be an X or something else that is easily reproducible.\nA stamp, etc checkmark. fingerprint in ink\n<br><br>\nhas to be some indication that deceased knew and approved the contents of the document for it be accepted as a will. this is expressed by a signature. "
@@ -986,71 +1021,86 @@
       {
        "type": "yesno",
        "name": "question2",
+       "visible": false,
        "title": "[if signed by someone else] Is there an acknowledgement/explanation on the will that {deceasedName} signed by someone else?"
       },
       {
        "type": "yesno",
        "name": "question249",
+       "visible": false,
        "title": "[yes or no acknowledgement] military will?"
       },
       {
        "type": "infotext",
        "name": "question251",
-       "title": "[not military will] keep going as regular to sec80/58",
+       "visible": false,
+       "title": "[no acknowledgement and not military will] keep going as regular to sec80/58",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question250",
+       "visible": false,
        "title": "[yes military will] was there at least 1 witness that signed the last page when the will was signed on behalf of {deceasedName}?"
       },
       {
        "type": "infotext",
        "name": "question252",
+       "visible": false,
        "title": "[not witnessed] doesn't meet the qualifiations for a BC military will. go to sec80.then 58",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question228",
-       "title": "[show for signature on the last page but hide if yes to any previous acknowledgement] Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name?"
+       "name": "willSignatureSpace",
+       "visible": false,
+       "visibleIf": "{willSigned} = \"y\"",
+       "title": "Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name?",
+       "description": "[show for signature on the last page but hide if yes to any previous acknowledgement] "
       },
       {
        "type": "infotext",
        "name": "question244",
+       "visible": false,
        "title": "insert questions similar to witnesses signed ? then sec80, then 58",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question165",
+       "visible": false,
        "title": "Did {deceasedName} sign this will with a signature on any page?"
       },
       {
        "type": "yesno",
        "name": "question168",
+       "visible": false,
        "title": "[if yes sig anywhere other than last page] Is there an acknowledgement/explanation on the will that {deceasedName} signed their will with a signature somewhere other than the last page??"
       },
       {
        "type": "infotext",
        "name": "question209",
+       "visible": false,
        "title": "yes to signature on rando page; no explanation. will is likely to get accepted but may only be recognized up the page it is signed. well ask more questions. - ask if they want to do sec80 first. ",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question210",
+       "visible": false,
        "title": "yes signature on rando page; yes to some hand written (or typed?) explanation anywhere\n<br>\ngenerally, documents need to be signed at the end but because there is an explanation, it might be get accepted by court. there may be restrictions on what part of the will is recognized. \n<br>\nyou may want to do sec 80. It will require affidavits. If you already have some, no extra cost. If you need someone to swear/affirm an affidavit, may cost up $40 per affidavit.",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question211",
+       "visible": false,
        "title": "do you want to do sec 80 now? (may cost up to $40 to swear affidavits) vs hoping no one disputes the will. can do 58 later"
       },
       {
        "type": "infotext",
        "name": "question215",
+       "visible": false,
        "title": "yes to sig on rando page; yes to some hand written (or typed?) explanation anywhere\n[do we need a duplicate for yes explanation or no explanation?]\ngenerally, documents need to be signed at the end but because there is an explanation, it might be get accepted by court. there may be restrictions on what part of the will is recognized. If you are concerned, you can do an extra form (P42 sec58) to have the whole thing recognized.\n\nyou can do a sec58 later as well if any problems arise. (with 180 days of getting the grant). will cost $80.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -1058,11 +1108,13 @@
       {
        "type": "yesno",
        "name": "question216",
+       "visible": false,
        "title": "do you want to do a sec 58 now? ($80) vs hoping no one disputes the will. can do 58 later"
       },
       {
        "type": "infotext",
        "name": "question167",
+       "visible": false,
        "title": "[not signed at all]<br>This document is unlikely to be recognized as a will. \n<br>\n[distinction for future between multiple wills and single will]\n<br>\nhas to be some indication that deceased knew and approved the contents of the document for it be accepted as a will. this is expressed by a signature. it is unlikely that an unsigned doc will be recognized as a will in BC. if you believe there are exceptional circumstances that provide evidence that the deceased knew and approved the contents of the will, you may wish to seek a lawyer to get advice.\n\nyou can proceed as if this will did not exist (if the outcome for where who the assets go to are going to be the same (or can be settled within family/friends without argument). otherwise we proceed with questions, which will require affidavits explaining the will is not signed but should be recognized as a will. this may cost money in affadavit and/or application fees.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -1070,22 +1122,26 @@
       {
        "type": "yesno",
        "name": "question217",
+       "visible": false,
        "title": "do you want to do a sec80 for this will? section 80 asks about laws of other places that the deceased had a connection with"
       },
       {
        "type": "infotext",
        "name": "question218",
+       "visible": false,
        "title": "if yes, go through sec80 script until it finishes",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question219",
+       "visible": false,
        "title": "do you want to do a sec58? cures wills - $80 "
       },
       {
        "type": "radiogroup",
        "name": "question221",
+       "visible": false,
        "title": "do you want to do a sec58 first? to resolve the validity of the will ahead of time? Or do it at the same time. ",
        "choices": [
         {
@@ -1101,22 +1157,26 @@
       {
        "type": "infotext",
        "name": "question222",
+       "visible": false,
        "title": "P43 option says we'll stop asking about the will, we will just enough about who to give notice to so you can do P43 first. then come to \"did you get your will recognized?\"",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
        "name": "question166",
+       "visible": false,
        "title": "were you successful? do you have a court order recognizing this will? [yes - keep going; no + single will - AWOW message; no + multiple will = do you want to use another will - is this a jump up?]"
       },
       {
        "type": "yesno",
        "name": "question220",
+       "visible": false,
        "title": "[will not signed; failed sec58; multiple wills] do you want to use a different will for this application [yes jumps back to certain point and clears data between; no goes to AWOW message]."
       },
       {
        "type": "infotext",
        "name": "question223",
+       "visible": false,
        "title": "P42 option jumps to sec58 page. and comes back to next question",
        "titleLocation": "hidden"
       },
@@ -1128,6 +1188,7 @@
       {
        "type": "yesno",
        "name": "question227",
+       "visible": false,
        "title": "[not 16 and will is signed on the LAST page] Did {deceasedName} make their Will while on military service?"
       },
       {
@@ -1141,17 +1202,19 @@
       {
        "type": "infotext",
        "name": "question246",
+       "visible": false,
        "title": "military will, ignore mental competency, and other issues. do ask undue influence.\nyou will need to provide evidence that they were in the military and on activity duty when the will was made.",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question41",
-       "title": "mentally competent at the time they made the will?"
+       "name": "willMakerCompetent",
+       "title": "Was {deceasedName} mentally competent when they made the will ({willDate})?"
       },
       {
        "type": "infotext",
        "name": "question43",
+       "visible": false,
        "title": "not competent at will making date] no sec80. no sec58.<br>\n[proceed as if no will for single will. mulitple will - ask if they want to use another will]\n<br>\n",
        "titleLocation": "hidden",
        "messageStyle": "error"
@@ -1159,22 +1222,26 @@
       {
        "type": "yesno",
        "name": "question6",
+       "visible": false,
        "title": "[multiple wills] Did {deceasedName} make one or more Wills while they were mentally competent?"
       },
       {
        "type": "infotext",
        "name": "question7",
+       "visible": false,
        "title": "[yes, use older will] clear answers, jump back to will date\n<br>\n[no, always mentally incompetent wills] - AWOW",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question42",
-       "title": "undue influence?"
+       "name": "willUndueInfluence",
+       "title": "Did {deceasedName} make their Will (dated {willDate}) under any undue influence?",
+       "description": "For example, a nurse that threatened to not care of {deceasedName} unless they made a Will that gifted everything to the nurse."
       },
       {
        "type": "infotext",
        "name": "question15",
+       "visible": false,
        "title": "[undue influence at will making date] no sec80. no sec58.<br>\n[proceed as if no will for single will. mulitple will - ask if they want to use another will]",
        "titleLocation": "hidden",
        "messageStyle": "error"
@@ -1182,22 +1249,26 @@
       {
        "type": "yesno",
        "name": "question16",
+       "visible": false,
        "title": "[multiple wills] Did {deceasedName} make one or more Wills where they were not under undue influence?"
       },
       {
        "type": "infotext",
        "name": "question17",
+       "visible": false,
        "title": "[yes, use older will] clear answers, jump back to will date\n<br>\n[no, always undue influence wills] - AWOW",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question23",
-       "title": "Do you think is any other issue with how this will was made that someone (the DDR) may question? (make this question distinct from appearance problems)"
+       "name": "willOtherIssue",
+       "title": "Do you think is any other issue with how this will was made that someone (for example the person reviewing this application) may question?",
+       "description": "(make this question distinct from appearance problems)"
       },
       {
        "type": "matrixdynamic",
        "name": "question18",
+       "visible": false,
        "title": "Describe the issue",
        "columns": [
         {
@@ -1223,16 +1294,17 @@
       {
        "type": "infotext",
        "name": "question21",
+       "visible": false,
        "title": "P4 6 (d). Could this be a non-affidavit statement so we don't need to produce an affidavit? or some other evidence? should make it an option to create an affidavit??",
        "titleLocation": "hidden"
       }
      ],
      "visible": false,
-     "visibleIf": "{willTranslated} = \"y\""
+     "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\" and {willMadeOutsideBC} notempty and {willWritten} = \"y\" and {willEnglish} = \"y\" and {willBlind} = \"n\" and {willLiterate} = \"y\" and {willLanguageUnderstood} = \"y\""
     },
     {
      "type": "infotext",
-     "name": "question26",
+     "name": "willWitnessedBookmark",
      "visible": false,
      "title": "Will Witnessed",
      "titleLocation": "hidden",
@@ -1245,137 +1317,394 @@
       {
        "type": "infotext",
        "name": "question247",
+       "visible": false,
        "title": "ignore witness section if military will and will is signed on the last page by signature or by mark.",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "witnessquestion",
+       "name": "willWitnessed",
        "title": "Was the Will signed by at least 2 witnesses?"
       },
       {
        "type": "yesno",
        "name": "question226",
+       "visible": false,
        "title": "[no 2 witnesses] Was the Will signed by 1 witness?"
       },
       {
        "type": "infotext",
        "name": "question245",
+       "visible": false,
        "title": "[yes 1 witness signed] see X-Mind for 2 witnesses signing",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question230",
-       "title": "[yes 2 witnesess] Did the witnesses sign on the same page as {deceasedName}'s signature/mark? [See X-Mind]"
+       "name": "willWitnessedOnSamePage",
+       "visible": false,
+       "visibleIf": "{willWitnessed} = \"y\"",
+       "title": "Did the witnesses sign on the same page as {deceasedName}'s signature/mark?",
+       "description": "[yes 2 witnesess] [yes 2 witnesess] "
       },
       {
        "type": "infotext",
        "name": "question231",
+       "visible": false,
        "title": "[not signed by 2] section 80 first (start at \"n (will made outside of BC)\" in X Mind; stuff before is irrelevant), then section 58",
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question229",
-       "title": "Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name? [Same script for \"No\" as 2 witnesses did not sign. Try to double up instead of having to ask twice].",
-       "description": "Possible to have visual examples?"
-      },
-      {
-       "type": "yesno",
-       "name": "question248",
-       "title": "[military will signed by someone else] the signature of that other person must be witnessed by the signature of at least one person, who must sign the will in the presence of the will-maker and of that other person."
+       "name": "willWitnessSignatureSpace",
+       "visible": false,
+       "visibleIf": "{willWitnessed} =\"y\" and {willWitnessedOnSamePage} = \"y\"",
+       "title": "Was the signature in a space/box/line where it is clear that the signature is associated with {deceasedName}'s name?",
+       "description": "Possible to have visual examples?\n[Same script for \"No\" as 2 witnesses did not sign. Try to double up instead of having to ask twice]."
       }
      ],
      "visible": false,
-     "visibleIf": "{willStatus} = \"item1\""
+     "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\" and {willMadeOutsideBC} notempty and {willWritten} = \"y\" and {willEnglish} = \"y\" and {willBlind} = \"n\" and {willLiterate} = \"y\" and {willLanguageUnderstood} = \"y\" and {willSigned} = \"y\" and {willSignatureSpace} = \"y\" and {willMakerOver16} = \"y\" and {willMakerCompetent} = \"y\" and {willUndueInfluence} = \"n\" and {willOtherIssue} = \"n\""
     },
     {
-     "type": "panel",
-     "name": "panel5",
-     "visible": false
+     "type": "infotext",
+     "name": "willAppearanceIssuesBookmark",
+     "visible": false,
+     "title": "Will Appearance Issues",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
      "name": "panel6",
      "elements": [
       {
+       "type": "yesno",
+       "name": "willInterlineation",
+       "title": "Does it look like any words or phrases were added after this will was made?",
+       "description": "For example, words that were written added by pen or pencil."
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "willInterlineationsInstances",
+       "visible": false,
+       "columns": [
+        {
+         "name": "What were the words or phrases added?",
+         "cellType": "text"
+        },
+        {
+         "name": "Page Number",
+         "cellType": "text"
+        },
+        {
+         "name": "Paragraph Number",
+         "cellType": "text"
+        },
+        {
+         "name": "Line of the paragaph",
+         "cellType": "text"
+        },
+        {
+         "name": "Are those words valid?",
+         "cellType": "radiogroup"
+        }
+       ],
+       "choices": [
+        {
+         "value": 1,
+         "text": "signed/initialed close to the words"
+        },
+        {
+         "value": 2,
+         "text": "re-executed"
+        },
+        {
+         "value": 3,
+         "text": "codile executed"
+        },
+        {
+         "value": 4,
+         "text": "witness (popup for affidavit)"
+        },
+        {
+         "value": 5,
+         "text": "no info that change represents {deceasedName}'s intent"
+        },
+        {
+         "value": "6",
+         "text": "other (pop up to ask for more info/affidavit)"
+        }
+       ],
+       "cellType": "text",
+       "rowCount": 1,
+       "addRowText": "Add a word or phrase",
+       "removeRowText": "Remove this word or phrase"
+      },
+      {
+       "type": "yesno",
+       "name": "willInterlineationsWitnessed",
+       "visible": false,
+       "visibleIf": "{willInterlineation} = 'y'",
+       "title": "Delete - Did {deceasedName} and at least 2 witnesses sign (or initial) close to every single time words or phrases were added?"
+      },
+      {
+       "type": "yesno",
+       "name": "willInterlineationsReexecuted",
+       "visible": false,
+       "visibleIf": "{willInterlineation} = 'y' and {willInterlineationsWitnessed} = 'n'",
+       "title": "Delete - Did {deceasedName} and at least 2 witnesses sign again on the last page of the Will to acknowledge the words and phrases that were added."
+      },
+      {
+       "type": "yesno",
+       "name": "willInterlineationsCodiciled",
+       "visible": false,
+       "visibleIf": "{willInterlineation} = 'y' and {willInterlineationsWitnessed} = 'n' and {willInterlineationsReexecuted} = 'n'",
+       "title": "Delete - Did {deceasedName} and at least 2 witnesses sign an additional document (a `codicil`) that acknowledges the words and phrases that were added to the Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "willInterlineationWitnessLater",
+       "visible": false,
+       "visibleIf": "{willInterlineation} = 'y' and {willInterlineationsWitnessed} = 'n' and {willInterlineationsReexecuted} = 'n' and {willInterlineationsCodiciled} = 'n'",
+       "title": "Delete - Is there someone who was present when the Will was originally signed who can give an affidavit that the words and phrases were present when {deceasedName} signed their Will?"
+      },
+      {
+       "type": "panel",
+       "name": "willInterlineationAffidavitPanel",
+       "elements": [
+        {
+         "type": "text",
+         "name": "willInterlineationAffiantName",
+         "title": "Name of the person who was present when the Will was signed:"
+        },
+        {
+         "type": "address",
+         "name": "willInterlineationAffiantAddress",
+         "title": "affiant address"
+        },
+        {
+         "type": "text",
+         "name": "willInterlineationAffiantOccupation",
+         "visible": false,
+         "title": "Occupation"
+        },
+        {
+         "type": "infotext",
+         "name": "question11",
+         "visible": false,
+         "title": "reminder on instructions to hand-write date of affidavit sworn on the P4 Paragraph 7",
+         "titleLocation": "hidden"
+        }
+       ],
+       "visible": false,
+       "visibleIf": "{willInterlineation} = 'y' and {willInterlineationsWitnessed} = 'n' and {willInterlineationsReexecuted} = 'n' and {willInterlineationsCodiciled} = 'n' and {willInterlineationWitnessLater} = 'y'"
+      },
+      {
+       "type": "yesno",
+       "name": "willErasures",
+       "title": "Does it look like anything was scribbled over or erased on this will?",
+       "description": "[Check the box that says \"[  ] in each erasure or obliteration in the will, the words erased or obliterated are entirely effaced and cannot be ascertained on inspection.\" and add \"however I believe the text efaced or erased should form part of the will because there was evidence other than {deceasedName} made these changes.\nAffidavit of .... sworn date....]\n"
+      },
+      {
+       "type": "yesno",
+       "name": "question254",
+       "visible": false,
+       "title": "Are any of the words/phrases that were scribbled over or erased still be able to read?"
+      },
+      {
+       "type": "yesno",
+       "name": "question256",
+       "visible": false,
+       "title": "[No] It is presumed that any words that can't be read anymore reflects the intention of {deceasedName}.\n<br><br>\nDo you have any evidence that {deceased} did not make these erasures/scribbled overs?"
+      },
+      {
        "type": "infotext",
-       "name": "question25",
-       "title": "25-3 (6) h\n<br>\nany interlineations, erasures or obliterations in, or other alterations to, the will",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
+       "name": "question257",
+       "visible": false,
+       "title": "affidavit questions here.",
+       "titleLocation": "hidden"
       },
       {
-       "type": "yesno",
-       "name": "question11",
-       "title": "Does it look like any words were added after this will was made? (written in by pen or pencil)"
+       "type": "panel",
+       "name": "panel14",
+       "title": "Panel?"
       },
       {
-       "type": "yesno",
-       "name": "question20",
-       "title": "Does it look like anything was crossed out, scribbled over or erased on this will?"
+       "type": "matrixdynamic",
+       "name": "question255",
+       "visible": false,
+       "title": "List all the places where words were scribbled over or erased and indicate what evidence there is that the deceased made these changes.",
+       "columns": [
+        {
+         "name": "Page Number",
+         "cellType": "text"
+        },
+        {
+         "name": "Paragraph Number",
+         "cellType": "text"
+        },
+        {
+         "name": "Line of the paragaph",
+         "cellType": "text"
+        },
+        {
+         "name": "Are those words valid?",
+         "cellType": "radiogroup"
+        }
+       ],
+       "choices": [
+        {
+         "value": 1,
+         "text": "signed/initialed close to the words"
+        },
+        {
+         "value": 2,
+         "text": "re-executed"
+        },
+        {
+         "value": 3,
+         "text": "codile executed"
+        },
+        {
+         "value": 4,
+         "text": "witness (popup for affidavit)"
+        },
+        {
+         "value": 5,
+         "text": "no info that change represents {deceasedName}'s intent"
+        },
+        {
+         "value": "6",
+         "text": "other (pop up to ask for more info/affidavit)"
+        }
+       ],
+       "cellType": "text",
+       "rowCount": 1,
+       "addRowText": "Add a word or phrase",
+       "removeRowText": "Remove this word or phrase"
       },
       {
-       "type": "yesno",
-       "name": "question22",
-       "title": "Does it look like there are any other changes to the will after it was made?"
+       "type": "checkbox",
+       "name": "willOtherAppearanceIssues",
+       "title": "Do any of these follow issues apply to the Will?",
+       "hasOther": true,
+       "choices": [
+        {
+         "value": "1",
+         "text": "It appears that an attempt was made to revoke the will."
+        },
+        {
+         "value": "2",
+         "text": "It appears that a page or document was previously attached to the will but is missing."
+        },
+        {
+         "value": "3",
+         "text": "It appears that the will is incomplete."
+        },
+        {
+         "value": "4",
+         "text": "It appears that the will has been altered by an alteration that was not made by the will-maker in compliance with the Wills, Estates and Succession Act."
+        },
+        {
+         "value": "5",
+         "text": "No [Make No underneath OTHER and clear the YESes]"
+        }
+       ]
       },
       {
-       "type": "infotext",
-       "name": "question24",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
+       "type": "paneldynamic",
+       "name": "question248",
+       "visible": false,
+       "title": "dynamic panel for other issue affiants"
       },
       {
-       "type": "yesno",
+       "type": "text",
        "name": "question5",
-       "title": "25-3 (6) i\n<br>\nAre there any issues about the appearance of the will?\n\ndo the same as problems executing (get them to submit an affidavit)",
-       "description": "For example, the will looks like it was crumped up and thrown in the garbage.\nfood stains.\nburnt."
+       "visible": false,
+       "title": "affiant name"
+      },
+      {
+       "type": "address",
+       "name": "question24",
+       "visible": false,
+       "title": "affiant address"
+      },
+      {
+       "type": "text",
+       "name": "question25",
+       "visible": false,
+       "title": "affiant occupation"
+      },
+      {
+       "type": "comment",
+       "name": "question224",
+       "visible": false,
+       "title": "issue 1++ (optional but if you don't fill this out the DDR could ask you for more info and delay your application)"
       }
      ],
      "visible": false,
-     "visibleIf": "{willStatus} = \"item1\""
+     "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\" and {willMadeOutsideBC} notempty and {willWritten} = \"y\" and {willEnglish} = \"y\" and {willBlind} = \"n\" and {willLiterate} = \"y\" and {willLanguageUnderstood} = \"y\" and {willSigned} = \"y\" and {willSignatureSpace} = \"y\" and {willMakerOver16} = \"y\" and {willMakerCompetent} = \"y\" and {willUndueInfluence} = \"n\" and {willOtherIssue} = \"n\" and {willWitnessed} =\"y\" and {willWitnessedOnSamePage} = \"y\" and {willWitnessSignatureSpace} = \"y\""
+    },
+    {
+     "type": "infotext",
+     "name": "willExternalDocumentsBookmark",
+     "visible": false,
+     "title": "External Documents",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
-     "name": "panel7",
+     "name": "willExternalDocsPanel",
      "elements": [
       {
        "type": "infotext",
        "name": "question28",
+       "visible": false,
        "title": "(j) any documents referred to in the will are attached to the will\n",
        "titleLocation": "hidden",
        "messageStyle": "inline"
       },
       {
        "type": "yesno",
-       "name": "question29",
-       "title": "Does this will refer to any other documents?",
-       "description": "distribution list\nlist of location of assets (that might be updated from time to time)\nfee schedule doesn't count \n"
+       "name": "willExternalDocs",
+       "title": "Does this Will (dated {willDate}) refer to any other documents?",
+       "description": "For example a codicil or a distribution list?\nlist of location of assets (that might be updated from time to time)\nfee schedule doesn't count \n"
       },
       {
        "type": "yesno",
        "name": "question32",
+       "visible": false,
        "title": "Are all the documents referred to in the will attached at this moment? (stapled, bound as a book)\n(if documents are attached together, leave them attached - if documents are not attached, do not attach them now, leave them unattached)"
       },
       {
        "type": "text",
        "name": "question31",
+       "visible": false,
        "title": "Dynamic matrix - Name each document; What is the name of document 1?"
       },
       {
        "type": "yesno",
        "name": "question30",
+       "visible": false,
        "title": "Are you able to include a copy of this document with the application package? (give it an exhibit number) "
       }
      ],
      "visible": false,
-     "visibleIf": "{willStatus} = \"item1\""
+     "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\" and {willMadeOutsideBC} notempty and {willWritten} = \"y\" and {willEnglish} = \"y\" and {willBlind} = \"n\" and {willLiterate} = \"y\" and {willLanguageUnderstood} = \"y\" and {willSigned} = \"y\" and {willSignatureSpace} = \"y\" and {willMakerOver16} = \"y\" and {willMakerCompetent} = \"y\" and {willUndueInfluence} = \"n\" and {willOtherIssue} = \"n\" and {willWitnessed} =\"y\" and {willWitnessedOnSamePage} = \"y\" and {willWitnessSignatureSpace} = \"y\" and {willInterlineation} = \"n\" and {willErasures} = \"n\" and {willOtherAppearanceIssues} = [5]  "
+    },
+    {
+     "type": "infotext",
+     "name": "willNewerInvalidWillBookmark",
+     "visible": false,
+     "title": "Newer Invalid Wills",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
-     "name": "panel8",
+     "name": "willNewerInvalidPanel",
      "elements": [
       {
        "type": "infotext",
@@ -1386,17 +1715,23 @@
       },
       {
        "type": "yesno",
-       "name": "question12",
-       "title": "[multiple wills] Any Wills newer than {willDate} that you are not using?"
+       "name": "willNewerInvalidMultiple",
+       "visible": false,
+       "title": "[multiple wills] Did {deceasedName} make any Wills newer than {willDate} that you are not using for this application?"
       },
       {
        "type": "yesno",
-       "name": "question13",
-       "title": "[AWOW but multiple invalid wills??] Any Wills than {willDate} that you are not using?"
+       "name": "willNewerInvalidAwow",
+       "visible": false,
+       "visibleIf": "{willCheck} = \"y\" and\n{willExists} = \"n\" and \n{willOtherDocExists} = \"n\"",
+       "title": "Did {deceasedName} make any Wills that you are not using for this application?",
+       "description": "[AWOW but multiple invalid wills] "
       },
       {
        "type": "matrixdynamic",
-       "name": "question10",
+       "name": "willNewerInvalidList",
+       "visible": false,
+       "visibleIf": "{willNewerInvalidMultiple} = \"y\" or {willNewerInvalidAwow} = \"y\"",
        "title": "Date and Reason not using that will",
        "columns": [
         {
@@ -1423,26 +1758,85 @@
        "addRowText": "Add new Will/Testamentary Document?",
        "removeRowText": "Remove document"
       }
-     ],
-     "visible": false
+     ]
+    },
+    {
+     "type": "infotext",
+     "name": "willP3ExitBookmark",
+     "visible": false,
+     "title": "P3 Exit Explanations",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
-     "name": "willExitPanel",
+     "name": "willP3ExitPanel",
      "elements": [
       {
        "type": "infotext",
-       "name": "willNoExplanation",
+       "name": "willP3Explanation",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"n'",
-       "title": "[P5 no will, no other docs]\nBecause {deceasedName} didn't leave a will, we can move on to asking about {deceasedName}'s spouse and children.",
+       "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\" and {willMadeOutsideBC} notempty and {willWritten} = \"y\" and {willEnglish} = \"y\" and {willBlind} = \"n\" and {willLiterate} = \"y\" and {willLanguageUnderstood} = \"y\" and {willSigned} = \"y\" and {willSignatureSpace} = \"y\" and {willMakerOver16} = \"y\" and {willMakerCompetent} = \"y\" and {willUndueInfluence} = \"n\" and {willOtherIssue} = \"n\" and {willWitnessed} =\"y\" and {willWitnessedOnSamePage} = \"y\" and {willWitnessSignatureSpace} = \"y\" and {willInterlineation} = \"n\" and {willErasures} = \"n\" and {willOtherAppearanceIssues} = [5] and {willExternalDocs} = \"n\"",
+       "title": "This Will dated {willDate} is valid according to the law in British Columbia.\n<br><br>\nNext, this service will ask about any executors named in this Will.",
+       "description": "1 Will; Well executed; No codicil",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question8",
+       "visible": false,
+       "visibleIf": "{willStatus} = \"item1\"",
+       "title": "This will is good.  Even if it is a military, the will doesn't need to be treated as a military will and will save you time and paper so you will be swearing that it is not a military will. ??",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "infotext",
+     "name": "willP4ExitBookmark",
+     "visible": false,
+     "title": "P4 Exit Explanations",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "willP4ExitPanel"
+    },
+    {
+     "type": "infotext",
+     "name": "willP5ExitBookmark",
+     "visible": false,
+     "title": "P5 Exit Explanations \n",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "willP5ExitPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "willP5Explanation",
+       "visible": false,
+       "visibleIf": "{willCheck} = \"y\" and\n{willExists} = \"n\" and {willOtherDocExists} = \"n\" and {willNewerInvalidAwow} = \"n\"",
+       "title": "Because {deceasedName} didn't make a Will, we can move on to asking about {deceasedName}'s spouse and children.",
+       "description": "[P5 no will, no other docs, no newer wills]",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "willP5InvalidWillExplanation",
+       "visible": false,
+       "visibleIf": "{willCheck} = \"y\" and \n{willExists} = \"n\" and {willOtherDocExists} = \"n\" and {willNewerInvalidAwow} = \"y\" and {willNewerInvalidList} notempty",
+       "title": "Because {deceasedName} made a Will, but this Will is invalid, this service will continue as if {deceasedName} did not make a Will.\n<br><br>\nWe can move on to asking about {deceasedName}'s spouse and children.",
+       "description": "[P5 no will, no other docs, yes newer will]",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question36",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "[P5 no will, yes other doc, do not recognize, invalid will only] \nYou will need to provide a copy of the invalid Will. This service will remind you to make a copy at the end.\n<br><br>\nBecause {deceasedName} didn't leave a valid Will, we can move on to asking about {deceasedName}'s spouse and children. \n",
        "titleLocation": "hidden"
       },
@@ -1457,7 +1851,6 @@
        "type": "infotext",
        "name": "question40",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "[P5 no will, yes other doc, do not recognize, invalid will and other docs] \nYou will need to provide a copy of the invalid Will and the `other testamentary documents` that you've listed. This service will remind you to make copies at the end.\n<br><br>\nBecause {deceasedName} didn't leave a valid Will, we can move on to asking about {deceasedName}'s spouse and children. \n",
        "titleLocation": "hidden"
       },
@@ -1465,7 +1858,6 @@
        "type": "infotext",
        "name": "question38",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "[P5 no will, yes other doc, do not recognize, all other docs except invalid will] \nYou will need to provide a copy of the `other testamentary documents` that you've listed. This service will remind you to make a copy at the end.\n\nBecause {deceasedName} didn't leave a Will, we can move on to asking about {deceasedName}'s spouse and children.",
        "titleLocation": "hidden"
       },
@@ -1473,16 +1865,7 @@
        "type": "infotext",
        "name": "question33",
        "visible": false,
-       "visibleIf": "{willExists} = \"n\" and {otherDocExists} = \"y\" and {otherDocRecognize} = \"n\"",
        "title": "[P5 yes will, no original, no copy, will search no luck] \ntreat as if no will. if you find a will later, you can apply again.\n<br><br>\nwe can move on to asking about {deceasedName}'s spouse and children.",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question3",
-       "visible": false,
-       "visibleIf": "{willStatus} = \"item1\"",
-       "title": "This will is good.  Even if it is a military, the will doesn't need to be treated as a military will and will save you time and paper so you will be swearing that it is not a military will. ??",
        "titleLocation": "hidden"
       }
      ]
