@@ -191,6 +191,14 @@
      ]
     },
     {
+     "type": "infotext",
+     "name": "willDiligentSearchBookmark",
+     "visible": false,
+     "title": "Diligent Search",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
      "type": "panel",
      "name": "willCheckPanel",
      "elements": [
@@ -228,6 +236,578 @@
      ],
      "visible": false,
      "visibleIf": "{willIntroExplanation} > 0"
+    },
+    {
+     "type": "infotext",
+     "name": "willGrantExistsBookmark",
+     "visible": false,
+     "title": "Grant Already Exists",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "willGrantExistsPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willGrantExists",
+       "title": "Is there already a Representation Grant issued for {deceasedName}?"
+      },
+      {
+       "type": "yesno",
+       "name": "willGrantBC",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\"",
+       "title": "Was this Representation Grant issued in British Columbia?"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "willGrantBCInsufficient",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and {willGrantBC} = \"y\"\n",
+       "title": "Why is this BC Rep Grant not sufficient?",
+       "columns": [
+        {
+         "name": "Column 2",
+         "title": "Date it was issued",
+         "cellType": "text",
+         "inputType": "date"
+        },
+        {
+         "name": "Column 3",
+         "title": "Reason you're not using it",
+         "cellType": "radiogroup",
+         "hasOther": true,
+         "choices": [
+          {
+           "value": "item2",
+           "text": "This Rep Grant deals with some property in BC but not all"
+          }
+         ]
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1
+      },
+      {
+       "type": "infotext",
+       "name": "question285",
+       "visible": false,
+       "title": "check p2 para 6 vs p21 para 6. P21 looks neater. ",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGExists",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and {willGrantBC} = \"y\"",
+       "title": "Are there also any Representation Grants issued outside of British Columbia for {deceasedName}?"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGRecognize",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and ({willGrantBC} = \"n\" or ({willGrantBC} = \"y\" and {willFGExists} = \"y\"))",
+       "title": "Do you want extend the power of a Representation Grants to British Columbia?"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "willFGInsufficient",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and ({willGrantBC} = \"n\" or ({willGrantBC} = \"y\" and {willFGExists} = \"y\")) and {willFGRecognize} = \"n\"",
+       "title": "List the Representation Grants you do not want to use for BC?",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "Where the Rep Grant was Issued",
+         "cellType": "text"
+        },
+        {
+         "name": "Column 2",
+         "title": "Date it was issued",
+         "cellType": "text",
+         "inputType": "date"
+        },
+        {
+         "name": "Column 3",
+         "title": "Reason you're not using it",
+         "cellType": "radiogroup",
+         "hasOther": true,
+         "choices": [
+          {
+           "value": "item1",
+           "text": "This Rep Grant does not deal with property in BC"
+          },
+          {
+           "value": "item2",
+           "text": "This Rep Grant deals with some property in BC but not all"
+          }
+         ]
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1
+      },
+      {
+       "type": "yesno",
+       "name": "willCanadaGrant",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and ({willGrantBC} = \"n\" or ({willGrantBC} = \"y\" and {willFGExists} = \"y\")) and {willFGRecognize} = \"y\"",
+       "title": "Was that Representation Grant made outside of BC but within Canada?"
+      },
+      {
+       "type": "yesno",
+       "name": "willResealingGrant",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and ({willGrantBC} = \"n\" or ({willGrantBC} = \"y\" and {willFGExists} = \"y\")) and {willFGRecognize} = \"y\" and {willCanadaGrant} = \"n\"",
+       "title": "Was that Representation Grant made in a commonwealth country? (also including the US and HK)??",
+       "description": "List of commonwealth countries\nhttps://thecommonwealth.org/member-countries"
+      },
+      {
+       "type": "infotext",
+       "name": "willCanadaGrantYesExplanation",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and ({willGrantBC} = \"n\" or ({willGrantBC} = \"y\" and {willFGExists} = \"y\")) and {willFGRecognize} = \"y\" and {willCanadaGrant} = \"y\"",
+       "title": "basic explanation for (canada) resealing grant",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "willResealingGrantYesExplanation",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and ({willGrantBC} = \"n\" or ({willGrantBC} = \"y\" and {willFGExists} = \"y\")) and {willFGRecognize} = \"y\" and {willCanadaGrant} = \"n\" and {willResealingGrant} = \"y\"",
+       "title": "basic explanation for resealing grant",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "willResealingGrantNoExplanation",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" and ({willGrantBC} = \"n\" or ({willGrantBC} = \"y\" and {willFGExists} = \"y\")) and {willFGRecognize} = \"y\" and {willCanadaGrant} = \"n\" and {willResealingGrant} = \"n\"",
+       "title": "basic explanation for ancillary grant",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "willNewApplicationExplanation",
+       "visible": false,
+       "visibleIf": "{willGrantExists} = \"y\" \nand \n(({willGrantBC} = \"y\" and {willGrantBCInsufficient} notempty and {willFGExists} = \"n\") \nor \n({willGrantBC} = \"y\" and {willGrantBCInsufficient} notempty and {willFGExists} = \"y\" and {willFGRecognize} = \"n\" and {willFGInsufficient} notempty)\nor\n({willGrantBC} = \"n\" and {willFGRecognize} = \"n\" and {willFGInsufficient} notempty))\n",
+       "title": "explanation for \"you are applying for a new grant - answer questions below keep going",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{willCheck} = \"y\" and {willCheckYesExplanation} > 0"
+    },
+    {
+     "type": "infotext",
+     "name": "willFGBookmark",
+     "visible": false,
+     "title": "Foreign Grant Info",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "willFGPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "question284",
+       "visible": false,
+       "title": "Decision from Jack and Tyler - Resealing automatically makes them do a P25 regardless if they lived in BC or not.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGSameApplicants",
+       "title": "Are all the applicants for the foreign grant applying for this grant (for example everyone is still alive?)"
+      },
+      {
+       "type": "infotext",
+       "name": "willFGSameApplicantsNoError",
+       "visibleIf": "{willFGSameApplicants} = \"n\"",
+       "title": "If you're not exactly the same people applying, you can't get it resealed. \n\nOption 1 is to get your old grant amended for the people applying in BC.\nOption 2\nGo back and say you can't use it with a reason like \"not the same people applying\" and apply for a new grant in BC.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGNameMatch",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\"",
+       "title": "Are all the names in which {deceasedName} own property in BC listed in the foreign Rep Grant?"
+      },
+      {
+       "type": "infotext",
+       "name": "willFGNameMatchNoExplanation",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGNameMatch} = \"n\"",
+       "title": "not a stop but you should amend the foreign grant for all the names relevant in BC before you reseal. very important for land",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGHaveGrant",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and ({willFGNameMatch} = \"y\" or ({willFGNameMatch} = \"n\" and {willFGNameMatchNoExplanation} > 0))",
+       "title": "Do you have a `court certified copy` of the foreign rep grant? "
+      },
+      {
+       "type": "infotext",
+       "name": "willFGHaveGrantNoError",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"n\"",
+       "title": "got to get a court certified copy of the rep grant. if the rep grant does not come with a copy of the will attached, you will need a separate court certified copy of the will.\n<br>\nif you can't get one, you cannot reseal. go back to the top and say you can't get court certified copy of the rep grant/will as a reason you aren't using this grant.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGWillExists",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\"",
+       "title": "Do does the foreign rep grant involve a Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGWillAttached",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"y\"",
+       "title": "Is a copy of the will attached to the court certified copy of the Rep Grant?"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGWillAttachable",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"y\" and {willFGWillAttached} = \"n\"",
+       "title": "Are you able to include a court certified copy of the will?"
+      },
+      {
+       "type": "infotext",
+       "name": "willFGWillAttachableNoError",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"y\" and {willFGWillAttached} = \"n\" and {willFGWillAttachable} = \"n\"",
+       "title": "got to get a court certified copy of the will.\n<br>\nif you can't get one, you cannot reseal. go back to the top and say you can't get court certified copy of the will as a reason you aren't using this grant.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGValidityOrders",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"y\" and \n({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\"))",
+       "title": "are there any court orders affecting the validity of the Will?"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGValidityOrdersAttachable",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"y\" and \n({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and {willFGValidityOrders} = \"y\"",
+       "title": "are you able to provide a copy of this/these orders?"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "willFGValidityOrderList",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"y\" and \n({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and {willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\"",
+       "title": "list the date of each order (print on form ([  ] This order has not yet been filed in this proceeding and I am/we are therefore filing a copy of the order with this submission for resealing.)",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "date of order",
+         "cellType": "text",
+         "inputType": "date"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1
+      },
+      {
+       "type": "infotext",
+       "name": "willFGValidityOrdersAttachableNoError",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"y\" and \n({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and {willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"n\"",
+       "title": "if you cannot provide validity orders, go back to say you can't use this foreign grant",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "multipletext",
+       "name": "willFGInfo",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty))))",
+       "title": "Name and province of foreign court",
+       "items": [
+        {
+         "name": "text1",
+         "title": "Name of the court"
+        },
+        {
+         "name": "text2",
+         "title": "province/ country"
+        },
+        {
+         "name": "text3",
+         "inputType": "date",
+         "title": "Date of issue"
+        },
+        {
+         "name": "text4",
+         "inputType": "date",
+         "title": "(if there is a will) Dat of Will"
+        }
+       ]
+      },
+      {
+       "type": "yesno",
+       "name": "willFGExtraDocs",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and {willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or ({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)))\n",
+       "title": "Does this Will (dated {willDate}) refer to any other documents?",
+       "description": "For example a distribution list?list of location of assets (that might be updated from time to time)fee schedule doesn't count "
+      },
+      {
+       "type": "yesno",
+       "name": "willFGExtraDocsAttached",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and {willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or ({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty))) and {willFGExtraDocs} = \"y\"",
+       "title": "Are all the documents referred to in the will attached (for example, stapled together or bound as a book) at this moment? ",
+       "description": "Try to make this noticeable. Maybe Blue info box with Continue. One box up near the top after someone says yes to will.\n(if documents are attached together, leave them attached - if documents are not attached, do not attach them now, leave them unattached)"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "willFGExtraDocList",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and {willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or ({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty))) and {willFGExtraDocs} = \"y\" and {willFGExtraDocsAttached} = \"n\"",
+       "title": "Describe each document",
+       "description": "for example, compensation agreement/fee schedule for personal rep, list of addresses, contact info for people in the will",
+       "columns": [
+        {
+         "name": "docName",
+         "title": "Name each document; What is the name of document 1?",
+         "cellType": "text"
+        },
+        {
+         "name": "docAttachable",
+         "title": "Are you including a copy of this document with the application package? (give it an exhibit number) ",
+         "cellType": "radiogroup",
+         "choices": [
+          {
+           "value": "y",
+           "text": "Yes"
+          },
+          {
+           "value": "n",
+           "text": "No"
+          }
+         ]
+        },
+        {
+         "name": "docNotAttachableReason",
+         "title": "why can't you include a copy?",
+         "cellType": "radiogroup",
+         "visibleIf": "{willExtraDocsList[0].docAttachable} = 'n'",
+         "choices": [
+          {
+           "value": "item1",
+           "text": "i can't find it"
+          },
+          {
+           "value": "item2",
+           "text": "i do not believe document is not relevant to the application "
+          }
+         ]
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1
+      },
+      {
+       "type": "yesno",
+       "name": "willFGAdditionalDocs",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty))))",
+       "title": "Catch-all - Are there any extra/additonal documents you wish to include?"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "willFGAdditionalDocList",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)))) and {willFGAdditionalDocs} = \"y\"",
+       "title": "Extra/additional documents",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "List the documents"
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1
+      },
+      {
+       "type": "yesno",
+       "name": "willFGNewerInvalidWill",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"y\" and \n({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) \nand ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty))",
+       "title": "Did {deceasedName} make any Wills or Codicils newer than {willDate} that you are not using for this application?"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGInvalidWillExists",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and {willFGWillExists} = \"n\"",
+       "title": "Did {deceasedName} make any Wills or Codicils that were not part of the Foreign Rep Grant?"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "willFGInvalidWillList",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and (({willFGWillExists} = \"n\" and {willFGInvalidWillExists} = \"y\") or \n({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)) and {willFGNewerInvalidWill} = \"y\"))",
+       "title": "Date and Reason not using that will",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "Date of Will/Doc [Date Input Selector]",
+         "cellType": "text"
+        },
+        {
+         "name": "Column 2",
+         "title": "Reason this doc should be considered irrelevnt or invalid",
+         "cellType": "checkbox"
+        }
+       ],
+       "choices": [
+        "lack of capacity",
+        "undue influence",
+        "will does not deal with property in BC",
+        {
+         "value": "other",
+         "text": "other (specify)"
+        }
+       ],
+       "rowCount": 1,
+       "addRowText": "Add new Will/Testamentary Document?",
+       "removeRowText": "Remove document"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGEnglish",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty))))",
+       "title": "Are all the documents for your application in English?"
+      },
+      {
+       "type": "yesno",
+       "name": "willFGTranslated",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)))) and {willFGEnglish} = \"n\"",
+       "title": "Have you gotten everything translated into English?"
+      },
+      {
+       "type": "infotext",
+       "name": "willFGTranslatedNoError",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)))) and {willFGEnglish} = \"n\" and {willFGTranslated} = \"n\"",
+       "title": "Stop - everything must be translated in English. Do that, come back and answer \n<br>\nYes. If you can't get it translated, go back and say you can't use grant.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "text",
+       "name": "willFGLanguage",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)))) and {willFGEnglish} = \"n\" and {willFGTranslated} = \"y\"",
+       "title": "name of language"
+      },
+      {
+       "type": "text",
+       "name": "willFGTranslatorName",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)))) and {willFGEnglish} = \"n\" and {willFGTranslated} = \"y\"",
+       "title": "name of translator (this can be you if you are good at both languages)"
+      },
+      {
+       "type": "address",
+       "name": "willFGTranslatorAddress",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)))) and {willFGEnglish} = \"n\" and {willFGTranslated} = \"y\"",
+       "title": "translator address"
+      },
+      {
+       "type": "text",
+       "name": "willFGTranslatorOccupation",
+       "visible": false,
+       "visibleIf": "{willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty)))) and {willFGEnglish} = \"n\" and {willFGTranslated} = \"y\"",
+       "title": "occupation of translation"
+      },
+      {
+       "type": "yesno",
+       "name": "question282",
+       "visible": false,
+       "visibleIf": "({willCanadaGrant} = \"n\" or {willResealingGrant} = \"n\") and {willFGSameApplicants} = \"y\" and {willFGHaveGrant} = \"y\" and ({willFGWillExists} = \"n\" or ({willFGWillExists} = \"y\" and ({willFGWillAttached} = \"y\" or ({willFGWillAttached} = \"n\" and\n{willFGWillAttachable} = \"y\")) and ({willFGValidityOrders} = \"n\" or \n({willFGValidityOrders} = \"y\" and {willFGValidityOrdersAttachable} = \"y\" and {willFGValidityOrderList} notempty))))",
+       "title": "Is all of {deceasedName}'s property outside of BC being dealt with by a foreign personal representative? (or by the laws of the foreign place?)",
+       "description": "[Ancillary Grant only]"
+      },
+      {
+       "type": "infotext",
+       "name": "question283",
+       "visible": false,
+       "title": "yes activates P11\n<br>\nno activates P10 and disables P11. (regularly lived questions also does the same for any place other than BC). ",
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{willGrantExists} = \"y\" and ({willGrantBC} = \"n\" or ({willGrantBC} = \"y\" and {willFGExists} = \"y\")) and {willFGRecognize} = \"y\" and (({willCanadaGrant} = \"y\" and {willCanadaGrantYesExplanation} > 0)\nor ({willResealingGrant} = \"y\" and {willResealingGrantYesExplanation} >0)\nor ({willResealingGrant} = \"n\" and \n{willResealingGrantNoExplanation} > 0))"
+    },
+    {
+     "type": "infotext",
+     "name": "willExistsBookmark",
+     "visible": false,
+     "title": "Will Exists",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
     },
     {
      "type": "panel",
@@ -273,36 +853,42 @@
        "visible": false,
        "visibleIf": "{willExists} = \"n\" and {willOtherDocExists} = \"y\" and {willOtherDocRecognize} = \"n\"",
        "title": "Explain why you think each of {deceasedName}'s `other testamentary documents` are not valid or not relevant:\nTrello: Add Other for Pulldown or Radio\n<br>\nField2: reason: radio with other. radio options: cannot find the will to which codicil relates; does not reflect deceased's final intention; working draft/draft document; unwitnessed draft;\n[Reminder] A copy of the testamentary document(s) is attached as an exhibit to the affidavit.",
+       "titleLocation": "hidden",
        "columns": [
         {
          "name": "Column 1",
-         "title": "Type of Document"
+         "title": "Type of Document",
+         "cellType": "dropdown",
+         "choices": [
+          "invalid will  ",
+          "codicil  ",
+          "memorandum  ",
+          "other\t"
+         ]
+        },
+        {
+         "name": "Column 3",
+         "title": "Date (or other identifier)",
+         "cellType": "text"
         },
         {
          "name": "Column 2",
-         "title": "Reason"
+         "title": "Reason",
+         "cellType": "checkbox"
         }
        ],
        "choices": [
+        "lack of capacity",
+        "undue influence",
+        "will does not deal with property in BC",
         {
-         "value": "item1",
-         "text": "invalid will"
-        },
-        {
-         "value": 1,
-         "text": "codicil"
-        },
-        {
-         "value": 2,
-         "text": "memorandum"
-        },
-        {
-         "value": 3,
-         "text": "other"
+         "value": "other",
+         "text": "other (specify)"
         }
        ],
        "cellType": "radiogroup",
        "rowCount": 1,
+       "minRowCount": 1,
        "addRowText": "Add other testamentary document",
        "removeRowText": "Delete this document"
       },
@@ -807,6 +1393,94 @@
      ],
      "visible": false,
      "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\""
+    },
+    {
+     "type": "infotext",
+     "name": "willCodicil",
+     "visible": false,
+     "title": "Codicil",
+     "titleLocation": "hidden",
+     "messageStyle": "inline"
+    },
+    {
+     "type": "panel",
+     "name": "panel7",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question9",
+       "title": "Was this Will (dated {willDate}) modified by a Codicil?"
+      },
+      {
+       "type": "infotext",
+       "name": "question10",
+       "title": "intercepts will validation questions. if codicil is valid, codicil is valid. may skip some will validation questions.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question288",
+       "title": "was the will amended by more than 1 codicil?"
+      },
+      {
+       "type": "yesno",
+       "name": "question12",
+       "title": "Does the most recent codicil revoke all previous codicils? Might need to find the whole chain if \"no\""
+      },
+      {
+       "type": "yesno",
+       "name": "question289",
+       "title": "do you have the most recent codicil?"
+      },
+      {
+       "type": "yesno",
+       "name": "question290",
+       "title": "do you have the original of the most recent codicil?"
+      },
+      {
+       "type": "infotext",
+       "name": "question291",
+       "visible": false,
+       "title": "follow Will possession script including citation/subpoena/courthouse stuff/will search",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question292",
+       "visible": false,
+       "title": "follow Will date script",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question293",
+       "visible": false,
+       "title": "follow Will written script",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question294",
+       "visible": false,
+       "title": "following will signed (exclude military questions?)",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question295",
+       "visible": false,
+       "title": "following will witnessed script",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question296",
+       "visible": false,
+       "title": "following the rest of the will script up to \"newer invalid will/codicil\".\n\nIf the codicil is good, continue on. ",
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false
     },
     {
      "type": "infotext",
@@ -1650,7 +2324,7 @@
      "type": "infotext",
      "name": "willExternalDocumentsBookmark",
      "visible": false,
-     "title": "External Documents",
+     "title": "Extra Documents",
      "titleLocation": "hidden",
      "messageStyle": "inline"
     },
@@ -1659,36 +2333,71 @@
      "name": "willExternalDocsPanel",
      "elements": [
       {
-       "type": "infotext",
-       "name": "question28",
-       "visible": false,
-       "title": "(j) any documents referred to in the will are attached to the will\n",
-       "titleLocation": "hidden",
-       "messageStyle": "inline"
-      },
-      {
        "type": "yesno",
-       "name": "willExternalDocs",
+       "name": "willExtraDocs",
        "title": "Does this Will (dated {willDate}) refer to any other documents?",
-       "description": "For example a codicil or a distribution list?\nlist of location of assets (that might be updated from time to time)\nfee schedule doesn't count \n"
+       "description": "For example a distribution list?list of location of assets (that might be updated from time to time)fee schedule doesn't count "
       },
       {
        "type": "yesno",
-       "name": "question32",
+       "name": "willExtraDocsAttached",
        "visible": false,
-       "title": "Are all the documents referred to in the will attached at this moment? (stapled, bound as a book)\n(if documents are attached together, leave them attached - if documents are not attached, do not attach them now, leave them unattached)"
+       "title": "Are all the documents referred to in the will attached (for example, stapled together or bound as a book) at this moment? ",
+       "description": "Try to make this noticeable. Maybe Blue info box with Continue. One box up near the top after someone says yes to will.\n(if documents are attached together, leave them attached - if documents are not attached, do not attach them now, leave them unattached)"
       },
       {
-       "type": "text",
-       "name": "question31",
+       "type": "matrixdynamic",
+       "name": "willExtraDocsList",
        "visible": false,
-       "title": "Dynamic matrix - Name each document; What is the name of document 1?"
-      },
-      {
-       "type": "yesno",
-       "name": "question30",
-       "visible": false,
-       "title": "Are you able to include a copy of this document with the application package? (give it an exhibit number) "
+       "title": "Describe each document",
+       "description": "for example, compensation agreement/fee schedule for personal rep, list of addresses, contact info for people in the will",
+       "columns": [
+        {
+         "name": "docName",
+         "title": "Name each document; What is the name of document 1?",
+         "cellType": "text"
+        },
+        {
+         "name": "docAttachable",
+         "title": "Are you including a copy of this document with the application package? (give it an exhibit number) ",
+         "cellType": "radiogroup",
+         "choices": [
+          {
+           "value": "y",
+           "text": "Yes"
+          },
+          {
+           "value": "n",
+           "text": "No"
+          }
+         ]
+        },
+        {
+         "name": "docNotAttachableReason",
+         "title": "why can't you include a copy?",
+         "cellType": "radiogroup",
+         "visibleIf": "{willExtraDocsList[0].docAttachable} = 'n'",
+         "choices": [
+          {
+           "value": "item1",
+           "text": "i can't find it"
+          },
+          {
+           "value": "item2",
+           "text": "i do not believe document is not relevant to the application "
+          }
+         ]
+        }
+       ],
+       "choices": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "cellType": "text",
+       "rowCount": 1
       }
      ],
      "visible": false,
@@ -1717,14 +2426,14 @@
        "type": "yesno",
        "name": "willNewerInvalidMultiple",
        "visible": false,
-       "title": "[multiple wills] Did {deceasedName} make any Wills newer than {willDate} that you are not using for this application?"
+       "title": "[multiple wills] Did {deceasedName} make any Wills or Codicils newer than {willDate} that you are not using for this application?"
       },
       {
        "type": "yesno",
        "name": "willNewerInvalidAwow",
        "visible": false,
        "visibleIf": "{willCheck} = \"y\" and\n{willExists} = \"n\" and \n{willOtherDocExists} = \"n\"",
-       "title": "Did {deceasedName} make any Wills that you are not using for this application?",
+       "title": "Delete for P5 - Did {deceasedName} make any Wills that you are not using for this application?",
        "description": "[AWOW but multiple invalid wills] "
       },
       {
@@ -1776,7 +2485,7 @@
        "type": "infotext",
        "name": "willP3Explanation",
        "visible": false,
-       "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\" and {willMadeOutsideBC} notempty and {willWritten} = \"y\" and {willEnglish} = \"y\" and {willBlind} = \"n\" and {willLiterate} = \"y\" and {willLanguageUnderstood} = \"y\" and {willSigned} = \"y\" and {willSignatureSpace} = \"y\" and {willMakerOver16} = \"y\" and {willMakerCompetent} = \"y\" and {willUndueInfluence} = \"n\" and {willOtherIssue} = \"n\" and {willWitnessed} =\"y\" and {willWitnessedOnSamePage} = \"y\" and {willWitnessSignatureSpace} = \"y\" and {willInterlineation} = \"n\" and {willErasures} = \"n\" and {willOtherAppearanceIssues} = [5] and {willExternalDocs} = \"n\"",
+       "visibleIf": "{willHave} = \"y\" and {willPropertyInBC1} = \"y\" and {willOriginal} = \"y\" and {willMadeOutsideBC} notempty and {willWritten} = \"y\" and {willEnglish} = \"y\" and {willBlind} = \"n\" and {willLiterate} = \"y\" and {willLanguageUnderstood} = \"y\" and {willSigned} = \"y\" and {willSignatureSpace} = \"y\" and {willMakerOver16} = \"y\" and {willMakerCompetent} = \"y\" and {willUndueInfluence} = \"n\" and {willOtherIssue} = \"n\" and {willWitnessed} =\"y\" and {willWitnessedOnSamePage} = \"y\" and {willWitnessSignatureSpace} = \"y\" and {willInterlineation} = \"n\" and {willErasures} = \"n\" and {willOtherAppearanceIssues} = [5] and {willExtraDocs} = \"n\"",
        "title": "This Will dated {willDate} is valid according to the law in British Columbia.\n<br><br>\nNext, this service will ask about any executors named in this Will.",
        "description": "1 Will; Well executed; No codicil",
        "titleLocation": "hidden"
@@ -4091,18 +4800,15 @@
    ]
   },
   {
-   "name": "foreignWillPage"
-  },
-  {
    "name": "executorsPage",
    "elements": [
     {
      "type": "panel",
-     "name": "panel13",
+     "name": "executorIntroPanel",
      "elements": [
       {
        "type": "infotext",
-       "name": "question232",
+       "name": "executorIntroExplanation",
        "title": "In this section, we need to figure out what rights people have to apply to manage {deceasedName}'s estate. This usually involves executors. We need to figure who is the most eligible to apply.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -4111,114 +4817,324 @@
     },
     {
      "type": "panel",
-     "name": "panel16",
+     "name": "executorExistsPanel",
      "elements": [
       {
        "type": "yesno",
-       "name": "question233",
+       "name": "executorExists",
        "title": "Does the will list any executors?",
        "description": "Define executor. Sometimes it is written as trustees, etc."
+      },
+      {
+       "type": "infotext",
+       "name": "executorExistsYesExplanation",
+       "visible": false,
+       "visibleIf": "{executorExists} = \"y\"",
+       "title": "Start by adding information about one executor at a time (if there is more than 1) Then click the \"Add Executor\" button to fill in information the next executor.\n<br>\nAdd photo of button?",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "executorCodicil",
+       "visible": false,
+       "title": "(to be coded later) does the codicil modify who the executors are in the will?",
+       "description": "only appear if there is a valid codicil "
+      },
+      {
+       "type": "infotext",
+       "name": "executorCodicilYesExplanation",
+       "visible": false,
+       "title": "yes - Follow the directions of the codicil to determine who the executors now are.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "executorCodicilNoExplanation",
+       "visible": false,
+       "title": "no - follow the executors on the will",
+       "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false,
+     "visibleIf": "{executorIntroExplanation} > 0"
     },
     {
      "type": "paneldynamic",
-     "name": "question243",
+     "name": "executorInfoPanel",
+     "visible": false,
+     "visibleIf": "{executorExists} = \"y\" and {executorExistsYesExplanation} > 0",
      "templateElements": [
       {
        "type": "text",
        "name": "executorName",
-       "title": "What is the executor's name?\nExplain executors. Include the number even if some or all of the executors are not alive right now.  Possibly explain the difference between main executors and alternate/conditional ones.",
-       "description": "If there are main executors and alternate executors, start with the main executors first.  It makes sense to write their names exactly as it appears in 's will.   (What happens if the way the name is written on the will differs from the person's ID card and the document would be meaningless in practice?)"
+       "title": "Name of the `executor` as it appears in the will. \n",
+       "description": "Include the name even if some or all of the executors are not alive right now. \n\nEven if their name has changed since they have changed their name since that time. This service will address this later. \n\nCheck with DDRs (What happens if the way the name is written on the will differs from the person's ID card and the document would be meaningless in practice?)"
       },
       {
        "type": "yesno",
-       "name": "question235",
-       "title": "Is {executorName} alive?"
+       "name": "executorIsAlive",
+       "title": "Is {panel.executorName} alive?"
+      },
+      {
+       "type": "infotext",
+       "name": "executorIsAliveNoExplanation",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"n\"",
+       "title": "continue adding more executors if there are more",
+       "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question234",
-       "title": "Is {executorName} mentally competent???"
-      },
-      {
-       "type": "radiogroup",
-       "name": "question236",
-       "title": "Main executor or alternate executor?",
-       "choices": [
-        {
-         "value": "item1",
-         "text": "Main executor  Contingent? "
-        },
-        {
-         "value": "item2",
-         "text": "Alternate executor"
-        },
-        {
-         "value": "item3",
-         "text": "Same as Alternate?"
-        }
-       ]
-      },
-      {
-       "type": "yesno",
-       "name": "question237",
-       "title": "Is {executorName} an ex-spouse of {deceasedName}?",
-       "description": "Define what spouse means? Marriage like-relationship, married, etc.  Ex-spouses drop down in the hierarchy of rights if they were named as an executor if...  (Does being a primary executor AND a current spouse grant extra rights?)"
-      },
-      {
-       "type": "yesno",
-       "name": "question238",
-       "title": "Is {executorName} capable of managing / co-managing {deceasedName}'s estate?",
+       "name": "executorIsCapable",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\"",
+       "title": "Is {panel.executorName} capable of managing / co-managing {deceasedName}'s estate?",
        "description": "Capable is defined as what? Mentally capable? Has the time to do it?"
       },
       {
-       "type": "yesno",
-       "name": "question239",
-       "title": "Does {executorName} plan to renounce executorship?",
-       "description": "Renouncing executorship means they are going give up all rights they have to become an executor of 's estate. They will have to sign an affidavit and they cannot reverse their decision.  The other option, if  does not wish to be an applicant on this application but they do not want to renounce their position, they can choose not to apply but reserve their right to execute 's estate in the future.  (Might have to ask if there any other reasons the executor is not applying.)"
+       "type": "infotext",
+       "name": "executorIsCapableNoExplanation",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {executorIsCapable} = \"n\"",
+       "title": "continue adding more executors if there are more",
+       "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question240",
-       "title": "Are there any special conditions / requirements that {deceasedName} has specified in order for {executorName} to be allowed to be an executor?",
+       "name": "executorSpecialConditions",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\"",
+       "title": "Are there any special conditions / requirements that {deceasedName} has specified in order for {panel.executorName} to be allowed to be an executor?",
        "description": "Example? Sometimes it might be that the executor has to wait 30 days after a primary executor dies?"
       },
       {
        "type": "yesno",
-       "name": "question241",
+       "name": "executorSpecialConditionsMet",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and {panel.executorSpecialConditions} = \"y\"",
        "title": "Have those special conditions / requirements been met?"
+      },
+      {
+       "type": "infotext",
+       "name": "executorSpecialConditionsMetNoExplanation",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and {panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"n\"",
+       "title": "no - this person will only be considered an executor if the special conditions in the will are met. this person can still apply right now under admin with will. \n\nif you feel this special condition is discriminator (human rights violation) you can challenge this in court. court forms here.\n\nkeep adding more executors until done",
+       "description": "no further questions for this executor. name to appear in possible-applicant list",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "executorIsExSpouse",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\"))\n",
+       "title": "Is {panel.executorName} an ex-spouse of {deceasedName}?",
+       "description": "Define what spouse means? Marriage like-relationship, married, etc.  Ex-spouses drop down in the hierarchy of rights if they were named as an executor if...  (Does being a primary executor AND a current spouse grant extra rights?)"
+      },
+      {
+       "type": "yesno",
+       "name": "executorExSpouseAfterWill",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and {panel.executorIsExSpouse} = \"y\"",
+       "title": "Was this Will (dated {willDate}) after the divorce/separation?",
+       "description": "Want to see if {deceasedName} still intended for {panel.executorName} to be an executor despite not being their spouse anymore."
+      },
+      {
+       "type": "infotext",
+       "name": "executorExSpouseAfterWillNoExplanation",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and {panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"n\"",
+       "title": "no - under WESA 56, ex-spouses lose their entitlement to be an executor and lose their beneficiary status and also power of appointment (to pick an executor)",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "executorExSpouseAfterWillYesExplanation",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and {panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\"",
+       "title": "yes - we will assume they were on good terms even though under WESA, ex-spouses lose their entitlement to be an executor and lose their beneficiary status.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "executorRenounced",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\" and {panel.executorExSpouseAfterWillYesExplanation} > 0))",
+       "title": "Has {panel.executorName} renounced their executorship?",
+       "description": "Renouncing executorship means they are going give up all rights they have to become an executor of 's estate. They will have to sign an affidavit and they cannot reverse their decision.  The other option, if  does not wish to be an applicant on this application but they do not want to renounce their position, they can choose not to apply but reserve their right to execute 's estate in the future.  (Might have to ask if there any other reasons the executor is not applying.)"
+      },
+      {
+       "type": "yesno",
+       "name": "executorRenouncedFormally",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and {panel.executorRenounced} = \"y\"",
+       "title": "Will {panel.executorName} complete a Notice of Renunciation to formally renounce their executorship?",
+       "description": "This means filling out a Notice of Renunciation"
+      },
+      {
+       "type": "infotext",
+       "name": "question23",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and {panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"n\"",
+       "title": "memo - executors who renounce informally but not formally continue onto the applicant page. formal renunciations do not carry over",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "executorRenouncedFormallyNoExplanation",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and {panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"n\"",
+       "title": "no - their name will still appear on the grant as rights reserved (if they are equal or higher priority than the people that get the grant)",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "executorRenouncedFormallyYesExplanation",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and {panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"y\"",
+       "title": "yes - \n[JIRA] click here to generate a form for them to fill out with a witness (form info already captured)\nWe will generate a form for  to renounce their executorship. It is not required to be filled out by  but it will be prepared just in case they want to officially renounce their executorship. \n<br><br>\nIf {panel.executorName} does not complete this form, go back to the last question and say they will not formally renounce. \n\n",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "text",
+       "name": "executorRank",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and ({panel.executorRenounced} = \"n\" \nor ({panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"n\"))\n",
+       "title": "Rank this executor ({panel.executorName}). 1 for highest and keep going.",
+       "description": "if 2 or more executors have equal ranking, give them the same number.",
+       "inputType": "number"
+      },
+      {
+       "type": "infotext",
+       "name": "executorasflksadf;asdfjsa;dl",
+       "visible": false,
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and ({panel.executorRenounced} = \"n\" \nor ({panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"n\"))",
+       "title": "keep adding more executors until done",
+       "titleLocation": "hidden"
       }
-     ]
+     ],
+     "panelCount": 1
     },
     {
      "type": "panel",
-     "name": "panel15",
+     "name": "executorExitCheckPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "executorIsYou",
+       "title": "Are you an executor?"
+      },
+      {
+       "type": "yesno",
+       "name": "executorIsYouIncluded",
+       "visible": false,
+       "visibleIf": "{executorIsYou} = \"y\"",
+       "title": "Have you included your info"
+      },
+      {
+       "type": "infotext",
+       "name": "executorIsYouIncludedNoError",
+       "visible": false,
+       "visibleIf": "{executorIsYou} = \"y\" and {executorIsYouIncluded} = \"n\"",
+       "title": "Go back and make sure to include information about yourself. This service doesn't know who you are and who is applying. We will handle that in a future step.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "executorCompleted",
+       "visible": false,
+       "visibleIf": "{executorIsYou} = \"n\" or ({executorIsYou} = \"y\" and {executorIsYouIncluded} = \"y\")",
+       "title": "Have you included all the executors listed in the will? (codicil)"
+      },
+      {
+       "type": "infotext",
+       "name": "executorCompletedNoError",
+       "visible": false,
+       "visibleIf": "{executorIsYou} = \"n\" or ({executorIsYou} = \"y\" and {executorIsYouIncluded} = \"y\") and {executorCompleted} = \"n\"",
+       "title": "Go back and make sure to include information about all the executors. This service doesn't know who you are and who is applying. We will handle that in a future step.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
+      }
+     ],
+     "visible": false
+    },
+    {
+     "type": "panel",
+     "name": "executorExitPanel",
      "elements": [
       {
        "type": "infotext",
-       "name": "question242",
-       "title": "Based on the responses,  and  have the highest rights to apply to be (co-)executors to 's estate.\n\nWe will generate a form for  to renounce their executorship. It is not required to be filled out by  but it will be prepared just in case they want to officially renounce their executorship. \n\nNow that we have identified the people who have the highest right to apply, other people can also apply if the named executors consent. We will figure out this later. \n\nNext we will move on to identifying the successors.",
+       "name": "executorExitExplanation",
+       "visible": false,
+       "title": "Based on the responses,  and  have the highest rights to apply to be (co-)executors to 's estate.\n\nNow that we have identified the people who have the highest right to apply, other people can also apply if the named executors consent. We will figure out this later. \n\nNext we will move on to identifying the successors.",
        "titleLocation": "hidden"
       }
-     ]
+     ],
+     "visible": false
     }
-   ]
+   ],
+   "title": "Executor Information"
   },
   {
    "name": "spousePage",
    "elements": [
     {
-     "type": "yesno",
-     "name": "spouse",
-     "title": "Did {deceasedName} have a `spouse` at the time of their death?",
-     "description": "Do not include a spouse that {deceasedName} has divorced."
+     "type": "panel",
+     "name": "spouseIntroPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "spouseIntroExplanation",
+       "title": "In this section, we need to figure if {deceasedName} had a `spouse`. There might be multiple spouses\n\nWill version: copy their names as they appear on the will.\n<br><br>\nUnderstanding Deceased Name's relatives helps identify who needs to know about how you are applying for a representation grant.\n<br><br>\nYou will need to notify everyone who has a right to part of Deceased Name's estate that you are applying for a representation grant. If any of these people do not think you should manage Deceased Name's estate, they will have a fair chance tell to the court.\n<br><br>\nIf you are a spouse or descendant, remember to include yourself in this step. \n<br><br>\nIf you are not a relative, you'll be asked for your information later in this service.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "spouseExistsPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "spouseExists",
+       "title": "Did {deceasedName} have a `spouse` at the time of their death?",
+       "description": "Do not include a spouse that {deceasedName} has divorced and has not resumed a marriage-like relationship."
+      },
+      {
+       "type": "helptext",
+       "name": "spouseExistsFAQ1",
+       "title": "married and separated for less than 1? year but not yet divorced",
+       "description": "better to include person than no. if you're not sure, include them. just because you are giving them notice, does not mean that you have to give them money as a beneficary.\n<br><br>\nif separated, likely not going to get anything under WESA. No noticed required. This spouse's entitlement to {deceasedName}'s belongings will be through FLA. A different court.\n\nWESA\nhttp://www.bclaws.ca/civix/document/id/lc/statreg/09013_01#section2\n\nFamily Law Act 84\nhttp://www.bclaws.ca/civix/document/id/complete/statreg/11025_05#section84",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "helptext",
+       "name": "question28",
+       "title": "ask-erin about common-law and separated for less than 1? year but not yet divorced",
+       "description": "better to include person than no. if you're not sure, include them. \n<br><br>\nif separated, likely not going to get anything under WESA. No noticed required. This spouse's entitlement to {deceasedName}'s belongings will be through FLA. A different court.\n\nWESA\nhttp://www.bclaws.ca/civix/document/id/lc/statreg/09013_01#section2\n\nFamily Law Act 84\nhttp://www.bclaws.ca/civix/document/id/complete/statreg/11025_05#section84",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "helptext",
+       "name": "spouseExistsFAQ3",
+       "title": "if they got divorced but got back together for more than 2? years in a marriage-like relationship, ",
+       "description": "yes",
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{spouseIntroExplanation} > 0"
     },
     {
      "type": "paneldynamic",
-     "name": "spousePanel",
+     "name": "spouseInfoPanel",
      "visible": false,
-     "visibleIf": "{spouse} = 'y'",
+     "visibleIf": "{spouseExists} = \"y\"",
      "templateElements": [
       {
        "type": "text",
@@ -4248,7 +5164,7 @@
        "type": "infotext",
        "name": "spouseIsAdultNoExplanation",
        "visible": false,
-       "visibleIf": "{panel.spouseIsAdult} = \"n\"",
+       "visibleIf": "{panel.spouseIsAlive} = \"y\" and {panel.spouseIsAdult} = \"n\"",
        "title": "Because {panel.spouseName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.spouseName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -4258,7 +5174,8 @@
        "name": "spouseHasGuardian",
        "visible": false,
        "visibleIf": "{panel.spouseIsAlive} = \"y\" and {panel.spouseIsAdult} = \"n\" and {panel.spouseIsAdultNoExplanation} > 0",
-       "title": "Does {panel.spouseName} have a living parent or legal guardian?"
+       "title": "Does {panel.spouseName} have a living parent or legal guardian?",
+       "description": "no living parent, notice 3 ways: person, ward of state, PGT"
       },
       {
        "type": "text",
@@ -4296,7 +5213,16 @@
        "name": "spouseCommitteeName",
        "visible": false,
        "visibleIf": "{panel.spouseIsAlive} = \"y\" and ({panel.spouseIsAdult} = \"y\" or ({panel.spouseIsAdult} = \"n\" and {panel.spouseHasGuardian} = \"n\")) and {panel.spouseIsCompetent} = \"n\" and {panel.spouseIsCompetentNoExplanation} > 0 and {panel.spouseHasCommittee} = \"y\"",
-       "title": "Full name of {panel.spouseName}'s committee"
+       "title": "Full name of {panel.spouseName}'s committee",
+       "description": "notice 2 ways: committee and PGT"
+      },
+      {
+       "type": "text",
+       "name": "spouseInformalCommitteeName",
+       "visible": false,
+       "visibleIf": "{panel.spouseIsAlive} = \"y\" and ({panel.spouseIsAdult} = \"y\" or ({panel.spouseIsAdult} = \"n\" and {panel.spouseHasGuardian} = \"n\")) and {panel.spouseIsCompetent} = \"n\" and {panel.spouseIsCompetentNoExplanation} > 0 and {panel.spouseHasCommittee} = \"n\"",
+       "title": "Full name of the person most likely to manage {panel.spouseName}'s belongings",
+       "description": "no formal committee, notice 3 days: to person, informal committee and PGT"
       },
       {
        "type": "yesno",
@@ -4315,6 +5241,13 @@
        "body": "In determining who gets part of estate, it is important to know who died first. This may not sound strange, but under the law, if they died less than 5 days after Deceased Name, they are considered to have died before Deceased Name. For more information, refer to Five-day survival rule from the Wills, Estate and Succession Act (WESA).\nhttp://www.bclaws.ca/civix/document/id/complete/statreg/00_09013_01#section10"
       },
       {
+       "type": "infotext",
+       "name": "question13",
+       "visible": false,
+       "title": "no - died \"before\" pretend they are dead, no notice. even if they died after, but before 4 days, no notice. pretend they died after.",
+       "titleLocation": "hidden"
+      },
+      {
        "type": "yesno",
        "name": "spouseHasPersonalRep",
        "visible": false,
@@ -4327,6 +5260,20 @@
        "visible": false,
        "visibleIf": "{panel.spouseIsAlive} = \"n\" and {panel.spouseDied5DaysAfter} = \"y\" and {panel.spouseHasPersonalRep} = \"y\"",
        "title": "Full name of {panel.spouseName}'s personal representative"
+      },
+      {
+       "type": "text",
+       "name": "spouseInformalPersonalRepName",
+       "visible": false,
+       "visibleIf": "{panel.spouseIsAlive} = \"n\" and {panel.spouseDied5DaysAfter} = \"y\" and {panel.spouseHasPersonalRep} = \"n\"",
+       "title": "Full name of the person most likely to manage {panel.spouseName}'s belongings."
+      },
+      {
+       "type": "infotext",
+       "name": "question26",
+       "visible": false,
+       "title": "Any one else would be considered a spouse? if yes, click \"Add Spouse\". \n\nAnyone else with claim, or you're not sure. This is just to give them notice. best practices. even if you don't think they are entitled to receive anything as a spouse.\nthey might \n\nExample 1, someone you were married to with a marriage certificate, separated from for more than 1 year but did not get a divorce.\n\nExample 2, on-and-off relationship where total time is more than 2 years but not 2 years continuously. ",
+       "titleLocation": "hidden"
       }
      ],
      "panelCount": 1,
@@ -4353,16 +5300,32 @@
       },
       {
        "type": "infotext",
-       "name": "spouseIsYouNoError",
+       "name": "spouseIsYouIncludedNoError",
        "visible": false,
        "visibleIf": "{spouseIsYou} = 'y' and {spouseIsYouIncluded} = \"n\"",
        "title": "Before moving on to the next step, please add your information as a spouse or descendant. It is important to identify your relationship to <Deceased Name> as this service will prepare the paperwork based on this information.",
        "titleLocation": "hidden",
        "messageStyle": "error"
+      },
+      {
+       "type": "yesno",
+       "name": "spouseCompleted",
+       "visible": false,
+       "visibleIf": "{spouseIsYou} = \"n\" or ({spouseIsYou} = \"y\" and {spouseIsYouIncluded} = \"y\")",
+       "title": "Have you included anyone who may be considered a `spouse` of {deceasedName}?  "
+      },
+      {
+       "type": "infotext",
+       "name": "spouseCompletedNoError",
+       "visible": false,
+       "visibleIf": "{spouseIsYou} = \"n\" or ({spouseIsYou} = \"y\" and {spouseIsYouIncluded} = \"y\") and {spouseCompleted} = \"n\"",
+       "title": "Please make sure to include anyone who may be considered a spouse of {deceasedName}.  It is important to identify your relationship to <Deceased Name> as this service will prepare the paperwork based on this information.",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
       }
      ],
      "visible": false,
-     "visibleIf": "{spouse} = \"y\""
+     "visibleIf": "{spouseExists} = \"y\""
     },
     {
      "type": "panel",
@@ -4376,7 +5339,7 @@
       }
      ],
      "visible": false,
-     "visibleIf": "{spouse} = 'n' or ({spouse} = 'y' and {spouseIsYou} = 'n') or ({spouseIsYou} = 'y' and {spouseIsYouIncluded} = 'y')"
+     "visibleIf": "{spouseExists} = 'n' or ({spouseExists} = 'y' and {spouseIsYou} = 'n') or ({spouseIsYou} = 'y' and {spouseIsYouIncluded} = 'y')"
     }
    ],
    "title": "{deceasedName}'s Spouse"
@@ -4739,6 +5702,12 @@
        "titleLocation": "hidden"
       }
      ]
+    },
+    {
+     "type": "infotext",
+     "name": "question274",
+     "title": "for resealing. notify everyone who got a copy of original grant.\n<br>\n3 All of the persons to whom the foreign grant was issued are applicants in the submission for resealing",
+     "titleLocation": "hidden"
     }
    ]
   },
@@ -4811,6 +5780,24 @@
        "name": "jillContact",
        "labelEmail": "Email (optional)",
        "labelFax": "Fax (optional)"
+      },
+      {
+       "type": "yesno",
+       "name": "question3",
+       "title": "Move to applicants page - Has {thisApplicant} changed their name to be significantly different than {executorName}"
+      },
+      {
+       "type": "text",
+       "name": "question20",
+       "visible": false,
+       "title": "Enter name as it appears on their primary. "
+      },
+      {
+       "type": "comment",
+       "name": "question22",
+       "visible": false,
+       "title": "Check with DDRs - Explain and give evidence to support that this is the same person. ",
+       "description": "for example, got married, changed name. here is marriage certificate."
       }
      ]
     },
@@ -4921,6 +5908,12 @@
        "name": "vehicleIntroExplanation",
        "title": "It's time to enter information about any vehicles that {deceasedName} are registered in British Columbia.\n<br>\n<br>\nIf {deceasedName} owned any vehicles, make sure you have the registration documents to help fill in the information.",
        "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question230",
+       "title": "need to ask about cars worldwide, not just in BC. ",
        "titleLocation": "hidden"
       }
      ]
