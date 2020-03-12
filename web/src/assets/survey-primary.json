@@ -4881,7 +4881,7 @@
        "name": "executorIsAliveNoExplanation",
        "visible": false,
        "visibleIf": "{panel.executorIsAlive} = \"n\"",
-       "title": "continue adding more executors if there are more",
+       "title": "That is all the information we need about {panel.executorName} for the moment. Continue adding more executors if there are more.",
        "titleLocation": "hidden"
       },
       {
@@ -4897,7 +4897,7 @@
        "name": "executorIsCapableNoExplanation",
        "visible": false,
        "visibleIf": "{panel.executorIsAlive} = \"y\" and {executorIsCapable} = \"n\"",
-       "title": "continue adding more executors if there are more",
+       "title": "That is all the information we need about {panel.executorName} for the moment. Continue adding more executors if there are more.",
        "titleLocation": "hidden"
       },
       {
@@ -4920,7 +4920,7 @@
        "name": "executorSpecialConditionsMetNoExplanation",
        "visible": false,
        "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and {panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"n\"",
-       "title": "no - this person will only be considered an executor if the special conditions in the will are met. this person can still apply right now under admin with will. \n\nif you feel this special condition is discriminator (human rights violation) you can challenge this in court. court forms here.\n\nkeep adding more executors until done",
+       "title": "no - this person will only be considered an executor if the special conditions in the will are met. this person can still apply right now under admin with will. \n<br><br>\nif you feel this special condition is discriminator (human rights violation) you can challenge this in court. court forms here.\n<br><br>\nThat is all the information we need about {panel.executorName} for the moment. Continue adding more executors if there are more.",
        "description": "no further questions for this executor. name to appear in possible-applicant list",
        "titleLocation": "hidden"
       },
@@ -4945,7 +4945,7 @@
        "name": "executorExSpouseAfterWillNoExplanation",
        "visible": false,
        "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and {panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"n\"",
-       "title": "no - under WESA 56, ex-spouses lose their entitlement to be an executor and lose their beneficiary status and also power of appointment (to pick an executor)",
+       "title": "no - under WESA 56, ex-spouses lose their entitlement to be an executor and lose their beneficiary status and also power of appointment (to pick an executor\n<br><br>\nThat is all the information we need about {panel.executorName} for the moment. Continue adding more executors if there are more.",
        "titleLocation": "hidden"
       },
       {
@@ -4977,7 +4977,6 @@
        "type": "infotext",
        "name": "question23",
        "visible": false,
-       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and {panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"n\"",
        "title": "memo - executors who renounce informally but not formally continue onto the applicant page. formal renunciations do not carry over",
        "titleLocation": "hidden"
       },
@@ -4986,7 +4985,7 @@
        "name": "executorRenouncedFormallyNoExplanation",
        "visible": false,
        "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and {panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"n\"",
-       "title": "no - their name will still appear on the grant as rights reserved (if they are equal or higher priority than the people that get the grant)",
+       "title": "no - their name will still appear on the grant as rights reserved (if they are equal or higher priority than the people that get the grant)\n<br><br>\nContinue adding executors if there are more.",
        "titleLocation": "hidden"
       },
       {
@@ -4994,7 +4993,7 @@
        "name": "executorRenouncedFormallyYesExplanation",
        "visible": false,
        "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and {panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"y\"",
-       "title": "yes - \n[JIRA] click here to generate a form for them to fill out with a witness (form info already captured)\nWe will generate a form for  to renounce their executorship. It is not required to be filled out by  but it will be prepared just in case they want to officially renounce their executorship. \n<br><br>\nIf {panel.executorName} does not complete this form, go back to the last question and say they will not formally renounce. \n\n",
+       "title": "yes - \n[JIRA] click here to generate a form for them to fill out with a witness (form info already captured)\nWe will generate a form for  to renounce their executorship. It is not required to be filled out by  but it will be prepared just in case they want to officially renounce their executorship. \n<br><br>\nIf {panel.executorName} does not complete this form, go back to the last question and say they will not formally renounce. \n<br><br>\nThat is all the information we need about {panel.executorName} for the moment. Continue adding more executors if there are more.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
@@ -5009,10 +5008,10 @@
       },
       {
        "type": "infotext",
-       "name": "executorasflksadf;asdfjsa;dl",
+       "name": "executorRankedExplanation",
        "visible": false,
-       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and ({panel.executorRenounced} = \"n\" \nor ({panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"n\"))",
-       "title": "keep adding more executors until done",
+       "visibleIf": "{panel.executorIsAlive} = \"y\" and {panel.executorIsCapable} = \"y\" and ({panel.executorSpecialConditions} = \"n\" or ({panel.executorSpecialConditions} = \"y\" and {panel.executorSpecialConditionsMet} = \"y\")) and ({panel.executorIsExSpouse} = \"n\" or ({panel.executorIsExSpouse} = \"y\" and {panel.executorExSpouseAfterWill} = \"y\")) and ({panel.executorRenounced} = \"n\" \nor ({panel.executorRenounced} = \"y\" and {panel.executorRenouncedFormally} = \"n\")) and {panel.executorRank} notempty",
+       "title": "That is all the information we need about {panel.executorName} for the moment. Continue adding more executors if there are more.",
        "titleLocation": "hidden"
       }
      ],
@@ -5054,13 +5053,14 @@
        "type": "infotext",
        "name": "executorCompletedNoError",
        "visible": false,
-       "visibleIf": "{executorIsYou} = \"n\" or ({executorIsYou} = \"y\" and {executorIsYouIncluded} = \"y\") and {executorCompleted} = \"n\"",
+       "visibleIf": "({executorIsYou} = \"n\" or ({executorIsYou} = \"y\" and {executorIsYouIncluded} = \"y\")) and {executorCompleted} = \"n\"",
        "title": "Go back and make sure to include information about all the executors. This service doesn't know who you are and who is applying. We will handle that in a future step.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
      ],
-     "visible": false
+     "visible": false,
+     "visibleIf": "{executorExists} = \"n\"\nor\n{executorInfoPanel[0].executorIsAlive} = \"n\" \nor \n({executorInfoPanel[0].executorIsAlive} = \"y\" and {executorInfoPanel[0].executorIsCapable} = \"n\")\nor \n({executorInfoPanel[0].executorIsAlive} = \"y\" and {executorInfoPanel[0].executorIsCapable} = \"y\" and {executorInfoPanel[0].executorSpecialConditions} = \"y\" and {executorInfoPanel[0].executorSpecialConditionsMet} = \"n\")\nor \n({executorInfoPanel[0].executorIsAlive} = \"y\" and {executorInfoPanel[0].executorIsCapable} = \"y\" and {executorInfoPanel[0].executorSpecialConditions} = \"y\" and {executorInfoPanel[0].executorSpecialConditionsMet} = \"n\")\nor\n({executorInfoPanel[0].executorIsAlive} = \"y\" and {executorInfoPanel[0].executorIsCapable} = \"y\" and ({executorInfoPanel[0].executorSpecialConditions} = \"n\" or ({executorInfoPanel[0].executorSpecialConditions} = \"y\" and {executorInfoPanel[0].executorSpecialConditionsMet} = \"y\")) and {executorInfoPanel[0].executorIsExSpouse} = \"y\" and {executorInfoPanel[0].executorExSpouseAfterWill} = \"n\")\nor\n({executorInfoPanel[0].executorIsAlive} = \"y\" and {executorInfoPanel[0].executorIsCapable} = \"y\" and ({executorInfoPanel[0].executorSpecialConditions} = \"n\" or ({executorInfoPanel[0].executorSpecialConditions} = \"y\" and {executorInfoPanel[0].executorSpecialConditionsMet} = \"y\")) and ({executorInfoPanel[0].executorIsExSpouse} = \"n\" or ({executorInfoPanel[0].executorIsExSpouse} = \"y\" and {executorInfoPanel[0].executorExSpouseAfterWill} = \"y\")) and {executorInfoPanel[0].executorRenounced} = \"y\" and {executorInfoPanel[0].executorRenouncedFormally} = \"y\" and {executorInfoPanel[0].executorRenouncedFormallyYesExplanation} > 0)\nor\n({executorInfoPanel[0].executorIsAlive} = \"y\" and {executorInfoPanel[0].executorIsCapable} = \"y\" and ({executorInfoPanel[0].executorSpecialConditions} = \"n\" or ({executorInfoPanel[0].executorSpecialConditions} = \"y\" and {executorInfoPanel[0].executorSpecialConditionsMet} = \"y\")) and ({executorInfoPanel[0].executorIsExSpouse} = \"n\" or ({executorInfoPanel[0].executorIsExSpouse} = \"y\" and {executorInfoPanel[0].executorExSpouseAfterWill} = \"y\")) and ({executorInfoPanel[0].executorRenounced} = \"n\" \nor ({executorInfoPanel[0].executorRenounced} = \"y\" and {executorInfoPanel[0].executorRenouncedFormally} = \"n\")) and {executorInfoPanel[0].executorRank} notempty)"
     },
     {
      "type": "panel",
@@ -5069,12 +5069,13 @@
       {
        "type": "infotext",
        "name": "executorExitExplanation",
-       "visible": false,
        "title": "Based on the responses,  and  have the highest rights to apply to be (co-)executors to 's estate.\n\nNow that we have identified the people who have the highest right to apply, other people can also apply if the named executors consent. We will figure out this later. \n\nNext we will move on to identifying the successors.",
        "titleLocation": "hidden"
       }
      ],
-     "visible": false
+     "visible": false,
+     "visibleIf": "({executorIsYou} = \"n\" and {executorCompleted} = \"y\") or ({executorIsYou} = \"y\" and {executorIsYouIncluded} = \"y\" and {executorCompleted} = \"y\")",
+     "description": "Incomplete logic - does not detect if executor exists and first panel is filled out. can bypass by saying no executor exists, answering the complete question, then going back and saying yes to executor exists and this won't disappear."
     }
    ],
    "title": "Executor Information"
@@ -5189,7 +5190,8 @@
        "name": "spouseIsCompetent",
        "visible": false,
        "visibleIf": "{panel.spouseIsAlive} = \"y\" and ({panel.spouseIsAdult} = \"y\" or ({panel.spouseIsAdult} = \"n\" and {panel.spouseHasGuardian} = \"n\"))",
-       "title": "Is {panel.spouseName} `mentally competent`?"
+       "title": "Is {panel.spouseName} `mentally competent`?",
+       "description": "Update this logic so that living guardian comes here as well."
       },
       {
        "type": "infotext",
@@ -5221,7 +5223,7 @@
        "name": "spouseInformalCommitteeName",
        "visible": false,
        "visibleIf": "{panel.spouseIsAlive} = \"y\" and ({panel.spouseIsAdult} = \"y\" or ({panel.spouseIsAdult} = \"n\" and {panel.spouseHasGuardian} = \"n\")) and {panel.spouseIsCompetent} = \"n\" and {panel.spouseIsCompetentNoExplanation} > 0 and {panel.spouseHasCommittee} = \"n\"",
-       "title": "Full name of the person most likely to manage {panel.spouseName}'s belongings",
+       "title": "Full name of the person most likely to manage {panel.spouseName}'s money and belongings",
        "description": "no formal committee, notice 3 days: to person, informal committee and PGT"
       },
       {
@@ -5266,7 +5268,7 @@
        "name": "spouseInformalPersonalRepName",
        "visible": false,
        "visibleIf": "{panel.spouseIsAlive} = \"n\" and {panel.spouseDied5DaysAfter} = \"y\" and {panel.spouseHasPersonalRep} = \"n\"",
-       "title": "Full name of the person most likely to manage {panel.spouseName}'s belongings."
+       "title": "Full name of the person most likely to manage {panel.spouseName}'s money and belongings."
       },
       {
        "type": "infotext",
@@ -5324,8 +5326,7 @@
        "messageStyle": "error"
       }
      ],
-     "visible": false,
-     "visibleIf": "{spouseExists} = \"y\""
+     "visible": false
     },
     {
      "type": "panel",
@@ -5353,8 +5354,12 @@
      "title": "Did {deceasedName} have any children at the time of their death?"
     },
     {
+     "type": "yesno",
+     "name": "magicButton"
+    },
+    {
      "type": "paneldynamic",
-     "name": "childPanel",
+     "name": "childInfoPanel",
      "visible": false,
      "visibleIf": "{child} = \"y\"",
      "templateElements": [
@@ -5410,7 +5415,8 @@
        "name": "childIsCompetent",
        "visible": false,
        "visibleIf": "{panel.childIsAlive} = \"y\" and ({panel.childIsAdult} = \"y\" or ({panel.childIsAdult} = \"n\" and {panel.childHasGuardian} = \"n\"))",
-       "title": "Is {panel.childName} `mentally competent`?"
+       "title": "Is {panel.childName} `mentally competent`?",
+       "description": "Update logic to show even if this child is not an adult"
       },
       {
        "type": "infotext",
@@ -5435,6 +5441,13 @@
        "visible": false,
        "visibleIf": "{panel.childIsAlive} = \"y\" and ({panel.childIsAdult} = \"y\" or ({panel.childIsAdult} = \"n\" and {panel.childHasGuardian} = \"n\")) and {panel.childIsCompetent} = \"n\" and {panel.childIsCompetentNoExplanation} > 0 and {panel.childHasCommittee} = \"y\"",
        "title": "Full name of {panel.childName}'s committee"
+      },
+      {
+       "type": "text",
+       "name": "childInformalCommitteeName",
+       "visible": false,
+       "visibleIf": "{panel.childIsAlive} = \"y\" and ({panel.childIsAdult} = \"y\" or ({panel.childIsAdult} = \"n\" and {panel.childHasGuardian} = \"n\")) and {panel.childIsCompetent} = \"n\" and {panel.childIsCompetentNoExplanation} > 0 and {panel.childHasCommittee} = \"n\"",
+       "title": "Full name of person most likely to manage {panel.childName}'s money and belongings."
       },
       {
        "type": "yesno",
@@ -5465,6 +5478,307 @@
        "visible": false,
        "visibleIf": "{panel.childIsAlive} = 'n' and {panel.childDied5DaysAfter} = 'y' and {panel.childHasPersonalRep} = 'y'",
        "title": "Full name of {panel.childName}'s personal representative"
+      },
+      {
+       "type": "text",
+       "name": "childInformalPersonalRepName",
+       "visible": false,
+       "visibleIf": "{panel.childIsAlive} = 'n' and {panel.childDied5DaysAfter} = 'y' and {panel.childHasPersonalRep} = 'n'",
+       "title": "Full name of the person who is most likely going to manage {panel.childName}'s money and belongings.",
+       "description": "Update Logic"
+      },
+      {
+       "type": "yesno",
+       "name": "childHasChildren",
+       "visible": false,
+       "visibleIf": "{panel.childIsAlive} = \"n\" and {panel.childDied5DaysAfter} = \"n\"",
+       "title": "Did {panel.childName} have any children?"
+      },
+      {
+       "type": "paneldynamic",
+       "name": "gchildInfoPanel",
+       "visible": false,
+       "visibleIf": "{childInfoPanel[0].childHasChildren} = 'y'",
+       "templateElements": [
+        {
+         "type": "text",
+         "name": "gchildName",
+         "title": "Please enter the full name of {childInfoPanel[0].childName}'s child."
+        },
+        {
+         "type": "yesno",
+         "name": "gchildIsAlive",
+         "title": "Is {panel.gchildName} alive?"
+        },
+        {
+         "type": "helptext",
+         "name": "gchildIsAliveFAQ1",
+         "title": "What if {panel.gchildName} is on life support?",
+         "titleLocation": "hidden",
+         "body": "{panel.spouseName} are considered alive."
+        },
+        {
+         "type": "yesno",
+         "name": "gchildIsAdult",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"y\"",
+         "title": "Is {panel.gchildName} 19 years of age or older?"
+        },
+        {
+         "type": "infotext",
+         "name": "gchildIsAdultNoExplanation",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAdult} = \"n\"",
+         "title": "Because {panel.gchildName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.childName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
+         "isRequired": true,
+         "titleLocation": "hidden"
+        },
+        {
+         "type": "yesno",
+         "name": "gchildHasGuardian",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"y\" and {panel.gchildIsAdult} = \"n\" and {panel.gchildIsAdultNoExplanation} > 0",
+         "title": "Does {panel.gchildName} have a living parent or legal guardian?"
+        },
+        {
+         "type": "text",
+         "name": "gchildGuardianName",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"y\" and {panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"y\"",
+         "title": "Full name of living parent/ guardian"
+        },
+        {
+         "type": "yesno",
+         "name": "gchildIsCompetent",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\"))",
+         "title": "Is {panel.gchildName} `mentally competent`?",
+         "description": "Update logic to show even if this child is not an adult"
+        },
+        {
+         "type": "infotext",
+         "name": "gchildIsCompetentNoExplanation",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\")) and {panel.gchildIsCompetent} = \"n\"",
+         "title": "In this scenario, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.childName}'s committee (if there is one).",
+         "isRequired": true,
+         "titleLocation": "hidden"
+        },
+        {
+         "type": "yesno",
+         "name": "gchildHasCommittee",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\")) and {panel.gchildIsCompetent} = \"n\" and {panel.gchildIsCompetentNoExplanation} > 0",
+         "title": "Does {panel.gchildName} have a committee?",
+         "description": "If someone has been declared mentally incompetent by a court, a committee (or equivalent), will have been appointed to take care of the mentally incompetent person's finances. "
+        },
+        {
+         "type": "text",
+         "name": "gchildCommitteeName",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\")) and {panel.gchildIsCompetent} = \"n\" and {panel.gchildIsCompetentNoExplanation} > 0 and {panel.gchildHasCommittee} = \"y\"",
+         "title": "Full name of {panel.gchildName}'s committee"
+        },
+        {
+         "type": "text",
+         "name": "gchildInformalCommitteeName",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\")) and {panel.gchildIsCompetent} = \"n\" and {panel.gchildIsCompetentNoExplanation} > 0 and {panel.gchildHasCommittee} = \"n\"",
+         "title": "Full name of person most likely to manage {panel.gchildName}'s money and belongings."
+        },
+        {
+         "type": "yesno",
+         "name": "gchildDied5DaysAfter",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"n\"",
+         "title": "Did {panel.gchildName} die after <Deceased Date of Death + 4 days>?"
+        },
+        {
+         "type": "helptext",
+         "name": "gchildDied5DaysAfterFAQ1",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"n\"",
+         "title": "Why does this date matter?",
+         "titleLocation": "hidden",
+         "body": "In determining who gets part of estate, it is important to know who died first. This may not sound strange, but under the law, if they died less than 5 days after Deceased Name, they are considered to have died before Deceased Name. For more information, refer to Five-day survival rule from the Wills, Estate and Succession Act (WESA).\nhttp://www.bclaws.ca/civix/document/id/complete/statreg/00_09013_01#section10"
+        },
+        {
+         "type": "yesno",
+         "name": "gchildHasPersonalRep",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"n\" and {panel.gchildDied5DaysAfter} = \"y\"",
+         "title": "Does {panel.gchildName} have a `personal representative`?"
+        },
+        {
+         "type": "text",
+         "name": "gchildPersonalRepName",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = 'n' and {panel.gchildDied5DaysAfter} = 'y' and {panel.gchildHasPersonalRep} = 'y'",
+         "title": "Full name of {panel.gchildName}'s personal representative"
+        },
+        {
+         "type": "text",
+         "name": "gchildInformalPersonalRepName",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = 'n' and {panel.gchildDied5DaysAfter} = 'y' and {panel.gchildHasPersonalRep} = 'y'",
+         "title": "Full name of the person who is most likely going to manage {panel.gchildName}'s money and belongings.",
+         "description": "Update Logic"
+        },
+        {
+         "type": "yesno",
+         "name": "gchildHasChildren",
+         "visible": false,
+         "visibleIf": "{panel.gchildIsAlive} = \"n\" and {panel.gchildDied5DaysAfter} = \"n\"",
+         "title": "Did {panel.childName} have any children?"
+        },
+        {
+         "type": "paneldynamic",
+         "name": "ggchildInfoPanel",
+         "visible": false,
+         "visibleIf": "{magicButton} = \"y\"",
+         "templateElements": [
+          {
+           "type": "text",
+           "name": "gchildName",
+           "title": "Please enter the full name of {gchildInfoPanel[0].gchildName}'s child."
+          },
+          {
+           "type": "yesno",
+           "name": "gchildIsAlive",
+           "title": "Is {panel.gchildName} alive?"
+          },
+          {
+           "type": "helptext",
+           "name": "gchildIsAliveFAQ1",
+           "title": "What if {panel.gchildName} is on life support?",
+           "titleLocation": "hidden",
+           "body": "{panel.spouseName} are considered alive."
+          },
+          {
+           "type": "yesno",
+           "name": "gchildIsAdult",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"y\"",
+           "title": "Is {panel.gchildName} 19 years of age or older?"
+          },
+          {
+           "type": "infotext",
+           "name": "gchildIsAdultNoExplanation",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAdult} = \"n\"",
+           "title": "Because {panel.gchildName} is under the age of 19, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.childName}'s parent or guardian.\n\nThe PGT requires additional information. This service will let you know what additional information is required at a later stage.",
+           "isRequired": true,
+           "titleLocation": "hidden"
+          },
+          {
+           "type": "yesno",
+           "name": "gchildHasGuardian",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"y\" and {panel.gchildIsAdult} = \"n\" and {panel.gchildIsAdultNoExplanation} > 0",
+           "title": "Does {panel.gchildName} have a living parent or legal guardian?"
+          },
+          {
+           "type": "text",
+           "name": "gchildGuardianName",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"y\" and {panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"y\"",
+           "title": "Full name of living parent/ guardian"
+          },
+          {
+           "type": "yesno",
+           "name": "gchildIsCompetent",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\"))",
+           "title": "Is {panel.gchildName} `mentally competent`?",
+           "description": "Update logic to show even if this child is not an adult"
+          },
+          {
+           "type": "infotext",
+           "name": "gchildIsCompetentNoExplanation",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\")) and {panel.gchildIsCompetent} = \"n\"",
+           "title": "In this scenario, the Public Guardian and Trustee (PGT) needs to be notified in addition to {panel.childName}'s committee (if there is one).",
+           "isRequired": true,
+           "titleLocation": "hidden"
+          },
+          {
+           "type": "yesno",
+           "name": "gchildHasCommittee",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\")) and {panel.gchildIsCompetent} = \"n\" and {panel.gchildIsCompetentNoExplanation} > 0",
+           "title": "Does {panel.gchildName} have a committee?",
+           "description": "If someone has been declared mentally incompetent by a court, a committee (or equivalent), will have been appointed to take care of the mentally incompetent person's finances. "
+          },
+          {
+           "type": "text",
+           "name": "gchildCommitteeName",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\")) and {panel.gchildIsCompetent} = \"n\" and {panel.gchildIsCompetentNoExplanation} > 0 and {panel.gchildHasCommittee} = \"y\"",
+           "title": "Full name of {panel.gchildName}'s committee"
+          },
+          {
+           "type": "text",
+           "name": "gchildInformalCommitteeName",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"y\" and ({panel.gchildIsAdult} = \"y\" or ({panel.gchildIsAdult} = \"n\" and {panel.gchildHasGuardian} = \"n\")) and {panel.gchildIsCompetent} = \"n\" and {panel.gchildIsCompetentNoExplanation} > 0 and {panel.gchildHasCommittee} = \"n\"",
+           "title": "Full name of person most likely to manage {panel.gchildName}'s money and belongings."
+          },
+          {
+           "type": "yesno",
+           "name": "gchildDied5DaysAfter",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"n\"",
+           "title": "Did {panel.gchildName} die after <Deceased Date of Death + 4 days>?"
+          },
+          {
+           "type": "helptext",
+           "name": "gchildDied5DaysAfterFAQ1",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"n\"",
+           "title": "Why does this date matter?",
+           "titleLocation": "hidden",
+           "body": "In determining who gets part of estate, it is important to know who died first. This may not sound strange, but under the law, if they died less than 5 days after Deceased Name, they are considered to have died before Deceased Name. For more information, refer to Five-day survival rule from the Wills, Estate and Succession Act (WESA).\nhttp://www.bclaws.ca/civix/document/id/complete/statreg/00_09013_01#section10"
+          },
+          {
+           "type": "yesno",
+           "name": "gchildHasPersonalRep",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"n\" and {panel.gchildDied5DaysAfter} = \"y\"",
+           "title": "Does {panel.gchildName} have a `personal representative`?"
+          },
+          {
+           "type": "text",
+           "name": "gchildPersonalRepName",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = 'n' and {panel.gchildDied5DaysAfter} = 'y' and {panel.gchildHasPersonalRep} = 'y'",
+           "title": "Full name of {panel.gchildName}'s personal representative"
+          },
+          {
+           "type": "text",
+           "name": "gchildInformalPersonalRepName",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = 'n' and {panel.gchildDied5DaysAfter} = 'y' and {panel.gchildHasPersonalRep} = 'y'",
+           "title": "Full name of the person who is most likely going to manage {panel.gchildName}'s money and belongings.",
+           "description": "Update Logic"
+          },
+          {
+           "type": "yesno",
+           "name": "gchildHasChildren",
+           "visible": false,
+           "visibleIf": "{panel.gchildIsAlive} = \"n\" and {panel.gchildDied5DaysAfter} = \"n\"",
+           "title": "Did {panel.childName} have any children?"
+          }
+         ],
+         "panelCount": 1,
+         "minPanelCount": 1,
+         "panelAddText": "Add a child",
+         "panelRemoveText": "Delete this child"
+        }
+       ],
+       "panelCount": 1,
+       "minPanelCount": 1,
+       "panelAddText": "Add a child",
+       "panelRemoveText": "Delete this child"
       }
      ],
      "panelCount": 1,
@@ -5692,6 +6006,17 @@
      "name": "panel11"
     },
     {
+     "type": "text",
+     "name": "question31",
+     "title": "Name"
+    },
+    {
+     "type": "yesno",
+     "name": "question32",
+     "title": "any conditions to being a beneficiary?",
+     "description": "for example, this person is a beneficiary only if another person has died."
+    },
+    {
      "type": "panel",
      "name": "panel12",
      "elements": [
@@ -5710,6 +6035,9 @@
      "titleLocation": "hidden"
     }
    ]
+  },
+  {
+   "name": "citorPage"
   },
   {
    "name": "applicants",
