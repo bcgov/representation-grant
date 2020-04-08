@@ -4812,8 +4812,19 @@
        "title": "In this section, we need to figure out what rights people have to apply to manage {deceasedName}'s estate. This usually involves executors. We need to figure who is the most eligible to apply.",
        "isRequired": true,
        "titleLocation": "hidden"
+      },
+      {
+       "type": "panel",
+       "name": "panel5"
       }
      ]
+    },
+    {
+     "type": "infotext",
+     "name": "question235",
+     "visible": false,
+     "title": "for resealing/ancillary - list executors, name > alive > ex-spouse > ex-spouse after will date<br> don't need to go deep than this",
+     "titleLocation": "hidden"
     },
     {
      "type": "panel",
@@ -5095,6 +5106,12 @@
        "titleLocation": "hidden"
       }
      ]
+    },
+    {
+     "type": "infotext",
+     "name": "question41",
+     "title": "What if the spouse is the executor and already put their info in the executor page?",
+     "titleLocation": "hidden"
     },
     {
      "type": "panel",
@@ -6031,7 +6048,7 @@
     {
      "type": "infotext",
      "name": "question274",
-     "title": "for resealing. notify everyone who got a copy of original grant.\n<br>\n3 All of the persons to whom the foreign grant was issued are applicants in the submission for resealing",
+     "title": "catch-all for resealing. notify everyone who got a copy of original grant.\n<br>\n3 All of the persons to whom the foreign grant was issued are applicants in the submission for resealing",
      "titleLocation": "hidden"
     }
    ]
@@ -6140,6 +6157,74 @@
        "titleLocation": "hidden"
       }
      ]
+    },
+    {
+     "type": "infotext",
+     "name": "question42",
+     "title": "no need to ask if over 19 nor mentally competent - leave it up to notice of dispute to find that out. low likelihood that this would happen",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question48",
+     "title": "Would allow executors across multiple ranks to apply together, no extra messaging required. Swear P3 together, single \"we\" paragraphs with multiple applicants listed\n<br><br>\nObsolete - If there are executors applying, the only people of the same rank can apply together. No rank 1 AND rank 3. But yes, 2 people who are all rank 1. If there is an executor applying, no other non-executors can apply on the same application.",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question229",
+     "title": "to code;\nseparate packs of questions for<br>\nwith will: executors/admins<br>\nno will: all intestate<br>\nancillary/resealing: confirm same applicants as original. no need to ask about who supports them.",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question234",
+     "title": "can co-mingle executors and non-executors. on the P3, if joint swearing, select admin with will instead of grant of probate. separate entries for Paragraph 4. otherwise, P3 + P8.\n<br><br>\nscenario 1: executor + admin apply together<br>\nscenario 2: executor does P3, admin does P8<br>\nscenario 3: admin does P3, executor does P8",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question236",
+     "title": "admin with will - can have multiple applicants with different 131 paragraphs on the same. groups will likely be all (a) and/or (a.1). or all (b) and/or (c), no need to validate these groupings too hard because they are self-reporting",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question44",
+     "visible": false,
+     "title": "for resealing/ancillary <br>\napplicant (from picklist) info required: name > are they on the foreign grant<br>\nadditional applicant info required: name > are they on the foreign grant<br>\nafter allowing additional applicants, check to see if they are all the same personal reps as foreign grant",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question238",
+     "visible": false,
+     "title": "applicant info for everyone<br>\nindividual or not (if not, name of organization and mailing address of organization)<br>\noccupation<br>\nmailing address (doesn't have to be in BC)<br>\nordinarily lives address (possibly only city/country if different than mailing address - pull from mailing address if that's where ordinarily lives)<br>\nservice address in BC<br>\nlawyer's address (doesn't have to be in BC)<br>\n",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question237",
+     "visible": false,
+     "title": "executor applicants<br>\n",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "yesno",
+     "name": "question228",
+     "title": "is this person getting a gift (beneficiary) from the will?"
+    },
+    {
+     "type": "yesno",
+     "name": "question233",
+     "title": "not getting a gift, do you have majority-gift support?",
+     "description": "yes, (a.1). no, (c)"
+    },
+    {
+     "type": "yesno",
+     "name": "question232",
+     "title": "131 (a) if getting a gift, do you have support of the people who are getting the most stuff from the will (over 51%)",
+     "description": "not the amount of beneficiaries, but the group of people who are getting the most.\nyes - 131 (a), no - 131 (b)"
     }
    ],
    "title": "The applicant(s)"
@@ -6206,6 +6291,17 @@
        "visible": false,
        "visibleIf": "{panel.landOwnershipType} = [\"item1\"]",
        "title": "Are any of the other registered owners alive?"
+      },
+      {
+       "type": "yesno",
+       "name": "question29",
+       "title": "Did the other registered owners of {panel.address} die after [Date of Death + 4 days]?"
+      },
+      {
+       "type": "helptext",
+       "name": "question30",
+       "title": "Why does this date matter?",
+       "titleLocation": "hidden"
       },
       {
        "type": "infotext",
