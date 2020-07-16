@@ -794,7 +794,7 @@
        "type": "infotext",
        "name": "question283",
        "visible": false,
-       "title": "yes activates P11\n<br>\nno activates P10 and disables P11. (regularly lived questions also does the same for any place other than BC). ",
+       "title": "yes activates P11\n<br>\nno activates P10 and disables P11. (regularly lived questions also does the same for any place other than BC). \n<br>resealing application assumes this. but if the ancillary grant applicant selects (no) even though, they are doing an ancillary grant, we can't trust them, and they need to include property outside of BC.",
        "titleLocation": "hidden"
       }
      ],
@@ -5435,6 +5435,18 @@
        "title": "Full name of living parent/ guardian"
       },
       {
+       "type": "address",
+       "name": "question424",
+       "title": "Address of living parent/guardian",
+       "description": "Why do you need the address? This is optional. If you fill it out, this service will help you generate a letter to the PGT which requires address. "
+      },
+      {
+       "type": "address",
+       "name": "question426",
+       "title": "Address of {child}. You have the ability to select the same address",
+       "description": "Why do you need the address? This is optional. If you fill it out, this service will help you generate a letter to the PGT which requires address. "
+      },
+      {
        "type": "yesno",
        "name": "childIsCompetent",
        "visible": false,
@@ -5472,6 +5484,18 @@
        "visible": false,
        "visibleIf": "{panel.childIsAlive} = \"y\" and ({panel.childIsAdult} = \"y\" or ({panel.childIsAdult} = \"n\" and {panel.childHasGuardian} = \"n\")) and {panel.childIsCompetent} = \"n\" and {panel.childIsCompetentNoExplanation} > 0 and {panel.childHasCommittee} = \"n\"",
        "title": "Full name of person most likely to manage {panel.childName}'s money and belongings."
+      },
+      {
+       "type": "address",
+       "name": "question425",
+       "title": "Address of living parent/guardian",
+       "description": "Why do you need the address? This is optional. If you fill it out, this service will help you generate a letter to the PGT which requires address. "
+      },
+      {
+       "type": "address",
+       "name": "question423",
+       "title": "Address of {child}. You have the ability to select the same address",
+       "description": "Why do you need the address? This is optional. If you fill it out, this service will help you generate a letter to the PGT which requires address. "
       },
       {
        "type": "yesno",
@@ -6061,6 +6085,46 @@
    ]
   },
   {
+   "name": "creditors",
+   "elements": [
+    {
+     "type": "yesno",
+     "name": "question386",
+     "title": "Did {deceasedName} owe more than $10,000 to any one person/organization?"
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question300",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "question387",
+       "title": "Name"
+      },
+      {
+       "type": "yesno",
+       "name": "question389",
+       "title": "individual or not <br>[JIRA] only ask this question for executors and beneficiaries"
+      },
+      {
+       "type": "infotext",
+       "name": "question390",
+       "title": "individual? alive? adult? competent? dead? died after 4 days?\n<br><br>\norganization - name of contact optional, telling them they need the right address. (possibly show this in the P1 page) right address for notice",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "infotext",
+     "name": "question388",
+     "title": "do we need to ask about how much they are owed here? so we avoid asking later? NO Jun 4 2020",
+     "titleLocation": "hidden",
+     "messageStyle": "error"
+    }
+   ],
+   "title": "creditors for AWOW (do not show for GP or AWW)"
+  },
+  {
    "name": "applicants",
    "elements": [
     {
@@ -6455,6 +6519,23 @@
        "name": "question307",
        "title": "Who is swearing what?",
        "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question229",
+       "title": "[if there is more than 1 applicant] - do you all plan to swear/affirm your affidavits together in the same room?",
+       "description": "this can save you money if you do, but it's not necessary. it just determines how we need to set up the paper work."
+      },
+      {
+       "type": "radiogroup",
+       "name": "question22",
+       "title": "select who is going to be main applicant vs supporting applicant",
+       "description": "you'll have the same rights, but select the person(s) who are going to be doing the most work including filing and receiving documents",
+       "choices": [
+        "item1",
+        "item2",
+        "item3"
+       ]
       }
      ]
     },
@@ -6584,6 +6665,288 @@
    "title": "The Applicant(s)"
   },
   {
+   "name": "p1early",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "p1EarlyIntroPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "p1EarlyWillIntro",
+       "title": "[Will version - custom intros GP, AWW, AGP, AGAWW, Resealing]\n<br>\nAccording the information you provided so far, your type of application is called X. Will dated. Y.\n<br><br>\nLet's first review the notice form that was filled out based on the information you provided. This notice form needs to be delivered (served) to the people and organizations you identified earlier (e.g. relatives, creditors).\n<br><br>\nWhen you submit your application for a representation grant, the court will need to know who you notified, and the people who delivered those notices.\n<br><br>\nWe'll help you keep track and make sure you haven't missed anyone.\n<br><br>\nAs part of the process to get a representation grant, you need to let the appropriate people know about your application. This means you need to deliver (serve) the following notice form to them.\n<br><br>\nPeople you will notify will have a ?fair? change to disagree with your applications. This gives them a fair chance ... work in 21 days... before you can file your documents to the courthouse.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "p1EarlyNoWillIntro",
+       "title": "[No Will version - custom AWW, AGAWW, Resealing] Review and Deliver Notice\n<br><br>\nAs part of the process to get a representation grant, you need to let the appropriate people know about your application. This means you need to deliver (serve) the following notice form to them.\n<br><br>\nBecause {deceasedName} did not leave a Will (valid?), you will also need to notify anyone who {deceasedName} owed more than $10,000.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "p1EarlyNoWillOwe10k",
+       "title": "Did {deceasedName} owed more than $10,000 to a single person or organization. ",
+       "description": "If you are not sure, select \"Yes\". This will guide through all of {deceasedName}'s relevant assets/liabilities. "
+      },
+      {
+       "type": "infotext",
+       "name": "p1EarlyNoWillOwe10kYesExplanation",
+       "visible": false,
+       "visibleIf": "{p1EarlyNoWillOwe10k} = \"y\"",
+       "title": "[No Will - over $10k debt]\nYou need to identify the creditor(s) that are owed more than $10,000 in order to notify them. (P1) The way this service works is now you have to start with  the asset and liabilities to identify these creditors. Click next.\n[No further text on this page]",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "p1EarlyNoWillOwe10kNoExplanation",
+       "visible": false,
+       "visibleIf": "{p1EarlyNoWillOwe10k} = \"n\"",
+       "title": "[No Will - less than $10k debt] Review and Deliver Notice\n<br>\nYou will not need to notify people that are owed less than $10,000. We can capture their information about these debts at a later stage.\n<br><br>\n[Copy Yes Will Stuff - obligation to notify] Let's first review the notice form that was filled out based on the information you provided. This notice form needs to be delivered (served) to the people and organizations you identified earlier (e.g. relatives, creditors).\n<br><br>\nWhen you submit your application for a representation grant, the court will need to know who you notified, and the people who delivered those notices.\n<br><br>\nWe'll help you keep track and make sure you haven't missed anyone.\n<br><br>\nAs part of the process to get a representation grant, you need to let the appropriate people know about your application. This means you need to deliver (serve) the following notice form to them.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "p1EarlyReviewPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "p1EarlyFormDownloadExplanation",
+       "title": "Notice of Proposed Application in Relation to Estate (P1)\n<br>\nThe form that is being generated is for you to deliver to other people. Read this form as if are receiving this document, not the person who is giving the document. It tells people what you are trying to do and it outlines their rights to respond if they want to.\n<br>\nDownload and Review\n<br>\n[JIRA Download Link]",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "helptext",
+       "name": "question414",
+       "title": "How do I open a PDF? Where does it save to?",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question417",
+       "title": "Custom intros here instead of at the beginning??<br>\nReview the forms, specially the parts with information relevant to your applicant.\n<br>\n[JIRA - possibility of HTML review earlier?]",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question418",
+       "title": "Is all of the information about the deceased correct?"
+      },
+      {
+       "type": "infotext",
+       "name": "question419",
+       "title": "[Not correct]\n<br>\nHTML correction Table instead of having to go back to the previous pages.\n<br>Deceased name\n<br>Deceased date of death\n<br>Deceased last address\n<br>Deceased Will info or no will",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question420",
+       "title": "Is all of the information about you, and your contact info, correct? "
+      },
+      {
+       "type": "infotext",
+       "name": "question421",
+       "title": "[Not correct]\n<br>\nHTML correction Table instead of having to go back to the previous pages.\n<br>Applicant name(s)\n<br>Applicant Contact Info\n<br>Applicant regular address\n<br>Applicant service address\n<br>Courthouse filing.\n<br>Laywer\n<br>Lawyer Address\n<br>Lawyer Contact Info",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "p1EarlyGeneratePDFAgain",
+       "title": "[JIRA] Click here to preview/download from again [functionality of earlier button should be the same. Should this exist or jump back to top button?]",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel22",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "PrintP1",
+       "title": "This is the first review and print page to print the P1 form (to notify successors).\n<br>\n<br>\n It will generated a PDF that the applicant would download.\n<br>\n<br>\nIt will give instructions on how to notify the successors.\n<br>\n<br>\nIf any changes are made in the prior questions, need to inform applicants they may need to re-notify.",
+       "titleLocation": "hidden",
+       "messageStyle": "inline"
+      },
+      {
+       "type": "infotext",
+       "name": "question405",
+       "title": "You're ready to deliver the P1 to people. Define served. \n<br>\nYou will only be able to file your documents 21 days after the last person was deemed to have been served. \n<br>\nThese are the ways you can deliver a notice. Choose the best way you see fit to notify each different person.\n<br>\n•  In person (printer required)\n<br>\n•  Electronically (e-mail, fax, or other electronic means)\n•  By mail (printer required)\n<br>\n\nHere is a sample message that you can copy and paste to email people. include, ask a receipt as simply as \"thanks\" \"I have received your email\".\n\nWe will provide a list of people you need to notify.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question391",
+       "title": "[JIRA] auto-send email function? or email from this service?",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "infotext",
+     "name": "question416",
+     "title": "Below is a list of people is who you need to notify and give a fair chance to disagree with your application. You may choose to notify more people than those on this list. If you do, you do not need to keep track of them. ",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "matrixdynamic",
+     "name": "question408",
+     "title": "How did {recipient} receive notice? [for children or mentally incapable people Shawn Johnson (in the care of Taylor Johnson)]\n",
+     "columns": [
+      {
+       "name": "Column 1",
+       "title": "Method",
+       "cellType": "radiogroup",
+       "choices": [
+        {
+         "value": "item1",
+         "text": "In person"
+        },
+        {
+         "value": "item2",
+         "text": "Mail"
+        },
+        {
+         "value": "item3",
+         "text": "Electronically"
+        }
+       ]
+      },
+      {
+       "name": "Column 2",
+       "title": "Person who served Column 1",
+       "cellType": "radiogroup",
+       "hasOther": true,
+       "choices": [
+        {
+         "value": "item1",
+         "text": "applicant1"
+        },
+        {
+         "value": "item2",
+         "text": "applicant2"
+        },
+        {
+         "value": "item3",
+         "text": "applicant3"
+        }
+       ],
+       "otherText": "Name of person who served"
+      },
+      {
+       "name": "Column 3",
+       "title": "Date Served",
+       "cellType": "text",
+       "inputType": "date"
+      }
+     ],
+     "choices": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "rowCount": 1
+    },
+    {
+     "type": "infotext",
+     "name": "question409",
+     "title": "Taylor Johnson sent a response acknowledging the receipt of the notice\n<br><br>\nWhen delivering a notice electronically, you must receive a response from the recipient before it is considered delivered.\n<br><br>\nIf you haven't received a response, do a follow up first and fill in the date after you receive a confirmation of your electronic delivery.\n<br><br>\nYou will retain a copy of the response and provide them when requested by the registrar\n<br>\n[JIRA] How best to warn applicant waiting for electronic confirmation? \nShould applicants move to the next page, this page would be incomplete. How are we checking for completeness?",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "helptext",
+     "name": "question406",
+     "title": "What if I don't get a written response when sending a notice electronically?",
+     "titleLocation": "hidden",
+     "body": "Because it is easy for people to change their contact information (such as their e-mail address of fax number), a written response is required to ensure you were able to successfully deliver your notice.\n\n\n\nIf you don't receive a response, you will have to resend the documents by mail or deliver the document to them in person."
+    },
+    {
+     "type": "helptext",
+     "name": "question399",
+     "title": "Why does the Public Guardian and Trustee (PGT) get a notice?",
+     "titleLocation": "hidden",
+     "body": "You are required by law to notify the Public Guardian and Trustee (PGT) when a child under the age of 19 or an adult who is not mentally competent receives a gift from {deceasedName}'s estate. The PGT is there protect their interests."
+    },
+    {
+     "type": "infotext",
+     "name": "question401",
+     "title": "Things to Include with Notice to Public Guardian and Trustee (PGT)\n<br><br>\n-P1<br>\n-Letter app generates<br>\n$315 in certified cheque or bank draft payable to \"Public Guardian and Trustee\"",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question400",
+     "title": "[JIRA] Autogenerate letter to PGT including:\n<br>\nFor the minor or mentally incompetent person\n<br>\n•  Full name<br>\n•  Date of birth<br>\n•  Address of where they live\n<br><br>\nFor the parent/ guardian of the minor or committee of the mentally incompetent person\n<br>\n•  Full name<br>\n•  Address of where they live if they don't live with the minor/ mentally incompetent personThings to Include with Notice to Public Guardian and Trustee (PGT)",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "infotext",
+     "name": "question403",
+     "title": "[JIRA] Parse address of child or mentally incapable person. If outside of BC, they need to serve another PGT or equivalent",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "text",
+     "name": "question427",
+     "title": "Name other PGT equivalent outside of BC. + regular service options.",
+     "description": "You are responsible for knowing the requirements to serve them, including additoinal info they need and to pay the filing fee. (there may not be a filing fee)."
+    },
+    {
+     "type": "yesno",
+     "name": "question207",
+     "title": "Did you get a written response from PGT?"
+    },
+    {
+     "type": "infotext",
+     "name": "question430",
+     "title": "Make sure you provide a copy to the court. We'll remind you later. [In the future. Scan and upload?]",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "helptext",
+     "name": "question407",
+     "title": "How is the 21 days calculated?",
+     "titleLocation": "hidden",
+     "body": "Depending on how you delivered the notice, it is considered delivered\n<br>\n• on the date you gave the notice directly in person\n<br>\n• on the date you mailed the notice\n<br>\n• on the date you sent the notice electronically (if you receive a response)"
+    },
+    {
+     "type": "infotext",
+     "name": "question404",
+     "title": "[JIRA] Generate P9 for each person who served a P1.",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "text",
+     "name": "question422",
+     "title": "Date the P9 was sworn by {applicantX}. occupation and address for non-applicant left blank to be filled by hand.[JIRA ability to put this off until later - applicant(s) can leave blank to swear everything at the courthouse]",
+     "inputType": "date"
+    },
+    {
+     "type": "infotext",
+     "name": "question410",
+     "title": "[JIRA] Calendar/Countdown based on date of service and method of service. Tells you know when you can file.\n<br><br>\nWaiting 21 Days      After the Last Notice is Delivered\n\nYou must wait 21 days after delivering the last notice before you can submit your paperwork to the courts. This is to give time to the other side to receive the notice and to raise any concerns. ",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "helptext",
+     "name": "question402",
+     "title": "I got a Notice of Dispute after I delivered my notice.\n\n",
+     "titleLocation": "hidden",
+     "body": "What happens now?\nAfter you deliver the notice to the appropriate people and organizations, there may be some who have concerns about your application and submit a Notice of Dispute (P29). In this situation, you will not be able to get an estate grant. You may want to talk things through with the person who submitted the Notice of Dispute and see if they are willing to withdraw it. You can also apply to remove the Notice of Dispute if you believe the reason for the dispute is not valid."
+    }
+   ],
+   "title": "Review and Print P1"
+  },
+  {
    "name": "land or buildings",
    "elements": [
     {
@@ -6613,6 +6976,13 @@
        "type": "helptext",
        "name": "landExistsFAQ",
        "title": "What if the deceased owns real estate that is not in British Columbia?",
+       "titleLocation": "hidden",
+       "body": "You do not need to list real estate that is not in British Columbia. These are not within the jurisdiction of the Supreme Court of BC.  <– needs rephrasing, \"jurisdiction of supreme court...\" doesn't really mean anything to the user."
+      },
+      {
+       "type": "helptext",
+       "name": "question373",
+       "title": "manufactured homes, also know as mobile homes or trailer homes. don't include here. there will be questions later.",
        "titleLocation": "hidden",
        "body": "You do not need to list real estate that is not in British Columbia. These are not within the jurisdiction of the Supreme Court of BC.  <– needs rephrasing, \"jurisdiction of supreme court...\" doesn't really mean anything to the user."
       },
@@ -6672,7 +7042,7 @@
        "type": "text",
        "name": "landCommonPercent",
        "visible": false,
-       "visibleIf": "{panel.landOwnershipType} = 'common'",
+       "visibleIf": "{panel.landSoleOwner} = 'n' and {panel.landOwnershipType} = 'common'",
        "title": "What % of {address} did deceased own? (how many sig figs for 1/3 = 33.33%?)",
        "description": "usually specified in the Land Title. If not, assume an equal split with other Tenants in Common"
       },
@@ -6715,6 +7085,18 @@
        "titleLocation": "hidden"
       },
       {
+       "type": "yesno",
+       "name": "question325",
+       "visible": false,
+       "title": "[If there was a will - maybe include this is the blue info box by duplicating info boxes for will vs no will] Was this {address} listed in {decasedName}'s Will as a gift?"
+      },
+      {
+       "type": "yesno",
+       "name": "question335",
+       "title": "is this still part of {deceasedName}'s estate?",
+       "description": "yes - still include in P10 but say \"this asset is dealt with outside of their estate\";\nno - P10 text \"this asset was not in their estate at time of death\""
+      },
+      {
        "type": "infotext",
        "name": "landJointDiedAfterNoExplanation",
        "visible": false,
@@ -6722,6 +7104,13 @@
        "title": "Because {decasedName} is considered the last surviving joint tenant of {panel.landAddress}, it needs to be managed as part of {deceasedName}'s estate.",
        "isRequired": true,
        "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question361",
+       "title": "registered owners that died within 4 days, how many? divide the P10 value by amount of owners (add note saying, deceased owned 50% of $20,000 car)",
+       "titleLocation": "hidden",
+       "messageStyle": "error"
       },
       {
        "type": "yesno",
@@ -6734,7 +7123,7 @@
        "type": "text",
        "name": "landAlias",
        "visible": false,
-       "visibleIf": "{panel.landSoleOwner} = 'y' or ({panel.landSoleOwner} = 'n' and \n({panel.landOwnershipType} = 'common' \nor ({panel.landOwnershipType} = 'joint' and {panel.landJointAlive} = 'n' and {panel.landJointDiedAfter} = 'n' and {panel.landJointDiedAfterNoExplanation} >0))) and {landNameMatch} = 'n'",
+       "visibleIf": "{panel.landSoleOwner} = 'y' or ({panel.landSoleOwner} = 'n' and \n({panel.landOwnershipType} = 'common' \nor ({panel.landOwnershipType} = 'joint' and {panel.landJointAlive} = 'n' and {panel.landJointDiedAfter} = 'n' and {panel.landJointDiedAfterNoExplanation} >0))) and {panel.landNameMatch} = 'n'",
        "title": "full name if not a match"
       },
       {
@@ -6791,6 +7180,7 @@
        "visible": false,
        "visibleIf": "{panel.landSoleOwner} = 'y' or ({panel.landSoleOwner} = 'n' and \n({panel.landOwnershipType} = 'common' \nor ({panel.landOwnershipType} = 'joint' and {panel.landJointAlive} = 'n' and {panel.landJointDiedAfter} = 'n' and {panel.landJointDiedAfterNoExplanation} >0)))",
        "title": "method of valuation",
+       "hasOther": true,
        "choices": [
         {
          "value": "item1",
@@ -6807,11 +7197,24 @@
        ]
       },
       {
+       "type": "radiogroup",
+       "name": "question330",
+       "title": " What is the value of the furniture and other household items at {address}?",
+       "hasOther": true,
+       "choices": [
+        {
+         "value": "item1",
+         "text": "no resale value"
+        }
+       ],
+       "otherText": "value"
+      },
+      {
        "type": "yesno",
        "name": "landMortgageExists",
        "visible": false,
        "visibleIf": "{panel.landSoleOwner} = 'y' or ({panel.landSoleOwner} = 'n' and \n({panel.landOwnershipType} = 'common' \nor ({panel.landOwnershipType} = 'joint' and {panel.landJointAlive} = 'n' and {panel.landJointDiedAfter} = 'n' and {panel.landJointDiedAfterNoExplanation} >0)))",
-       "title": "Mortgage?",
+       "title": "Mortgage? (in deceased's name)",
        "description": "Mortgage lenders don't want to be notified (they don't feel the need to object to the application)"
       },
       {
@@ -6844,6 +7247,12 @@
          "title": "mortgage registration number"
         },
         {
+         "type": "text",
+         "name": "question3",
+         "title": "date reigstered??",
+         "inputType": "datetime"
+        },
+        {
          "type": "yesno",
          "name": "landMortgageNameMatch",
          "title": "On mortgage # {mortgagenumber}, is {deceasedName}'s name written exactly as {deceasedName}?"
@@ -6858,6 +7267,7 @@
          "type": "radiogroup",
          "name": "landMortgageValue",
          "title": "How much was this mortgage worth on {deceasedDateOfDeath}? For [street address] on [Mortgage #]",
+         "description": "This is tricky. Ask mortgage lender for the actual date of death, not simply was is on the closest statement to date of the death - Maybe DDRs can relax this??",
          "hasOther": true,
          "choices": [
           {
@@ -6880,8 +7290,8 @@
        "name": "landTaxExists",
        "visible": false,
        "visibleIf": "{panel.landSoleOwner} = 'y' or ({panel.landSoleOwner} = 'n' and \n({panel.landOwnershipType} = 'common' \nor ({panel.landOwnershipType} = 'joint' and {panel.landJointAlive} = 'n' and {panel.landJointDiedAfter} = 'n' and {panel.landJointDiedAfterNoExplanation} >0)))",
-       "title": "Property tax deferment ",
-       "description": "deferred or just back taxes. add together or keep separate?"
+       "title": "Is there Property tax deferment? ",
+       "description": "must be formal agreement, not just late taxes."
       },
       {
        "type": "paneldynamic",
@@ -6906,6 +7316,12 @@
          "title": "property tax agreement number [Provincial or municipality?]"
         },
         {
+         "type": "text",
+         "name": "question4",
+         "title": "date started? do we need this? do we need a range?",
+         "inputType": "datetime"
+        },
+        {
          "type": "yesno",
          "name": "landTaxNameMatch",
          "title": "On property tax deferment # {propertytaxnumber}, is {deceasedName}'s name written exactly as {deceasedName}?"
@@ -6920,6 +7336,7 @@
          "type": "radiogroup",
          "name": "landTaxValue",
          "title": "How much was this property tax worth on {deceasedDateOfDeath}? For [street address] on [Mortgage #]",
+         "description": "interest is probably charged annually? so pick the last \"statement\" before they died.",
          "hasOther": true,
          "choices": [
           {
@@ -6963,26 +7380,17 @@
          "title": "lien holder's address"
         },
         {
-         "type": "radiogroup",
-         "name": "landLienNature",
-         "title": "lien nature",
-         "choices": [
-          "item1",
-          "item2",
-          "item3"
-         ]
+         "type": "text",
+         "name": "landLienNumber",
+         "title": "lien registration number",
+         "description": "where do you get this?"
         },
         {
          "type": "helptext",
-         "name": "landLienNatureFAQ",
+         "name": "landLienNumberFAQ",
          "title": "where do I find this info?",
          "titleLocation": "hidden",
          "body": "Land title"
-        },
-        {
-         "type": "text",
-         "name": "landLienNumber",
-         "title": "lien registration number"
         },
         {
          "type": "yesno",
@@ -6994,6 +7402,13 @@
          "name": "landLienAlias",
          "visible": false,
          "title": "{deceasedName} on lien"
+        },
+        {
+         "type": "text",
+         "name": "question20",
+         "title": "when was lien registered",
+         "description": "Can we accept liens dated after deceased died?",
+         "inputType": "datetime"
         },
         {
          "type": "radiogroup",
@@ -7102,7 +7517,7 @@
        "name": "landOtherDebtExists",
        "visible": false,
        "visibleIf": "{panel.landSoleOwner} = 'y' or ({panel.landSoleOwner} = 'n' and \n({panel.landOwnershipType} = 'common' \nor ({panel.landOwnershipType} = 'joint' and {panel.landJointAlive} = 'n' and {panel.landJointDiedAfter} = 'n' and {panel.landJointDiedAfterNoExplanation} >0)))",
-       "title": "Any other money owing registered agains the house?",
+       "title": "Any other money owing registered against the house?",
        "description": "must be registered on the land title?? "
       },
       {
@@ -7173,6 +7588,23 @@
      "panelRemoveText": "Remove a land or building"
     },
     {
+     "type": "yesno",
+     "name": "question384",
+     "title": "is this all the land?"
+    },
+    {
+     "type": "infotext",
+     "name": "question385",
+     "title": "add all the land",
+     "titleLocation": "hidden",
+     "messageStyle": "error"
+    },
+    {
+     "type": "yesno",
+     "name": "question394",
+     "title": "secured line of credit? [Dani says yes - Tyler says applicable for all other things as well]"
+    },
+    {
      "type": "infotext",
      "name": "question340",
      "title": "Understanding land title certificates\n<br>\nA land title certificate contains a lot of information about a real estate. Here are some of the areas you may find useful for completing the questions.\n\n\n\nRegistered Owner in Fee Simple\n\nShows the owner(s) of the real estate.\n\n\n\nTaxation Authority\n<br>\nThe one receiving property taxes on the real estate\n<br>\nDescription of Land\n<br>\nContains legal description about the real estate.\n<br>\nCharges, Liens and Interests\n<br>\nLists any mortgages, liens or money owing on the property.",
@@ -7191,14 +7623,20 @@
       {
        "type": "infotext",
        "name": "vehicleIntroExplanation",
-       "title": "It's time to enter information about any vehicles that {deceasedName} are registered in British Columbia.\n<br>\n<br>\nIf {deceasedName} owned any vehicles, make sure you have the registration documents to help fill in the information.",
+       "title": "It's time to enter information about any vehicles that {deceasedName} are registered in British Columbia.\n<br>\n<br>\nIf {deceasedName} owned any vehicles, make sure you have the registration documents to help fill in the information.\n<br><br>\nvehicles that don't need a title transfer, don't need to be included here. for example a bicycle or small boat. ",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "question230",
-       "title": "need to ask about cars worldwide, not just in BC.<br>\nForeign Grant modifications??",
+       "title": "need to ask about cars worldwide, not just in BC.<br>\nForeign Grant modifications?? - if resealing, only ask about cars inside bc. if ancillary, AND they said yes to stuff being handled well, only ask about cars inside bc. if ancillary BUt they said no to stuff being handled well, ask about the whole world.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question326",
+       "title": "add the \"is this listed in the will question?\"",
        "titleLocation": "hidden"
       }
      ]
@@ -7211,7 +7649,21 @@
        "type": "yesno",
        "name": "vehicleExists",
        "visibleIf": "{vehicleIntroExplanation} > 0",
-       "title": "Did {deceasedName} have any vehicles at the time of their death?"
+       "title": "Did {deceasedName} have any vehicles at the time of their death?",
+       "description": "What about a leased car?"
+      },
+      {
+       "type": "infotext",
+       "name": "question233",
+       "title": "https://www2.gov.bc.ca/gov/content/employment-business/business/managing-a-business/permits-licences/bc-registry-services-personal-property-registry",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "helptext",
+       "name": "question392",
+       "title": "What about ATVs and other Off Road Vehicles",
+       "titleLocation": "hidden",
+       "body": "If they registered the vehicle, yes, if not, include this later on the \"cash page\" https://www.icbc.com/vehicle-registration/specialty-vehicles/Pages/Off-road-vehicles.aspx"
       }
      ],
      "visible": false,
@@ -7360,6 +7812,17 @@
        "titleLocation": "hidden"
       },
       {
+       "type": "yesno",
+       "name": "question334",
+       "title": "[If there was a will & it looks like this car doesn't need to be on the P10] Was this {vehicle} listed in {decasedName}'s Will as a gift?"
+      },
+      {
+       "type": "yesno",
+       "name": "question336",
+       "title": "is this still part of {deceasedName}'s estate?",
+       "description": "yes - still include in P10 but say \"this asset is dealt with outside of their estate\";\nno - P10 text \"this asset was not in their estate at time of death\""
+      },
+      {
        "type": "text",
        "name": "vehicleAlias",
        "visible": false,
@@ -7395,11 +7858,24 @@
        "body": "The value of a vehicle is what someone would pay for it. Check your local buy and sell."
       },
       {
+       "type": "infotext",
+       "name": "question228",
+       "title": "[JIRA] link to Canadian Blue Book or other? - look for limitations of site before promoting it. import a read-only number based on median price. applicant can copy or use their own.",
+       "titleLocation": "hidden"
+      },
+      {
        "type": "yesno",
        "name": "vehicleLiabilities",
        "visible": false,
        "visibleIf": "{panel.vehicleSoleOwner} = \"y\"",
-       "title": "Were there any registered loans or liens on ?"
+       "title": "Was there a registered car loan on ?",
+       "description": "We only care about loans that have been registered in the personal property registry"
+      },
+      {
+       "type": "infotext",
+       "name": "question234",
+       "title": "copy format for land",
+       "titleLocation": "hidden"
       },
       {
        "type": "text",
@@ -7408,6 +7884,14 @@
        "visibleIf": "{vehicleLiabilities} = \"y\"",
        "title": "What is the value of the loan on the {panel.vehicleYear} {panel.vehicleMake} {panel.vehicleModel} at the time of {deceasedName}'s death?",
        "inputType": "number"
+      },
+      {
+       "type": "yesno",
+       "name": "question232",
+       "visible": false,
+       "visibleIf": "{panel.vehicleSoleOwner} = \"y\"",
+       "title": "Was there a registered repairer's lien on ?",
+       "description": "for example repairer's lien. this is part of the personal property registry system. look up the VIN#"
       },
       {
        "type": "text",
@@ -7430,6 +7914,18 @@
    "name": "bankPage",
    "elements": [
     {
+     "type": "yesno",
+     "name": "question337",
+     "title": "is this still part of {deceasedName}'s estate?",
+     "description": "yes - still include in P10 but say \"this asset is dealt with outside of their estate\";\nno - P10 text \"this asset was not in their estate at time of death\""
+    },
+    {
+     "type": "yesno",
+     "name": "question338",
+     "visible": false,
+     "title": "[If there was a will - maybe include this is the blue info box by duplicating info boxes for will vs no will] Was this {address} listed in {decasedName}'s Will as a gift?"
+    },
+    {
      "type": "panel",
      "name": "bankPanel",
      "elements": [
@@ -7437,6 +7933,12 @@
        "type": "yesno",
        "name": "bank",
        "title": "Did {deceasedName} have any bank accounts at the time of their death?"
+      },
+      {
+       "type": "infotext",
+       "name": "question236",
+       "title": "someone may have mulitple accounts at different banks. you will need go through each account at each bank. start with one bank account and each of the accounts at that bank. need better term than sub-account?\n<br><br>\nIf there are joint accounts and the joint-account holder(s) is/are alive, you can leave those out. If you're unsure, start putting in the info for that account and the questions will help you determine whether to include that account or not. ",
+       "titleLocation": "hidden"
       }
      ]
     },
@@ -7452,14 +7954,30 @@
        "title": "Name of Financial Institution"
       },
       {
+       "type": "yesno",
+       "name": "question265",
+       "title": "name match"
+      },
+      {
+       "type": "text",
+       "name": "question299",
+       "title": "alias at financial institution"
+      },
+      {
        "type": "paneldynamic",
        "name": "accountPanel",
        "title": "Accounts at {panel.bankName}",
        "templateElements": [
         {
+         "type": "text",
+         "name": "accountNumber",
+         "title": "Account Number"
+        },
+        {
          "type": "radiogroup",
          "name": "accountType",
          "title": "Type of Account",
+         "description": "Best describes this account",
          "hasOther": true,
          "choices": [
           {
@@ -7472,18 +7990,33 @@
           },
           {
            "value": "item3",
-           "text": "GIC"
+           "text": "GIC (can live inside registered accounts)"
+          },
+          {
+           "value": "item4",
+           "text": "TFSA"
+          },
+          {
+           "value": "item5",
+           "text": "RRSP"
+          },
+          {
+           "value": "item6",
+           "text": "RESP"
+          },
+          {
+           "value": "item7",
+           "text": "REIT??"
+          },
+          {
+           "value": "item8",
+           "text": "Investment Account"
           }
          ]
         },
         {
-         "type": "text",
-         "name": "accountNumber",
-         "title": "Account Number"
-        },
-        {
          "type": "yesno",
-         "name": "accountJoint",
+         "name": "question261",
          "title": "Is this a joint account?"
         },
         {
@@ -7492,6 +8025,28 @@
          "visible": false,
          "visibleIf": "{panel.accountJoint} = \"y\"",
          "title": "Is the joint account holder for this account alive?"
+        },
+        {
+         "type": "yesno",
+         "name": "question239",
+         "visible": false,
+         "visibleIf": "{panel.accountJoint} = \"y\"",
+         "title": "Did the joint account holder die 4 days after?"
+        },
+        {
+         "type": "yesno",
+         "name": "question260",
+         "title": "is there a designated beneficiary for this account?"
+        },
+        {
+         "type": "yesno",
+         "name": "question322",
+         "title": "beneficiary alive?"
+        },
+        {
+         "type": "yesno",
+         "name": "question323",
+         "title": "beneficiary died after [date of death + 4 days]?"
         },
         {
          "type": "infotext",
@@ -7507,6 +8062,203 @@
          "visible": false,
          "visibleIf": "{panel.accountJoint} = \"n\" or ({panel.accountJoint} = \"y\" and {panel.accountJointAlive} = \"n\")",
          "title": "Do you have the exact value of this account at the time of {deceasedName}'s death?",
+         "description": "if you can, look up the price for stocks/bonds/etfs mutual funds on the date of death. If it an asset that for picky DDRs (CLE), pick last statement before death (of the one immediately after death?)",
+         "hasOther": true,
+         "choices": [
+          {
+           "value": "item1",
+           "text": "No, the financial institution will not give it to me."
+          },
+          {
+           "value": "item2",
+           "text": "No, I but I can get it at a later time."
+          }
+         ],
+         "otherText": "Yes, I know the exact value:"
+        },
+        {
+         "type": "text",
+         "name": "question241",
+         "title": "interest accrued at date of death",
+         "description": "ask the financial institution for value at date of death, app will subtract it from the last statement. could be zero if the asset is something you can find the exact value at the date of death "
+        },
+        {
+         "type": "yesno",
+         "name": "question259",
+         "title": "is there a registered loan to account # {accountNumber}?",
+         "description": "name of lender, address of lender, registration number, registration date, name match, value"
+        }
+       ],
+       "panelCount": 2,
+       "minPanelCount": 1
+      }
+     ],
+     "panelCount": 1,
+     "minPanelCount": 1
+    }
+   ],
+   "title": "about bank accounts"
+  },
+  {
+   "name": "pension",
+   "elements": [
+    {
+     "type": "infotext",
+     "name": "question342",
+     "title": "we know if they had one or spouse through this app - $2500 death benefit.",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "panel",
+     "name": "panel18",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question350",
+       "title": "Did {deceasedName} pay into CPP?"
+      },
+      {
+       "type": "infotext",
+       "name": "question351",
+       "title": "there is an entitlement to survivor's benefits. it won't form part of the estate so we don't need further information about that.<br><br>\nwe do need to know if death benefit is claimed because it will form part of the estate",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question346",
+       "title": "Has the CPP Death Benefit been claimed for {deceasedName}?",
+       "description": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-death-benefit.html"
+      },
+      {
+       "type": "infotext",
+       "name": "question347",
+       "title": "we will include this on the P10\nthe death benefit is an amount that automatically becomes part of the estate on {deceasedName}'s date of death even if it shows up in a bank account much later.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question320",
+       "title": "[No] Was {deceasedName} eligible for Canadian Pension Plan (CPP)'s Death Benefit?",
+       "description": "automatically assume it will be claimed"
+      },
+      {
+       "type": "helptext",
+       "name": "question348",
+       "title": "How do I know if {deceasedName} was elligble for CPP Death Benefit",
+       "titleLocation": "hidden",
+       "body": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-death-benefit.html"
+      },
+      {
+       "type": "infotext",
+       "name": "question349",
+       "title": "If they are eligible, this money will be added to the P10. the death benefit is an amount that automatically becomes part of the estate on {deceasedName}'s date of death even if it shows up in a bank account much later.\n<br><br>\nEven if someone has not claimed the death benefit so far, it will be presumed to be claimed.",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "panel19",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question344",
+       "title": "Did {deceasedName} receive Old Age Security (OAS) and/or Guaranteed Income Supplement (GIS)?"
+      },
+      {
+       "type": "infotext",
+       "name": "question345",
+       "title": "OAS and GIS aren't transferrable to the estate. Don't need to include them on the P10. If {deceasedName} had a spouse or common law partner that was receiving a OAS allowance, they may be able to apply for the survivor version. That isn't part of this service. Click here to go to OAS Survivor's Allowance",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "yesno",
+     "name": "question343",
+     "title": "was deceased over 65 when they died?"
+    },
+    {
+     "type": "panel",
+     "name": "panel15",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question319",
+       "title": "Did {deceasedName} have any other pensions?"
+      }
+     ]
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question321",
+     "visible": false,
+     "visibleIf": "{bank} = \"y\"",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "bankName",
+       "title": "Name of Pension"
+      },
+      {
+       "type": "yesno",
+       "name": "question265",
+       "title": "name match"
+      },
+      {
+       "type": "text",
+       "name": "question299",
+       "title": "alias at pension institution"
+      },
+      {
+       "type": "paneldynamic",
+       "name": "accountPanel",
+       "title": "Accounts at {panel.bankName}",
+       "templateElements": [
+        {
+         "type": "yesno",
+         "name": "question260",
+         "title": "is there a designated beneficiary for this pension? ",
+         "description": "this could include payments automatically going to a spouse/common-law partner after {deceasedName} died."
+        },
+        {
+         "type": "yesno",
+         "name": "question353",
+         "title": "is the designated beneficiary alive?"
+        },
+        {
+         "type": "yesno",
+         "name": "question354",
+         "title": "did the the designated beneficiary die after (date of death + 4 days)?"
+        },
+        {
+         "type": "infotext",
+         "name": "accountJointAliveYesExplanation",
+         "visible": false,
+         "visibleIf": "{panel.accountJointAlive} = \"y\"",
+         "title": "Because the beneficiary of this pension is still alive, (add a second one for the died after 4 days)  this account will go to them automatically. You do not need to include this account as part of the estate. \nCheck the terms of that pension to see if what happens. ",
+         "titleLocation": "hidden"
+        },
+        {
+         "type": "infotext",
+         "name": "question356",
+         "visible": false,
+         "visibleIf": "{panel.accountJointAlive} = \"y\"",
+         "title": "Because this pension doesn't have a living beneficiary to pay to, this pension might become part of the assets that you need to manage on behalf of {deceasedName}.",
+         "isRequired": true,
+         "titleLocation": "hidden"
+        },
+        {
+         "type": "yesno",
+         "name": "question355",
+         "title": "Is there a lump sum that is entitled to be paid into the estate?  "
+        },
+        {
+         "type": "radiogroup",
+         "name": "accountValue",
+         "visible": false,
+         "visibleIf": "{panel.accountJoint} = \"n\" or ({panel.accountJoint} = \"y\" and {panel.accountJointAlive} = \"n\")",
+         "title": "Do you have the exact value of this lump sum from the pension?",
          "hasOther": true,
          "choices": [
           {
@@ -7527,89 +8279,794 @@
      ],
      "panelCount": 1,
      "minPanelCount": 1
-    }
-   ],
-   "title": "about bank accounts"
-  },
-  {
-   "name": "p1",
-   "elements": [
-    {
-     "type": "infotext",
-     "name": "PrintP1",
-     "title": "This is the first review and print page to print the P1 form (to notify successors).\n<br>\n<br>\n It will generated a PDF that the applicant would download.\n<br>\n<br>\nIt will give instructions on how to notify the successors.\n<br>\n<br>\nIf any changes are made in the prior questions, need to inform applicants they may need to re-notify.",
-     "titleLocation": "hidden",
-     "messageStyle": "inline"
     },
     {
-     "type": "infotext",
-     "name": "question207",
-     "title": "P42/P43 - don't need to notify creditors because they shouldn't have a say in what will is valid. ",
-     "titleLocation": "hidden",
-     "messageStyle": "inline"
+     "type": "panel",
+     "name": "panel17",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "question339",
+       "title": "Did {deceasedName} have any life insurance?"
+      },
+      {
+       "type": "infotext",
+       "name": "question341",
+       "title": "someone may have mulitple accounts at different banks. you will need go through each account at each bank. start with one bank account and each of the accounts at that bank. need better term than sub-account?\n<br><br>\nIf there are joint accounts and the joint-account holder(s) is/are alive, you can leave those out. If you're unsure, start putting in the info for that account and the questions will help you determine whether to include that account or not. ",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question352",
+     "visible": false,
+     "visibleIf": "{bank} = \"y\"",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "bankName",
+       "title": "Name of life insurance institution/agency"
+      },
+      {
+       "type": "yesno",
+       "name": "question265",
+       "title": "name match"
+      },
+      {
+       "type": "text",
+       "name": "question299",
+       "title": "alias at financial institution"
+      },
+      {
+       "type": "paneldynamic",
+       "name": "accountPanel",
+       "title": "Accounts at {panel.bankName}",
+       "templateElements": [
+        {
+         "type": "yesno",
+         "name": "question358",
+         "title": "does {deceasedName} have more than 1 policy at {insurance} place?"
+        },
+        {
+         "type": "text",
+         "name": "question357",
+         "title": "policy number (if multiple policies, make question visible for all instances at this insurance place)"
+        },
+        {
+         "type": "yesno",
+         "name": "accountJointAlive",
+         "visible": false,
+         "visibleIf": "{panel.accountJoint} = \"y\"",
+         "title": "Is there a joint account holder for this insurance policy?"
+        },
+        {
+         "type": "yesno",
+         "name": "question359",
+         "visible": false,
+         "visibleIf": "{panel.accountJoint} = \"y\"",
+         "title": "Is the joint account holder account alive?"
+        },
+        {
+         "type": "yesno",
+         "name": "question239",
+         "visible": false,
+         "visibleIf": "{panel.accountJoint} = \"y\"",
+         "title": "Did the other joint survivors survive long enough to satisfy the insurance policy's survivor rules? (does the insurance pay to {deceasedName's} estate?)",
+         "description": "check if the insurance policy has specific survivorship rules. for example have to be alive at least 4 days after. "
+        },
+        {
+         "type": "yesno",
+         "name": "question260",
+         "title": "Are there designated beneficiaries for this account?"
+        },
+        {
+         "type": "yesno",
+         "name": "question360",
+         "title": "Are any designated beneficiaries alive?"
+        },
+        {
+         "type": "yesno",
+         "name": "question362",
+         "title": "Did any beneficiaries survive long enough to satisfy the insurance policy's survivor rules? (does the insurance pay to any of the beneficiaries)'s estate)",
+         "description": "check if the insurance policy has specific survivorship rules. for example have to be alive at least 4 days after. "
+        },
+        {
+         "type": "infotext",
+         "name": "accountJointAliveYesExplanation",
+         "visible": false,
+         "visibleIf": "{panel.accountJointAlive} = \"y\"",
+         "title": "Because the joint account holder of this account is still alive, this account will go to them automatically. You do not need to include this account as part of the estate. ",
+         "titleLocation": "hidden"
+        },
+        {
+         "type": "yesno",
+         "name": "question363",
+         "title": "is there a lump sum?",
+         "description": "no - any number of reason insurance company is not paying. but we can leave it off the P10"
+        },
+        {
+         "type": "radiogroup",
+         "name": "accountValue",
+         "visible": false,
+         "visibleIf": "{panel.accountJoint} = \"n\" or ({panel.accountJoint} = \"y\" and {panel.accountJointAlive} = \"n\")",
+         "title": "Do you have the exact value of this lump sum at the time of {deceasedName}'s death?",
+         "hasOther": true,
+         "choices": [
+          {
+           "value": "item1",
+           "text": "No, the financial institution will not give it to me."
+          },
+          {
+           "value": "item2",
+           "text": "No, I but I can get it at a later time."
+          }
+         ],
+         "otherText": "Yes, I know the exact value:"
+        },
+        {
+         "type": "yesno",
+         "name": "question259",
+         "title": "is there a registered loan to account # {accountNumber}?",
+         "description": "name of lender, address of lender, registration number, registration date, name match, value"
+        },
+        {
+         "type": "infotext",
+         "name": "question364",
+         "title": "ask DDR if they would accept loan against life insurance?\n<br>\ncash surrender value?\n<br>\nhttps://www.sunnet.sunlife.com/files/advisor/english/PDF/810-2876.pdf",
+         "titleLocation": "hidden"
+        }
+       ],
+       "panelCount": 2,
+       "minPanelCount": 1
+      }
+     ],
+     "panelCount": 1,
+     "minPanelCount": 1
     }
    ],
-   "title": "Review and Print P1"
+   "title": "pensions and insurance"
   },
   {
-   "name": "notifying",
+   "name": "cash",
    "elements": [
     {
      "type": "panel",
-     "name": "notifyPanel",
+     "name": "panel16",
      "elements": [
       {
-       "type": "matrixdropdown",
-       "name": "notifyingPlaceholder",
+       "type": "yesno",
+       "name": "question316",
+       "title": "[only if there is a will] any other Specific Will gifts not already disclosed?",
+       "description": "please list all gifts specifically mentioned in the will that haven't already been disclosed.\n[+ add secured debt question if there is a value]"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question397",
+       "titleLocation": "hidden",
        "columns": [
         {
          "name": "Column 1",
-         "title": "Service Method",
-         "cellType": "radiogroup"
+         "title": "Describe the gift",
+         "cellType": "text"
         },
         {
          "name": "Column 2",
-         "title": "Date",
-         "cellType": "text"
+         "title": "Value",
+         "cellType": "radiogroup",
+         "hasOther": true,
+         "choices": [
+          {
+           "value": "item1",
+           "text": "This gift is no longer in the estate at the time of death"
+          },
+          {
+           "value": "item2",
+           "text": "no commercial value"
+          }
+         ],
+         "choicesOrder": "desc",
+         "otherText": "Value"
         }
        ],
        "choices": [
-        {
-         "value": 1,
-         "text": "In Person"
-        },
-        {
-         "value": 2,
-         "text": "By Mail"
-        },
-        {
-         "value": 3,
-         "text": "Electronic"
-        }
+        1,
+        2,
+        3,
+        4,
+        5
        ],
-       "rows": [
+       "rowCount": 1,
+       "minRowCount": 1
+      },
+      {
+       "type": "yesno",
+       "name": "question333",
+       "title": "Are all the gifts that were specially mentioned in the will included in this service?"
+      },
+      {
+       "type": "infotext",
+       "name": "question331",
+       "title": "This page will also ask about a lot more personal items. If you include them as a specific gift, don't double count them in the categories below.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "yesno",
+     "name": "question301",
+     "title": "Cash?",
+     "description": "you are required to declare cash that will enter your possession when you manage {deceasedName}'s estate even if you don't need a rep grant get access to this cash."
+    },
+    {
+     "type": "text",
+     "name": "question328",
+     "visible": false,
+     "title": "value of cash",
+     "description": "physical cash at home or buried somewhere",
+     "inputType": "number"
+    },
+    {
+     "type": "yesno",
+     "name": "question324",
+     "title": "certificated stocks and bonds",
+     "description": "this means physical copies of stocks/bonds that are not held in a digital online broker. company, amounts of shares, value at date of death, registered loan against this?"
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question374",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "question369",
+       "title": "Name of organization that issued the stock or bond?"
+      },
+      {
+       "type": "text",
+       "name": "question370",
+       "title": "amount of shares"
+      },
+      {
+       "type": "text",
+       "name": "question371",
+       "title": "value of date of death"
+      }
+     ]
+    },
+    {
+     "type": "yesno",
+     "name": "question375",
+     "title": "Is this all the stocks/bonds?"
+    },
+    {
+     "type": "infotext",
+     "name": "question376",
+     "title": "add more stocks/bonds",
+     "titleLocation": "hidden",
+     "messageStyle": "error"
+    },
+    {
+     "type": "yesno",
+     "name": "question365",
+     "title": "Does anyone or any organization owe {deceasedName} money?",
+     "description": "direct loans to people or business, lease payments on property, etc"
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question366",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "question378",
+       "title": "name of person/organization who owed money to {deceasedName}"
+      },
+      {
+       "type": "radiogroup",
+       "name": "question377",
+       "title": "value of money owed at the time of death + ask about secured debts against amount owed",
+       "hasOther": true,
+       "choices": [
         {
          "value": "item1",
-         "text": "Bradley Michael Taylor"
-        },
-        {
-         "value": "item3",
-         "text": "Marcus Jason Taylor"
+         "text": "They don't tell me how much they owe"
         },
         {
          "value": "item2",
-         "text": "Lauren Taylor (for Austin Healy Taylor)"
+         "text": "I don't have the exact value right now but I know I will be able to get it"
+        }
+       ],
+       "otherText": "Value"
+      }
+     ]
+    },
+    {
+     "type": "yesno",
+     "name": "question379",
+     "title": "is this everyone who owes {deceasedName} money?"
+    },
+    {
+     "type": "infotext",
+     "name": "question380",
+     "title": "add more private loans",
+     "titleLocation": "hidden",
+     "messageStyle": "error"
+    },
+    {
+     "type": "yesno",
+     "name": "question315",
+     "title": "Did {deceasedName} have any jewelry?"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question318",
+     "title": "What is the total value of all of their jewelry [ Add secured debt questions]",
+     "hasOther": true,
+     "choices": [
+      {
+       "value": "item1",
+       "text": "no commercial value"
+      }
+     ],
+     "otherText": "Value"
+    },
+    {
+     "type": "yesno",
+     "name": "question314",
+     "title": "Clothes"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question329",
+     "title": "Value options + [add secured debt questions]",
+     "hasOther": true,
+     "choices": [
+      {
+       "value": "item1",
+       "text": "no commercial value"
+      }
+     ],
+     "otherText": "Value"
+    },
+    {
+     "type": "yesno",
+     "name": "question372",
+     "title": "Did {deceasedName} own any furniture? [ask only if they don't have a house]",
+     "description": "bed, couch"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question396",
+     "title": " What is the value of the furniture? [ask only if they don't have a house] + add secured debt questions only where there is a commercial value. no need to explain debt but warn you may need to provide proof.",
+     "hasOther": true,
+     "choices": [
+      {
+       "value": "item1",
+       "text": "no resale value"
+      }
+     ],
+     "otherText": "value"
+    },
+    {
+     "type": "yesno",
+     "name": "question395",
+     "title": "Did {deceasedName} own household items?",
+     "description": "include computers, tvs, smart phones/tablets, kitchenware"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question302",
+     "title": "What is the value of the household items? [+ secured debts questions if there is a value. validation - debt can't be more than value. - include total secured debt on all applicable household items]",
+     "hasOther": true,
+     "choices": [
+      {
+       "value": "item1",
+       "text": "no resale value"
+      }
+     ],
+     "otherText": "value"
+    },
+    {
+     "type": "yesno",
+     "name": "question327",
+     "title": "any other assets (that will come into your possession as executors??) that {deceasedName} had of value?",
+     "description": " small vehicles like bikes/small boats, leasehold interests, promissory notes, gold, silver, intellectual property, digital assets, manufactured homes, time share interests, interests in business, interests in estates and trusts."
+    },
+    {
+     "type": "paneldynamic",
+     "name": "question381",
+     "templateElements": [
+      {
+       "type": "text",
+       "name": "question367",
+       "title": "Describe asset",
+       "description": "add as much detail as you feel you need to justify the value so you don't get follow up questions"
+      },
+      {
+       "type": "radiogroup",
+       "name": "question368",
+       "title": " What is the value of this asset? ({asset description}) [switch to \"single input\"?]",
+       "hasOther": true,
+       "otherText": "value"
+      },
+      {
+       "type": "infotext",
+       "name": "question393",
+       "title": "secured debt? yes/no with description of examples. Yes reveals all fields and must be answered NO for no applicable. ",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "yesno",
+     "name": "question382",
+     "title": "is this every \"other asset\" of value?"
+    },
+    {
+     "type": "infotext",
+     "name": "question383",
+     "title": "add more \"other assets\"",
+     "titleLocation": "hidden",
+     "messageStyle": "error"
+    }
+   ],
+   "title": "Personal Items"
+  },
+  {
+   "name": "p1NoWill",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "p1LateIntroPanel"
+    },
+    {
+     "type": "infotext",
+     "name": "question431",
+     "title": "[JIRA] Include notice for creditors [code to determine who to notify]",
+     "titleLocation": "hidden"
+    },
+    {
+     "type": "helptext",
+     "name": "question432",
+     "title": "How do I know which address to use? [use Local branch]",
+     "titleLocation": "hidden"
+    }
+   ]
+  },
+  {
+   "name": "willSearchCheck",
+   "elements": [
+    {
+     "type": "panel",
+     "name": "willSearchIntroPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "willSearchIntroExplanation",
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "Generic Intro to Will Search\n<br><br>\nYou will need to do a will search for all of the spellings of {deceasedName}'s name. Click here to download the form. (Click here to generate a PDF?)",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "willSearchStartedPanel",
+     "elements": [
+      {
+       "type": "yesno",
+       "name": "willSearchStarted",
+       "title": "Have you already done a will search?"
+      },
+      {
+       "type": "yesno",
+       "name": "question332",
+       "title": "Do you have a certificate of death for {deceasedName}?",
+       "description": "You will need a death certificate to apply for will search. A copy is of the death certificate is acceptable. If it is not in English, you will likely need to get it translated."
+      },
+      {
+       "type": "infotext",
+       "name": "JIRAwillSearch1",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "[JIRA] No will search and yes death certificate, show a generate form button that is pre-filled with all aliases. Possibility of paying and submitted through this app.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question413",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "[JIRA] [List of closest relatives cross-referenced with applicants list] \n[applicant x relative] is able to get a certificate of death for {decasedName} from a few different places. For example, funeral home, Vital Stats, etc.\n<br><br>\nClick here to apply. Go back and \"yes\" to the last question when the certificate of death gets to you. [Possibly generate both forms at once? If Vital Stats agrees to that]. ",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question433",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "[JIRA] [List of closest relatives cross-referenced not the same as applicants] \n[relatives] are able to get a certificate of death for {decasedName} from a few different places. For example, funeral home, Vital Stats, etc.\n<br>\nAsk if they have one already. if not, ask them get one using this link.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question415",
+       "title": "Does any one from [List of closest relatives] have a certificate of death for {deceasedName}? ",
+       "description": "a copy is good enough"
+      },
+      {
+       "type": "yesno",
+       "name": "question441",
+       "title": "are any of them willing to get one? [so you can apply for a will search].",
+       "description": "no - jump to blue box that says you can try to apply through vital stats by explaining your situation."
+      },
+      {
+       "type": "yesno",
+       "name": "question442",
+       "title": "did {deceasedName} die in BC?"
+      },
+      {
+       "type": "infotext",
+       "name": "question398",
+       "title": "if {deceasedName} died in BC, ask them to go to vital stats.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question443",
+       "title": "if {deceasedName} did not die in BC, they may have to get a certificate of death from where {deceasedName} died. We can't help you there.\n<br><br>\nIf the certificate of death is not in English, you will likely need to get it translated to English before you apply for Will Search.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question450",
+       "title": "were any of [list of close relatives] successful in getting a certificate of death?",
+       "description": "no - jump to blue box that says you can try to apply through vital stats by explaining your situation."
+      },
+      {
+       "type": "yesno",
+       "name": "question411",
+       "title": "Will they give it to you?",
+       "description": "a copy is good enough"
+      },
+      {
+       "type": "infotext",
+       "name": "question439",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "go back to X question and say \"yes\" to having certificate of death.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question436",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "You can try to apply through Vital Stats. Explain to them that you are applying for a representation grant (aka Probate). attach a will (if you have one). Explain why {deceasedName}'s closest relatives won't give you a copy.\nDo the double step through Vital Stats if they agree. Submit both monies. [If has to be step 1 step 2, then we can add more questions later] \n<br>\n<br>\n(f) any other person who satisfies the chief executive officer concerning the good faith of the person's cause for requiring the copy or extract.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question435",
+       "title": "Were you successful in getting the certificate of death and will search?"
+      },
+      {
+       "type": "infotext",
+       "name": "question434",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "We're sorry to hear that. You can apply to the court for permission to get a certificate of death. If successful, you will have to resubmit to Vital Stats. [investigate which form to which court]\n<br><br>\nClick here to generate the form.\n<br><br>\n(c) a person who is authorized by a court order to be issued the copy or extract;",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question438",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "go back to certificate of death question and say \"yes\" to having certificate of death.\n<br><br>\n(c) a person who is authorized by a court order to be issued the copy or extract;",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question412",
+       "title": "did the court grant you the right to get a certificate of death?",
+       "description": "no - super sorry but you're done. "
+      },
+      {
+       "type": "infotext",
+       "name": "question437",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "yes - click here to apply for the double Vital Stats application. include a copy/original? of the order from the court.\n<br><br>\nOnce you get the will searches back, might take 3 weeks, go back to question about having certificate of death and say \"yes\" to having certificate of death. ",
+       "titleLocation": "hidden"
+      }
+     ],
+     "visible": false,
+     "visibleIf": "{willSearchIntroExplanation} > 0"
+    },
+    {
+     "type": "panel",
+     "name": "willSearchAliasPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "JIRAWillSearch2",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "[JIRA] Dynamically create a yes/no question for each alias, including {deceasedName}",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willSearchAlias",
+       "title": "Did you do a will search with this spellings of {deceasedName}'s name? {alias} Tim A. Taylor"
+      },
+      {
+       "type": "yesno",
+       "name": "willSearchWillsExist",
+       "visible": false,
+       "title": "Was there one or more Wills listed on the will search under this alias?",
+       "description": "Just because Vital Stats doesn't know about a will, doesn't mean the Will is invalid or that it doesn't exist. (this needs work) just because the will you have doesn't show up in vital stats, doesn't mean there isn't anything wrong with the will.\n<br>\nNo - end"
+      },
+      {
+       "type": "yesno",
+       "name": "willSearchWillsCurrent",
+       "visible": false,
+       "visibleIf": "{willSearchWillsExist} = \"y\"",
+       "title": "[If there is a will] Are all of the Wills listed in the will search for {alias} dated {willDate} or older?",
+       "description": "If the will in the will search is older and you are using a newer will, this is ok.\n<br>\nYes - end"
+      },
+      {
+       "type": "yesno",
+       "name": "willSearchInvalidWillsDeclared",
+       "visible": false,
+       "visibleIf": "{willSearchWillsCurrent} = \"n\"",
+       "title": "[JIRA - newer invalid will] Are all of the Wills listed in the will search for {alias} any of these newer invalid wills you have already identified?",
+       "description": "List of newer invalid wills from will page. Date - Reason not using <br> yes - end"
+      },
+      {
+       "type": "infotext",
+       "name": "willSearchInvalidWillsDeclaredNoExplanation",
+       "visible": false,
+       "visibleIf": "{willSearchInvalidWillsDeclared} ",
+       "title": "The Court may be concerned about newer wills that exist while you try to use an older will. Since you haven't already listed these newer wills that are not using, this service will need to ask questions about the most recent of the wills recently uncovered by the wills search.",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "willSearchFin",
+       "title": "[Jul 7 2020] Are you able to find the most recent Will (or a copy) listed under {alias} in the wills search?",
+       "description": "(whether or not the will was in the location specified in the wills search notice or not)"
+      },
+      {
+       "type": "yesno",
+       "name": "question452",
+       "title": "destroyed will??"
+      },
+      {
+       "type": "yesno",
+       "name": "question448",
+       "visible": false,
+       "visibleIf": "{willHave} = \"y\"",
+       "title": "Does this the most Will deal with property in BC?"
+      },
+      {
+       "type": "helptext",
+       "name": "question449",
+       "visible": false,
+       "visibleIf": "{willHave} = \"y\"",
+       "title": "Will that deals with property outside of BC?",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "question445",
+       "title": "Was {deceasedName} mentally competent when they made the will ({willDate})?"
+      },
+      {
+       "type": "yesno",
+       "name": "question446",
+       "title": "Did {deceasedName} make their Will (dated {willDate}) under any undue influence?",
+       "description": "For example, a nurse that threatened to not care of {deceasedName} unless they made a Will that gifted everything to the nurse."
+      },
+      {
+       "type": "yesno",
+       "name": "question447",
+       "title": "Do you think is any other issue with how this will was made that someone (for example the person reviewing this application) may question?",
+       "description": "(make this question distinct from appearance problems)"
+      },
+      {
+       "type": "matrixdynamic",
+       "name": "question444",
+       "visible": false,
+       "visibleIf": "{willNewerInvalidMultiple} = \"y\" or {willNewerInvalidAwow} = \"y\"",
+       "title": "Date and Reason not using that will",
+       "columns": [
+        {
+         "name": "Column 1",
+         "title": "Date of Will/Doc [Date Input Selector]",
+         "cellType": "text"
         },
         {
-         "value": "item4",
-         "text": "PGT (for Austin Healy Taylor)"
+         "name": "Column 2",
+         "title": "Reason this doc should be considered irrelevnt or invalid",
+         "cellType": "checkbox"
         }
-       ]
+       ],
+       "choices": [
+        "lack of capacity",
+        "undue influence",
+        "will does not deal with property in BC",
+        {
+         "value": "other",
+         "text": "other (specify)"
+        }
+       ],
+       "rowCount": 1,
+       "addRowText": "Add new Will/Testamentary Document?",
+       "removeRowText": "Remove document"
+      }
+     ],
+     "visible": false
+    },
+    {
+     "type": "panel",
+     "name": "panel25",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "JIRAwillSearch4",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "[JIRA] If any no,\n<br><br>\nYou need to do a will search for each alias. \n<br><br>\nClick here for a form that includes the aliases you still need to search for.",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "JIRAwillSearch5",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "[JIRA] Can we auto-generate form AND allow people to pay AND send directly to Vital Stats?",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "question440",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "When you get your response, go back and check off \"Yes\" for the aliases that were just searched.",
+       "titleLocation": "hidden"
+      }
+     ]
+    },
+    {
+     "type": "panel",
+     "name": "willSearchExitPanel",
+     "elements": [
+      {
+       "type": "infotext",
+       "name": "willSearchExitABC",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "[single will search]\nYou've done a will search for all of the spellings/aliases required.\n\nYou will need to provide 2 copies of the wills search (originals or copies ok?). ",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "willSearchExitDCE",
+       "visible": false,
+       "visibleIf": "{willSearchAlias} = \"n\"",
+       "title": "[multiple will search]\nYou've done a will search for all of the spellings/aliases required.\n<br><br>\nYou will need to provide 2 copies of each of the the wills search (originals or copies ok?). \n<br><br>\nFor example, 2 copies of the first ",
+       "titleLocation": "hidden"
       }
      ]
     }
    ],
-   "title": "Notify Checklist"
+   "title": "Will Search Check"
   },
   {
    "name": "finalizeAssets",
@@ -7644,34 +9101,14 @@
        ]
       }
      ]
+    },
+    {
+     "type": "text",
+     "name": "question429",
+     "title": "P9 swearing date? Option to leave completely/partially blank so the applicant can swear the P9 at the courthouse."
     }
    ],
    "title": "Finalize Asset Values"
-  },
-  {
-   "name": "willSearchCheck",
-   "elements": [
-    {
-     "type": "panel",
-     "name": "willSearchPanel",
-     "elements": [
-      {
-       "type": "yesno",
-       "name": "willSearchAll",
-       "title": "Dd you do a will search with all of these spellings of {deceasedName}'s name?\n<br>\n<br>\n{deceasedName}\n<br>\n<br>\nTim A. Taylor"
-      },
-      {
-       "type": "infotext",
-       "name": "willSearchAllNoExplanation",
-       "visible": false,
-       "visibleIf": "{willSearchAll} = \"n\"",
-       "title": "You will need to do a will search for all of the spellings of {deceasedName}'s name. Click here to download the form. (Click here to generate a PDF?)",
-       "titleLocation": "hidden"
-      }
-     ]
-    }
-   ],
-   "title": "Will Search Check"
   },
   {
    "name": "printFinal",
@@ -7682,6 +9119,11 @@
      "title": "This is the review and print page.\n<br>\n<br>\n It will generated PDFs that the applicant would download.\n<br>\n<br>\nIt will give instructions and the applicant the earliest date they can file based on when they finished all of their service.\n<br>\n<br>\nIf any changes are made in the prior questions, need to inform applicants they may need to reprint the forms.",
      "titleLocation": "hidden",
      "messageStyle": "inline"
+    },
+    {
+     "type": "text",
+     "name": "question428",
+     "title": "continuate of P9 sworn date if unfill earlier?"
     }
    ],
    "title": "Review and Print Final Forms"
