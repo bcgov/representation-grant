@@ -8743,7 +8743,6 @@
       {
        "type": "infotext",
        "name": "willSearchIntroExplanation",
-       "visibleIf": "{willSearchAlias} = \"n\"",
        "title": "Generic Intro to Will Search\n<br><br>\nYou will need to do a will search for all of the spellings of {deceasedName}'s name. Click here to download the form. (Click here to generate a PDF?)",
        "isRequired": true,
        "titleLocation": "hidden"
@@ -8761,117 +8760,149 @@
       },
       {
        "type": "yesno",
-       "name": "question332",
+       "name": "willSearchHaveDeathCertificate",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\"",
        "title": "Do you have a certificate of death for {deceasedName}?",
        "description": "You will need a death certificate to apply for will search. A copy is of the death certificate is acceptable. If it is not in English, you will likely need to get it translated."
       },
       {
        "type": "infotext",
-       "name": "JIRAwillSearch1",
+       "name": "willSearchHaveDeathCertificateYesExplanation",
        "visible": false,
-       "visibleIf": "{willSearchAlias} = \"n\"",
-       "title": "[JIRA] No will search and yes death certificate, show a generate form button that is pre-filled with all aliases. Possibility of paying and submitted through this app.",
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"y\"",
+       "title": "[JIRA] No will search and yes death certificate, show a generate form button that is pre-filled with all aliases. Possibility of paying and submitted through this app.\n<br><br>\nWhen you receive the will search docs, go back to the last question and say \"YES\"",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
-       "type": "infotext",
-       "name": "question413",
+       "type": "yesno",
+       "name": "willSearchTempApplicantRelative",
        "visible": false,
-       "visibleIf": "{willSearchAlias} = \"n\"",
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\"",
+       "title": "Applicant is Close Relative?"
+      },
+      {
+       "type": "infotext",
+       "name": "willSearchApplicantRelativeYesExplanation",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"y\"",
        "title": "[JIRA] [List of closest relatives cross-referenced with applicants list] \n[applicant x relative] is able to get a certificate of death for {decasedName} from a few different places. For example, funeral home, Vital Stats, etc.\n<br><br>\nClick here to apply. Go back and \"yes\" to the last question when the certificate of death gets to you. [Possibly generate both forms at once? If Vital Stats agrees to that]. ",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question433",
+       "name": "willSearchApplicantRelativeNoExplanation",
        "visible": false,
-       "visibleIf": "{willSearchAlias} = \"n\"",
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\"",
        "title": "[JIRA] [List of closest relatives cross-referenced not the same as applicants] \n[relatives] are able to get a certificate of death for {decasedName} from a few different places. For example, funeral home, Vital Stats, etc.\n<br>\nAsk if they have one already. if not, ask them get one using this link.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question415",
+       "name": "willSearchRelativesHaveDeathCertificate",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and {willSearchApplicantRelativeNoExplanation} > 0",
        "title": "Does any one from [List of closest relatives] have a certificate of death for {deceasedName}? ",
        "description": "a copy is good enough"
       },
       {
        "type": "yesno",
-       "name": "question441",
+       "name": "willSearchRelativesWillGetDeathCertificate",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and {willSearchRelativesHaveDeathCertificate} = \"n\"\n",
        "title": "are any of them willing to get one? [so you can apply for a will search].",
        "description": "no - jump to blue box that says you can try to apply through vital stats by explaining your situation."
       },
       {
        "type": "yesno",
-       "name": "question442",
+       "name": "willSearchDeceasedDiedInBC",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and {willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\"\n",
        "title": "did {deceasedName} die in BC?"
       },
       {
        "type": "infotext",
-       "name": "question398",
-       "title": "if {deceasedName} died in BC, ask them to go to vital stats.",
+       "name": "willSearchDeceasedDiedInBCYesExplanation",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and {willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and {willSearchDeceasedDiedInBC} = \"y\"\n",
+       "title": "if {deceasedName} died in BC, ask them to go to vital stats.\n<br><br>\nHere's how",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question443",
+       "name": "willSearchDeceasedDiedInBCNoExplanation",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and {willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and {willSearchDeceasedDiedInBC} = \"n\"",
        "title": "if {deceasedName} did not die in BC, they may have to get a certificate of death from where {deceasedName} died. We can't help you there.\n<br><br>\nIf the certificate of death is not in English, you will likely need to get it translated to English before you apply for Will Search.",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question450",
+       "name": "willSearchRelativesGotDeathCertificate",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and {willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and ({willSearchDeceasedDiedInBCYesExplanation} > 0 or {willSearchDeceasedDiedInBCNoExplanation} > 0)",
        "title": "were any of [list of close relatives] successful in getting a certificate of death?",
        "description": "no - jump to blue box that says you can try to apply through vital stats by explaining your situation."
       },
       {
        "type": "yesno",
-       "name": "question411",
+       "name": "willSearchRelativesHaveDeathCertificateVoluntaryTransfer",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and \n{willSearchRelativesGotDeathCertificate} = \"y\"))",
        "title": "Will they give it to you?",
        "description": "a copy is good enough"
       },
       {
        "type": "infotext",
-       "name": "question439",
+       "name": "willSearchRelativesHaveDeathCertificateVoluntaryTransferYesExplanation",
        "visible": false,
-       "visibleIf": "{willSearchAlias} = \"n\"",
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and \n{willSearchRelativesGotDeathCertificate} = \"y\")) and \n{willSearchRelativesHaveDeathCertificateVoluntaryTransfer} = \"y\"",
        "title": "go back to X question and say \"yes\" to having certificate of death.",
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "question436",
+       "name": "willSearchRelativesHaveDeathCertificateVoluntaryTransferNoExplanation",
        "visible": false,
-       "visibleIf": "{willSearchAlias} = \"n\"",
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and \n{willSearchRelativesGotDeathCertificate} = \"y\")) and \n{willSearchRelativesHaveDeathCertificateVoluntaryTransfer} = \"n\"",
        "title": "You can try to apply through Vital Stats. Explain to them that you are applying for a representation grant (aka Probate). attach a will (if you have one). Explain why {deceasedName}'s closest relatives won't give you a copy.\nDo the double step through Vital Stats if they agree. Submit both monies. [If has to be step 1 step 2, then we can add more questions later] \n<br>\n<br>\n(f) any other person who satisfies the chief executive officer concerning the good faith of the person's cause for requiring the copy or extract.",
+       "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "yesno",
-       "name": "question435",
+       "name": "willSearchApplicantRelativeNoGetDocuments",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and \n{willSearchRelativesGotDeathCertificate} = \"y\")) and \n{willSearchRelativesHaveDeathCertificateVoluntaryTransfer} = \"n\" and {willSearchRelativesHaveDeathCertificateVoluntaryTransferNoExplanation} > 0",
        "title": "Were you successful in getting the certificate of death and will search?"
       },
       {
        "type": "infotext",
-       "name": "question434",
+       "name": "willSearchApplicantRelativeNoGetDocumentsYesExplanation",
        "visible": false,
-       "visibleIf": "{willSearchAlias} = \"n\"",
-       "title": "We're sorry to hear that. You can apply to the court for permission to get a certificate of death. If successful, you will have to resubmit to Vital Stats. [investigate which form to which court]\n<br><br>\nClick here to generate the form.\n<br><br>\n(c) a person who is authorized by a court order to be issued the copy or extract;",
-       "titleLocation": "hidden"
-      },
-      {
-       "type": "infotext",
-       "name": "question438",
-       "visible": false,
-       "visibleIf": "{willSearchAlias} = \"n\"",
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and \n{willSearchRelativesGotDeathCertificate} = \"y\")) and \n{willSearchRelativesHaveDeathCertificateVoluntaryTransfer} = \"n\" and {willSearchApplicantRelativeNoGetDocuments} = \"y\"",
        "title": "go back to certificate of death question and say \"yes\" to having certificate of death.\n<br><br>\n(c) a person who is authorized by a court order to be issued the copy or extract;",
        "titleLocation": "hidden"
       },
       {
+       "type": "infotext",
+       "name": "willSearchApplicantRelativeNoGetDocumentsNoExplanation",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and {willSearchRelativesGotDeathCertificate} = \"y\")) and {willSearchRelativesHaveDeathCertificateVoluntaryTransfer} = \"n\" and {willSearchApplicantRelativeNoGetDocuments} = \"n\"",
+       "title": "We're sorry to hear that. You can apply to the court for permission to get a certificate of death. If successful, you will have to resubmit to Vital Stats. [investigate which form to which court]\n<br><br>\nClick here to generate the form.\n<br><br>\n(c) a person who is authorized by a court order to be issued the copy or extract;",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
        "type": "yesno",
-       "name": "question412",
+       "name": "willSearchApplicantRelativeNoGetCourtPermission",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and {willSearchRelativesGotDeathCertificate} = \"y\")) and {willSearchRelativesHaveDeathCertificateVoluntaryTransfer} = \"n\" and {willSearchApplicantRelativeNoGetDocuments} = \"n\" and {willSearchApplicantRelativeNoGetDocumentsNoExplanation} > 0",
        "title": "did the court grant you the right to get a certificate of death?",
        "description": "no - super sorry but you're done. "
       },
@@ -8879,8 +8910,16 @@
        "type": "infotext",
        "name": "question437",
        "visible": false,
-       "visibleIf": "{willSearchAlias} = \"n\"",
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and {willSearchRelativesGotDeathCertificate} = \"y\")) and {willSearchRelativesHaveDeathCertificateVoluntaryTransfer} = \"n\" and {willSearchApplicantRelativeNoGetDocuments} = \"n\" and {willSearchApplicantRelativeNoGetCourtPermission} = \"y\"",
        "title": "yes - click here to apply for the double Vital Stats application. include a copy/original? of the order from the court.\n<br><br>\nOnce you get the will searches back, might take 3 weeks, go back to question about having certificate of death and say \"yes\" to having certificate of death. ",
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "willSearchApplicantRelativeNoGetCourtPermissionNoExplanation",
+       "visible": false,
+       "visibleIf": "{willSearchStarted} = \"n\" and {willSearchHaveDeathCertificate} = \"n\" and {willSearchTempApplicantRelative} = \"n\" and ({willSearchRelativesHaveDeathCertificate} = \"y\" or ({willSearchRelativesHaveDeathCertificate} = \"n\" and {willSearchRelativesWillGetDeathCertificate} = \"y\" and {willSearchRelativesGotDeathCertificate} = \"y\")) and {willSearchRelativesHaveDeathCertificateVoluntaryTransfer} = \"n\" and {willSearchApplicantRelativeNoGetDocuments} = \"n\" and {willSearchApplicantRelativeNoGetCourtPermission} = \"n\"",
+       "title": "super done",
        "titleLocation": "hidden"
       }
      ],
@@ -9011,7 +9050,8 @@
        "removeRowText": "Remove document"
       }
      ],
-     "visible": false
+     "visible": false,
+     "visibleIf": "{willSearchStarted} = \"y\""
     },
     {
      "type": "panel",
@@ -9066,7 +9106,8 @@
      ]
     }
    ],
-   "title": "Will Search Check"
+   "title": "Will Search Check",
+   "description": "why is this invisible?"
   },
   {
    "name": "finalizeAssets",
