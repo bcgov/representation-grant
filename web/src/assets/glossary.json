@@ -1,11 +1,19 @@
 {
-  "affidavit": "An affidavit is a document that contains facts that you swear under oath or affirm to be true. It is your story that you are telling the court.",
+  "affidavit": "An affidavit is a document that contains facts that you swear under oath or affirm to be true.",
+
+  "applicant": "An applicant is someone doing the work to get a Representation Grant.\n\n More than one applicant can work together to get a Representation Grant.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
+
+  "applicants": "An applicant is someone doing the work to get a Representation Grant.\n\n More than one applicant can work together to get a Representation Grant.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
+
+  "application": "An application is the package of all the documents that you will need to file with the court to get a Representation Grant.\n\n This service will help you figure out which documents you will need.",
 
   "asset": "An asset can be any kind of belonging that a person owned, including property and money. The whole collection of these assets is called an estate.",
 
   "assets": "An asset can be any kind of belonging that a person owned, including property and money. The whole collection of these assets is called an estate.",
   
   "estate":  "An estate is the collection of property, money and belongings that a person left behind after they died.",
+
+  "estate grant":  "An Estate Grant is another name for a Representation Grant.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
 
   "family member": "A family member includes:\n - someone you are or were married to\n  - someone you live or lived with in a marriage-like relationship\n  - your child’s parent or legal guardian\n  - a relative of any of the people above who lives with them\n - a relative of yours who lives with you\n  - your own child",
 
@@ -21,15 +29,23 @@
 
   "peace bond": "A peace bond is a protection order from criminal court. It is a list of conditions set by a judge to protect one person from another person. This usually means no visits to your home or workplace, no phone calls, emails, or letters, and no messages through a friend or relative.\n\n  [Click here for more information](https://www2.gov.bc.ca/gov/content/justice/criminal-justice/bcs-criminal-justice-system/if-you-are-convicted-of-a-crime/no-contact/peace-bond)",
 
+  "personal representative": "A personal representative is someone who manages the property, money and belongings of a person who died.\n\n There can be more than one personal representative for a person who died.",
+
+  "personal representatives": "A personal representative is someone who manages the property, money and belongings of a person who died.\n\n There can be more than one personal representative for a person who died.",
+
+  "probate": "Probate means to make sure that a Will is valid under B.C. law.\n\n A Grant of Probate is a type of Representation Grant specifically for executors named in the Will.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
+
   "protection order": "A Protection Order is a list of conditions set by a judge that a person must follow. This usually means no visits to your home or workplace, no phone calls, emails, or letters, and no messages through a friend or relative. If the person doesn't follow the conditions, they may face criminal charges.",
 
-  "Representation Grant": "A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.\n\n Representation Grant is an umbrella term that includes different types of grants.\n\n A Grant of Probate is a type of Representation Grant specifically for executors named in the Will.",
+  "representation grant": "A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.\n\n Representation Grant is an umbrella term that includes different types of grants.\n\n A Grant of Probate is a type of Representation Grant specifically for executors named in the Will.",
 
   "spouse": "A spouse is someone who was married to {deceasedName} and they did not get a divorce.\n\n A spouse is also someone who was living together, for at least two years, in a marriage-like relationship with {decreasedName} and that relationship still continued until {deceasedName} died. This type of relationship is also known as common-law marriage.",
 
   "unsafe": "When a family member makes you feel unsafe, this is called Family Violence. Family violence includes many things such as:\n - physical abuse (or attempted abuse)\n  - emotional or mental abuse (stalking, threats, intimidation or harassment)\n - sexual abuse (or attempted abuse)\n - denying food or other basic needs\n  - children being exposed to family violence\n\n  [Click here for more information for what counts as Family Violence](http://www.justice.gc.ca/eng/cj-jp/fv-vf/laws-lois.html).",
 
   "will": "A Will is a document made by someone to describe how they want their belongings managed after they die.",
+
+  "wills": "A Will is a document made by someone to describe how they want their belongings managed after they die.",
 
   "weapon": "A *weapon* means any thing used, designed to be used or intended for use\n\n  - (a) in causing death or injury to any person, or\n  - (b) for the purpose of threatening or intimidating any person\n  \n  and, without restricting the generality of the foregoing, includes a firearm and, for the purposes of sections 88, 267 and 272, any thing used, designed to be used or intended for use in binding or tying up a person against their will; (arme)\n  Click [here for more information](http://laws-lois.justice.gc.ca/eng/acts/C-46/page-1.html)."
 }
