@@ -5,13 +5,18 @@
    "name": "Qualifying Questions - Rename",
    "elements": [
     {
+     "type": "text",
+     "name": "definitionsShortcut",
+     "title": "`affidavit`<br>\n`applicant`<br>\n`application`<br>\n`asset`<br>\n`estate`<br>\n`estate grant`<br>\n`personal representative`<br>\n`probate`<br>\n`representation grant`<br>\n`will`"
+    },
+    {
      "type": "panel",
      "name": "qualifyingIntroPanel",
      "elements": [
       {
        "type": "infotext",
        "name": "qualifyingIntroExplanation",
-       "title": "This service will help you apply to for a Representation Grant. A Representation Grant costs money and will take time to process. If you do not a need a Representation Grant to manage the estate of a person who died, you may be able to save time and money.\n<br>\n<br>\nBefore proceeding with this service, contact each of the organizations that hold the deceased's  assets to find out if they will allow you to manage the assets on your own.",
+       "title": "A Representation Grant costs money and will take time to process. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the deceased had money in their bank account, depending on your relationship to that deceased, the bank may simply give that money. However, different organizations may have different policies.\n<br><br>\nAsk each of the organizations that hold the `deceased`’s `assets` if they will give you the asset without a Representation Grant.\n<br><br>\nIf all the organizations that hold the deceased's assets simply give you the assets, then you probably don't need Representation Grant.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -24,29 +29,37 @@
       {
        "type": "yesno",
        "name": "needGrant",
-       "title": "Do you need the Supreme Court of British Columbia's help to manage the estate of the person who died?",
+       "title": "Did all the organizations that hold the deceased's assets give you those assets?",
        "isRequired": true
       },
       {
        "type": "helptext",
        "name": "needGrantFAQ1",
-       "title": "What can I do without the help of the court?",
+       "visible": false,
+       "title": "[obsolete] What can I do without the help of the court?",
        "titleLocation": "hidden",
        "body": "You don't always need help from the Supreme Court of British Columbia to manage the estate. It depends on the kinds of assets the deceased left behind. If you can do this all on your own, you may be able to save some time and money. \n<br>\n<br>\nFor example, if the deceased had money in their bank account, depending on your relationship to that person, the bank may work with you to manage that money. However, different assets and the organizations who manage them, may have different policies.\n<br>\n<br>\nContact each of the organizations that hold the deceased's  assets to find out what each organization needs before they will let you manage the asset. You may be able to manage the whole estate without the help of the court."
       },
       {
        "type": "helptext",
        "name": "needGrantFAQ2",
-       "title": "When do I need the court's help?",
+       "title": "[obsolete]When do I need the court's help?",
        "titleLocation": "hidden",
        "body": "If any of the organizations that hold the deceased's assets will not allow you to manage the asset, you can apply to the Supreme Court of British Columbia for help.\n<br>\n<br>\nIf you are successful with the court process, you will receive a document called a Representation Grant. This will take some time to get processed by the court. The organization that holds the asset will respect your Representation Grant and let you to manage the asset."
+      },
+      {
+       "type": "infotext",
+       "name": "question1",
+       "title": "There may be different reasons that organizations that hold the deceased's assets will not give them to you.\n<br><br>\nexamples....\nthere is a will and you are not listed in the will\nthere is no will but you are not a close relative\ntoo much money??\n<br><br>\nYou can continue with this service to apply for a Representation Grant.\nIf you successful get a Representation Grant, the organizations that hold the deceased's assets will then give you the assets.",
+       "isRequired": true,
+       "titleLocation": "hidden"
       },
       {
        "type": "infotext",
        "name": "needGrantNoError",
        "visible": false,
        "visibleIf": "{needGrant} = \"n\"",
-       "title": "If you do not a need a Representation Grant from the Supreme Court of British Columbia, you do not need this service.",
+       "title": "You don't need this service. probaly.\n\nAre you sure you want to continue?",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
@@ -163,7 +176,7 @@
      "visibleIf": "{needGrant} = \"y\" and {diedAfterWESA} = \"y\" and {BCResident} = \"y\" and ({will} = \"n\" or ({will} = \"y\" and {willYesExplanation} > 0))"
     }
    ],
-   "title": "Your Story"
+   "title": "Nothing here?? Qualifying questions? Is this Service for you? How this service can help you \"Do you even need a Representation Grant?\""
   }
  ],
  "showQuestionNumbers": "off",
