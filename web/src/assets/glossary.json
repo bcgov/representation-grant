@@ -11,6 +11,8 @@
 
   "assets": "An asset can be any kind of belonging that a person owned, including property and money. The whole collection of these assets is called an estate.",
   
+  "deceased": "The Deceased means the person who died.",
+
   "estate":  "An estate is the collection of property, money and belongings that a person left behind after they died.",
 
   "estate grant":  "An Estate Grant is another name for a Representation Grant.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
@@ -33,7 +35,7 @@
 
   "personal representatives": "A personal representative is someone who manages the property, money and belongings of a person who died.\n\n There can be more than one personal representative for a person who died.",
 
-  "probate": "Probate means to make sure that a Will is valid under B.C. law.\n\n A Grant of Probate is a type of Representation Grant specifically for executors named in the Will.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
+  "probate": "To Probate a Will means asking the Court to make sure that the Will is valid under B.C. law.\n\n A Grant of Probate is a type of Representation Grant specifically for executors named in the Will.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
 
   "protection order": "A Protection Order is a list of conditions set by a judge that a person must follow. This usually means no visits to your home or workplace, no phone calls, emails, or letters, and no messages through a friend or relative. If the person doesn't follow the conditions, they may face criminal charges.",
 
@@ -43,9 +45,9 @@
 
   "unsafe": "When a family member makes you feel unsafe, this is called Family Violence. Family violence includes many things such as:\n - physical abuse (or attempted abuse)\n  - emotional or mental abuse (stalking, threats, intimidation or harassment)\n - sexual abuse (or attempted abuse)\n - denying food or other basic needs\n  - children being exposed to family violence\n\n  [Click here for more information for what counts as Family Violence](http://www.justice.gc.ca/eng/cj-jp/fv-vf/laws-lois.html).",
 
-  "will": "A Will is a document made by someone to describe how they want their belongings managed after they die.",
+  "will": "Generally, a Will is a legal document that explains how a person wants their property, money and belongings to be managed after they died.\n\n Sometimes a Will may include extra documents, like codicils or memorandums, that also count as part of the Will under B.C. law.",
 
-  "wills": "A Will is a document made by someone to describe how they want their belongings managed after they die.",
+  "wills": "Generally, a Will is a legal document that explains how a person wants their property, money and belongings to be managed after they died.\n\n Sometimes a Will may include extra documents, like codicils or memorandums, that also count as part of the Will under B.C. law.",
 
   "weapon": "A *weapon* means any thing used, designed to be used or intended for use\n\n  - (a) in causing death or injury to any person, or\n  - (b) for the purpose of threatening or intimidating any person\n  \n  and, without restricting the generality of the foregoing, includes a firearm and, for the purposes of sections 88, 267 and 272, any thing used, designed to be used or intended for use in binding or tying up a person against their will; (arme)\n  Click [here for more information](http://laws-lois.justice.gc.ca/eng/acts/C-46/page-1.html)."
 }
