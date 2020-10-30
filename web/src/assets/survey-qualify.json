@@ -23,7 +23,7 @@
       {
        "type": "infotext",
        "name": "qualifyingIntroExplanation",
-       "title": "A `Representation Grant` costs money and will take time to process. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the person who died had money in their bank account, depending on your relationship to that deceased, the bank may simply give that money to manage. However, different organizations may have different policies.\n<br><br>\nAsk each of the organizations that hold the `deceased's` `assets` if they will give you the asset without a Representation Grant.\n<br><br>\nIf all the organizations that hold the deceased's assets simply give you the assets to manage, then you probably don't need Representation Grant.",
+       "title": "A `Representation Grant` costs money and will take time to process. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the `deceased` had money in their bank account, depending on your relationship to that deceased, the bank may simply give that money to manage. However, different organizations may have different policies.\n<br><br>\nAsk each of the organizations that hold the deceased's `assets` if they will give you the asset without a Representation Grant.\n<br><br>\nIf all the organizations that hold the deceased's assets simply give you the assets to manage, then you probably don't need Representation Grant.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
