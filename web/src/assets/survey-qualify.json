@@ -23,7 +23,7 @@
       {
        "type": "infotext",
        "name": "qualifyingIntroExplanation",
-       "title": "A `Representation Grant` costs money and will take time to process. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the `deceased` had money in their bank account, depending on your relationship to that deceased, the bank may simply give that money to manage. However, different organizations may have different policies.\n<br><br>\nAsk each of the organizations that hold the `deceased’s` `assets` if they will give you the asset without a Representation Grant.\n<br><br>\nIf all the organizations that hold the deceased's assets simply give you the assets to manage, then you probably don't need Representation Grant.",
+       "title": "A `Representation Grant` costs money and will take time to process. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the person who died had money in their bank account, depending on your relationship to that deceased, the bank may simply give that money to manage. However, different organizations may have different policies.\n<br><br>\nAsk each of the organizations that hold the `deceased's` `assets` if they will give you the asset without a Representation Grant.\n<br><br>\nIf all the organizations that hold the deceased's assets simply give you the assets to manage, then you probably don't need Representation Grant.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -36,7 +36,7 @@
       {
        "type": "yesno",
        "name": "assetsObtained",
-       "title": "Did all the organizations that hold the `deceased's` `assets` give you those assets to manage?\n<br><br>\n(alternate question with a \"Yes\" answer - Did any organization that holds the `deceased's` `assets` ask you to get a ``Representation Grant` or a Grant of `Probate` - not talking about advice from regular people)",
+       "title": "Did all the organizations that hold the `deceased's` `assets` give you those assets to manage?\n<br><br>\n(alternate question with a \"Yes\" answer - Did any organization that holds the `deceased's` `assets` ask you to get a `Representation Grant` or a Grant of `Probate` - not talking about advice from regular people)",
        "description": "If they told you to get a `Representation Grant` or a Grant of `Probate`, select \"No\" for this question.",
        "isRequired": true
       },
@@ -101,7 +101,7 @@
       {
        "type": "yesno",
        "name": "diedAfterWESA",
-       "title": "Did the person who died, die after March 31, 2014?",
+       "title": "Did the `deceased` die after March 31, 2014?",
        "isRequired": true
       },
       {
@@ -170,7 +170,7 @@
       {
        "type": "infotext",
        "name": "willYesExplanation",
-       "title": "For now, this service has only been developed for a limited number of situations where the person who died left a `Will`.\n<br>\n<br>\nAt this point in time, this service can help you apply for a Representation Grant if the `Will` is valid according to the Wills, Estates and Succession Act of British Columbia. This service will guide you through checking to see if the Will is valid.\n<br>\n<br>\nIf the Will is not valid, this service may still be able to help you. The service may direct you to the developer of this service to see if this service has been expanded for your specific situation.",
+       "title": "For now, this service has only been developed for a limited number of situations where the person who died left a `Will`.\n<br>\n<br>\nAt this point in time, this service can help you apply for a Representation Grant if the Will is valid according to the Wills, Estates and Succession Act of British Columbia. This service will guide you through checking to see if the Will is valid.\n<br>\n<br>\nIf the Will is not valid, this service may still be able to help you. The service may direct you to the developer of this service to see if this service has been expanded for your specific situation.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
