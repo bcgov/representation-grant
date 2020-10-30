@@ -5,9 +5,16 @@
    "name": "Qualifying Questions - Rename",
    "elements": [
     {
-     "type": "text",
-     "name": "definitionsShortcut",
-     "title": "`affidavit`<br>\n`applicant`<br>\n`application`<br>\n`asset`<br>\n`estate`<br>\n`estate grant`<br>\n`personal representative`<br>\n`probate`<br>\n`representation grant`<br>\n`will`"
+     "type": "panel",
+     "name": "panel1",
+     "elements": [
+      {
+       "type": "text",
+       "name": "definitionsShortcut",
+       "title": "`affidavit`<br>\n`applicant`<br>\n`application`<br>\n`asset`<br>\n`deceased`<br>\n`estate`<br>\n`estate grant`<br>\n`personal representative`<br>\n`probate`<br>\n`representation grant`<br>\n`will`"
+      }
+     ],
+     "visible": false
     },
     {
      "type": "panel",
@@ -16,7 +23,7 @@
       {
        "type": "infotext",
        "name": "qualifyingIntroExplanation",
-       "title": "A Representation Grant costs money and will take time to process. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the deceased had money in their bank account, depending on your relationship to that deceased, the bank may simply give that money. However, different organizations may have different policies.\n<br><br>\nAsk each of the organizations that hold the `deceased`’s `assets` if they will give you the asset without a Representation Grant.\n<br><br>\nIf all the organizations that hold the deceased's assets simply give you the assets, then you probably don't need Representation Grant.",
+       "title": "A `Representation Grant` costs money and will take time to process. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the `deceased` had money in their bank account, depending on your relationship to that deceased, the bank may simply give that money to manage. However, different organizations may have different policies.\n<br><br>\nAsk each of the organizations that hold the `deceased’s` `assets` if they will give you the asset without a Representation Grant.\n<br><br>\nIf all the organizations that hold the deceased's assets simply give you the assets to manage, then you probably don't need Representation Grant.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -28,8 +35,9 @@
      "elements": [
       {
        "type": "yesno",
-       "name": "needGrant",
-       "title": "Did all the organizations that hold the deceased's assets give you those assets?",
+       "name": "assetsObtained",
+       "title": "Did all the organizations that hold the `deceased's` `assets` give you those assets to manage?\n<br><br>\n(alternate question with a \"Yes\" answer - Did any organization that holds the `deceased's` `assets` ask you to get a ``Representation Grant` or a Grant of `Probate` - not talking about advice from regular people)",
+       "description": "If they told you to get a `Representation Grant` or a Grant of `Probate`, select \"No\" for this question.",
        "isRequired": true
       },
       {
@@ -43,23 +51,42 @@
       {
        "type": "helptext",
        "name": "needGrantFAQ2",
+       "visible": false,
        "title": "[obsolete]When do I need the court's help?",
        "titleLocation": "hidden",
        "body": "If any of the organizations that hold the deceased's assets will not allow you to manage the asset, you can apply to the Supreme Court of British Columbia for help.\n<br>\n<br>\nIf you are successful with the court process, you will receive a document called a Representation Grant. This will take some time to get processed by the court. The organization that holds the asset will respect your Representation Grant and let you to manage the asset."
       },
       {
        "type": "infotext",
-       "name": "question1",
-       "title": "There may be different reasons that organizations that hold the deceased's assets will not give them to you.\n<br><br>\nexamples....\nthere is a will and you are not listed in the will\nthere is no will but you are not a close relative\ntoo much money??\n<br><br>\nYou can continue with this service to apply for a Representation Grant.\nIf you successful get a Representation Grant, the organizations that hold the deceased's assets will then give you the assets.",
+       "name": "assetsObtainedNoExplanation",
+       "visible": false,
+       "visibleIf": "{assetsObtained} = \"n\"",
+       "title": "There may be different reasons that an organization that holds the `deceased's` `asset` may not give it to you to manage.\n<br><br>\nFor example:\n<ul>\n<li>there is a will and you are not listed in the will</li>\n<li>there is no will but you are not a close relative</li>\n<li>too much money??</li>\n</ul>\nContinue with this service to apply for a `Representation Grant`.\n<br><br>\nIf you get a Representation Grant, the organizations that hold the deceased's assets will respect that Representation Grant and let you to manage the asset.\n",
        "isRequired": true,
        "titleLocation": "hidden"
       },
       {
        "type": "infotext",
-       "name": "needGrantNoError",
+       "name": "assetsObtainedYesExplanation",
        "visible": false,
-       "visibleIf": "{needGrant} = \"n\"",
+       "visibleIf": "{assetsObtained} = \"y\"",
        "title": "You don't need this service. probaly.\n\nAre you sure you want to continue?",
+       "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "yesno",
+       "name": "stillNeedGrant",
+       "visible": false,
+       "visibleIf": "{assetsObtained} = \"y\" and {assetsObtainedYesExplanation} > 0",
+       "title": "Do you still want to use this service to apply for a `Representation Grant`?"
+      },
+      {
+       "type": "infotext",
+       "name": "stillNeedGrantNoError",
+       "visible": false,
+       "visibleIf": "{assetsObtained} = \"y\" and {stillNeedGrant} = \"n\"",
+       "title": "You don't need this service. Go here for some next steps on how to manage the deceased's assets.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
@@ -74,7 +101,6 @@
       {
        "type": "yesno",
        "name": "diedAfterWESA",
-       "visibleIf": "{needGrant} = 'y'",
        "title": "Did the person who died, die after March 31, 2014?",
        "isRequired": true
       },
@@ -82,14 +108,14 @@
        "type": "infotext",
        "name": "diedAfterWESANoError",
        "visible": false,
-       "visibleIf": "{needGrant} = \"y\" and {diedAfterWESA} = \"n\"",
+       "visibleIf": "{diedAfterWESA} = \"n\"",
        "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nThe Wills, Estate and Succession Act became law on April 1, 2014. If the person died on March 31, 2014 or before, the court process needs to comply with the old Estate Administration Act in addition to the current Wills, Estate and Succession Act. This service only supports the current laws. Please review both the <a href=\"http://www.bclaws.ca/civix/document/id/consol17/consol17/00_96122_01\" target=\"blank\">Estate Administration Act</a> and the <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/09013_01\" target=\"blank\">Wills, Estate and Succession Act</a> to make sure you <a href=\"https://www2.gov.bc.ca/gov/content/justice/about-bcs-justice-system/legislation-policy/legislation-updates/wills-estates-and-succession-act-and-new-probate-rules\" target=\"blank\">follow the right process.</a>\n\n",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
      ],
      "visible": false,
-     "visibleIf": "{needGrant} = \"y\""
+     "visibleIf": "({assetsObtained} = \"n\" and {assetsObtainedNoExplanation} > 0) or ({assetsObtained} = \"y\" and {stillNeedGrant} = \"y\")\n"
     },
     {
      "type": "panel",
@@ -98,7 +124,7 @@
       {
        "type": "yesno",
        "name": "BCResident",
-       "title": "Was the deceased a resident of British Columbia at the time of their death?",
+       "title": "[Check to see if still relevant] Was the deceased a resident of British Columbia at the time of their death?",
        "description": "Generally speaking, a person is a resident of British Columbia if their primary home and most of their financial and social connections are in British Columbia.",
        "isRequired": true
       },
@@ -106,14 +132,14 @@
        "type": "infotext",
        "name": "BCResidentNoError",
        "visible": false,
-       "visibleIf": "{needGrant} = \"y\" and {diedAfterWESA} = \"y\" and {BCResident} = \"n\"",
+       "visibleIf": "{BCResident} = \"n\"",
        "title": "For now, this service has only been developed for a limited number of situations. At this point in time, this service cannot help you apply for a Representation Grant. \n<br>\n<br>\nIf the deceased was not a resident of British Columbia, at their time of death, it may involve other factors and filing requirements. You may need to apply to represent them somewhere else entirely. Or, if you do apply in British Columbia, please review the Supreme Court Civil Rules to use the appropriate Supreme Court Probate Form.",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
      ],
      "visible": false,
-     "visibleIf": "{needGrant} = \"y\" and {diedAfterWESA} = \"y\""
+     "visibleIf": "(({assetsObtained} = \"n\" and {assetsObtainedNoExplanation} > 0) or ({assetsObtained} = \"y\" and {stillNeedGrant} = \"y\")) and {diedAfterWESA} = \"y\""
     },
     {
      "type": "panel",
@@ -122,34 +148,35 @@
       {
        "type": "yesno",
        "name": "will",
-       "title": "Did the deceased leave a `Will`",
-       "isRequired": true
+       "visible": false,
+       "title": "[Obsolete] Did the deceased leave a `Will`"
       },
       {
        "type": "helptext",
        "name": "willFAQ1",
-       "title": "I'm not sure the person who died left a will.\n\n",
+       "visible": false,
+       "title": "[Obsolete] I'm not sure the person who died left a will.\n\n",
        "titleLocation": "hidden",
        "body": "To apply to represent a person who died, you are responsible for making sure if they left a will."
       },
       {
        "type": "helptext",
        "name": "willFAQ2",
-       "title": "How do I check for a will?",
+       "visible": false,
+       "title": "[Obsolete] How do I check for a will?",
        "titleLocation": "hidden",
        "body": "You should start by checking in places where the deceased usually kept their documents. You may not find their will but you may find clues to where the will is kept. The will may be at a variety of places, including the deceased's home, their safety deposit box, or at the office of the lawyer who helped create the will.<br><br>As part of applying for a Representation Grant, you will be required to do a <a href=\"https://www2.gov.bc.ca/assets/gov/health/forms/vital-statistics/vsa532_fill.pdf\" target=\"blank\">\"Search of Wills Notice\"</a> and provide the results to the court. This is done through the Vital Statistics Agency of British Columbia. If a will was registered with the Vital Statistics Agency, they will have information about the location of the will, but not the actual will itself.<br><br>The \"Search of Wills Notice\" must include a search of all of the different names and spellings that the deceased used in their will and for their assets. If you need help identifying all of the different names and spellings of the deceased, this service will guide you through that process in a later stage."
       },
       {
        "type": "infotext",
        "name": "willYesExplanation",
-       "visibleIf": "{will} = \"y\"",
        "title": "For now, this service has only been developed for a limited number of situations where the person who died left a `Will`.\n<br>\n<br>\nAt this point in time, this service can help you apply for a Representation Grant if the `Will` is valid according to the Wills, Estates and Succession Act of British Columbia. This service will guide you through checking to see if the Will is valid.\n<br>\n<br>\nIf the Will is not valid, this service may still be able to help you. The service may direct you to the developer of this service to see if this service has been expanded for your specific situation.",
        "isRequired": true,
        "titleLocation": "hidden"
       }
      ],
      "visible": false,
-     "visibleIf": "{needGrant} = \"y\" and {diedAfterWESA} = \"y\" and {BCResident} = \"y\""
+     "visibleIf": "(({assetsObtained} = \"n\" and {assetsObtainedNoExplanation} > 0) or ({assetsObtained} = \"y\" and {stillNeedGrant} = \"y\")) and {diedAfterWESA} = \"y\" and {BCResident} = \"y\""
     },
     {
      "type": "panel",
@@ -173,10 +200,10 @@
       }
      ],
      "visible": false,
-     "visibleIf": "{needGrant} = \"y\" and {diedAfterWESA} = \"y\" and {BCResident} = \"y\" and ({will} = \"n\" or ({will} = \"y\" and {willYesExplanation} > 0))"
+     "visibleIf": "(({assetsObtained} = \"n\" and {assetsObtainedNoExplanation} > 0) or ({assetsObtained} = \"y\" and {stillNeedGrant} = \"y\")) and {diedAfterWESA} = \"y\" and {BCResident} = \"y\""
     }
    ],
-   "title": "Nothing here?? Qualifying questions? Is this Service for you? How this service can help you \"Do you even need a Representation Grant?\""
+   "title": "\"Do you even need a Representation Grant?\" or Nothing here??"
   }
  ],
  "showQuestionNumbers": "off",
