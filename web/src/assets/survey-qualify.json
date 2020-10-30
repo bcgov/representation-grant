@@ -185,7 +185,7 @@
       {
        "type": "yesno",
        "name": "anotherGrant",
-       "title": "Is there already a Representation Grant for the deceased?",
+       "title": "[Select \"No\" - Obsolete but need GitHub access to change qualifying conditions]\n<br>\nIs there already a Representation Grant for the deceased?",
        "description": "This grant could be from British Columbia or anywhere else in the world.",
        "isRequired": true
       },
