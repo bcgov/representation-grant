@@ -118,7 +118,7 @@
      "visibleIf": "(({needGrant} = \"y\" and {needGrantYesExplanation} > 0) or ({needGrant} = \"n\" and {stillNeedGrant} = \"y\")) and {diedAfterWESA} = \"y\""
     }
    ],
-   "title": "\"Do you even need a Representation Grant?\" or Nothing here??"
+   "title": "Is this service right for your situation?"
   }
  ],
  "showQuestionNumbers": "off",
