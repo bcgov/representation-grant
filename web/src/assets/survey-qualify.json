@@ -24,7 +24,7 @@
       {
        "type": "yesno",
        "name": "needGrant",
-       "title": "Were you asked to get a `Representation Grant` (or a Grant of `Probate`) by an organization that holds one of the deceased's assets?",
+       "title": "Were you asked to get a `Representation Grant` (or a Grant of `Probate`) by any of the organizations that hold the `deceased's` `assets`",
        "isRequired": true
       },
       {
@@ -57,7 +57,7 @@
        "name": "stillNeedGrantNoError",
        "visible": false,
        "visibleIf": "{needGrant} = \"n\" and {stillNeedGrant} = \"n\"",
-       "title": "It seems you don't need this service to manage the `deceased's` `assets`.\n<br><br>\nIf the `deceased` made a `Will`, do your best to follow instruction in the Will on how to distribute the assets.\n<br><br>\nIf the `deceased` did not make a Will, there are rules written in the Wills, Estates and Succession Act (WESA Part 3 Division 1) on how to distribute the assets. There are different rules depending on the deceased's family situation. \n<br><br>\nRead the rules written in <a href=\"https://www.bclaws.ca/civix/document/id/lc/statreg/09013_01#division_d2e2469\" target=\"_blank\">WESA (Part 3 Division 1) here.</a> (This link opens in a new tab)\n<br><br>\n[Jack to follow up with ServiceBC/Service Design & Integration to see if there is a better plain language resource]",
+       "title": "It seems you don't need this service to manage the `deceased's` `assets`.\n<br><br>\nIf the deceased made a `Will`, do your best to follow instruction in the Will on how to distribute the assets.\n<br><br>\nIf the deceased did not make a Will, there are rules written in the Wills, Estates and Succession Act (WESA Part 3 Division 1) on how to distribute the assets. There are different rules depending on the deceased's family situation. \n<br><br>\nRead the rules written in <a href=\"https://www.bclaws.ca/civix/document/id/lc/statreg/09013_01#division_d2e2469\" target=\"_blank\">WESA (Part 3 Division 1) here.</a> (This link opens in a new tab)\n<br><br>\n[Jack to follow up with ServiceBC/Service Design & Integration to see if there is a better plain language resource]",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
@@ -80,7 +80,7 @@
        "name": "diedAfterWESANoError",
        "visible": false,
        "visibleIf": "{diedAfterWESA} = \"n\"",
-       "title": "At this point in time, this service cannot help you apply for a `Representation Grant` if the person died on March 30, 2014, or before. \n<br><br>\nThe Wills, Estate and Succession Act became law on March 31, 2014. This service only supports the current laws. \n<br><br>\nIf the person died before to the current Wills, Estate and Succession Act became law, your `application` also needs to comply with the old Estate Administration Act. \n<br><br>\nPlease review both sets of laws to make sure your application will be successful.\n<ul>\n<li>the <a href=\"http://www.bclaws.ca/civix/document/id/consol17/consol17/00_96122_01\" target=\"blank\">Estate Administration Act</a> (This link opens in a new tab)</li>\n<li>the <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/09013_01\" target=\"blank\">Wills, Estate and Succession Act</a> (This link opens in a new tab)</li> \n</ul>",
+       "title": "At this point in time, this service cannot help you apply for a `Representation Grant` if the `deceased` died on March 30, 2014, or before. \n<br><br>\nThe Wills, Estate and Succession Act became law on March 31, 2014. This service only supports the current laws. \n<br><br>\nIf the deceased died before to the current Wills, Estate and Succession Act became law, your `application` also needs to comply with the old Estate Administration Act. \n<br><br>\nPlease review both sets of laws to make sure your application will be successful.\n<ul>\n<li>the <a href=\"http://www.bclaws.ca/civix/document/id/consol17/consol17/00_96122_01\" target=\"blank\">Estate Administration Act</a> (This link opens in a new tab)</li>\n<li>the <a href=\"http://www.bclaws.ca/civix/document/id/complete/statreg/09013_01\" target=\"blank\">Wills, Estate and Succession Act</a> (This link opens in a new tab)</li> \n</ul>",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
@@ -97,6 +97,12 @@
        "name": "complicationsExplanation",
        "title": "This service can help you apply for a `Representation Grant` whether the `deceased` made a `Will` or not. \n<br><br>\nAt this point in time, this service has been developed for the most common situations.\n<br><br>\nIf your situation is unusual, this service may still be able to help you. You will be able to ask the developer of this service if they can include your specific situation.\n<br><br>\nThe next step is to create an account so that you can save your progress as you work through this service.",
        "isRequired": true,
+       "titleLocation": "hidden"
+      },
+      {
+       "type": "infotext",
+       "name": "jiraRepgrant19",
+       "title": "<a href=\"https://justice.gov.bc.ca/jira/browse/REPGRANT-19\" target=\"_blank\">JIRA ticket REPGRANT-19: Qualifying Page - Change Qualifying Conditions</a>",
        "titleLocation": "hidden"
       }
      ],
