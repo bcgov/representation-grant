@@ -41,7 +41,7 @@
        "name": "needGrantNoExplanation",
        "visible": false,
        "visibleIf": "{needGrant} = \"n\"",
-       "title": "If all of the organizations that hold the `deceased's` `assets` simply gave you those assets to manage, then you probably don't a need `Representation Grant`.",
+       "title": "If all of the organizations that hold the `deceased's` `assets` simply gave you those assets to manage, then you probably don't need `Representation Grant`.",
        "isRequired": true,
        "titleLocation": "hidden"
       },
