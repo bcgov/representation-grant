@@ -11,7 +11,7 @@
       {
        "type": "infotext",
        "name": "qualifyingIntroExplanation",
-       "title": "A `Representation Grant` costs money and will take time to get. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the `deceased` had money in their bank account, that bank may give you that money to manage without a Representation Grant. However, this may depend on your relationship to the deceased. Different organizations have different policies.\n<br><br>\nAsk each of the organizations that hold the deceased's `assets` if they will give you the asset without a Representation Grant (also known as a Grant of `Probate`).",
+       "title": "A `Representation Grant` costs money and will take time to get. Don't waste time on this service if you don't need one.\n<br><br>\nFor example, if the `deceased` had money in their bank account, that bank may give you that money to manage without a Representation Grant. However, this may depend on your relationship to the deceased. \n<br><br>\nDifferent organizations have different policies to make sure that the right person gets the deceased's assets.\n<br><br>\nAsk each of the organizations that hold the deceased's `assets` if they will give you the asset without a Representation Grant (also known as a Grant of `Probate`).",
        "isRequired": true,
        "titleLocation": "hidden"
       }
@@ -57,7 +57,7 @@
        "name": "stillNeedGrantNoError",
        "visible": false,
        "visibleIf": "{needGrant} = \"n\" and {stillNeedGrant} = \"n\"",
-       "title": "It seems you don't need this service to manage the `deceased's` `assets`.\n<br><br>\nIf the deceased made a `Will`, do your best to follow instruction in the Will on how to distribute the assets.\n<br><br>\nIf the deceased did not make a Will, there are rules written in the Wills, Estates and Succession Act (WESA Part 3 Division 1) on how to distribute the assets. There are different rules depending on the deceased's family situation. \n<br><br>\nRead the rules written in <a href=\"https://www.bclaws.ca/civix/document/id/lc/statreg/09013_01#division_d2e2469\" target=\"_blank\">WESA (Part 3 Division 1) here.</a> (This link opens in a new tab)\n<br><br>\n[Jack to follow up with ServiceBC/Service Design & Integration to see if there is a better plain language resource]",
+       "title": "It seems you don't need this service to manage the `deceased's` `assets`. \n<br><br>\nThe organizations that hold the deceased's assets may ask you to sign a waiver in case there are problems in the future.\n<br><br>\n Once you have the assets, you are responsible for distributing them according to the law.\n<br><br>\nIf the deceased made a `Will`, do your best to follow instruction in the Will on how to distribute the assets.\n<br><br>\nIf the deceased did not make a Will, there are rules written in the Wills, Estates and Succession Act (WESA Part 3 Division 1) on how to distribute the assets. There are different rules depending on the deceased's family situation. \n<br><br>\nRead the rules written in <a href=\"https://www.bclaws.ca/civix/document/id/lc/statreg/09013_01#division_d2e2469\" target=\"_blank\">WESA (Part 3 Division 1) here.</a> (This link opens in a new tab)\n<br><br>\n[Jack to follow up with ServiceBC/Service Design & Integration to see if there is a better plain language resource]",
        "titleLocation": "hidden",
        "messageStyle": "error"
       }
