@@ -5,8 +5,6 @@
 
   "applicants": "An applicant is someone doing the work to get a Representation Grant.\n\n More than one applicant can work together to get a Representation Grant.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
 
-  "applicant(s)": "An applicant is someone doing the work to get a Representation Grant.\n\n More than one applicant can work together to get a Representation Grant.\n\n A Representation Grant is a court document that confirms you are the appropriate person to manage the property, money and belongings that a person left behind after they died.",
-  
   "application": "An application is the package of all the documents that you will need to file with the court to get a Representation Grant.\n\n This service will help you figure out which documents you will need.",
 
   "asset": "An asset can be any kind of belonging that a person owned, including property and money. The whole collection of these assets is called an estate.",
@@ -31,7 +29,9 @@
 
   "legal guardians": "A legal guardian is someone who was appointed by a court to be allowed to make decisions for a child under the age of 19.",
 
-  "other testamentary documents": "Other testamentary documents add or change information in a Will. Common examples include a codicil or a memorandum. This may also include anything you believe to be an invalid Will or something that describes how {deceasedName} wanted their belongings managed.",
+  "other testamentary documents": "An "other testamentary document" is like a Will but is not complete under B.C. law. An "other testamentary document" still explains how a person wants their property, money and belongings to be managed after they died; but it might be not be signed. \n\n For example:\n - unwitnessed Wills\n  - unfinished Wills (Google Docs notes)\n - email conversations\n - diary or journal entries\n - text messages\n  - notes on a napkin\n\n  Unwritten conversations (rumors or hearsay) do not count as "other testamentary documents".",
+
+  "other testamentary document": "Other testamentary documents add or change information in a Will. Common examples include a codicil or a memorandum. This may also include anything you believe to be an invalid Will or something that describes how {deceasedName} wanted their belongings managed.",
 
   "peace bond": "A peace bond is a protection order from criminal court. It is a list of conditions set by a judge to protect one person from another person. This usually means no visits to your home or workplace, no phone calls, emails, or letters, and no messages through a friend or relative.\n\n  [Click here for more information](https://www2.gov.bc.ca/gov/content/justice/criminal-justice/bcs-criminal-justice-system/if-you-are-convicted-of-a-crime/no-contact/peace-bond)",
 
